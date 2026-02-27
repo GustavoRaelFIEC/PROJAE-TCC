@@ -9,6 +9,18 @@ class Security
         return htmlspecialchars(trim($input), ENT_QUOTES, 'UTF-8');
     }
 
+    // Criar hash da senha
+    public static function hashPassword($senha)
+    {
+        return password_hash($senha, PASSWORD_DEFAULT);
+    }
+
+    // Verificar senha
+    public static function verifyPassword($senha, $hash) 
+    {
+        return password_verify($senha, $hash);
+    }
+
     // Validar email
     public static function validateEmail($email)
     {
@@ -22,9 +34,9 @@ class Security
     }
 
     // Validar tipo
-    public static function validateTipo($tipo) {
+    public static function validateTipo($tipo)
+    {
         $validos = ['pessoa', 'empresa'];
-        return in_array($tipo, $validos); 
+        return in_array($tipo, $validos);
     }
-
 }
