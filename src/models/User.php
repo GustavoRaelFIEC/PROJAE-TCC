@@ -1,0 +1,17 @@
+<?php
+
+class User {
+    private $pdo;
+
+    public function findByEmail($email) {
+        $sql = "SELECT pessoas.*, usuarios.email
+                FROM pessoas
+                INNER JOIN usuarios ON usuarios.id = pessoas.id_usuario
+                WHERE usuarios.email = ?";
+
+        $stmt = $this->pdo->prepare($sql);
+
+        $stmt->execute($email);
+        return $stmt->fetch();
+    }
+}
