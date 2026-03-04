@@ -2,7 +2,7 @@
 
 class Security
 {
-
+    
     // Sanitizar o input
     public static function sanitizeInput($input)
     {
