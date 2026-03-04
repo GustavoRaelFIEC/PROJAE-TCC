@@ -23,13 +23,36 @@ body {
     height: 100%;
 }
 
-.container {
+.logo{
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.logo-img{
+    width: 90px;
+}
+
+.logo-str{
+    color: #4938be;
+    font-size: 70px;
+    font-weight: 900;
+}
+
+.logo-span{
+    color: #CD0E1A;
+    font-size: 70px;
+    font-weight: 900;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     flex-direction: column;
-    height: 400px;
-    width: 400px;
+    padding-block: 20px;
+    height: 500px;
+    width: 750px;
     border-radius: 15px;
     box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
 }
@@ -37,10 +60,15 @@ body {
 .titulo {
     color: #4938be;
     font-size: 56px; 
-    /* mudar tamanho dps */
+    font-weight: 600;
 }
-/* 
-.form {
 
-} */
+.form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;    
+}
 
