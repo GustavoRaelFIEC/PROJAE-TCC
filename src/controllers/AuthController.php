@@ -39,4 +39,5 @@ function handleLogin($pdo){
         $errors[] = "Erro no sistema. Volte mais tarde.";
     }
 }
+header('Location: ../../public/dashboard/pessoa.php');
 }
