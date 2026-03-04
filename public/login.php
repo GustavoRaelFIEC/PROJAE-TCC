@@ -11,7 +11,7 @@
         <img src="" alt="PROJAE" class="logo">
             <div class="container">
                 <h1 class="titulo">Entrar</h1>
-                <form method="post" class="form">
+                <form method="POST" action="../src/controllers/AuthController.php?action=login" class="form">
                     <label for="email">E-mail:</label>
                     <p><input class="" placeholder="Digite seu Email" id="email" type="email" required></p>
                     <!-- onde ficara a mensagem de erro da email -->
