@@ -2,7 +2,7 @@
 
 class Security
 {
-    
+
     // Sanitizar o input
     public static function sanitizeInput($input)
     {
@@ -16,21 +16,21 @@ class Security
     }
 
     // Verificar senha
-    public static function verifyPassword($senha, $hash) 
+    public static function verifyPassword($senha, $hash)
     {
         return password_verify($senha, $hash);
-    }
-
-    // Validar email
-    public static function validateEmail($email)
-    {
-        return filter_var($email, FILTER_VALIDATE_EMAIL);
     }
 
     // Validar senha
     public static function validatePassword($senha)
     {
         return strlen($senha) >= 8;
+    }
+
+    // Validar email
+    public static function validateEmail($email)
+    {
+        return filter_var($email, FILTER_VALIDATE_EMAIL);
     }
 
     // Validar tipo

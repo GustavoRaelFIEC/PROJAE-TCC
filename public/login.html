@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - PROJAE</title>
+    <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+    <main class="principal">
+        <img src="img/logo.png" alt="PROJAE" class="logo">
+        <div class="container">
+            <h1 class="titulo">Entrar</h1>
+            <form method="post" class="form">
+                <label for="email">E-mail:</label>
+                <p><input class="" placeholder="Digite seu Email" id="email" type="email" required></p>
+                <!-- onde ficara a mensagem de erro da email -->
+                <label for="senha">Sua Senha:</label>
+                <p><input class="" placeholder="Digite sua senha" id="senha" type="password" required></p>
+
+                <p>Escolha seu tipo de conta:</p>
+
+                <label class="btn-pessoa" onclick="" for="pessoa">
+                    <input hidden type="radio" id="pessoa" name="opcao" value="1">
+                    Pessoa
+                </label>
+
+                <label  class="btn-empresa" onclick="" for="empresa">
+                    <input hidden type="radio" id="empresa" name="opcao" value="2">
+                    Empresa
+                </label>
+
+                <!-- onde ficara a mensagem de erro da senha -->
+                <button class="" type="submit">Entrar</button>
+            </form>
+            <!-- caso possivel aqui seria o redefinir senha -->
+            <p><a href="cadastro.php">Criar uma conta!</a></p>
+        </div>
+    </main>
+    <script src=""></script>
+</body>
+</html>
