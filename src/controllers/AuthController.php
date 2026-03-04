@@ -1,7 +1,7 @@
 <?php
 
 require_once './src/config/database.php';
-require_once './src/models/user.php';
+require_once './src/models/User.php';
 
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $action = $_GET['action'] ?? '';

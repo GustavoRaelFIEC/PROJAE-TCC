@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 // Lida com configurações de sessão
 class Session
 {
@@ -28,12 +30,12 @@ class Session
     }
 
     // Pegar o usuário
-    public static function getUsuario() 
+    public static function getUsuario()
     {
         return [
             'id' => $_SESSION['user_id'] ?? null,
-            'email' => $_SESSION['user_email'],
-            'tipo' => $_SESSION['user_tipo'],
-        ]; 
+            'email' => $_SESSION['email'],
+            'tipo' => $_SESSION['tipo'],
+        ];
     }
 }
