@@ -19,7 +19,7 @@ function handleLogin($pdo)
 
     $email = filter_var($_POST['email'] ?? '', FILTER_SANITIZE_EMAIL);
     $senha = $_POST['senha'] ?? '';
-    
+
     $errors = [];
 
     // Validações básicas
