@@ -21,7 +21,6 @@ body {
     gap: 20px;
     width: 100%;
     height: ;
-    width: ;
 }
 
 .container {
@@ -29,8 +28,8 @@ body {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    height: ;
-    width: ;
+    /* height: ;
+    width: ; */
     border-radius: 15px;
     box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
 }
@@ -40,8 +39,8 @@ body {
     font-size: 56px; 
     /* mudar tamanho dps */
 }
-
+/* 
 .form {
 
-}
+} */
 
