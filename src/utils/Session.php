@@ -12,18 +12,28 @@ class Session
         }
     }
 
-     // Inserir Usuário
-    public static function setUser($usuario) {
+    // Inserir Usuário
+    public static function setUsuario($usuario)
+    {
         $_SESSION['user_id'] = $usuario['id'];
         $_SESSION['email'] = $usuario['email'];
         $_SESSION['tipo'] = $usuario['tipo'];
     }
 
     // Destruir a variável de sessão
-    public static function destroy() {
+    public static function destroy()
+    {
         $_SESSION = [];
         session_destroy();
     }
 
-   
+    // Pegar o usuário
+    public static function getUsuario() 
+    {
+        return [
+            'id' => $_SESSION['user_id'] ?? null,
+            'email' => $_SESSION['user_email'],
+            'tipo' => $_SESSION['user_tipo'],
+        ]; 
+    }
 }
