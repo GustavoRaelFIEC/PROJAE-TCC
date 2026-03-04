@@ -34,7 +34,7 @@ function handleLogin($pdo)
     if (!empty($errors)) {
         return;
     }
-    
+
     try {
         $userModel = new User($pdo);
 
@@ -43,4 +43,5 @@ function handleLogin($pdo)
         error_log("Erro no login: " . $e->getMessage());
         $errors[] = "Erro no sistema. Volte mais tarde.";
     }
+    header('Location: ../../public/dashboard/pessoa.php');
 }
