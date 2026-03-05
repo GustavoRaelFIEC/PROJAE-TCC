@@ -1,9 +1,9 @@
 <?php
 
-require_once  './config/config.php';
-require_once  './models/Usuarios.php';
-require_once  './utils/Security.php';
-require_once  './utils/Session.php';
+require_once __DIR__ .  './config/config.php';
+require_once __DIR__ .  './models/Usuarios.php';
+require_once __DIR__ .  './utils/Security.php';
+require_once __DIR__ .  './utils/Session.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         handleLogin($pdo);
