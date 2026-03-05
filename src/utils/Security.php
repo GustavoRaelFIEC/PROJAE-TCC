@@ -40,5 +40,5 @@ class Security
         return password_verify($senha, $senhaHash);
     }
 
-   
+
 }
