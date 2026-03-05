@@ -124,6 +124,7 @@ input[type="radio"] {
     font-size: 18px;
     font-weight: 700;
     cursor: pointer;
+    background-color: white;
 }
 
 .btn-pessoa:hover, .btn-empresa:hover {
@@ -133,6 +134,7 @@ input[type="radio"] {
     color: #fff;
     transition: 0.3s;
 }
+
 
 .btn-submit{
     display: flex;
