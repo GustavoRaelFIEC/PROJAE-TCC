@@ -1,7 +1,18 @@
 <?php
 
-require_once './src/config/config.php';
-require_once '../src/models/Usuarios.php';
+require_once './src/config/database.php';
+require_once '../src/models/User.php';
+require_once '../utils/Session.php';
+
+Session::start();
+
+$usuario = $_SESSION['usuario'] ?? null;
+
+if(!$usuario){
+    header("Location: ../../public/login.php");
+    exit();
+}
+
 
 //Buscar os dados do usuário
 try {
