@@ -1,11 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -30,19 +32,7 @@ body {
 }
 
 .logo-img{
-    width: 90px;
-}
-
-.logo-str{
-    color: #4938be;
-    font-size: 70px;
-    font-weight: 900;
-}
-
-.logo-span{
-    color: #CD0E1A;
-    font-size: 70px;
-    font-weight: 900;
+    width: 350px;
 }
 
 .container {
@@ -51,24 +41,113 @@ body {
     justify-content: space-between;
     flex-direction: column;
     padding-block: 20px;
-    height: 500px;
-    width: 750px;
+    height: 525px;
+    width: 600px;
     border-radius: 15px;
     box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
 }
 
 .titulo {
     color: #4938be;
-    font-size: 56px; 
-    font-weight: 600;
+    font-size: 46px; 
+    font-weight: 800;
 }
 
 .form {
     display: flex;
     align-items: center;
-    justify-content: center;
     flex-direction: column;
-    gap: 20px;
-    width: 100%;    
+    width: 80%;    
 }
 
+.input-label {
+    display: flex;
+    flex-direction: column;
+    color: #4938be;
+    font-size: 20px;
+    font-weight: 700;
+    gap: 10px;
+}
+
+.input{
+    padding: 5px 10px;
+    border-radius: 7px;
+    border: 1px solid #4938be;
+    width: 300px;
+    height: 40px;
+    margin-bottom: 20px;
+}
+
+.input:focus {
+    outline: none;
+    border-color: #4938be;
+    box-shadow: 0 0 5px rgba(64, 49, 163, 0.5);
+}
+
+.subtitulo {
+    color: #4938be;
+    font-size: 24px;
+    font-weight: 800;
+}
+
+.tipoConta{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 30px;
+    margin-block: 20px;
+    width: 100%;
+}
+
+.btn-pessoa, .btn-empresa {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px 20px;
+    width: 150px;
+    height: 45px;
+    border-radius: 7px;
+    border: 1px solid #4938be;
+    color: #4938be;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.btn-pessoa:hover, .btn-empresa:hover {
+    background-color: #4938be;
+    box-shadow: rgba(74, 56, 190, 0.5) 0px 0px 10px;
+    color: #fff;
+    transition: 0.3s;
+}
+
+.btn-submit{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    width: 150px;
+    height: 45px;
+    border-radius: 7px;
+    border: none;
+    background-color: #4938be;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.btn-submit:hover {
+    background-color: white;
+    color: #4938be;
+    border: #4938be solid 1px;
+    transition: 0.3s;
+    box-shadow: rgba(74, 56, 190, 0.5) 0px 0px 10px;
+}
+
+.link{
+    color: #4938be;
+    font-size: 16px;
+    font-weight: 600;
+}
