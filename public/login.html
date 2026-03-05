@@ -4,38 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - PROJAE</title>
-    <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
-    <link rel="stylesheet" href="assets/css/estilo.css">
+
+    <link rel="shortcut icon" href="assets/img/isotipo.png" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/login.css">
+
 </head>
 <body>
     <main class="principal">
-        <img src="img/logo.png" alt="PROJAE" class="logo">
+        <img class="logo-img" src="assets/img/imagotipo.png" alt="LOGO PROJAE">
         <div class="container">
             <h1 class="titulo">Entrar</h1>
-            <form method="post" class="form">
-                <label for="email">E-mail:</label>
-                <p><input class="" placeholder="Digite seu Email" id="email" type="email" required></p>
-                <!-- onde ficara a mensagem de erro da email -->
-                <label for="senha">Sua Senha:</label>
-                <p><input class="" placeholder="Digite sua senha" id="senha" type="password" required></p>
-
-                <p>Escolha seu tipo de conta:</p>
-
-                <label class="btn-pessoa" onclick="" for="pessoa">
-                    <input hidden type="radio" id="pessoa" name="opcao" value="1">
-                    Pessoa
+            <form method="POST" class="form">
+                <label class="input-label" for="email">
+                    E-mail
+                    <input class="input" placeholder="Digite seu Email" id="email" type="email" required>
                 </label>
-
-                <label  class="btn-empresa" onclick="" for="empresa">
-                    <input hidden type="radio" id="empresa" name="opcao" value="2">
-                    Empresa
+                <!-- onde ficará a mensagem de erro da email (span) -->
+                <label class="input-label" for="senha">
+                    Sua Senha
+                    <input class="input" placeholder="Digite sua senha" id="senha" type="password" required>
                 </label>
+                <!-- onde ficará a mensagem de erro da senha (span) -->
 
-                <!-- onde ficara a mensagem de erro da senha -->
-                <button class="" type="submit">Entrar</button>
+                <h2 class="subtitulo">Escolha seu tipo de conta:</h2>
+
+                <div class="tipoConta">
+                    <label class="btn-pessoa" for="pessoa">
+                        <input type="radio" id="pessoa" name="opcao" value="1" required>
+                        Pessoa
+                    </label>
+                    <label class="btn-empresa" for="empresa">
+                        <input type="radio" id="empresa" name="opcao" value="2" required>
+                        Empresa
+                    </label>
+                </div>
+
+                <button class="btn-submit" type="submit">Entrar</button>
             </form>
             <!-- caso possivel aqui seria o redefinir senha -->
-            <p><a href="cadastro.php">Criar uma conta!</a></p>
+            <a href="cadastro.php" class="link">Criar uma conta!</a>
         </div>
     </main>
     <script src="assets/js/script.js"></script>
