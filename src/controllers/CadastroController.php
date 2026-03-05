@@ -1,19 +1,16 @@
 <?php
 
-require_once __DIR__ . '/../config/database.php';
-require_once __DIR__ . '/../models/User.php';
+require_once __DIR__ . '/../config/config.php';
+require_once __DIR__ . '/../models/Usuarios.php';
 require_once __DIR__ . '/../utils/Security.php';
 require_once __DIR__ . '/../utils/Session.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $action = $_GET['action'] ?? '';
-
-    if ($action === 'login') {
-        handleLogin($pdo);
-    }
+        handleCadastro($pdo);
+    
 }
 
-function handleLogin($pdo)
+function handleCadastro($pdo)
 {
     Session::start();
 
