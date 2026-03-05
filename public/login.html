@@ -12,7 +12,7 @@
         <img class="logo-img" src="img/logo.png" alt="LOGO PROJAE">
         <div class="container">
             <h1 class="titulo">Entrar</h1>
-            <form method="post" class="form">
+            <form method="POST" class="form">
                 <label class="input-label" for="email">
                     E-mail
                     <input class="input" placeholder="Digite seu Email" id="email" type="email" required>
@@ -27,12 +27,12 @@
                 <h2 class="subtitulo">Escolha seu tipo de conta:</h2>
 
                 <div class="tipoConta">
-                    <label class="btn-pessoa" onclick="selecionado(this)" for="pessoa">
-                        <input hidden type="radio" id="pessoa" name="opcao" value="1">
+                    <label class="btn-pessoa" for="pessoa">
+                        <input type="radio" id="pessoa" name="opcao" value="1" required>
                         Pessoa
                     </label>
-                    <label class="btn-empresa" onclick="selecionado(this)" for="empresa">
-                        <input hidden type="radio" id="empresa" name="opcao" value="2">
+                    <label class="btn-empresa" for="empresa">
+                        <input type="radio" id="empresa" name="opcao" value="2" required>
                         Empresa
                     </label>
                 </div>
