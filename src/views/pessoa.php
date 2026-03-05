@@ -13,6 +13,7 @@ if(!$usuario){
     exit();
 }
 
+
 //Buscar os dados do usuário
 try {
     $userModel = new User($pdo);

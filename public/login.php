@@ -9,9 +9,9 @@
     <link rel="stylesheet" href="assets/css/login.css">
 
 </head>
-<body>
+<body class="corpo">
     <main class="principal">
-        <img class="logo-img" src="assets/img/imagotipo.png" alt="LOGO PROJAE">
+        <img class="logo-img" src="assets/img/imagotipo-removebg.png" alt="LOGO PROJAE">
         <div class="container">
             <h1 class="titulo">Entrar</h1>
             <form method="POST" action="../src/controllers/LoginController.php" class="form">
@@ -26,25 +26,11 @@
                 </label>
                 <!-- onde ficará a mensagem de erro da senha (span) -->
 
-                <h2 class="subtitulo">Escolha seu tipo de conta:</h2>
-
-                <div class="tipoConta">
-                    <label class="btn-pessoa" for="pessoa">
-                        <input type="radio" id="pessoa" name="opcao" value="1" required>
-                        Pessoa
-                    </label>
-                    <label class="btn-empresa" for="empresa">
-                        <input type="radio" id="empresa" name="opcao" value="2" required>
-                        Empresa
-                    </label>
-                </div>
-
                 <button class="btn-submit" type="submit">Entrar</button>
             </form>
             <!-- caso possivel aqui seria o redefinir senha -->
             <a href="cadastro.php" class="link">Criar uma conta!</a>
         </div>
     </main>
-    <script src="assets/js/login.js"></script>
 </body>
 </html>
