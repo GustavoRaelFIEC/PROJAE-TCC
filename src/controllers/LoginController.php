@@ -1,9 +1,9 @@
 <?php
 
-require_once __DIR__ .  './config/config.php';
-require_once __DIR__ .  './models/Usuarios.php';
-require_once __DIR__ .  './utils/Security.php';
-require_once __DIR__ .  './utils/Session.php';
+require_once __DIR__ . '/../config/config.php';
+require_once __DIR__ . '/../models/Usuarios.php';
+require_once __DIR__ . '/../utils/Security.php';
+require_once __DIR__ . '/../utils/Session.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         handleLogin($pdo);
@@ -22,7 +22,7 @@ function handleLogin($pdo){
     }
 
     if(!Security::validatePassword($senha)){
-        $errors[] = "A senha deve ter pelo menos 2 caracteres";
+        $errors[] = "A senha deve ter pelo menos 8 caracteres";
     }
 
 
@@ -36,7 +36,7 @@ function handleLogin($pdo){
             //Login bem-sucedido
             Session::setUsuario($usuario);
 
-            header('Location: ./src/views/pessoa.php');
+            header('Location: ../views/pessoa.php');
 
             exit();
         }else{
