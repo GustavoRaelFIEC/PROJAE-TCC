@@ -10,22 +10,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
 }
 
-function handleCadastro($pdo)
-{
+function handleCadastro($pdo) {
     Session::start();
 
+    // Dados do formulário
     $email = filter_var($_POST['email'] ?? '', FILTER_SANITIZE_EMAIL);
     $senha = $_POST['senha'] ?? '';
+    $tipo = $_POST['tipo'] ?? '';
 
     $errors = [];
 
-    // Validações básicas
+    // Validações 
     if (!Security::validateEmail($email)) {
-        $errors[] = "Email inválido!";
+        $errors[] = "❌ Email inválido!";
     }
 
     if (!Security::validatePassword($senha)) {
-        $errors[] = "A senha deve ter pelo menos 8 caracteres";
+        $errors[] = "❌ A senha deve ter pelo menos 8 caracteres";
+    }
+
+    if(!Security::validateTipo($tipo)) {
+        $errors[] = "❌ Tipo de usuário inválido";
     }
 
     if (!empty($errors)) {
@@ -35,40 +40,78 @@ function handleCadastro($pdo)
     }
 
     try {
+
         $userModel = new User($pdo);
+
+        // Verifica se email já existe
         $usuario = $userModel->findByEmail($email);
 
-        if (!$usuario) {
-            $_SESSION['login_errors'] = ["Usuário não encontrado!"];
-            header("Location: ../../public/login.php");
+        if ($usuario) {
+            $_SESSION['cadastro_errors'] = ["⚠️ Email já cadastrado!"];
+            header("Location: ../../public/cadastro.php");
             exit;
         }
 
-        // Verifica senha
-        if (!Security::verifyPassword($senha, $usuario['senha'])) {
-            $_SESSION['login_errors'] = ["Senha incorreta!"];
-            header("Location: ../../public/login.php");
-            exit;
-        }
+        // Hash da senha
+        $senhaHash = Security::hashPassword($senha);
+       
+        // Criar Usuário
+        $userId = $userModel->createUser($email, $senhaHash, $tipo);
 
-        // Login OK, cria sessão
-        Session::setUsuario($usuario);
+        // Criar dados específicos (Pessoa e Empresa)
+        if($tipo === 'pessoa') {
 
-        // Redirecionamento por tipo
-        if ($usuario['tipo'] === 'pessoa') {
-            header("Location: ../../public/dashboard/pessoa.php");
-            exit;
-        }
+        $nome = $_POST['nome'] ?? '';
+        $cpf = $_POST['cpf'] ?? '';        
+        $telefone = $_POST['telefone'] ?? '';
+        $instituicao = $_POST['instituicao'] ?? '';
+        $curso = $_POST['curso'] ?? '';
 
-        if ($usuario['tipo'] === 'empresa') {
-            header("Location: ../../public/dashboard/empresa.php");
-            exit;
-        }
+        $stmt = $pdo->prepare("
+        INSERT INTO pessoas (nome, cpf, telefone, instituicao, curso, id_usuario)
+        VALUES (?, ?, ?, ?, ?, ?)
+        ");
 
+        $stmt->execute([
+            $nome,
+            $cpf,
+            $telefone,
+            $instituicao,
+            $curso,
+            $userId
+        ]);
+        } elseif($tipo === 'empresa') {
+
+        $nome = $_POST['nome'] ?? '';
+        $cnpj = $_POST['cnpj'] ?? '';        
+        $telefone = $_POST['telefone'] ?? '';
+        $cidade = $_POST['cidade'] ?? '';
+
+        $stmt = $pdo->prepare("
+        INSERT INTO empresas (nome, cnpj, telefone, cidade, id_usuario)
+        VALUES (?, ?, ?, ?, ?)
+        ");
+
+        $stmt->execute([
+            $nome,
+            $cnpj,
+            $telefone,
+            $cidade,
+            $userId
+        ]);    
+    }
+    
+    // Sucesso
+    $_SESSION['sucesso'] = "✅ Conta criada com sucesso!";
+
+    header("Location: ../../public/login.php");
+    exit;
+       
     } catch (PDOException $e) {
-        error_log("Erro no login: " . $e->getMessage());
-        $_SESSION['login_errors'] = ["Erro no sistema. Volte mais tarde."];
-        header("Location: ../../public/login.php");
-        exit;
+        
+        error_log("Erro no cadastro " . $e->getMessage());
+
+        $_SESSION['']
     }
 }
+?>

@@ -21,6 +21,13 @@ class Security
         return filter_var($email, FILTER_VALIDATE_EMAIL);
     }
 
+     // Validar tipo
+    public static function validateTipo($tipo)
+    {
+        $tiposValidos = ['pessoa', 'empresa'];
+        return in_array($tipo, $tiposValidos);
+    }
+
     // Gerar hash da senha
     public static function hashPassword($senha)
     {
@@ -33,10 +40,5 @@ class Security
         return password_verify($senha, $senhaHash);
     }
 
-    // Validar tipo
-    public static function validateTipo($tipo)
-    {
-        $tiposValidos = ['pessoa', 'empresa'];
-        return in_array($tipo, $tiposValidos);
-    }
+   
 }

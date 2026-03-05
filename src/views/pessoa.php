@@ -1,7 +1,7 @@
 <?php
 
-require_once './src/config/database.php';
-require_once '../src/models/User.php';
+require_once './src/config/config.php';
+require_once '../src/models/Usuarios.php';
 
 //Buscar os dados do usuário
 try {
