@@ -32,19 +32,13 @@ function handleLogin($pdo){
 
         $usuario = $userModel->findByEmail($email);
 
-        if($usuario && password_verify($senha, $usuario['senha_hash'])){
-                //Login bem-sucedido
-                Session::setUsuario($usuario);
+        if($usuario && Security::verifyPassword($senha, $usuario['senha'])){
+            //Login bem-sucedido
+            Session::setUsuario($usuario);
 
-                 $opcao = $_POST['opcao'];
+            header('Location: /src/views/pessoa.php');
 
-                if($opcao == 1){
-                    header('Location: ../../src/views/pessoa.php');
-                }else{
-                    header('Location: ../../src/views/empresa.php');
-                }
-
-                exit();
+            exit();
         }else{
             $errors[] = "Email ou senha incorretos";
         }
