@@ -35,7 +35,7 @@ function handleCadastro($pdo) {
 
     if (!empty($errors)) {
         $_SESSION['login_errors'] = $errors;
-        header("Location: ../../public/login.php");
+        header("Location: ../../public/cadastro.php");
         exit;
     }
 
@@ -61,11 +61,11 @@ function handleCadastro($pdo) {
         // Criar dados específicos (Pessoa e Empresa)
         if($tipo === 'pessoa') {
 
-        $nome = $_POST['nome'] ?? '';
-        $cpf = $_POST['cpf'] ?? '';        
-        $telefone = $_POST['telefone'] ?? '';
-        $instituicao = $_POST['instituicao'] ?? '';
-        $curso = $_POST['curso'] ?? '';
+        $nome = Security::sanitizeInput($_POST['nome'] ?? '');
+        $cpf = Security::sanitizeInput($_POST['cpf'] ?? '');        
+        $telefone = Security::sanitizeInput($_POST['telefone'] ?? '');
+        $instituicao = Security::sanitizeInput( $_POST['instituicao'] ?? '');
+        $curso = Security::sanitizeInput($_POST['curso'] ?? '');
 
         $stmt = $pdo->prepare("
         INSERT INTO pessoas (nome, cpf, telefone, instituicao, curso, id_usuario)
@@ -82,10 +82,10 @@ function handleCadastro($pdo) {
         ]);
         } elseif($tipo === 'empresa') {
 
-        $nome = $_POST['nome'] ?? '';
-        $cnpj = $_POST['cnpj'] ?? '';        
-        $telefone = $_POST['telefone'] ?? '';
-        $cidade = $_POST['cidade'] ?? '';
+        $nome = Security::sanitizeInput($_POST['nome'] ?? '');
+        $cnpj = Security::sanitizeInput($_POST['cnpj'] ?? '');        
+        $telefone = Security::sanitizeInput($_POST['telefone'] ?? '');
+        $cidade = Security::sanitizeInput($_POST['cidade'] ?? '');
 
         $stmt = $pdo->prepare("
         INSERT INTO empresas (nome, cnpj, telefone, cidade, id_usuario)
@@ -104,14 +104,16 @@ function handleCadastro($pdo) {
     // Sucesso
     $_SESSION['sucesso'] = "✅ Conta criada com sucesso!";
 
-    header("Location: ../../public/login.php");
+    header("Location: ../../public/cadastro.php");
     exit;
        
     } catch (PDOException $e) {
         
         error_log("Erro no cadastro " . $e->getMessage());
 
-        $_SESSION['']
+        $_SESSION['cadastro_errors'] = ["⚠️ Erro no sistema. Tente novamente mais tarde."];
+
+        header("Location: ../../public/cadastro.php");
+        exit;
     }
 }
-?>
