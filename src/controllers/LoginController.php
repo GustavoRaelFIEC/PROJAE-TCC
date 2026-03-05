@@ -7,7 +7,6 @@ require_once __DIR__ . '/../utils/Session.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         handleLogin($pdo);
-    
 }
 
 function handleLogin($pdo){
@@ -37,7 +36,14 @@ function handleLogin($pdo){
                 //Login bem-sucedido
                 Session::setUsuario($usuario);
 
-                header('Location: ../../public/dashboard.php');
+                 $opcao = $_POST['opcao'];
+
+                if($opcao == 1){
+                    header('Location: ../../src/views/pessoa.php');
+                }else{
+                    header('Location: ../../src/views/empresa.php');
+                }
+
                 exit();
         }else{
             $errors[] = "Email ou senha incorretos";
