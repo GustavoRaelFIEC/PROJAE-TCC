@@ -34,14 +34,14 @@ function handleCadastro($pdo) {
     }
 
     if (!empty($errors)) {
-        $_SESSION['login_errors'] = $errors;
+        $_SESSION['cadastro_errors'] = $errors;
         header("Location: ../../public/cadastro.php");
         exit;
     }
 
     try {
 
-        $userModel = new User($pdo);
+        $userModel = new Usuario($pdo);
 
         // Verifica se email já existe
         $usuario = $userModel->findByEmail($email);
@@ -55,6 +55,9 @@ function handleCadastro($pdo) {
         // Hash da senha
         $senhaHash = Security::hashPassword($senha);
        
+        // Transação segura (banco empresa e pessoa)
+        $pdo->beginTransaction(); 
+
         // Criar Usuário
         $userId = $userModel->createUser($email, $senhaHash, $tipo);
 
@@ -101,17 +104,26 @@ function handleCadastro($pdo) {
         ]);    
     }
     
+    // Se der tudo certo, confirma tudo
+    $pdo->commit();
+
     // Sucesso
     $_SESSION['sucesso'] = "✅ Conta criada com sucesso!";
-
-    header("Location: ../../public/cadastro.php");
+    
+    header("Location: ../../public/login.php");
     exit;
-       
+    
+
     } catch (PDOException $e) {
         
         error_log("Erro no cadastro " . $e->getMessage());
 
         $_SESSION['cadastro_errors'] = ["⚠️ Erro no sistema. Tente novamente mais tarde."];
+
+        // Se estiver em transaction o rollBack volta, se der alguma coisa errada
+        if ($pdo->inTransaction()) {
+             $pdo->rollBack();
+        }
 
         header("Location: ../../public/cadastro.php");
         exit;
