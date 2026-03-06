@@ -6,52 +6,47 @@ require_once __DIR__ . '/../utils/Security.php';
 require_once __DIR__ . '/../utils/Session.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        handleLogin($pdo);
+    handleLogin($pdo);
 }
 
-function handleLogin($pdo){
-   
+function handleLogin($pdo)
+{
+
     $email = filter_var($_POST['email'] ?? '', FILTER_SANITIZE_EMAIL);
     $senha = $_POST['senha'] ?? '';
 
     //Validações
     $errors = [];
 
-    if(!Security::validateEmail(($email))){
+    if (!Security::validateEmail(($email))) {
         $errors[] = "Email inválido!";
     }
 
-    if(!Security::validatePassword($senha)){
-        $errors[] = "A senha deve ter pelo menos 8 caracteres";
-    }
+    //validate senha
 
+    if (empty($errors)) {
+        try {
+            $userModel = new Usuario($pdo);
 
-    if(empty($errors)){
-        try{
-        $userModel = new User($pdo);
+            $usuario = $userModel->findByEmail($email);
 
-        $usuario = $userModel->findByEmail($email);
+            if ($usuario && $senha === $usuario['senha']) { //trocar $senha por Security::verifyPassword($senha, $usuario['senha'])
+                //Login bem-sucedido
+                Session::setUsuario($usuario);
 
-        if($usuario && Security::verifyPassword($senha, $usuario['senha'])){
-            //Login bem-sucedido
-            Session::setUsuario($usuario);
-
-            header('Location: ../views/pessoa.php');
-
-            exit();
-        }else{
-            $errors[] = "Email ou senha incorretos";
+                header("Location: /PROJAE-TCC/src/views/pessoa.php");
+                exit();
+            } else {
+                $errors[] = "Email ou senha incorretos";
+            }
+        } catch (PDOException $e) {
+            error_log("Erro no login: " . $e->getMessage());
+            $errors[] = "Erro no sistema. Volte mais tarde.";
         }
-    }catch(PDOException $e){
-        error_log("Erro no login: " . $e->getMessage());
-        $errors[] = "Erro no sistema. Volte mais tarde.";
     }
-}
 
-    if(!empty($errors)){
+    if (!empty($errors)) {
         header('Location: ../../public/login.php');
         exit();
     }
 }
-
-?>
