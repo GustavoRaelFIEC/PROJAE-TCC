@@ -22,7 +22,7 @@ function handleLogin($pdo)
         $errors[] = "Email inválido!";
     }
 
-    //validate senha
+    //validate senha AQUI
 
     if (empty($errors)) {
         try {
