@@ -1,14 +1,14 @@
 <?php
 
-require_once './src/config/database.php';
-require_once '../src/models/User.php';
-require_once '../utils/Session.php';
+require_once __DIR__ . '/../config/config.php';
+require_once __DIR__ . '/../models/Usuarios.php';
+require_once __DIR__ . '/../utils/Session.php';
 
 Session::start();
 
-$usuario = $_SESSION['usuario'] ?? null;
+$usuario = $_SESSION['user_id'] ?? null;
 
-if(!$usuario){
+if (!$usuario) {
     header("Location: ../../public/login.php");
     exit();
 }
@@ -16,8 +16,11 @@ if(!$usuario){
 
 //Buscar os dados do usuário
 try {
-    $userModel = new User($pdo);
+    $userModel = new Usuario($pdo);
     $usuario = $userModel->findByEmail($usuario['email']);
+
+    var_dump($usuario);
+    exit();
 } catch (\PDOException $e) {
     error_log("Erro ao carregar usuario: " . $e->getMessage() . "\n", 3, "../src/logs/errors_logs.log");
     die("Erro ao carregar os dados.");
