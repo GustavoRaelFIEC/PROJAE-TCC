@@ -26,6 +26,7 @@ function handleLogin($pdo)
 
     if (empty($errors)) {
         try {
+
             $userModel = new Usuario($pdo);
 
             $usuario = $userModel->findByEmail($email);
