@@ -35,8 +35,15 @@ function handleLogin($pdo)
                 //Login bem-sucedido
                 Session::setUsuario($usuario);
 
-                header("Location: /PROJAE-TCC/src/views/pessoa.php");
-                exit();
+                if ($usuario['tipo'] === 'pessoa') {
+                    header("Location: https://www.youtube.com/");
+                    exit();
+                } else if ($usuario['tipo'] === 'empresa') {
+                    header("Location: https://g1.globo.com/");
+                    exit();
+                }
+
+                //LEMBRAR DE USAR "FIND BY ID" PARA TRAZER AS INFORMAÇÕES DE CADA UM EM SUAS RESPECTIVAS PÁGINAS (INFORMAÇÕES NO DASHBOARD, perfil por exemplo)
             } else {
                 $errors[] = "Email ou senha incorretos";
             }

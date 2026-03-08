@@ -13,10 +13,11 @@ class Usuario
     public function findByEmail($email)
     {
         $stmt = $this->pdo->prepare("
-            SELECT pessoas.*, usuarios.email, usuarios.senha, usuarios.tipo
-            FROM pessoas
-            INNER JOIN usuarios ON usuarios.id = pessoas.id_usuario
-            WHERE usuarios.email = ?
+            SELECT u.*, p.*, e.*
+            FROM usuarios u
+            LEFT JOIN pessoas p ON p.id_usuario = u.id
+            LEFT JOIN empresas e ON e.id_usuario = u.id
+            WHERE u.email = ?
         ");
 
         $stmt->execute([$email]);
