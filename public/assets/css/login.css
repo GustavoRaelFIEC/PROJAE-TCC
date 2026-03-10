@@ -99,8 +99,8 @@
 
 .tipoConta{
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
     column-gap: 30px;
     margin-block: 20px;
     width: 100%;
@@ -116,25 +116,57 @@ input[type="radio"] {
     justify-content: center;
     gap: 10px;
     padding: 10px 20px;
-    width: 150px;
-    height: 45px;
+    width: 200px;
+    height: 56px;
     border-radius: 7px;
-    border: 1px solid #4938be;
-    color: #4938be;
     font-size: 18px;
     font-weight: 700;
     cursor: pointer;
     background-color: white;
 }
 
+.btn-pessoa {
+    border: 1px solid #4938be;
+    color: #4938be;
+}
+
+.btn-empresa {
+    border: 1px solid #cd0e1a;
+    color: #cd0e1a;
+}
+
 .btn-pessoa:hover, .btn-empresa:hover {
-    background-color: #4938be;
-    box-shadow: rgba(74, 56, 190, 0.5) 0px 0px 10px;
-    text-shadow: rgba(74, 56, 190, 0.2) 0px 0px 10px;
     color: #fff;
     transition: 0.3s;
 }
 
+.btn-pessoa:hover {
+    background-color: #4938be;
+        box-shadow: rgba(74, 56, 190, 0.5) 0px 0px 10px;
+        text-shadow: rgba(74, 56, 190, 0.2) 0px 0px 10px;
+}
+
+.btn-empresa:hover {
+    background-color: #cd0e1a;
+    box-shadow: rgba(205, 14, 26, 0.5) 0px 0px 10px;
+    text-shadow: rgba(205, 14, 26, 0.2) 0px 0px 10px;
+}
+
+.pessoa-sub, .empresa-sub {
+    font-size: 16px;
+    margin-top: 3.5px;
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+.pessoa-sub {
+    color: #4938be;
+    
+}
+
+.empresa-sub {
+    color: #cd0e1a;
+}
 
 .btn-submit{
     display: flex;
@@ -180,3 +212,5 @@ input[type="radio"] {
     box-shadow: rgba(74, 56, 190, 0.5) 0px 0px 10px;
     color: #fff;
 }
+
+
