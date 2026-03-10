@@ -19,11 +19,11 @@
                 <label for="pessoa">
                     <button class="btn-pessoa" id="pessoa" name="tipoConta" value="pessoa">Pessoa</button>
                 </label>
-                <p>Pessoa usam a plataforma para buscar e se candidatar a vagas</p>
+                <p class="pessoa-sub">Pessoas usam a plataforma para buscar e se candidatar a vagas</p>
                 <label  for="empresa">
                     <button class="btn-empresa" id="empresa" name="tipoConta" value="empresa">Empresa</button>
                 </label>
-                <p>Empresas usam a plataforma para cadastrar e gerenciar vagas</p>
+                <p class="empresa-sub">Empresas usam a plataforma para cadastrar e gerenciar vagas</p>
             </div>
         </div>
     </main>
