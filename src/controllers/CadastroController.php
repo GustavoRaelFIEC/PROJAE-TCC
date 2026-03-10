@@ -118,13 +118,11 @@ function handleCadastro($pdo) {
         
         error_log("Erro no cadastro " . $e->getMessage());
 
-        $_SESSION['cadastro_errors'] = ["⚠️ Erro no sistema. Tente novamente mais tarde."];
-
         // Se estiver em transaction o rollBack volta, se der alguma coisa errada
         if ($pdo->inTransaction()) {
              $pdo->rollBack();
         }
-
+         $_SESSION['cadastro_errors'] = ["⚠️ Erro no sistema. Tente novamente mais tarde."];
         header("Location: ../../public/cadastro.php");
         exit;
     }

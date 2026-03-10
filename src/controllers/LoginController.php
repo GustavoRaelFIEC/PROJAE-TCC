@@ -4,6 +4,8 @@ require_once __DIR__ . '/../config/config.php';
 require_once __DIR__ . '/../models/Usuarios.php';
 require_once __DIR__ . '/../utils/Security.php';
 require_once __DIR__ . '/../utils/Session.php';
+Session::start();
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     handleLogin($pdo);
@@ -23,6 +25,10 @@ function handleLogin($pdo)
     }
 
     //validate senha AQUI
+      if (!Security::validatePassword($senha)) {
+        $errors[] = "Senha inválida!";
+    }
+    
 
     if (empty($errors)) {
         try {
@@ -31,15 +37,15 @@ function handleLogin($pdo)
 
             $usuario = $userModel->findByEmail($email);
 
-            if ($usuario && $senha === $usuario['senha']) { //trocar $senha por Security::verifyPassword($senha, $usuario['senha'])
+            if ($usuario && Security::verifyPassword($senha, $usuario['senha'])) { //trocar $senha por Security::verifyPassword($senha, $usuario['senha'])
                 //Login bem-sucedido
                 Session::setUsuario($usuario);
 
                 if ($usuario['tipo'] === 'pessoa') {
-                    header("Location: https://www.youtube.com/");
+                    header("Location: ../views/pessoa.php");
                     exit();
                 } else if ($usuario['tipo'] === 'empresa') {
-                    header("Location: https://g1.globo.com/");
+                    header("Location: ../views/empresa.php");
                     exit();
                 }
 

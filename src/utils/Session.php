@@ -1,7 +1,5 @@
 <?php
 
-session_start();
-
 // Lida com configurações de sessão
 class Session
 {
@@ -17,9 +15,9 @@ class Session
     // Salvar usuário na Sessão
     public static function setUsuario($usuario)
     {
-        $_SESSION['user_id'] = $usuario['id_usuario'];
-        $_SESSION['user_email'] = $usuario['email'];
-        $_SESSION['user_tipo'] = $usuario['tipo'];
+        $_SESSION['user_id'] = $usuario['id_usuario'] ?? null;
+        $_SESSION['user_email'] = $usuario['email'] ?? null;
+        $_SESSION['user_tipo'] = $usuario['tipo'] ?? null;
     }
 
     // Pegar o usuário logado
