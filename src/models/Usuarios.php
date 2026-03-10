@@ -12,15 +12,15 @@ class Usuario
     // Buscar usuário por email
     public function findByEmail($email)
     {
-
         $stmt = $this->pdo->prepare("
-    SELECT pessoas.*, usuarios.email, usuarios.senha, usuarios.tipo
-    FROM pessoas
-    INNER JOIN usuarios ON usuarios.id = pessoas.id_usuario
-    WHERE usuarios.email = ?
-    ");
-        $stmt->execute([$email]);
+            SELECT u.*, p.*, e.*
+            FROM usuarios u
+            LEFT JOIN pessoas p ON p.id_usuario = u.id
+            LEFT JOIN empresas e ON e.id_usuario = u.id
+            WHERE u.email = ?
+        ");
 
+        $stmt->execute([$email]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
@@ -28,10 +28,10 @@ class Usuario
     public function createUser($email, $senhaHash, $tipo)
     {
         $stmt = $this->pdo->prepare("
-        INSERT INTO usuarios (email, senha, tipo)
-        VALUES (?, ?, ?)
+            INSERT INTO usuarios (email, senha, tipo)
+            VALUES (?, ?, ?)
         ");
         $stmt->execute([$email, $senhaHash, $tipo]);
-        return $this->pdo->lastInsertId();
+        return $this->pdo->lastInsertId(); // Retorna o ID do novo usuário
     }
 }
