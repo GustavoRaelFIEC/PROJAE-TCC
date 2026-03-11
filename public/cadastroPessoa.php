@@ -20,7 +20,7 @@
                     <input class="input" placeholder="Digite seu Email" id="email" name="nome" type="text" required>
                 </label>
                 <label class="input-label" for="email">
-                    cpf
+                    CPF
                     <input class="input" placeholder="Digite seu Email" id="email" name="cpf" type="text" required>
                 </label>
                 <label class="input-label" for="email">
