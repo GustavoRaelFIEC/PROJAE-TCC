@@ -1,5 +1,5 @@
 <?php
-
+/*
 session_start();
 require_once("../PROJAE-TCC/banco.sql");
 
@@ -23,6 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $usuario['foto'] = $caminho;
     }
 }
+*/
 ?>
 
 
@@ -31,16 +32,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="cadastroEmpresa..css">
+    <link rel="stylesheet" href="../public/assets/css/cadastroEmpresa.css">
     <title>Cadastrar Empresa</title>
 </head>
 <body class="corpo">
     <header class="cabecalho">
-        <div class="logo"><img src="assets/img/imagotipo.png" alt=""></div>
+        <div class="logo"><img class="img" src="assets/img/imagotipo.png" alt=""></div>
         <ul class="list">
-            <li class="item-list">Página Principal</li>
-            <li class="item-list">Sobre</li>
-            <li class="item-list">Ajuda</li>
+            <li><a class="item-list" href="index.php">Página Principal</a></li>
+            <li><a class="item-list" href="about.php">Sobre</a></li>
+            <li><a class="item-list" href="help.php">Ajuda</a></li>
         </ul>
     </header>
     <main class="principal">
