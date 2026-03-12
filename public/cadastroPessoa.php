@@ -31,7 +31,7 @@
             <div class="cadastro">
                 <form class="formulario" method="POST" action="../src/controllers/CadastroController.php">
                     <legend class="subTitulo">Dados do Usuário</legend>
-                    <input type="text" value="pessoa" hidden>
+                    <input type="hidden" name="tipo" value="pessoa" >
                     <label class="input-label">
                         Nome
                         <input class="input" type="text" name="nome" placeholder="Digite seu nome completo" required>
@@ -46,15 +46,11 @@
                     </label>
                     <label class="input-label">
                         CPF
-                        <input class="input" type="text" name="cpf" placeholder="___.___.___-__" required>
+                        <input class="input" type="text" name="cpf" placeholder="___.___.___-__" required maxlength="11">
                     </label>
                     <label class="input-label">
                         Telefone
-                        <input
-                            class="input"
-                            type="text"
-                            name="telefone"
-                            placeholder="(__) _____-____">
+                        <input class="input" type="text" name="telefone" placeholder="(__) _____-____" maxlength="11">
                     </label>
                     <label class="input-label">
                         Instituição
@@ -66,11 +62,7 @@
                     </label>
                     <label class="input-label">
                         Curso
-                        <input
-                            class="input"
-                            type="text"
-                            name="curso"
-                            placeholder="Ex: Ciência da Computação">
+                        <input class="input" type="text" name="curso" placeholder="Ex: Ciência da Computação">
                     </label>
                     <button class="btn-submit" type="submit">Cadastrar</button>
                 </form>

@@ -42,10 +42,10 @@ function handleLogin($pdo)
                 Session::setUsuario($usuario);
 
                 if ($usuario['tipo'] === 'pessoa') {
-                    header("Location: https://www.youtube.com/");
+                    header("Location: ../views/pessoa.php");
                     exit();
                 } else if ($usuario['tipo'] === 'empresa') {
-                    header("Location: https://g1.globo.com/");
+                    header("Location: ../views/empresa.php");
                     exit();
                 }
 
@@ -60,7 +60,7 @@ function handleLogin($pdo)
     }
 
     if (!empty($errors)) {
-        header('Location: ../../public/login.php');
+      header("Location: ../../public/login.php");
         exit();
     }
 }

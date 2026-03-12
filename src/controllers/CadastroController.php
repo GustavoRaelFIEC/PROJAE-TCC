@@ -28,14 +28,11 @@ function handleCadastro($pdo) {
     if (!Security::validatePassword($senha)) {
         $errors[] = "❌ A senha deve ter pelo menos 8 caracteres";
     }
-
-    if(!Security::validateTipo($tipo)) {
-        $errors[] = "❌ Tipo de usuário inválido";
-    }
-
+   
     if (!empty($errors)) {
         $_SESSION['cadastro_errors'] = $errors;
-        header("Location: ../../public/cadastro.php");
+        var_dump($errors);
+
         exit;
     }
 
@@ -48,7 +45,8 @@ function handleCadastro($pdo) {
 
         if ($usuario) {
             $_SESSION['cadastro_errors'] = ["⚠️ Email já cadastrado!"];
-            header("Location: ../../public/cadastro.php");
+                   header("Location: ../../public/cadastro.php");
+            
             exit;
         }
 
@@ -60,7 +58,6 @@ function handleCadastro($pdo) {
 
         // Criar Usuário
         $userId = $userModel->createUser($email, $senhaHash, $tipo);
-
         // Criar dados específicos (Pessoa e Empresa)
         if($tipo === 'pessoa') {
 

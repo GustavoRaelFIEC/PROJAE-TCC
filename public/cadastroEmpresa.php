@@ -50,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="cadastro">
                 <form method="POST" action="../src/controllers/CadastroController.php" class="fomulario">
                     <legend class="subTitulo">Dados do Usuário</legend>
-                    <input type="text" value="empresa" hidden>
+                    <input type="hidden" name="tipo" value="empresa" >
                     <label class="input-label" for="razaoSocial">
                         Razão Social
                         <input class="input" placeholder="Insira a Razão Social Registrada" id="razaoSocial" name="razaoSocial" type="text" required>

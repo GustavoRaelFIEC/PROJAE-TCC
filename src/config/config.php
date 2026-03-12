@@ -9,7 +9,7 @@ $charset = 'utf8mb4';
 
 
 // Variável
-$dsn = "mysql:host=$host;port=3315;dbname=$db;charset=$charset";
+$dsn = "mysql:host=$host;port=3306;dbname=$db;charset=$charset";
 
 
 // Opções PDO
