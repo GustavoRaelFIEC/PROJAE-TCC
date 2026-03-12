@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <main class="principal">
         <h1 class="titulo">Registrar <span>Empresa</span></h1>
         <div class="cadastro">
-            <form method="POST" class="fomulario">
+            <form method="POST" action="/public/login.php" class="fomulario">
                 <legend class="subTitulo">Dados do Usuário</legend>
 
                 <label class="input-label" for="razaoSocial">
