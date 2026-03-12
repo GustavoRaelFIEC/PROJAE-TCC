@@ -26,7 +26,6 @@
         </ul>
 
     </header>
-
     <div class="principal2">
         <main class="principal">
             <h1 class="titulo">Registrar <span>Estagiário</span></h1>
