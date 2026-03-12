@@ -1,7 +1,7 @@
 <?php
 
 // Configuração do banco
-$host = 'localhost:3306';
+$host = 'localhost';
 $db = 'projae';
 $user = 'root';
 $pass = '';
@@ -9,7 +9,7 @@ $charset = 'utf8mb4';
 
 
 // Variável
-$dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+$dsn = "mysql:host=$host;port=3315;dbname=$db;charset=$charset";
 
 
 // Opções PDO
