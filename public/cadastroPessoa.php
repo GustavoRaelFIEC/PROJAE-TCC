@@ -24,7 +24,6 @@
             <li><a class="item-list" href="about.php">Sobre</a></li>
             <li><a class="item-list" href="help.php">Ajuda</a></li>
         </ul>
-
     </header>
     <div class="principal2">
         <main class="principal">
