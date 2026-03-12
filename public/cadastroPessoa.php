@@ -50,9 +50,9 @@
                     E-mail
                     <input class="input" placeholder="Digite seu Email" id="email" name="email" type="email" required>
                 </label>
-                
+
                 <label class="input-label" for="senha">
-                    Sua Senha
+                    Senha
                     <input class="input" placeholder="Digite sua senha" id="senha" name="senha" type="password" required>
                 </label>
 

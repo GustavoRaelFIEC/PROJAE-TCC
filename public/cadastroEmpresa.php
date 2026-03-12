@@ -61,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </label>
                 
                 <label class="input-label" for="senha">
-                    Sua Senha
+                    Senha
                     <input class="input" placeholder="Digite sua senha" id="senha" name="senha" type="password" required>
                 </label>
 
