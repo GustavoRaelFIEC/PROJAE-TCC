@@ -8,7 +8,13 @@
 }
 
 .corpo {
-  background: #f2f2f2;
+    height: 100vh;
+    overflow: hidden;
+    background-image: url("../img/bg.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 1;
 }
 
 .cabecalho {
@@ -42,19 +48,27 @@
   color: #2f5cff;
 }
 
+.principal2 {
+  display:flex;
+  justify-content: center;
+  align-items:center;
+  height:70%;
+  margin-top:40px;
+}
+
 .principal {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 40px;
+  display:flex;
+  flex-direction:column;
+  justify-content: center;
+  align-items:center;
+  width: 35%;
 }
 
 .titulo {
-  font-size: 28px;
-  margin-bottom: 5px;
-  color: #2f5cff;
+  align-self: flex-start;
+  color: #4938be;
+  font-size: 46px; 
   font-weight: 800;
-  margin-bottom: 20px;
 }
 
 .titulo span {
@@ -73,6 +87,7 @@
   padding: 30px;
   width: 750px;
   display: flex;
+  align-items:center;
   gap: 40px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
 }
@@ -126,38 +141,45 @@
     background:#1c45e0;
 }
 
-.fotoUpload {
-  width: 40%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 10px;
+.fotoUpload{
+    width:40%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+    gap:10px;
 }
 
-.fotoPerfil {
-  width: 120px;
-  height: 120px;
-  background: #e8ecff;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.fotoEmpresa{
+    width:120px;
+    height:120px;
+    background:#e8ecff;
+    border-radius:10px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
 }
 
-.iconeFoto {
-  width: 70px;
-  height: 70px;
-  background: #d33;
-  border-radius: 50%;
+.fotoEmpresa img{
+    width:80px;
+    height:80px;
+    border-radius:50%;
+    background:#ccc;
 }
 
-.fotoUpload p {
-  font-size: 12px;
-  color: #555;
+.fotoEmpresa h1{
+    font-size:14px;
+    margin-bottom:5px;
 }
 
-.btn-upload {
-  margin-top: 5px;
-  font-size: 13px;
+.fotoUpload p{
+    font-size:12px;
+    color:#555;
+}
+
+.btn-upload{
+    margin-top:5px;
+    font-size:13px;
+    cursor: pointer;
 }

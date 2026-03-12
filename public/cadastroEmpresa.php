@@ -33,6 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../public/assets/css/cadastroEmpresa.css">
+    <link rel="shortcut icon" href="assets/img/isotipo.png" type="image/x-icon">
     <title>Cadastrar Empresa</title>
 </head>
 <body class="corpo">
@@ -44,53 +45,50 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <li><a class="item-list" href="help.php">Ajuda</a></li>
         </ul>
     </header>
-    <main class="principal">
-        <h1 class="titulo">Registrar <span>Empresa</span></h1>
-        <div class="cadastro">
-            <form method="POST" action="/public/login.php" class="fomulario">
-                <legend class="subTitulo">Dados do Usuário</legend>
-
-                <label class="input-label" for="razaoSocial">
-                    Razão Social
-                    <input class="input" placeholder="Insira a Razão Social Registrada" id="razaoSocial" name="razaoSocial" type="text" required>
-                </label>
-
-                <label class="input-label" for="email">
-                    E-mail
-                    <input class="input" placeholder="Digite seu Email" id="email" name="email" type="email" required>
-                </label>
-                
-                <label class="input-label" for="senha">
-                    Senha
-                    <input class="input" placeholder="Digite sua senha" id="senha" name="senha" type="password" required>
-                </label>
-
-                <label class="input-label" for="cnpj">
-                    CNPJ
-                    <input class="input" placeholder="__-___-___/____-__" id="cnpj" name="cnpj" type="text" required>
-                </label>
-
-                <label class="input-label" for="telefone">
-                    Telefone
-                    <input class="input" placeholder="(__) _____-____" id="telefone" name="telefone" type="text" required>
-                </label>
-
-                <label class="input-label" for="uf">
-                    Unidade de Federação
-                    <input class="input" placeholder="Ex: São Paulo - SP" id="uf" name="uf" type="text" required>
-                </label>
-
-                <button class="btn-submit" type="submit">Cadastrar</button>
-            </form>
-            <div class="fotoUpload">
-                <div class="fotoEmpresa">
-                    <h1>Foto de Perfil</h1>
-                    <img src="" alt="">
+    <main class="principal2">
+        <main class="principal">
+            <h1 class="titulo">Registrar <span>Empresa</span></h1>
+            <div class="cadastro">
+                <form method="POST" action="../src/controllers/CadastroController.php" class="fomulario">
+                    <legend class="subTitulo">Dados do Usuário</legend>
+                    <input type="text" value="empresa" hidden>
+                    <label class="input-label" for="razaoSocial">
+                        Razão Social
+                        <input class="input" placeholder="Insira a Razão Social Registrada" id="razaoSocial" name="razaoSocial" type="text" required>
+                    </label>
+                    <label class="input-label" for="email">
+                        E-mail
+                        <input class="input" placeholder="Digite seu Email" id="email" name="email" type="email" required>
+                    </label>
+        
+                    <label class="input-label" for="senha">
+                        Senha
+                        <input class="input" placeholder="Digite sua senha" id="senha" name="senha" type="password" required>
+                    </label>
+                    <label class="input-label" for="cnpj">
+                        CNPJ
+                        <input class="input" placeholder="__-___-___/____-__" id="cnpj" name="cnpj" type="text" required>
+                    </label>
+                    <label class="input-label" for="telefone">
+                        Telefone
+                        <input class="input" placeholder="(__) _____-____" id="telefone" name="telefone" type="text" required>
+                    </label>
+                    <label class="input-label" for="uf">
+                        Unidade de Federação
+                        <input class="input" placeholder="Ex: São Paulo - SP" id="uf" name="uf" type="text" required>
+                    </label>
+                    <button class="btn-submit" type="submit">Cadastrar</button>
+                </form>
+                <div class="fotoUpload">
+                    <div class="fotoEmpresa">
+                        <h1>Foto de Perfil</h1>
+                        <img src="" alt="">
+                    </div>
+                    <p>Use uma imagem de boa qualidade, que mostre sua logotipo, ou que reflita sua Razão Social</p>
+                    <input class="btn-upload" name="fotoEmpresa" type="file">
                 </div>
-                <p>Use uma imagem de boa qualidade, que mostre sua logotipo, ou que reflita sua Razão Social</p>
-                <input class="btn-upload" name="fotoEmpresa" type="file">
             </div>
-        </div>
+        </main>
     </main>
 </body>
 </html>
