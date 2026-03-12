@@ -21,7 +21,7 @@
                 </label>
                 <!-- onde ficará a mensagem de erro da email (span) -->
                 <label class="input-label" for="senha">
-                    Sua Senha
+                    Senha
                     <input class="input" placeholder="Digite sua senha" id="senha" name="senha" type="password" required>
                 </label>
                 <!-- onde ficará a mensagem de erro da senha (span) -->
