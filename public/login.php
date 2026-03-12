@@ -19,12 +19,10 @@
                     E-mail
                     <input class="input" placeholder="Digite seu Email" id="email" name="email" type="email" required>
                 </label>
-                <!-- onde ficará a mensagem de erro da email (span) -->
                 <label class="input-label" for="senha">
                     Senha
                     <input class="input" placeholder="Digite sua senha" id="senha" name="senha" type="password" required>
                 </label>
-                <!-- onde ficará a mensagem de erro da senha (span) -->
 
                 <button class="btn-submit" type="submit">Entrar</button>
             </form>
