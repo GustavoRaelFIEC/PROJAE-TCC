@@ -1,45 +1,115 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <form method="POST" action="../src/controllers/CadastroController.php">
-                <label class="input-label" for="email">
-                    E-mail
-                    <input class="input" placeholder="Digite seu Email" id="email" name="email" type="email" required>
-                </label>
-                <label class="input-label" for="email">
-                    Senha
-                    <input class="input" placeholder="Digite seu Email" id="senha" name="senha" type="text" required>
-                </label>
-                <label class="input-label" for="email">
-                    Nome
-                    <input class="input" placeholder="Digite seu Email" id="email" name="nome" type="text" required>
-                </label>
-                <label class="input-label" for="email">
-                    CPF
-                    <input class="input" placeholder="Digite seu Email" id="email" name="cpf" type="text" required>
-                </label>
-                <label class="input-label" for="email">
-                    Telefone
-                    <input class="input" placeholder="Digite seu Email" id="email" name="telefone" type="text" required>
-                </label>
-                <label class="input-label" for="email">
-                    instituicao
-                    <input class="input" placeholder="Digite seu Email" id="email" name="instituicao" type="text" required>
-                </label>
-                <label class="input-label" for="email">
-                    curso
-                    <input class="input" placeholder="Digite seu Email" id="email" name="curso" type="text" required>
-                </label>
-              
-                    <input class="input" value="pessoa" id="email" name="tipo" type="text" required hidden>
 
-                    <button class="btn-submit" type="submit">Entrar</button>
-               
-    </form>
+    <link rel="stylesheet" href="../public/assets/css/cadastroPessoa.css">
+
+    <title>Cadastrar Estagiário</title>
+</head>
+
+<body class="corpo">
+
+    <header class="cabecalho">
+
+        <div class="logo">
+            <img src="assets/img/imagotipo.png">
+        </div>
+
+        <ul class="list">
+            <li><a class="item-list" href="index.php">Página Principal</a></li>
+            <li><a class="item-list" href="about.php">Sobre</a></li>
+            <li><a class="item-list" href="help.php">Ajuda</a></li>
+        </ul>
+
+    </header>
+
+
+    <main class="principal">
+
+        <h1 class="titulo">Cadastrar <span>Estagiários</span></h1>
+
+        <div class="cadastro">
+
+            <form class="formulario" method="POST" action="processaCadastro.php">
+
+                <legend class="subTitulo">Dados do Usuário</legend>
+
+                <label class="input-label">
+                    Nome
+                    <input
+                        class="input"
+                        type="text"
+                        name="nome"
+                        placeholder="Digite seu nome completo"
+                        required>
+                </label>
+
+                <label class="input-label">
+                    CPF
+                    <input
+                        class="input"
+                        type="text"
+                        name="cpf"
+                        placeholder="___.___.___-__"
+                        required>
+                </label>
+
+                <label class="input-label">
+                    Telefone
+                    <input
+                        class="input"
+                        type="text"
+                        name="telefone"
+                        placeholder="(__) _____-____">
+                </label>
+
+                <label class="input-label">
+                    Instituição
+                    <input
+                        class="input"
+                        type="text"
+                        name="instituicao"
+                        placeholder="Nome da faculdade ou escola">
+                </label>
+
+                <label class="input-label">
+                    Curso
+                    <input
+                        class="input"
+                        type="text"
+                        name="curso"
+                        placeholder="Ex: Ciência da Computação">
+                </label>
+
+                <button class="btn-submit" type="submit">Cadastrar</button>
+
+            </form>
+
+            <div class="fotoUpload">
+
+                <div class="fotoPerfil">
+
+                    <div class="iconeFoto"></div>
+
+                </div>
+
+                <p>
+                    (PNG ou JPEG, mínimo 240x240px).<br>
+                    Use uma imagem nítida, bem iluminada<br>
+                    que mostre seu rosto claramente.
+                </p>
+
+                <input class="btn-upload" type="file">
+
+            </div>
+
+        </div>
+
+    </main>
+
 </body>
+
 </html>

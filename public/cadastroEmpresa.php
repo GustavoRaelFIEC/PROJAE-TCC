@@ -50,27 +50,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <form method="POST" class="fomulario">
                 <legend class="subTitulo">Dados do Usuário</legend>
 
-                <label class="input-label" for="">
+                <label class="input-label" for="razaoSocial">
                     Razão Social
-                    <input class="input" placeholder="Insira a Razão Social Registrada" id="" name="" type="text" required>
+                    <input class="input" placeholder="Insira a Razão Social Registrada" id="razaoSocial" name="razaoSocial" type="text" required>
                 </label>
 
-                <label class="input-label" for="">
+                <label class="input-label" for="cnpj">
                     CNPJ
-                    <input class="input" placeholder="__-___-___/____-__" id="" name="" type="text" required>
+                    <input class="input" placeholder="__-___-___/____-__" id="cnpj" name="cnpj" type="text" required>
                 </label>
 
-                <label class="input-label" for="">
+                <label class="input-label" for="telefone">
                     Telefone
-                    <input class="input" placeholder="(__) _____-____" id="" name="" type="text" required>
+                    <input class="input" placeholder="(__) _____-____" id="telefone" name="telefone" type="text" required>
                 </label>
 
-                <label class="input-label" for="">
+                <label class="input-label" for="uf">
                     Unidade de Federação
-                    <input class="input" placeholder="Ex: São Paulo - SP" id="" name="" type="text" required>
+                    <input class="input" placeholder="Ex: São Paulo - SP" id="uf" name="uf" type="text" required>
                 </label>
 
-                <button class="btn-submit" type="submit">Entrar</button>
+                <button class="btn-submit" type="submit">Cadastrar</button>
             </form>
             <div class="fotoUpload">
                 <div class="fotoEmpresa">

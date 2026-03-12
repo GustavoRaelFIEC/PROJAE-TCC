@@ -1,0 +1,163 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300..800&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Open Sans", sans-serif;
+}
+
+.corpo {
+  background: #f2f2f2;
+}
+
+.cabecalho {
+  width: 100%;
+  height: 70px;
+  background: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+  border-bottom: 1px solid #ddd;
+}
+
+.logo img {
+  height: 40px;
+}
+
+.list {
+  display: flex;
+  list-style: none;
+  gap: 30px;
+}
+
+.item-list {
+  text-decoration: none;
+  color: #3a3a3a;
+  font-size: 15px;
+}
+
+.item-list:hover {
+  color: #2f5cff;
+}
+
+.principal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.titulo {
+  font-size: 28px;
+  margin-bottom: 5px;
+  color: #2f5cff;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+
+.titulo span {
+  color: #e53935;
+}
+
+.etapa {
+  color: #444;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.cadastro {
+  background: white;
+  border-radius: 12px;
+  padding: 30px;
+  width: 750px;
+  display: flex;
+  gap: 40px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.formulario {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  width: 60%;
+}
+
+.subTitulo {
+  grid-column: span 2;
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #444;
+}
+
+.input-label {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  color: #444;
+}
+
+.input {
+  margin-top: 5px;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+.input:focus {
+  border: 1px solid #2f5cff;
+}
+
+.btn-submit{
+    grid-column:span 2;
+    padding:12px;
+    border:none;
+    border-radius:6px;
+    background:#2f5cff;
+    color:white;
+    font-size:15px;
+    cursor:pointer;
+    transition:0.2s;
+}
+
+.btn-submit:hover{
+    background:#1c45e0;
+}
+
+.fotoUpload {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+}
+
+.fotoPerfil {
+  width: 120px;
+  height: 120px;
+  background: #e8ecff;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.iconeFoto {
+  width: 70px;
+  height: 70px;
+  background: #d33;
+  border-radius: 50%;
+}
+
+.fotoUpload p {
+  font-size: 12px;
+  color: #555;
+}
+
+.btn-upload {
+  margin-top: 5px;
+  font-size: 13px;
+}
