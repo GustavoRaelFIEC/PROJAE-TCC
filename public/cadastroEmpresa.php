@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <input type="hidden" name="tipo" value="empresa" >
                     <label class="input-label" for="razaoSocial">
                         Razão Social
-                        <input class="input" placeholder="Insira a Razão Social Registrada" id="razaoSocial" name="razaoSocial" type="text" required>
+                        <input class="input" placeholder="Insira a Razão Social Registrada" id="razaoSocial" name="nome" type="text" required>
                     </label>
                     <label class="input-label" for="email">
                         E-mail
