@@ -32,7 +32,7 @@
 
         <div class="cadastro">
 
-            <form class="formulario" method="POST" action="processaCadastro.php">
+            <form class="formulario" method="POST" action="../src/controllers/CadastroController.php">
 
                 <legend class="subTitulo">Dados do Usuário</legend>
 
