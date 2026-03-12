@@ -42,10 +42,10 @@ function handleLogin($pdo)
                 Session::setUsuario($usuario);
 
                 if ($usuario['tipo'] === 'pessoa') {
-                    header("Location: ../views/pessoa.php");
+                    header("Location: https://www.youtube.com/");
                     exit();
                 } else if ($usuario['tipo'] === 'empresa') {
-                    header("Location: ../views/empresa.php");
+                    header("Location: https://g1.globo.com/");
                     exit();
                 }
 
