@@ -55,6 +55,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <input class="input" placeholder="Insira a Razão Social Registrada" id="razaoSocial" name="razaoSocial" type="text" required>
                 </label>
 
+                <label class="input-label" for="email">
+                    E-mail
+                    <input class="input" placeholder="Digite seu Email" id="email" name="email" type="email" required>
+                </label>
+                
+                <label class="input-label" for="senha">
+                    Sua Senha
+                    <input class="input" placeholder="Digite sua senha" id="senha" name="senha" type="password" required>
+                </label>
+
                 <label class="input-label" for="cnpj">
                     CNPJ
                     <input class="input" placeholder="__-___-___/____-__" id="cnpj" name="cnpj" type="text" required>

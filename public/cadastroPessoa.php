@@ -26,7 +26,6 @@
 
     </header>
 
-
     <main class="principal">
 
         <h1 class="titulo">Cadastrar <span>Estagiários</span></h1>
@@ -45,6 +44,16 @@
                         name="nome"
                         placeholder="Digite seu nome completo"
                         required>
+                </label>
+
+                <label class="input-label" for="email">
+                    E-mail
+                    <input class="input" placeholder="Digite seu Email" id="email" name="email" type="email" required>
+                </label>
+                
+                <label class="input-label" for="senha">
+                    Sua Senha
+                    <input class="input" placeholder="Digite sua senha" id="senha" name="senha" type="password" required>
                 </label>
 
                 <label class="input-label">
@@ -87,23 +96,13 @@
                 <button class="btn-submit" type="submit">Cadastrar</button>
 
             </form>
-
             <div class="fotoUpload">
-
-                <div class="fotoPerfil">
-
-                    <div class="iconeFoto"></div>
-
+                <div class="fotoEmpresa">
+                    <h1>Foto de Perfil</h1>
+                    <img src="" alt="">
                 </div>
-
-                <p>
-                    (PNG ou JPEG, mínimo 240x240px).<br>
-                    Use uma imagem nítida, bem iluminada<br>
-                    que mostre seu rosto claramente.
-                </p>
-
-                <input class="btn-upload" type="file">
-
+                <p>Use uma imagem de boa qualidade, que mostre sua logotipo, ou que reflita sua Razão Social</p>
+                <input class="btn-upload" name="fotoEmpresa" type="file">
             </div>
 
         </div>
