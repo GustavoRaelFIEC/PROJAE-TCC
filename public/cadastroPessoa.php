@@ -31,7 +31,7 @@
             <div class="cadastro">
                 <form class="formulario" method="POST" action="../src/controllers/CadastroController.php">
                     <legend class="subTitulo">Dados do Usuário</legend>
-                    <input type="hidden" name="tipo" value="pessoa" >
+                    <input type="hidden" name="tipo" value="pessoa">
                     <label class="input-label">
                         Nome
                         <input class="input" type="text" name="nome" placeholder="Digite seu nome completo" required>
@@ -77,7 +77,7 @@
             </div>
         </main>
     </div>
-
+    <script src="./assets/js/mascara.js"></script>
 </body>
 
 </html>

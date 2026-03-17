@@ -66,7 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </label>
                     <label class="input-label" for="cnpj">
                         CNPJ
-                        <input class="input" placeholder="__-___-___/____-__" id="cnpj" name="cnpj" type="text" required>
+                        <input class="input" placeholder="__.___.___/____-__" id="cnpj" name="cnpj" type="text" required>
                     </label>
                     <label class="input-label" for="telefone">
                         Telefone
@@ -89,5 +89,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </main>
     </main>
+    <script src="./assets/js/mascara.js"></script>
 </body>
 </html>
