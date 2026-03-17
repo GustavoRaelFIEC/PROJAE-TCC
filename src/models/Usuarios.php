@@ -34,4 +34,37 @@ class Usuario
         $stmt->execute([$email, $senhaHash, $tipo]);
         return $this->pdo->lastInsertId(); // Retorna o ID do novo usuário
     }
-}
+
+    // Cadastrar dados de pessoa no banco
+    public function createPessoa($userId, $dados){
+        $stmt = $this->pdo->prepare("
+        INSERT INTO pessoas (nome, cpf, telefone, instituicao, curso, id_usuario)
+        VALUES (?, ?, ?, ?, ?, ?)
+        ");
+        $stmt->execute([
+            $dados['nome'],
+            $dados['cpf'],
+            $dados['telefone'],
+            $dados['instituicao'],
+            $dados['curso'],
+            $userId
+        ]);
+    }
+
+    
+
+    // Cadastrar dados de empresa no banco
+    public function createEmpresa($userId, $dados){
+        $stmt = $this->pdo->prepare("
+        INSERT INTO empresa (nome, cnpj, telefone, cidade, id_usuario)
+        VALUES (?, ?, ?, ?, ?)
+        ");
+        $stmt->execute([
+            $dados['nome'],
+            $dados['cnpj'],
+            $dados['telefone'],
+            $dados['cidade'],
+            $userId
+        ]);
+    }
+}                          

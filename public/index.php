@@ -12,7 +12,7 @@
         </div>
         <nav class="navegacao">
             <ul>
-                <li><a class="active" href="">Principal</a></li>
+                <li><a class="active" href="#">Principal</a></li>
                 <li><a href=""></a>Sobre</li>
                 <li><a href=""></a>Ajuda</li>
             </ul>
