@@ -8,5 +8,6 @@
 <body>
     <h1>DASH BOARD EMPRESA</h1>
     
+    <a href="teste.php">teste para postar vaga</a>
 </body>
 </html>
