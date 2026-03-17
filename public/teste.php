@@ -1,31 +1,3 @@
-<?php
-/*
-session_start();
-require_once("../PROJAE-TCC/banco.sql");
-
-// Uploads de Fotos
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_FILES["fotoEmpresa"]) && $_FILES["FotoEmpresa"]["error"] == 0) {
-        $pasta = "../public/assets/uploads/";
-        if (!is_dir($pasta)) {
-            mkdir($pasta, 0777, true);
-        }
-        $extensao = pathinfo($_FILES["fotoEmpresa"]["name"],PATHINFO_EXTENSION);
-        $nomeArquivo = uniqid() . "." . $extensao;
-        $caminho = $pasta . $nomeArquivo;
-
-        move_uploaded_file($_FILES['foto']['tmp_name'], $caminho);
-
-        $stmt = $pdo->prepare("UPDATE cliente SET foto = ? WHERE id = ?");
-        $stmt->execute([$caminho, $userID]);
-
-        $usuario['foto'] = $caminho;
-    }
-}
-*/
-?>
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -46,35 +18,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </header>
     <main class="principal2">
         <main class="principal">
-            <h1 class="titulo">Registrar <span>Empresa</span></h1>
+            <h1 class="titulo">Postar <span>Vaga</span></h1>
             <div class="cadastro">
                 <form method="POST" action="../src/controllers/CadastroController.php" class="fomulario">
                     <legend class="subTitulo">Dados do Usuário</legend>
-                    <input type="hidden" name="tipo" value="empresa" >
                     <label class="input-label" for="razaoSocial">
-                        Razão Social
-                        <input class="input" placeholder="Insira a Razão Social Registrada" id="razaoSocial" name="nome" type="text" required>
+                        titulo
+                        <input class="input" id="razaoSocial" name="titulo" type="text" required>
                     </label>
                     <label class="input-label" for="email">
-                        E-mail
-                        <input class="input" placeholder="Digite seu Email" id="email" name="email" type="email" required>
+                        descricao
+                        <input class="input" id="email" name="descricao" type="email" required>
                     </label>
-        
                     <label class="input-label" for="senha">
-                        Senha
-                        <input class="input" placeholder="Digite sua senha" id="senha" name="senha" type="password" required>
+                        tipo
+                        <input class="input" id="senha" name="tipo" type="password" required>
                     </label>
                     <label class="input-label" for="cnpj">
-                        CNPJ
-                        <input class="input" placeholder="__.___.___/____-__" id="cnpj" name="cnpj" type="text" required>
+                        salario
+                        <input class="input" id="cnpj" name="salario" type="text" required>
                     </label>
                     <label class="input-label" for="telefone">
-                        Telefone
-                        <input class="input" placeholder="(__) _____-____" id="telefone" name="telefone" type="text" required>
+                        cidade
+                        <input class="input" id="telefone" name="cidade" type="text" required>
                     </label>
                     <label class="input-label" for="uf">
-                        Cidade
-                        <input class="input" placeholder="Ex: São Paulo - SP" id="cidade" name="cidade" type="text" required>
+                        status
+                        <input class="input" id="uf" name="status" type="text" required>
                     </label>
                     <button class="btn-submit" type="submit">Cadastrar</button>
                 </form>
@@ -89,6 +59,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </main>
     </main>
-    <script src="./assets/js/mascara.js"></script>
 </body>
 </html>

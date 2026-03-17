@@ -67,4 +67,22 @@ class Usuario
             $userId
         ]);
     }
-}                          
+
+    
+    // Cadastrar dados da vaga no banco
+    public function createVaga($userId, $dados){ //o id_empresa deve ser puxado da session
+        $stmt = $this->pdo->prepare("
+        INSERT INTO vagas (titulo, descricao, tipo, salario, cidade, status, id_empresa)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
+        ");
+        $stmt->execute([
+            $dados['titulo'],
+            $dados['descricao'],
+            $dados['tipo'],
+            $dados['salario'],
+            $dados['cidade'],
+            $dados['status'],
+            $userId
+        ]);
+    }
+}                    
