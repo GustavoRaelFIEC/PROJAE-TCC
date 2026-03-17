@@ -66,13 +66,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </label>
                     <label class="input-label" for="cnpj">
                         CNPJ
-                        <input class="input" placeholder="__.___.___/____-__" id="cnpj" name="cnpj" type="text" required>
+                        <input class="input" placeholder="__.___.___/____-__" id="cnpj" name="cnpj" maxlength="14" type="text" required>
                     </label>
                     <label class="input-label" for="telefone">
                         Telefone
-                        <input class="input" placeholder="(__) _____-____" id="telefone" name="telefone" type="text" required>
+                        <input class="input" placeholder="(__) _____-____" id="telefone" name="telefone" maxlength="11" type="text" required>
                     </label>
-                    <label class="input-label" for="uf">
+                    <label class="input-label" for="cidade">
                         Cidade
                         <input class="input" placeholder="Ex: São Paulo - SP" id="cidade" name="cidade" type="text" required>
                     </label>

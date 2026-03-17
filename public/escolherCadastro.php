@@ -29,6 +29,7 @@
             </div>
         </div>
     </main>
+    <script src="./assets/js/mascara.js"></script>
 </body>
 
 </html>

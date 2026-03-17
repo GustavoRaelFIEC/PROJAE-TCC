@@ -46,7 +46,7 @@
                     </label>
                     <label class="input-label">
                         CPF
-                        <input class="input" type="text" name="cpf" placeholder="___.___.___-__" required maxlength="11">
+                        <input class="input" type="text" id="cpf" name="cpf" placeholder="___.___.___-__" required maxlength="11">
                     </label>
                     <label class="input-label">
                         Telefone
