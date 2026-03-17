@@ -56,7 +56,7 @@ class Usuario
     // Cadastrar dados de empresa no banco
     public function createEmpresa($userId, $dados){
         $stmt = $this->pdo->prepare("
-        INSERT INTO empresa (nome, cnpj, telefone, cidade, id_usuario)
+        INSERT INTO empresas (nome, cnpj, telefone, cidade, id_usuario)
         VALUES (?, ?, ?, ?, ?)
         ");
         $stmt->execute([
