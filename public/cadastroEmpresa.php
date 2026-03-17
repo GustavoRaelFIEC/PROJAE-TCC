@@ -73,8 +73,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <input class="input" placeholder="(__) _____-____" id="telefone" name="telefone" type="text" required>
                     </label>
                     <label class="input-label" for="uf">
-                        Unidade de Federação
-                        <input class="input" placeholder="Ex: São Paulo - SP" id="uf" name="uf" type="text" required>
+                        Cidade
+                        <input class="input" placeholder="Ex: São Paulo - SP" id="cidade" name="cidade" type="text" required>
                     </label>
                     <button class="btn-submit" type="submit">Cadastrar</button>
                 </form>
