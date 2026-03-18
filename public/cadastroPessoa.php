@@ -34,23 +34,23 @@
                     <input type="hidden" name="tipo" value="pessoa">
                     <label class="input-label">
                         Nome
-                        <input class="input" type="text" name="nome" placeholder="Digite seu nome completo" required>
+                        <input class="input" type="text" name="nome" placeholder="Digite seu nome completo" required maxlength="100">
                     </label>
                     <label class="input-label" for="email">
                         E-mail
-                        <input class="input" placeholder="Digite seu Email" id="email" name="email" type="email" required>
+                        <input class="input" placeholder="Digite seu Email" id="email" name="email" type="email" required maxlength="255">
                     </label>
                     <label class="input-label" for="senha">
                         Senha
-                        <input class="input" placeholder="Digite sua senha" id="senha" name="senha" type="password" required>
+                        <input class="input" placeholder="Digite sua senha" id="senha" name="senha" type="password" required maxlength="64">
                     </label>
                     <label class="input-label">
                         CPF
-                        <input class="input" type="text" id="cpf" name="cpf" placeholder="___.___.___-__" required maxlength="11">
+                        <input class="input" type="text" id="cpf" name="cpf" placeholder="___.___.___-__" required maxlength="14">
                     </label>
                     <label class="input-label">
                         Telefone
-                        <input class="input" type="text" name="telefone" placeholder="(__) _____-____" maxlength="11">
+                        <input class="input" type="text" name="telefone" placeholder="(__) _____-____" maxlength="14">
                     </label>
                     <label class="input-label">
                         Instituição
