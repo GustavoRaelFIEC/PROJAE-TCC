@@ -58,7 +58,7 @@ function handleLogin($pdo)
             $errors[] = "Erro no sistema. Volte mais tarde.";
         }
     }
-
+    
     if (!empty($errors)) {
       header("Location: ../../public/login.php");
         exit();

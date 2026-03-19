@@ -1,8 +1,11 @@
 <?php
-/*
 session_start();
-require_once("../PROJAE-TCC/banco.sql");
 
+$flash = $_SESSION['flash'] ?? null;
+unset($_SESSION['flash']);
+
+
+/*
 // Uploads de Fotos
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -22,8 +25,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $usuario['foto'] = $caminho;
     }
-}
-*/
+} */
+
 ?>
 
 <!DOCTYPE html>
@@ -50,6 +53,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <main class="principal">
             <h1 class="titulo">Registrar <span>Empresa</span></h1>
             <div class="cadastro">
+                <!-- <?php if (!empty($flash['errors'])): ?>
+                    <div class="erro">
+                        <ul>
+                            <?php foreach ($flash['errors'] as $erro): ?>
+                                <li><?= htmlspecialchars($erro); ?></li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
+                <?php endif; ?> -->
                 <form method="POST" action="../src/controllers/CadastroController.php" class="fomulario">
                     <legend class="subTitulo">Dados do Usuário</legend>
                     <input type="hidden" name="tipo" value="empresa">
@@ -64,15 +76,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     <label class="input-label" for="senha">
                         Senha
-                        <input class="input" placeholder="Digite sua senha" id="senha" name="senha" type="password" required maxlength="64">
+                        <input class="input" placeholder="Digite sua senha" id="senha" name="senha" type="password" required minlength="6">
                     </label>
                     <label class="input-label" for="cnpj">
                         CNPJ
-                        <input class="input" placeholder="__.___.___/____-__" id="cnpj" name="cnpj" maxlength="18" type="text" required>
+                        <input class="input" placeholder="__.___.___/____-__" id="cnpj" name="cnpj" maxlength="18" minlength="18" type="text" required>
                     </label>
                     <label class="input-label" for="telefone">
                         Telefone
-                        <input class="input" placeholder="(__) _____-____" id="telefone" name="telefone" maxlength="15" type="text" required>
+                        <input class="input" placeholder="(__) _____-____" id="telefone" name="telefone" maxlength="15" minlength="15" type="text" required>
                     </label>
                     <label class="input-label" for="cidade">
                         Cidade

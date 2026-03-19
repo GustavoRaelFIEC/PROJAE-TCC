@@ -1,3 +1,11 @@
+<?php
+session_start();
+
+$flash = $_SESSION['flash'] ?? null;
+unset($_SESSION['flash']);
+?>
+
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -29,12 +37,21 @@
         <main class="principal">
             <h1 class="titulo">Registrar <span>Estagiário</span></h1>
             <div class="cadastro">
+                <!-- <?php if (!empty($flash['errors'])): ?>
+                    <div class="erro">
+                        <ul>
+                            <?php foreach ($flash['errors'] as $erro): ?>
+                                <li><?= htmlspecialchars($erro); ?></li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
+                <?php endif; ?> -->
                 <form class="formulario" method="POST" action="../src/controllers/CadastroController.php">
                     <legend class="subTitulo">Dados do Usuário</legend>
                     <input type="hidden" name="tipo" value="pessoa">
                     <label class="input-label">
                         Nome
-                        <input class="input" type="text" name="nome" placeholder="Digite seu nome completo" required maxlength="100">
+                        <input class="input" type="text" name="nome" placeholder="Digite seu nome completo" required maxlength="100" minlength="2">
                     </label>
                     <label class="input-label" for="email">
                         E-mail
@@ -42,15 +59,15 @@
                     </label>
                     <label class="input-label" for="senha">
                         Senha
-                        <input class="input" placeholder="Digite sua senha" id="senha" name="senha" type="password" required maxlength="64">
+                        <input class="input" placeholder="Digite sua senha" id="senha" name="senha" type="password" required minlength="6">
                     </label>
                     <label class="input-label">
                         CPF
-                        <input class="input" type="text" id="cpf" name="cpf" placeholder="___.___.___-__" required maxlength="14">
+                        <input class="input" type="text" id="cpf" name="cpf" placeholder="___.___.___-__" required maxlength="14" minlength="14">
                     </label>
                     <label class="input-label">
                         Telefone
-                        <input class="input" type="text" id="telefone" name="telefone" placeholder="(__) _____-____" maxlength="15">
+                        <input class="input" type="text" id="telefone" name="telefone" placeholder="(__) _____-____" maxlength="15" minlength="15">
                     </label>
                     <label class="input-label">
                         Instituição
