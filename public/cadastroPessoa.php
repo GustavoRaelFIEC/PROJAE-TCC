@@ -50,7 +50,7 @@
                     </label>
                     <label class="input-label">
                         Telefone
-                        <input class="input" type="text" name="telefone" placeholder="(__) _____-____" maxlength="14">
+                        <input class="input" type="text" id="telefone" name="telefone" placeholder="(__) _____-____" maxlength="15">
                     </label>
                     <label class="input-label">
                         Instituição

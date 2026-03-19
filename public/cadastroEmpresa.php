@@ -72,7 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </label>
                     <label class="input-label" for="telefone">
                         Telefone
-                        <input class="input" placeholder="(__) _____-____" id="telefone" name="telefone" maxlength="14" type="text" required>
+                        <input class="input" placeholder="(__) _____-____" id="telefone" name="telefone" maxlength="15" type="text" required>
                     </label>
                     <label class="input-label" for="cidade">
                         Cidade
