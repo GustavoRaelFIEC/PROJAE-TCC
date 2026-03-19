@@ -17,8 +17,8 @@
                 <li><a href=""></a>Ajuda</li>
             </ul>
             <div class="">
-                <button class=""></button>
-                <button class=""></button>
+                <a href="/PROJAE-TCC/public/login.php" class="btnLogin">Entrar</a>
+                <a href="/PROJAE-TCC/public/escolherCadastro.php" class="btnCadastro">Cadastrar</a>
             </div>
         </nav>
     </head>
