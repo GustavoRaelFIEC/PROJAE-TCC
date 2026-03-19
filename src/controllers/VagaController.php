@@ -31,10 +31,10 @@ function handleVaga($pdo)
             'tipo' => Security::sanitizeInput($dados['tipo'] ?? ''),
             'salario' => Security::sanitizeInput($dados['salario'] ?? ''),
             'cidade' => Security::sanitizeInput($dados['cidade'] ?? ''),
-            'status' => Security::sanitizeInput($dados['cidade'] ?? '')
+            'status' => Security::sanitizeInput($dados['status'] ?? '')
         ];
 
-        $userModel->createPessoa($_SESSION['user_id'], $dados);
+        $userModel->createVaga($_SESSION['user_id'], $dados);
 
         // Se der tudo certo, confirma tudo
         $pdo->commit();
@@ -50,7 +50,7 @@ function handleVaga($pdo)
             $pdo->rollBack();
         }
         $_SESSION['cadastro_errors'] = ["⚠️ Erro no sistema. Tente novamente mais tarde."];
-        header("Location: ../../public/cadastro.php");
+        var_dump($_SESSION['cadastro_errors']);
         exit;
     }
 }

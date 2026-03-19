@@ -32,7 +32,7 @@
                     </label>
                     <label class="input-label" for="tipo">
                         tipo
-                        <input class="input" id="tipo" name="tipo" type="password" required>
+                        <input class="input" id="tipo" name="tipo" type="text" required>
                     </label>
                     <label class="input-label" for="salario">
                         salario
