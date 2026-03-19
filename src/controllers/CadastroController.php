@@ -28,10 +28,12 @@ function handleCadastro($pdo)
 
     // Validações 
     if (!Security::validateEmail($email)) {
+        header('Location: ../../public/escolherCadastro.php');
         $errors[] = "❌ Email inválido!";
     }
 
     if (!Security::validatePassword($senha)) {
+        header('Location: ../../public/escolherCadastro.php');
         $errors[] = "❌ A senha deve ter pelo menos 8 caracteres";
     }
 

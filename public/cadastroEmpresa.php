@@ -28,6 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,6 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="shortcut icon" href="assets/img/isotipo.png" type="image/x-icon">
     <title>Cadastrar Empresa</title>
 </head>
+
 <body class="corpo">
     <header class="cabecalho">
         <div class="logo"><img class="img" src="assets/img/imagotipo.png" alt=""></div>
@@ -50,19 +52,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="cadastro">
                 <form method="POST" action="../src/controllers/CadastroController.php" class="fomulario">
                     <legend class="subTitulo">Dados do Usuário</legend>
-                    <input type="hidden" name="tipo" value="empresa" >
+                    <input type="hidden" name="tipo" value="empresa">
                     <label class="input-label" for="razaoSocial">
                         Razão Social
-                        <input class="input" placeholder="Insira a Razão Social Registrada" id="razaoSocial" name="nome" type="text" required>
+                        <input class="input" placeholder="Insira a Razão Social Registrada" id="razaoSocial" name="nome" type="text" required maxlength="100">
                     </label>
                     <label class="input-label" for="email">
                         E-mail
-                        <input class="input" placeholder="Digite seu Email" id="email" name="email" type="email" required>
+                        <input class="input" placeholder="Digite seu Email" id="email" name="email" type="email" required maxlength="255">
                     </label>
-        
+
                     <label class="input-label" for="senha">
                         Senha
-                        <input class="input" placeholder="Digite sua senha" id="senha" name="senha" type="password" required>
+                        <input class="input" placeholder="Digite sua senha" id="senha" name="senha" type="password" required maxlength="64">
                     </label>
                     <label class="input-label" for="cnpj">
                         CNPJ
@@ -91,4 +93,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </main>
     <script src="./assets/js/mascara.js"></script>
 </body>
+
 </html>

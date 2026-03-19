@@ -30,7 +30,7 @@ function mascaraCNPJ(valor) {
 
 // TELEFONE
 function mascaraTelefone(valor) {
-    valor = somenteNumeros(valor);
+    valor = somenteNumeros(valor)
    
 
     valor = valor.replace(/^(\d{2})(\d)/, "($1) $2");
