@@ -92,9 +92,9 @@ INSERT INTO `pessoas` VALUES
 (3,'Luiza','20093350740','19993792956','senac','engenharia',3);
 
 INSERT INTO `empresas` VALUES 
-(1,'FIEC','54675103000180','1938018688','Indaiatuba-SP','',1),
-(2,'SENAI','3810810000100','2733345200','Vitória-ES','',2),
-(3,'Objetivo','66996232000230','1938258801','Indaiatuba','',3);
+(1,'FIEC','54675103000180','1938018688','Indaiatuba-SP', 1),
+(2,'SENAI','3810810000100','2733345200','Vitória-ES', 2),
+(3,'Objetivo','66996232000230','1938258801','Indaiatuba', 3);
 
 INSERT INTO `vagas` VALUES 
 (1,'Estagiário de Informática','Auxiliar na manutenção de computadores e suporte básico aos usuários','estagio',1.00,'Indaiatuba','aberta','2026-03-12 20:06:57',1),
