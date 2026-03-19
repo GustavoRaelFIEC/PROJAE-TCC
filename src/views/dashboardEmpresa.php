@@ -35,6 +35,6 @@
         <!-- ainda decidir onde colocar botão de criar vagas -->
     
     
-    <a href="teste.php">teste para postar vaga</a>
+    <a href="../../public/teste.php">teste para postar vaga</a>
 </body>
 </html>
