@@ -22,40 +22,32 @@
             <div class="cadastro">
                 <form method="POST" action="../src/controllers/CadastroController.php" class="fomulario">
                     <legend class="subTitulo">Dados do Usuário</legend>
-                    <label class="input-label" for="razaoSocial">
+                    <label class="input-label" for="titulo">
                         titulo
-                        <input class="input" id="razaoSocial" name="titulo" type="text" required>
+                        <input class="input" id="titulo" name="titulo" type="text" required>
                     </label>
-                    <label class="input-label" for="email">
+                    <label class="input-label" for="descricao">
                         descricao
-                        <input class="input" id="email" name="descricao" type="email" required>
+                        <input class="input" id="descricao" name="descricao" type="text" required>
                     </label>
-                    <label class="input-label" for="senha">
+                    <label class="input-label" for="tipo">
                         tipo
-                        <input class="input" id="senha" name="tipo" type="password" required>
+                        <input class="input" id="tipo" name="tipo" type="password" required>
                     </label>
-                    <label class="input-label" for="cnpj">
+                    <label class="input-label" for="salario">
                         salario
-                        <input class="input" id="cnpj" name="salario" type="text" required>
+                        <input class="input" id="salario" name="salario" type="text" required>
                     </label>
-                    <label class="input-label" for="telefone">
+                    <label class="input-label" for="cidade">
                         cidade
-                        <input class="input" id="telefone" name="cidade" type="text" required>
+                        <input class="input" id="cidade" name="cidade" type="text" required>
                     </label>
-                    <label class="input-label" for="uf">
+                    <label class="input-label" for="status">
                         status
-                        <input class="input" id="uf" name="status" type="text" required>
+                        <input class="input" id="status" name="status" type="text" required>
                     </label>
                     <button class="btn-submit" type="submit">Cadastrar</button>
                 </form>
-                <div class="fotoUpload">
-                    <div class="fotoEmpresa">
-                        <h1>Foto de Perfil</h1>
-                        <img src="" alt="">
-                    </div>
-                    <p>Use uma imagem de boa qualidade, que mostre sua logotipo, ou que reflita sua Razão Social</p>
-                    <input class="btn-upload" name="fotoEmpresa" type="file">
-                </div>
             </div>
         </main>
     </main>
