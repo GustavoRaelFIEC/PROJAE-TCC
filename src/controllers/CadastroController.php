@@ -9,7 +9,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     handleCadastro($pdo);
 }
 
-function getRequestData() {
+function getRequestData()
+{
     return $_POST;
 }
 
@@ -28,38 +29,45 @@ function handleCadastro($pdo)
     $tipo = $dados['tipo'] ?? '';
 
     // Redirect baseado no tipo
-    $redirectCadastro = ($tipo === 'empresa') 
-    ? '../../public/cadastroEmpresa.php' 
-    : '../../public/cadastroPessoa.php';
+    $redirectCadastro = ($tipo === 'empresa')
+        ? '../../public/cadastroEmpresa.php'
+        : '../../public/cadastroPessoa.php';
 
     $errors = [];
 
     // Validações 
     if (!Security::validateEmail($email)) {
-        $errors[] = "❌ Email inválido!";
+        $errors['email'] = "❌ Email inválido!";
     }
 
-     if (!Security::validateTelefone($telefone)) {
-        $errors[] = "❌ Telefone inválido!";
-    }
-
-     if (!Security::validateCPF($cpf)) {
-        $errors[] = "❌ CPF inválido!";
-    }
-
-     if (!Security::validateCNPJ($cnpj)) {
-        $errors[] = "❌ CNPJ inválido!";
+    if (!Security::validateTelefone($telefone)) {
+        $errors['telefone'] = "❌ Telefone inválido!";
     }
 
     if (!Security::validatePassword($senha)) {
-        $errors[] = "❌ A senha deve ter pelo menos 8 caracteres";
+        $errors['senha'] = "❌ A senha deve ter pelo menos 8 caracteres";
     }
+
+    if ($tipo === 'empresa') {
+        if (!Security::validateCNPJ($cnpj)) {
+            $errors['cnpj'] = "❌ CNPJ inválido!";
+        }
+    }
+
+    if ($tipo === 'pessoa') {
+        if (!Security::validateCPF($cpf)) {
+            $errors['cpf'] = "❌ CPF inválido!";
+        }
+    }
+
+
 
     if (!empty($errors)) {
         $_SESSION['flash'] = [
-            'errors' => [$errors],
+            'type' => 'error',
+            'messages' => $errors,
             'old' => $dados
-            ];
+        ];
 
         header("Location: $redirectCadastro");
         exit;
@@ -72,7 +80,12 @@ function handleCadastro($pdo)
         $usuario = $userModel->findByEmail($email);
 
         if ($usuario) {
-            $_SESSION['flash']['errors'] = ["⚠️ Email já cadastrado!"];
+            $_SESSION['flash'] = [
+                'type' => 'error',
+                'messages' => ["⚠️ Email já cadastrado!"],
+                'old' => $dados
+            ];
+
             header("Location: $redirectCadastro");
             exit;
         }
@@ -112,9 +125,9 @@ function handleCadastro($pdo)
 
         // Sucesso
         $_SESSION['flash'] = [
-            'success' => ["✅ Conta criada com sucesso!"],
-            'old' => $dados
-            ];
+            'type' => 'success',
+            'messages' => ["✅ Conta criada com sucesso!"],
+        ];
 
         header("Location: ../../public/login.php");
         exit;
@@ -128,9 +141,10 @@ function handleCadastro($pdo)
         }
 
         $_SESSION['flash'] = [
-            'errors' => ["⚠️ Erro no sistema. Tente novamente mais tarde."],
-            'old' => $dados 
-            ];
+            'type' => 'error',
+            'messages' => ["⚠️ Erro no sistema. Tente novamente mais tarde."],
+            'old' => $dados
+        ];
 
         header("Location: $redirectCadastro");
         exit;

@@ -2,9 +2,28 @@
 session_start();
 
 $flash = $_SESSION['flash'] ?? null;
-unset($_SESSION['flash']);
-?>
+$errors = $flash['messages'] ?? [];
+$old = $flash['old'] ?? [];
 
+
+unset($_SESSION['flash']);
+
+function old($key)
+{
+    global $old;
+    return htmlspecialchars($old[$key] ?? '');
+}
+
+function error($key)
+{
+    global $errors;
+    if (isset($errors[$key])) {
+        return '<p class="erro-input">' . htmlspecialchars($errors[$key]) . '</p>';
+    }
+    return '';
+}
+
+?>
 
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -15,7 +34,7 @@ unset($_SESSION['flash']);
 
     <link rel="stylesheet" href="../public/assets/css/cadastroPessoa.css">
     <link rel="shortcut icon" href="assets/img/isotipo.png" type="image/x-icon">
-
+    <link rel="stylesheet" href="../public/assets/css/timeMessage.css ">
     <title>Cadastrar Estagiário</title>
 </head>
 
@@ -37,37 +56,75 @@ unset($_SESSION['flash']);
         <main class="principal">
             <h1 class="titulo">Registrar <span>Estagiário</span></h1>
             <div class="cadastro">
-                <!-- <?php if (!empty($flash['errors'])): ?>
-                    <div class="erro">
-                        <ul>
-                            <?php foreach ($flash['errors'] as $erro): ?>
-                                <li><?= htmlspecialchars($erro); ?></li>
-                            <?php endforeach; ?>
-                        </ul>
-                    </div>
-                <?php endif; ?> -->
                 <form class="formulario" method="POST" action="../src/controllers/CadastroController.php">
                     <legend class="subTitulo">Dados do Usuário</legend>
                     <input type="hidden" name="tipo" value="pessoa">
+
                     <label class="input-label">
                         Nome
-                        <input class="input" type="text" name="nome" placeholder="Digite seu nome completo" required maxlength="100" minlength="2">
+                        <input class="input"
+                            type="text"
+                            name="nome"
+                            placeholder="Digite seu nome completo"
+                            value="<?= old('nome') ?>"
+                            required
+                            maxlength="100"
+                            minlength="2">
+
+                        <?= error('nome') ?>
                     </label>
+
                     <label class="input-label" for="email">
                         E-mail
-                        <input class="input" placeholder="Digite seu Email" id="email" name="email" type="email" required maxlength="255">
+                        <input class="input"
+                            placeholder="Digite seu Email"
+                            id="email"
+                            name="email"
+                            type="email"
+                            value="<?= old('email') ?>"
+                            required maxlength="255">
+
+                        <?= error('email') ?>
                     </label>
+
                     <label class="input-label" for="senha">
                         Senha
-                        <input class="input" placeholder="Digite sua senha" id="senha" name="senha" type="password" required minlength="6">
+                        <input class="input"
+                            placeholder="Digite sua senha"
+                            id="senha"
+                            name="senha"
+                            type="password"
+                            required minlength="6">
+
+                        <?= error('senha') ?>
                     </label>
                     <label class="input-label">
                         CPF
-                        <input class="input" type="text" id="cpf" name="cpf" placeholder="___.___.___-__" required maxlength="14" minlength="14">
+                        <input class="input"
+                            type="text"
+                            id="cpf"
+                            name="cpf"
+                            placeholder="___.___.___-__"
+                            value="<?= old('cpf') ?>"
+                            required
+                            maxlength="14"
+                            minlength="14">
+
+                        <?= error('cpf') ?>
                     </label>
                     <label class="input-label">
                         Telefone
-                        <input class="input" type="text" id="telefone" name="telefone" placeholder="(__) _____-____" maxlength="15" minlength="15">
+                        <input class="input"
+                            type="text"
+                            id="telefone"
+                            name="telefone"
+                            placeholder="(__) _____-____"
+                            value="<?= old('telefone') ?>"
+                            required
+                            maxlength="15"
+                            minlength="15">
+
+                        <?= error('telefone') ?>
                     </label>
                     <label class="input-label">
                         Instituição
@@ -95,6 +152,7 @@ unset($_SESSION['flash']);
         </main>
     </div>
     <script src="./assets/js/mascara.js"></script>
+    <script src="./assets/js/timeMessage.js"></script>
 </body>
 
 </html>
