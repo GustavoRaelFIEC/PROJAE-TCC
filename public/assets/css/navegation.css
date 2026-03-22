@@ -1,0 +1,30 @@
+.cabecalho{
+  width:100%;
+  height:70px;
+  background:white;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:0 40px;
+  border-bottom:1px solid #ddd;
+}
+
+.logo img{
+  height:40px;
+}
+
+.list{
+  display:flex;
+  list-style:none;
+  gap:30px;
+}
+
+.item-list{
+  text-decoration:none;
+  color:#3a3a3a;
+  font-size:15px;
+}
+
+.item-list:hover{
+  color:#2f5cff;
+}

@@ -32,28 +32,28 @@ function error($key)
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="../public/assets/css/cadastroPessoa.css">
     <link rel="shortcut icon" href="assets/img/isotipo.png" type="image/x-icon">
-    <link rel="stylesheet" href="../public/assets/css/timeMessage.css ">
-    <title>Cadastrar Estagiário</title>
+
+    <link rel="stylesheet" href="assets/css/cadastroPessoa.css">
+    <link rel="stylesheet" href="assets/css/globalEimports.css">
+    <link rel="stylesheet" href="assets/css/navegation.css">
+
+    <title>Cadastro Pessoa - PROJAE</title>
 </head>
 
 <body class="corpo">
 
     <header class="cabecalho">
-
-        <div class="logo">
-            <img src="assets/img/imagotipo.png">
-        </div>
-
+        <div class="logo"><img class="img" src="assets/img/imagotipo.png" alt="Projae logo"></div>
         <ul class="list">
             <li><a class="item-list" href="index.php">Página Principal</a></li>
             <li><a class="item-list" href="about.php">Sobre</a></li>
             <li><a class="item-list" href="help.php">Ajuda</a></li>
         </ul>
     </header>
-    <div class="principal2">
-        <main class="principal">
+    
+    <main class="principal">
+        <div>
             <h1 class="titulo">Registrar <span>Estagiário</span></h1>
             <div class="cadastro">
                 <form class="formulario" method="POST" action="../src/controllers/CadastroController.php">
@@ -149,8 +149,8 @@ function error($key)
                     <input class="btn-upload" name="fotoEmpresa" type="file">
                 </div>
             </div>
-        </main>
-    </div>
+        </div>
+    </main>
     <script src="./assets/js/mascara.js"></script>
     <script src="./assets/js/timeMessage.js"></script>
 </body>

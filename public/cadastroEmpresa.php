@@ -55,23 +55,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../public/assets/css/cadastroEmpresa.css">
+
     <link rel="shortcut icon" href="assets/img/isotipo.png" type="image/x-icon">
-    <link rel="stylesheet" href="../public/assets/css/timeMessage.css ">
-    <title>Cadastrar Empresa</title>
+
+    <link rel="stylesheet" href="assets/css/cadastroEmpresa.css">
+    <link rel="stylesheet" href="assets/css/globalEimports.css">
+    <link rel="stylesheet" href="assets/css/navegation.css">
+
+    <title>Cadastro Empresa - PROJAE</title>
 </head>
 
 <body class="corpo">
+
     <header class="cabecalho">
-        <div class="logo"><img class="img" src="assets/img/imagotipo.png" alt=""></div>
+        <div class="logo"><img class="img" src="assets/img/imagotipo.png" alt="Projae logo"></div>
         <ul class="list">
             <li><a class="item-list" href="index.php">Página Principal</a></li>
             <li><a class="item-list" href="about.php">Sobre</a></li>
             <li><a class="item-list" href="help.php">Ajuda</a></li>
         </ul>
     </header>
-    <main class="principal2">
-        <main class="principal">
+
+    <main class="principal">
+        <div>
             <h1 class="titulo">Registrar <span>Empresa</span></h1>
             <div class="cadastro">
                 <form method="POST" action="../src/controllers/CadastroController.php" class="fomulario">
@@ -161,7 +167,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <input class="btn-upload" name="fotoEmpresa" type="file">
                 </div>
             </div>
-        </main>
+        </div>
     </main>
     <script src="./assets/js/mascara.js"></script>
     <script src="/assets/js/timeMessage.js"></script>
