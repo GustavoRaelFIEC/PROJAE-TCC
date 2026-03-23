@@ -8,7 +8,7 @@
     height: 100%;
 }
 
-.content {
+.contentPrincipal {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -137,12 +137,7 @@ input[type="radio"] {
 }
 
 .btn-submit{
-    display: flex;
-    align-items: center;
-    justify-content: center;
     padding: 10px 20px;
-    width: 110px;
-    height: 45px;
     border-radius: 7px; 
     background-color: white;
     color: #4938be;
@@ -153,8 +148,7 @@ input[type="radio"] {
     cursor: pointer;
 }
 
-.btn-submit:hover {
-    border: none;
+.btn-submit:hover{
     background-color: #4938be;
     box-shadow: rgba(74, 56, 190, 0.5) 0px 0px 10px;
     color: #fff;

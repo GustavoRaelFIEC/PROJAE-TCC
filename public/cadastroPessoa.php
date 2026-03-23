@@ -44,16 +44,22 @@ function error($key)
 <body class="corpo">
 
     <header class="cabecalho">
-        <div class="logo"><img class="img" src="assets/img/imagotipo.png" alt="Projae logo"></div>
-        <ul class="list">
-            <li><a class="item-list" href="index.php">Página Principal</a></li>
-            <li><a class="item-list" href="about.php">Sobre</a></li>
-            <li><a class="item-list" href="help.php">Ajuda</a></li>
-        </ul>
+        <div class="contentCabecalho">
+            <div class="logo"><img class="img" src="assets/img/imagotipo.png" alt="Projae logo"></div>
+            <ul class="list">
+                <li><a class="item-list active" href="index.php">Página Principal</a></li>
+                <li><a class="item-list" href="about.php">Sobre</a></li>
+                <li><a class="item-list" href="help.php">Ajuda</a></li>
+            </ul>
+            <div class="cta">
+                <a href="#" class="btnLogin">Entrar</a>
+                <a href="#" class="btnCadastro">Cadastrar</a>
+            </div>
+        </div>
     </header>
     
     <main class="principal">
-        <div>
+        <div class="content">
             <h1 class="titulo">Registrar <span>Estagiário</span></h1>
             <div class="cadastro">
                 <form class="formulario" method="POST" action="../src/controllers/CadastroController.php">
