@@ -6,8 +6,9 @@
     
     <link rel="shortcut icon" href="assets/img/isotipo.png" type="image/x-icon">
     
-    <link rel="stylesheet" href="assets/css/globalEimports.css">
-    <link rel="stylesheet" href="assets/css/navegation.css">
+    <link rel="stylesheet" href="./assets/css/globalEimports.css">
+    <link rel="stylesheet" href="./assets/css/navegation.css">
+    <link rel="stylesheet" href="./assets/css/main.css">
     <link rel="stylesheet" href="assets/css/login.css">
     
     <title>Login - PROJAE</title>

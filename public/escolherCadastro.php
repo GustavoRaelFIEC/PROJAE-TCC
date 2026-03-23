@@ -7,9 +7,10 @@
 
     <link rel="shortcut icon" href="assets/img/isotipo.png" type="image/x-icon">
 
-    <link rel="stylesheet" href="assets/css/globalEimports.css">
-    <link rel="stylesheet" href="assets/css/navegation.css">
-    <link rel="stylesheet" href="assets/css/escolherCadastro.css">
+    <link rel="stylesheet" href="./assets/css/globalEimports.css">
+    <link rel="stylesheet" href="./assets/css/navegation.css">
+    <link rel="stylesheet" href="./assets/css/main.css">
+    <link rel="stylesheet" href="./assets/css/escolherCadastro.css">
 
     <title>Cadastro - PROJAE</title>
 
@@ -31,7 +32,7 @@
         </div>
     </header>
     <main class="principal">
-        <div clas="content">
+        <div class="content">
             <img class="img" src="assets/img/imagotipo-removebg.png" alt="Projae logo">
             <div class="container">
                 <h1 class="titulo">Cadastrar</h1>

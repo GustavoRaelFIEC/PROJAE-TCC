@@ -8,13 +8,13 @@
   justify-content: space-between;
   align-items: center;
   max-width: 70%;
-  height: 100px;
+  height: 110px;
   background: white;
   padding: 0 40px;
   margin: 0 auto;
 }
 
-.logo img {
+.img {
   width: 300px;
 }
 
@@ -27,16 +27,16 @@
 .item-list {
   text-decoration: none;
   color: #3a3a3a;
-  font-size: 18px;
+  font-size: 23px;
 }
 
 .item-list:hover {
-  text-shadow: 0px 0px 10px rgba(74, 56, 190, 0.5);
+  text-shadow: 0px 0px 10px rgba(74, 56, 190, 0.2);
   color: #4938be;
 }
 
 .active {
-  text-shadow: rgba(74, 56, 190, 0.5) 0px 0px 10px;
+  text-shadow: 0px 0px 10px rgba(74, 56, 190, 0.2);
   color: #4938be;
 }
 
@@ -49,12 +49,12 @@
 
 .btnLogin, .btnCadastro {
   text-decoration: none;
-  padding: 10px 20px;
+  padding: 15px 25px;
   border-radius: 7px;
   background-color: white;
   color: #4938be;
   border: #4938be solid 1px;
-  box-shadow: rgba(74, 56, 190, 0.5) 0px 0px 10px;
+  box-shadow: rgba(74, 56, 190, 0.2) 0px 0px 10px;
   font-size: 18px;
   font-weight: 700;
   cursor: pointer;
@@ -62,7 +62,7 @@
 
 .btnLogin:hover, .btnCadastro:hover {
   background-color: #4938be;
-  box-shadow: rgba(74, 56, 190, 0.5) 0px 0px 10px;
+  box-shadow: rgba(74, 56, 190, 0.2) 0px 0px 10px;
   color: #fff;
   transition: 0.3s;
 }
