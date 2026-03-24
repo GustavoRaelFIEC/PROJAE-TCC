@@ -21,7 +21,25 @@ class Security
         return filter_var($email, FILTER_VALIDATE_EMAIL);
     }
 
-     // Validar tipo
+    // Validar telefone
+    public static function validateTelefone($telefone)
+    {
+        return strlen($telefone) === 15;
+    }
+
+    // Validar CPF
+    public static function validateCPF($cpf)
+    {
+        return strlen($cpf) === 14;
+    }
+
+    // Validar CNPJ
+    public static function validateCNPJ($cnpj)
+    {
+        return strlen($cnpj) === 18;
+    }
+
+    // Validar tipo
     public static function validateTipo($tipo)
     {
         $tiposValidos = ['pessoa', 'empresa'];
@@ -39,6 +57,4 @@ class Security
     {
         return password_verify($senha, $senhaHash);
     }
-
-
 }

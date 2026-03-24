@@ -3,19 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../public/assets/css/cadastroEmpresa.css">
+
     <link rel="shortcut icon" href="assets/img/isotipo.png" type="image/x-icon">
-    <title>Cadastrar Empresa</title>
+
+    <link rel="stylesheet" href="../public/assets/css/globalEimports.css">
+    <link rel="stylesheet" href="../public/assets/css/navegation.css">
+    <link rel="stylesheet" href="../public/assets/css/cadastroEmpresa.css">
+
+    <title>Postar vaga não será um página</title>
 </head>
 <body class="corpo">
-    <header class="cabecalho">
-        <div class="logo"><img class="img" src="assets/img/imagotipo.png" alt=""></div>
-        <ul class="list">
-            <li><a class="item-list" href="index.php">Página Principal</a></li>
-            <li><a class="item-list" href="about.php">Sobre</a></li>
-            <li><a class="item-list" href="help.php">Ajuda</a></li>
-        </ul>
-    </header>
+    <!-- Postar vaga não será um página -->
     <main class="principal2">
         <main class="principal">
             <h1 class="titulo">Postar <span>Vaga</span></h1>

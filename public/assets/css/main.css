@@ -1,0 +1,12 @@
+.principal{
+    display: flex;
+    align-items: center;
+    min-height: calc(100vh - 111px);
+    width: 100%;
+    padding-top: 50px;
+}
+
+.content{
+    max-width: 70%;
+    margin: 0 auto;
+}
