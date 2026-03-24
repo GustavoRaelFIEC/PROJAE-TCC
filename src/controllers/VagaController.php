@@ -5,15 +5,21 @@ require_once __DIR__ . '/../models/Usuarios.php';
 require_once __DIR__ . '/../utils/Security.php';
 require_once __DIR__ . '/../utils/Session.php';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    handleVaga($pdo);
+if($_SERVER['REQUEST_METHOD'] === 'POST'){
+    $action = $_GET['action'] ?? '';
+
+    if($action === 'postarVaga'){
+        handlePostarVaga($pdo);
+    }else if($action === 'buscarVaga'){
+        handleBuscarVaga($pdo);
+    }
 }
 
 function getRequestData() {
     return $_POST;
 }
 
-function handleVaga($pdo)
+function handlePostarVaga($pdo)
 {
     Session::start();
 
@@ -62,3 +68,6 @@ function handleVaga($pdo)
         exit;
     }
 }
+
+
+//function handleBuscarVaga -> AQUI
