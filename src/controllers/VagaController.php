@@ -48,14 +48,17 @@ function handleVaga($pdo)
         $_SESSION['sucesso'] = "✅ Vaga criada com sucesso!";
         header("Location: ../views/empresa.php");
         exit();
+
     } catch (PDOException $e) {
         error_log("Erro ao criar vaga " . $e->getMessage());
+
         // Se estiver em transaction, o rollBack volta se der alguma coisa errada
         if ($pdo->inTransaction()) {
             $pdo->rollBack();
         }
+
         $_SESSION['cadastro_errors'] = ["⚠️ Erro no sistema. Tente novamente mais tarde."];
-        var_dump($_SESSION['cadastro_errors']);
+        header("Location: "); // <-- MANDAR PARA O FORMULÁRIO DE VAGA NOVAMENTE
         exit;
     }
 }
