@@ -28,11 +28,16 @@ function handleVaga($pdo)
         $dados = [
             'titulo' => Security::sanitizeInput($dados['titulo'] ?? ''),
             'descricao' => Security::sanitizeInput($dados['descricao'] ?? ''),
-            'tipo' => Security::sanitizeInput($dados['tipo'] ?? ''),
-            'salario' => Security::sanitizeInput($dados['salario'] ?? ''),
+            'tipo' => $dados['tipo'] ?? '',
+            'salario' => (float) ($dados['salario'] ?? 0),
             'cidade' => Security::sanitizeInput($dados['cidade'] ?? ''),
-            'status' => Security::sanitizeInput($dados['status'] ?? '')
+            'status' => $dados['status'] ?? ''
         ];
+
+        if (empty($dados['titulo'])) {
+            throw new Exception("Título é obrigatório");
+        }
+
 
         $userModel->createVaga($_SESSION['user_id'], $dados);
 
