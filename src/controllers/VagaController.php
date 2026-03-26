@@ -52,7 +52,7 @@ function handlePostarVaga($pdo)
 
         // Sucesso
         $_SESSION['sucesso'] = "✅ Vaga criada com sucesso!";
-        header("Location: ../views/empresa.php");
+        header("Location: ../../public/views/dashboardEmpresa.php");
         exit();
 
     } catch (PDOException $e) {
@@ -64,7 +64,7 @@ function handlePostarVaga($pdo)
         }
 
         $_SESSION['cadastro_errors'] = ["⚠️ Erro no sistema. Tente novamente mais tarde."];
-        header("Location: "); // <-- MANDAR PARA O FORMULÁRIO DE VAGA NOVAMENTE
+        header("Location: ./"); // <-- MANDAR PARA O FORMULÁRIO DE VAGA NOVAMENTE
         exit;
     }
 }

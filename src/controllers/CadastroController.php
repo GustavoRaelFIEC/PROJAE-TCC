@@ -29,48 +29,51 @@ function handleCadastro($pdo)
     $tipo = $dados['tipo'] ?? '';
 
     // Redirect baseado no tipo
-    $redirectCadastro = ($tipo === 'empresa')
-        ? '../../public/cadastroEmpresa.php'
-        : '../../public/cadastroPessoa.php';
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $redirectCadastro = ($tipo === 'empresa')
+            ? '../../public/cadastroEmpresa.php'
+            : '../../public/cadastroPessoa.php';
 
-    $errors = [];
 
-    // Validações 
-    if (!Security::validateEmail($email)) {
-        $errors['email'] = "❌ Email inválido!";
-    }
+        $errors = [];
 
-    if (!Security::validateTelefone($telefone)) {
-        $errors['telefone'] = "❌ Telefone inválido!";
-    }
-
-    if (!Security::validatePassword($senha)) {
-        $errors['senha'] = "❌ A senha deve ter pelo menos 8 caracteres";
-    }
-
-    if ($tipo === 'empresa') {
-        if (!Security::validateCNPJ($cnpj)) {
-            $errors['cnpj'] = "❌ CNPJ inválido!";
+        // Validações 
+        if (!Security::validateEmail($email)) {
+            $errors['email'] = "❌ Email inválido!";
         }
-    }
 
-    if ($tipo === 'pessoa') {
-        if (!Security::validateCPF($cpf)) {
-            $errors['cpf'] = "❌ CPF inválido!";
+        if (!Security::validateTelefone($telefone)) {
+            $errors['telefone'] = "❌ Telefone inválido!";
         }
-    }
+
+        if (!Security::validatePassword($senha)) {
+            $errors['senha'] = "❌ A senha deve ter pelo menos 8 caracteres";
+        }
+
+        if ($tipo === 'empresa') {
+            if (!Security::validateCNPJ($cnpj)) {
+                $errors['cnpj'] = "❌ CNPJ inválido!";
+            }
+        }
+
+        if ($tipo === 'pessoa') {
+            if (!Security::validateCPF($cpf)) {
+                $errors['cpf'] = "❌ CPF inválido!";
+            }
+        }
 
 
 
-    if (!empty($errors)) {
-        $_SESSION['flash'] = [
-            'type' => 'error',
-            'messages' => $errors,
-            'old' => $dados
-        ];
+        if (!empty($errors)) {
+            $_SESSION['flash'] = [
+                'type' => 'error',
+                'messages' => $errors,
+                'old' => $dados
+            ];
 
-        header("Location: $redirectCadastro");
-        exit;
+            header("Location: $redirectCadastro");
+            exit;
+        }
     }
 
     try {
@@ -109,7 +112,6 @@ function handleCadastro($pdo)
                 'curso' => Security::sanitizeInput($dados['curso'] ?? '')
             ];
             $userModel->createPessoa($userId, $dadosPessoa);
-
         } elseif ($tipo === 'empresa') {
             $dadosEmpresa = [
                 'nome' => Security::sanitizeInput($dados['nome'] ?? ''),
@@ -131,7 +133,6 @@ function handleCadastro($pdo)
 
         header("Location: ../../public/login.php");
         exit;
-
     } catch (PDOException $e) {
         error_log("Erro no cadastro " . $e->getMessage());
 
