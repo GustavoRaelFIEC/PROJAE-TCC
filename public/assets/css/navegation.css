@@ -8,14 +8,14 @@
   justify-content: space-between;
   align-items: center;
   max-width: 70%;
-  height: 110px;
+  height: 100px;
   background: white;
   padding: 0 40px;
   margin: 0 auto;
 }
 
 .img {
-  width: 300px;
+  width: 250px;
 }
 
 .list {
@@ -27,7 +27,7 @@
 .item-list {
   text-decoration: none;
   color: #3a3a3a;
-  font-size: 23px;
+  font-size: 20px;
 }
 
 .item-list:hover {
@@ -40,6 +40,16 @@
   color: #4938be;
 }
 
+a.activeBtn {
+  background-color: #4938be;
+  color: #ffffff;
+  transition: 0.3s;
+}
+
+a.activeBtn:hover {
+  box-shadow: rgba(74, 56, 190) 0px 0px 10px;
+}
+
 .cta {
   display: flex;
   justify-content: center;
@@ -47,9 +57,10 @@
   gap: 25px;
 }
 
-.btnLogin, .btnCadastro {
+.btnLogin,
+.btnCadastro {
   text-decoration: none;
-  padding: 15px 25px;
+  padding: 10px 20px;
   border-radius: 7px;
   background-color: white;
   color: #4938be;
@@ -60,7 +71,8 @@
   cursor: pointer;
 }
 
-.btnLogin:hover, .btnCadastro:hover {
+.btnLogin:hover,
+.btnCadastro:hover {
   background-color: #4938be;
   box-shadow: rgba(74, 56, 190, 0.2) 0px 0px 10px;
   color: #fff;

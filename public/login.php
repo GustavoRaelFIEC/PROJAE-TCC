@@ -24,7 +24,7 @@
                 <li><a class="item-list" href="help.php">Ajuda</a></li>
             </ul>
             <div class="cta">
-                <a href="login.php" class="btnLogin">Entrar</a>
+                <a href="login.php" class="btnLogin activeBtn">Entrar</a>
                 <a href="escolherCadastro.php" class="btnCadastro">Cadastrar</a>
             </div>
         </div>
