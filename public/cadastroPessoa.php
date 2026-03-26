@@ -88,7 +88,8 @@ function error($key)
                             name="email"
                             type="email"
                             value="<?= old('email') ?>"
-                            required maxlength="255">
+                            required 
+                            maxlength="255">
 
                         <?= error('email') ?>
                     </label>
@@ -100,7 +101,8 @@ function error($key)
                             id="senha"
                             name="senha"
                             type="password"
-                            required minlength="6">
+                            required 
+                            minlength="8">
 
                         <?= error('senha') ?>
                     </label>
