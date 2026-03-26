@@ -90,10 +90,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <legend class="subTitulo">Dados do Usuário</legend>
                     <input type="hidden" name="tipo" value="empresa">
 
-                    <!-- <label class="input-label" for="razaoSocial">
+                    <label class="input-label" for="razaoSocial">
                         Razão Social
                         <input class="input" placeholder="Insira a Razão Social Registrada" id="razaoSocial" name="nome" type="text" required maxlength="100">
-                    </label> -->
+                    </label>
 
                     <label class="input-label" for="email">
                         E-mail
