@@ -42,10 +42,10 @@ function handleLogin($pdo)
                 Session::setUsuario($usuario);
 
                 if ($usuario['tipo'] === 'pessoa') {
-                    header("Location: ../../public/views/dashboardPessoa.php");
+                    header("Location: ../../../public/views/dashboardPessoa.php");
                     exit();
                 } else if ($usuario['tipo'] === 'empresa') {
-                    header("Location: ../../public/views/dashboardEmpresa.php");
+                    header("Location: ../../../public/views/dashboardEmpresa.php");
                     exit();
                 }
 
@@ -60,7 +60,7 @@ function handleLogin($pdo)
     }
     
     if (!empty($errors)) {
-      header("Location: ../../public/login.php");
+      header("Location: ../../../public/views/login.php");
         exit();
     }
 }
