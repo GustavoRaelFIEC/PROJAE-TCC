@@ -44,7 +44,6 @@ function handlePostarVaga($pdo)
             throw new Exception("Título é obrigatório");
         }
 
-
         $userModel->createVaga($_SESSION['user_id'], $dados);
 
         // Se der tudo certo, confirma tudo
@@ -52,7 +51,7 @@ function handlePostarVaga($pdo)
 
         // Sucesso
         $_SESSION['sucesso'] = "✅ Vaga criada com sucesso!";
-        header("Location: ../../public/views/dashboardEmpresa.php");
+        header("Location: ../../../public/views/dashboardEmpresa.php");
         exit();
 
     } catch (PDOException $e) {
