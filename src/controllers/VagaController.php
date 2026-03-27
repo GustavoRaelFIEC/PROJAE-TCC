@@ -65,7 +65,7 @@ function handlePostarVaga($pdo)
         }
 
         $_SESSION['cadastro_errors'] = ["⚠️ Erro no sistema. Tente novamente mais tarde."];
-        header("Location: ../../public/testePostarVaga.php"); // <-- MANDAR PARA O FORMULÁRIO DE VAGA NOVAMENTE
+        header("Location: ../../../public/views/testePostarVaga.php"); // <-- MANDAR PARA O FORMULÁRIO DE VAGA NOVAMENTE
         exit();
     }
 }
