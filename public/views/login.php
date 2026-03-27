@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <link rel="shortcut icon" href="assets/img/isotipo.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../assets/img/isotipo.png" type="image/x-icon">
     
     <link rel="stylesheet" href="../assets/css/globalEimports.css">
     <link rel="stylesheet" href="../assets/css/navegation.css">
@@ -17,9 +17,9 @@
 <body class="corpo">
     <header class="cabecalho">
         <div class="contentCabecalho">
-            <div class="logo"><img class="img" src="assets/img/imagotipo.png" alt="Projae logo"></div>
+            <div class="logo"><img class="img" src="../assets/img/imagotipo.png" alt="Projae logo"></div>
             <ul class="list">
-                <li><a class="item-list" href="index.php">Página Principal</a></li>
+                <li><a class="item-list" href="../index.php">Página Principal</a></li>
                 <li><a class="item-list" href="about.php">Sobre Nós</a></li>
                 <li><a class="item-list" href="help.php">Ajuda</a></li>
             </ul>
@@ -31,10 +31,10 @@
     </header>
     <main class="principal">
         <div class="content">
-            <img class="img" src="assets/img/imagotipo-removebg.png" alt="LOGO PROJAE">
+            <img class="img" src="../assets/img/imagotipo-removebg.png" alt="LOGO PROJAE">
             <div class="container">
                 <h1 class="titulo">Entrar</h1>
-                <form method="POST" action="../src/controllers/LoginController.php" class="form">
+                <form method="POST" action="../../src/controllers/LoginController.php" class="form">
                     <label class="input-label" for="email">
                         E-mail
                         <input class="input" placeholder="Digite seu Email" id="email" name="email" type="email" required>

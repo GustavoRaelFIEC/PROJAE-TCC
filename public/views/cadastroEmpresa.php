@@ -58,9 +58,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <link rel="shortcut icon" href="assets/img/isotipo.png" type="image/x-icon">
 
-    <link rel="stylesheet" href="assets/css/cadastroEmpresa.css">
-    <link rel="stylesheet" href="assets/css/globalEimports.css">
-    <link rel="stylesheet" href="assets/css/navegation.css">
+    <link rel="stylesheet" href="../assets/css/cadastroEmpresa.css">
+    <link rel="stylesheet" href="../assets/css/globalEimports.css">
+    <link rel="stylesheet" href="../assets/css/navegation.css">
 
     <title>Cadastro Empresa - PROJAE</title>
 </head>
@@ -86,7 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="content">
             <h1 class="titulo">Registrar <span>Empresa</span></h1>
             <div class="cadastro">
-                <form method="POST" action="../src/controllers/CadastroController.php" class="fomulario">
+                <form method="POST" action="../../src/controllers/CadastroController.php" class="fomulario">
                     <legend class="subTitulo">Dados do Usuário</legend>
                     <input type="hidden" name="tipo" value="empresa">
 
@@ -184,8 +184,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </div>
     </main>
-    <script src="./assets/js/mascara.js"></script>
-    <script src="/assets/js/timeMessage.js"></script>
+    <script src="../assets/js/mascara.js"></script>
+    <script src="../assets/js/timeMessage.js"></script>
 </body>
 
 </html>

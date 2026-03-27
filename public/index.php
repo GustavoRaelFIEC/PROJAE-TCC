@@ -7,9 +7,9 @@
 
     <link rel="shortcut icon" href="assets/img/isotipo.png" type="image/x-icon">
 
-    <link rel="stylesheet" href="./assets/css/globalEimports.css">
-    <link rel="stylesheet" href="./assets/css/navegation.css">
-    <link rel="stylesheet" href="./assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/globalEimports.css">
+    <link rel="stylesheet" href="assets/css/navegation.css">
+    <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="assets/css/index.css">
 
     <title> Ínicio - PROJAE</title>
@@ -34,7 +34,7 @@
         <div class="content">
             <div class="sideLeft">
                 <p class="welcome">Bem-Vindo ao <span class="azul">PRO</span><span class="vermelho">JAE</span>, <br> sua Plataforma de Estágio</p>
-                <p class="paragrafo">Se <a href="escolherCadastro.php">Cadastre</a> ou <a href="login.php">Entre</a> caso já tenha uma conta.</p>
+                <p class="paragrafo">Se <a href="views/escolherCadastro.php">Cadastre</a> ou <a href="views/login.php">Entre</a> caso já tenha uma conta.</p>
             </div>
             <div class="sideRight">
                 <img src="assets/img/background2-index.png" alt="">
