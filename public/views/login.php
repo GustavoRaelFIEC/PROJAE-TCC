@@ -20,7 +20,7 @@
             <div class="logo"><img class="img" src="assets/img/imagotipo.png" alt="Projae logo"></div>
             <ul class="list">
                 <li><a class="item-list" href="index.php">Página Principal</a></li>
-                <li><a class="item-list" href="about.php">Sobre</a></li>
+                <li><a class="item-list" href="about.php">Sobre Nós</a></li>
                 <li><a class="item-list" href="help.php">Ajuda</a></li>
             </ul>
             <div class="cta">
@@ -32,7 +32,7 @@
     <main class="principal">
         <div class="content">
             <img class="img" src="assets/img/imagotipo-removebg.png" alt="LOGO PROJAE">
-            <div class="contentPrincipal">
+            <div class="container">
                 <h1 class="titulo">Entrar</h1>
                 <form method="POST" action="../src/controllers/LoginController.php" class="form">
                     <label class="input-label" for="email">

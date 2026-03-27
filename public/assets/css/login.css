@@ -1,176 +1,189 @@
-    .principal {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 20px;
-    width: 100%;
-    height: 100%;
+.principal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  height: 100%;
 }
 
-.contentPrincipal {
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 50px;
+  padding-block: 20px;
+  height: 525px;
+  width: 600px;
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+}
+
+.content{
     display: flex;
-    align-items: center;
-    justify-content: center;
     flex-direction: column;
-    gap: 50px;
-    padding-block: 20px;
-    height: 525px;
-    width: 600px;
-    background-color: #fff;
-    border-radius: 15px;
-    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+    justify-content: center;
+    align-items: center;
+}
+
+.content .img{
+    margin-bottom: 40px;
 }
 
 .titulo {
-    color: #4938be;
-    font-size: 46px; 
-    font-weight: 800;
+  color: #4938be;
+  font-size: 46px;
+  font-weight: 800;
 }
 
 .form {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    width: 80%;    
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 80%;
 }
 
 .input-label {
-    display: flex;
-    flex-direction: column;
-    color: #4938be;
-    font-size: 20px;
-    font-weight: 700;
-    gap: 10px;
+  display: flex;
+  flex-direction: column;
+  color: #4938be;
+  font-size: 20px;
+  font-weight: 700;
+  gap: 10px;
 }
 
-.input{
-    padding: 5px 10px;
-    border-radius: 7px;
-    border: 1px solid #4938be;
-    width: 300px;
-    height: 40px;
-    margin-bottom: 20px;
+.input {
+  padding: 5px 10px;
+  border-radius: 7px;
+  border: 1px solid #4938be;
+  width: 300px;
+  height: 40px;
+  margin-bottom: 20px;
 }
 
 .input:focus {
-    outline: none;
-    border-color: #4938be;
-    box-shadow: 0 0 5px rgba(64, 49, 163, 0.5);
+  outline: none;
+  border-color: #4938be;
+  box-shadow: 0 0 5px rgba(64, 49, 163, 0.5);
 }
 
 .subtitulo {
-    color: #4938be;
-    font-size: 24px;
-    font-weight: 800;
+  color: #4938be;
+  font-size: 24px;
+  font-weight: 800;
 }
 
-.tipoConta{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    column-gap: 30px;
-    margin-block: 20px;
-    width: 100%;
+.tipoConta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  column-gap: 30px;
+  margin-block: 20px;
+  width: 100%;
 }
 
 input[type="radio"] {
-    display: none;
+  display: none;
 }
 
-.btn-pessoa, .btn-empresa {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    padding: 10px 20px;
-    width: 200px;
-    height: 56px;
-    border-radius: 7px;
-    font-size: 18px;
-    font-weight: 700;
-    cursor: pointer;
-    background-color: white;
+.btn-pessoa,
+.btn-empresa {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 20px;
+  width: 200px;
+  height: 56px;
+  border-radius: 7px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  background-color: white;
 }
 
 .btn-pessoa {
-    border: 1px solid #4938be;
-    color: #4938be;
+  border: 1px solid #4938be;
+  color: #4938be;
 }
 
 .btn-empresa {
-    border: 1px solid #cd0e1a;
-    color: #cd0e1a;
+  border: 1px solid #cd0e1a;
+  color: #cd0e1a;
 }
 
-.btn-pessoa:hover, .btn-empresa:hover {
-    color: #fff;
-    transition: 0.3s;
+.btn-pessoa:hover,
+.btn-empresa:hover {
+  color: #fff;
+  transition: 0.3s;
 }
 
 .btn-pessoa:hover {
-    background-color: #4938be;
-        box-shadow: rgba(74, 56, 190, 0.5) 0px 0px 10px;
-        text-shadow: rgba(74, 56, 190, 0.2) 0px 0px 10px;
+  background-color: #4938be;
+  box-shadow: rgba(74, 56, 190, 0.5) 0px 0px 10px;
+  text-shadow: rgba(74, 56, 190, 0.2) 0px 0px 10px;
 }
 
 .btn-empresa:hover {
-    background-color: #cd0e1a;
-    box-shadow: rgba(205, 14, 26, 0.5) 0px 0px 10px;
-    text-shadow: rgba(205, 14, 26, 0.2) 0px 0px 10px;
+  background-color: #cd0e1a;
+  box-shadow: rgba(205, 14, 26, 0.5) 0px 0px 10px;
+  text-shadow: rgba(205, 14, 26, 0.2) 0px 0px 10px;
 }
 
-.pessoa-sub, .empresa-sub {
-    font-size: 16px;
-    margin-top: 3.5px;
-    margin-bottom: 30px;
-    font-weight: bold;
+.pessoa-sub,
+.empresa-sub {
+  font-size: 16px;
+  margin-top: 3.5px;
+  margin-bottom: 30px;
+  font-weight: bold;
 }
 
 .pessoa-sub {
-    color: #4938be;
-    
+  color: #4938be;
 }
 
 .empresa-sub {
-    color: #cd0e1a;
+  color: #cd0e1a;
 }
 
-.btn-submit{
-    padding: 10px 20px;
-    border-radius: 7px; 
-    background-color: white;
-    color: #4938be;
-    border: #4938be solid 1px;
-    box-shadow: rgba(74, 56, 190, 0.5) 0px 0px 10px;
-    font-size: 18px;
-    font-weight: 700;
-    cursor: pointer;
+.btn-submit {
+  padding: 10px 20px;
+  border-radius: 7px;
+  background-color: white;
+  color: #4938be;
+  border: #4938be solid 1px;
+  box-shadow: rgba(74, 56, 190, 0.5) 0px 0px 10px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
 }
 
-.btn-submit:hover{
-    background-color: #4938be;
-    box-shadow: rgba(74, 56, 190, 0.5) 0px 0px 10px;
-    color: #fff;
-    transition: 0.3s;
+.btn-submit:hover {
+  background-color: #4938be;
+  box-shadow: rgba(74, 56, 190, 0.5) 0px 0px 10px;
+  color: #fff;
+  transition: 0.3s;
 }
 
-.link{
-    color: #4938be;
-    font-size: 16px;
-    font-weight: 600;
+.link {
+  color: #4938be;
+  font-size: 16px;
+  font-weight: 600;
 }
 
 .link:hover {
-    text-shadow: rgba(74, 56, 190, 0.3) 0px 0px 10px;
-    transform: translateY(-1px);
-    transition: transform 0.3s;
+  text-shadow: rgba(74, 56, 190, 0.3) 0px 0px 10px;
+  transform: translateY(-1px);
+  transition: transform 0.3s;
 }
 
 /* CSS para o JavaScript */
 
 .ativo {
-    background-color: #4938be;
-    box-shadow: rgba(74, 56, 190, 0.5) 0px 0px 10px;
-    color: #fff;
+  background-color: #4938be;
+  box-shadow: rgba(74, 56, 190, 0.5) 0px 0px 10px;
+  color: #fff;
 }

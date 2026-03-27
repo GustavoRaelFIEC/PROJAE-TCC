@@ -22,7 +22,7 @@
             <div class="logo"><img class="img" src="assets/img/imagotipo.png" alt="Projae logo"></div>
             <ul class="list">
                 <li><a class="item-list" href="index.php">Página Principal</a></li>
-                <li><a class="item-list" href="about.php">Sobre</a></li>
+                <li><a class="item-list" href="about.php">Sobre Nós</a></li>
                 <li><a class="item-list" href="help.php">Ajuda</a></li>
             </ul>
             <div class="cta">
@@ -36,7 +36,7 @@
             <img class="img" src="assets/img/imagotipo-removebg.png" alt="Projae logo">
             <div class="container">
                 <h1 class="titulo">Cadastrar</h1>
-                <h3>Escolha o tipo de conta que você deseja abrir</h3>
+                <h2 class="descricao">Escolha o tipo de conta que você deseja abrir</h2>
                 <div class="tipoConta">
                     <a href="cadastroPessoa.php">
                         <button class="btn-pessoa" id="pessoa" name="tipoConta" value="pessoa">Pessoa</button>
