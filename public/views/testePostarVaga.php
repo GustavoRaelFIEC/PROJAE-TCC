@@ -6,9 +6,9 @@
 
     <link rel="shortcut icon" href="assets/img/isotipo.png" type="image/x-icon">
 
-    <link rel="stylesheet" href="../public/assets/css/globalEimports.css">
-    <link rel="stylesheet" href="../public/assets/css/navegation.css">
-    <link rel="stylesheet" href="../public/assets/css/cadastroEmpresa.css">
+    <link rel="stylesheet" href="../assets/css/globalEimports.css">
+    <link rel="stylesheet" href="../assets/css/navegation.css">
+    <link rel="stylesheet" href="../assets/css/cadastroEmpresa.css">
 
     <title>Postar vaga não será um página</title>
 </head>
