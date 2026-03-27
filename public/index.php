@@ -31,11 +31,11 @@
     <main class="principal">
         <div class="content">
             <div class="sideLeft">
-                <img src="assets/img/background2-index.png" alt="">
+                <p class="paragrafo welcome">Bem-Vindo ao PROJAE, sua Plataforma de Estágio</p>
+                <p class="paragrafo">Se <a href="escolherCadastro.php">Cadastre</a> ou <a href="login.php">Entre</a> caso já tenha uma conta.</p>
             </div>
             <div class="sideRight">
-                <p class="paragrafo welcome">Bem-Vindo ao PROJAE, sua Plataforma de Estágio</p>
-                <p class="paragrafo">Se <a href="#">Cadastre</a href="#"> ou <a href="#">Entre</a> caso já tenha uma conta.</p>
+                <img src="assets/img/background2-index.png" alt="">
             </div>
         </div>
     </main> 
