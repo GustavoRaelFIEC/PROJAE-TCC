@@ -1,4 +1,6 @@
 .principal{
+  display: flex;
+  align-items: center;
   background-image: url("");
 }
 

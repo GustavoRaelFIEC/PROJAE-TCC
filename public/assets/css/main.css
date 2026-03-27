@@ -1,10 +1,17 @@
+.corpo {
+    height: 100vh;
+    overflow: hidden;
+    background-image: url("../img/bg.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 1;
+}
+
 .principal{
-    display: flex;
-    align-items: center;
     min-height: calc(100vh - 111px);
     width: 100%;
     padding-top: 50px;
-    background-image: url("../img/bg.png");
 }
 
 .content{
