@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,13 +14,14 @@
 
     <title> Ínicio - PROJAE</title>
 </head>
+
 <body>
     <header class="cabecalho">
         <div class="contentCabecalho">
             <div class="logo"><img class="img" src="assets/img/imagotipo.png" alt="Projae logo"></div>
             <ul class="list">
                 <li><a class="item-list active" href="" onclick="location.reload()">Página Principal</a></li>
-                <li><a class="item-list" href="about.php">Sobre</a></li>
+                <li><a class="item-list" href="about.php">Sobre Nós</a></li>
                 <li><a class="item-list" href="help.php">Ajuda</a></li>
             </ul>
             <div class="cta">
@@ -31,13 +33,14 @@
     <main class="principal">
         <div class="content">
             <div class="sideLeft">
-                <p class="paragrafo welcome">Bem-Vindo ao PROJAE, sua Plataforma de Estágio</p>
+                <p class="welcome">Bem-Vindo ao <span class="azul">PRO</span><span class="vermelho">JAE</span>, <br> sua Plataforma de Estágio</p>
                 <p class="paragrafo">Se <a href="escolherCadastro.php">Cadastre</a> ou <a href="login.php">Entre</a> caso já tenha uma conta.</p>
             </div>
             <div class="sideRight">
                 <img src="assets/img/background2-index.png" alt="">
             </div>
         </div>
-    </main> 
+    </main>
 </body>
+
 </html>

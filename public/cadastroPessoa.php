@@ -48,7 +48,7 @@ function error($key)
             <div class="logo"><img class="img" src="assets/img/imagotipo.png" alt="Projae logo"></div>
             <ul class="list">
                 <li><a class="item-list active" href="index.php">Página Principal</a></li>
-                <li><a class="item-list" href="about.php">Sobre</a></li>
+                <li><a class="item-list" href="about.php">Sobre Nós</a></li>
                 <li><a class="item-list" href="help.php">Ajuda</a></li>
             </ul>
             <div class="cta">
