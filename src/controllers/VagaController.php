@@ -44,7 +44,6 @@ function handlePostarVaga($pdo)
             throw new Exception("Título é obrigatório");
         }
 
-
         $userModel->createVaga($_SESSION['user_id'], $dados);
 
         // Se der tudo certo, confirma tudo
@@ -52,10 +51,12 @@ function handlePostarVaga($pdo)
 
         // Sucesso
         $_SESSION['sucesso'] = "✅ Vaga criada com sucesso!";
-        header("Location: ../../public/views/dashboardEmpresa.php");
+        header("Location: ../../../public/views/dashboardEmpresa.php");
         exit();
 
     } catch (PDOException $e) {
+        echo $e->getMessage();
+        exit();
         error_log("Erro ao criar vaga " . $e->getMessage());
 
         // Se estiver em transaction, o rollBack volta se der alguma coisa errada
@@ -64,8 +65,8 @@ function handlePostarVaga($pdo)
         }
 
         $_SESSION['cadastro_errors'] = ["⚠️ Erro no sistema. Tente novamente mais tarde."];
-        header("Location: ./"); // <-- MANDAR PARA O FORMULÁRIO DE VAGA NOVAMENTE
-        exit;
+        header("Location: ../../public/testePostarVaga.php"); // <-- MANDAR PARA O FORMULÁRIO DE VAGA NOVAMENTE
+        exit();
     }
 }
 

@@ -18,7 +18,7 @@
         <main class="principal">
             <h1 class="titulo">Postar <span>Vaga</span></h1>
             <div class="cadastro">
-                <form method="POST" action="../src/controllers/VagaController.php" class="fomulario">
+                <form method="POST" action="../src/controllers/VagaController.php/?action=postarVaga" class="fomulario">
                     <legend class="subTitulo">Dados do Usuário</legend>
                     <label class="input-label" for="titulo">
                         titulo

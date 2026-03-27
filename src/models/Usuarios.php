@@ -85,4 +85,16 @@ class Usuario
             $userId
         ]);
     }
+
+
+    //Buscar/Trazer todas as vagas registradas
+    public function buscarVaga(){
+        $stmt = $this->pdo->prepare("
+        SELECT vagas.*, empresas.nome
+        FROM vagas
+        INNER JOIN empresas ON vagas.id_empresa = empresas.id_empresa;
+        ");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }                    
