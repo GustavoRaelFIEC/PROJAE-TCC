@@ -27,7 +27,7 @@
             </ul>
             <div class="cta">
                 <a href="login.php" class="btnLogin">Entrar</a>
-                <a href="escolherCadastro.php" class="btnCadastro">Cadastrar</a>
+                <a href="escolherCadastro.php" class="btnCadastro activeBtn">Cadastrar</a>
             </div>
         </div>
     </header>
