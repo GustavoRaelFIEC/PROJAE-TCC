@@ -42,10 +42,10 @@ function handleLogin($pdo)
                 Session::setUsuario($usuario);
 
                 if ($usuario['tipo'] === 'pessoa') {
-                    header("Location: ../views/dashboardPessoa.php");
+                    header("Location: ../../public/views/dashboardPessoa.php");
                     exit();
                 } else if ($usuario['tipo'] === 'empresa') {
-                    header("Location: ../views/dashboardEmpresa.php");
+                    header("Location: ../../public/views/dashboardEmpresa.php");
                     exit();
                 }
 

@@ -52,7 +52,7 @@ function handlePostarVaga($pdo)
 
         // Sucesso
         $_SESSION['sucesso'] = "✅ Vaga criada com sucesso!";
-        header("Location: ../views/dashboardEmpresa.php");
+        header("Location: ../../public/views/dashboardEmpresa.php");
         exit();
 
     } catch (PDOException $e) {

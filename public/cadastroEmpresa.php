@@ -92,7 +92,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     <label class="input-label" for="razaoSocial">
                         Razão Social
-                        <input class="input" placeholder="Insira a Razão Social Registrada" id="razaoSocial" name="nome" type="text" required maxlength="100">
+                        <input class="input" 
+                        placeholder="Insira a Razão Social Registrada" 
+                        id="razaoSocial" 
+                        name="nome" 
+                        value="<?= old('nome') ?>"
+                        type="text" 
+                        required 
+                        maxlength="100">
+
+                        <?= error('nome') ?>
                     </label>
 
                     <label class="input-label" for="email">
@@ -115,7 +124,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             id="senha"
                             name="senha"
                             type="password"
-                            required minlength="6">
+                            required minlength="8">
 
                         <?= error('senha') ?>
                     </label>
