@@ -31,8 +31,8 @@ function handleCadastro($pdo)
     // Redirect baseado no tipo
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $redirectCadastro = ($tipo === 'empresa')
-            ? '../../public/cadastroEmpresa.php'
-            : '../../public/cadastroPessoa.php';
+            ? '../../../public/views/cadastroEmpresa.php'
+            : '../../../public/views/cadastroPessoa.php';
 
 
         $errors = [];
@@ -131,7 +131,7 @@ function handleCadastro($pdo)
             'messages' => ["✅ Conta criada com sucesso!"],
         ];
 
-        header("Location: ../../public/login.php");
+        header("Location: ../../../public/views/login.php");
         exit;
     } catch (PDOException $e) {
         error_log("Erro no cadastro " . $e->getMessage());
