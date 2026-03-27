@@ -69,15 +69,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <header class="cabecalho">
         <div class="contentCabecalho">
-            <div class="logo"><img class="img" src="assets/img/imagotipo.png" alt="Projae logo"></div>
+            <div class="logo"><img class="img" src="../assets/img/imagotipo.png" alt="Projae logo"></div>
             <ul class="list">
                 <li><a class="item-list active" href="index.php">Página Principal</a></li>
                 <li><a class="item-list" href="about.php">Sobre Nós</a></li>
                 <li><a class="item-list" href="help.php">Ajuda</a></li>
             </ul>
             <div class="cta">
-                <a href="#" class="btnLogin">Entrar</a>
-                <a href="#" class="btnCadastro">Cadastrar</a>
+                <a href="login.php" class="btnLogin">Entrar</a>
+                <a href="escolherCadastro.php" class="btnCadastro">Cadastrar</a>
             </div>
         </div>
     </header>
