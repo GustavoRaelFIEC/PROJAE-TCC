@@ -73,11 +73,14 @@ function handlePostarVaga($pdo)
 
 function handleBuscarVaga($pdo)
 {
+
+    $errors = [];
+
     try {
 
     $userModel = new Usuario($pdo);
 
-    $userModel->buscarVaga();
+    $vagas = $userModel->buscarVaga();
 
     } catch (PDOException $e) {
         error_log("Erro ao trazer vagas: " . $e->getMessage());
@@ -89,4 +92,6 @@ function handleBuscarVaga($pdo)
       header("Location: "); //<-- VOLTAR PAAR A TELA DE VAGAS
         exit();
     }
+
+    return $vagas;
 }
