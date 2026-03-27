@@ -21,8 +21,8 @@
             <div class="logo"><img class="img" src="assets/img/imagotipo.png" alt="Projae logo"></div>
             <ul class="list">
                 <li><a class="item-list active" href="" onclick="location.reload()">Página Principal</a></li>
-                <li><a class="item-list" href="about.php">Sobre Nós</a></li>
-                <li><a class="item-list" href="help.php">Ajuda</a></li>
+                <li><a class="item-list" href="views/about.php">Sobre Nós</a></li>
+                <li><a class="item-list" href="views/help.php">Ajuda</a></li>
             </ul>
             <div class="cta">
                 <a href="views/login.php" class="btnLogin">Entrar</a>
