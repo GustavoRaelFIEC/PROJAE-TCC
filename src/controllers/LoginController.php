@@ -37,7 +37,7 @@ function handleLogin($pdo)
 
             $usuario = $userModel->findByEmail($email);
 
-            if ($usuario && Security::verifyPassword($senha, $usuario['senha'])) { //trocar $senha por Security::verifyPassword($senha, $usuario['senha'])
+            if ($usuario && Security::verifyPassword($senha, $usuario['senha'])) { 
                 //Login bem-sucedido
                 Session::setUsuario($usuario);
 
@@ -59,8 +59,6 @@ function handleLogin($pdo)
         }
     }
     
-    if (!empty($errors)) {
-      header("Location: ../../../public/views/login.php");
-        exit();
-    }
+    header("Location: ../../public/views/about.php");
+    exit();
 }
