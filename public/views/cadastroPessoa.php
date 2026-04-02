@@ -48,7 +48,7 @@ function error($key)
         <div class="contentCabecalho">
             <div class="logo"><img class="img" src="../assets/img/imagotipo.png" alt="Projae logo"></div>
             <ul class="list">
-                <li><a class="item-list active" href="../index.php">Página Principal</a></li>
+                <li><a class="item-list" href="../index.php">Página Principal</a></li>
                 <li><a class="item-list" href="about.php">Sobre Nós</a></li>
                 <li><a class="item-list" href="help.php">Ajuda</a></li>
             </ul>
@@ -61,7 +61,7 @@ function error($key)
     
     <main class="principal">
         <div class="content">
-            <h1 class="titulo">Registrar <span>Estagiário</span></h1>
+            <h1 class="titulo">Registrar <span>Usuário</span></h1>
             <div class="cadastro">
                 <form class="formulario" method="POST" action="../../src/controllers/CadastroController.php">
                     <legend class="subTitulo">Dados do Usuário</legend>
