@@ -46,7 +46,7 @@ function error($key)
 
     <header class="cabecalho">
         <div class="contentCabecalho">
-            <div class="logo"><img class="img" src="../assets/img/imagotipo.png" alt="Projae logo"></div>
+            <div class="logo"><a href="../index.php"><img class="img" src="../assets/img/imagotipo.png" alt="Projae logo"></a></div>
             <ul class="list">
                 <li><a class="item-list" href="../index.php">Página Principal</a></li>
                 <li><a class="item-list" href="about.php">Sobre Nós</a></li>
@@ -68,7 +68,7 @@ function error($key)
                     <input type="hidden" name="tipo" value="pessoa">
 
                     <label class="input-label">
-                        Nome
+                        <p>Nome<span>*</span></p>
                         <input class="input"
                             type="text"
                             name="nome"
@@ -82,7 +82,7 @@ function error($key)
                     </label>
 
                     <label class="input-label" for="email">
-                        E-mail
+                        <p>E-mail<span>*</span></p>
                         <input class="input"
                             placeholder="Digite seu Email"
                             id="email"
@@ -96,7 +96,7 @@ function error($key)
                     </label>
 
                     <label class="input-label" for="senha">
-                        Senha
+                        <p>Senha<span>*</span></p>
                         <input class="input"
                             placeholder="Digite sua senha"
                             id="senha"
@@ -108,7 +108,7 @@ function error($key)
                         <?= error('senha') ?>
                     </label>
                     <label class="input-label">
-                        CPF
+                        <p>CPF<span>*</span></p>
                         <input class="input"
                             type="text"
                             id="cpf"
@@ -122,7 +122,7 @@ function error($key)
                         <?= error('cpf') ?>
                     </label>
                     <label class="input-label">
-                        Telefone
+                        <p>Telefone<span>*</span></p>
                         <input class="input"
                             type="text"
                             id="telefone"
@@ -136,7 +136,7 @@ function error($key)
                         <?= error('telefone') ?>
                     </label>
                     <label class="input-label">
-                        Instituição
+                        <p>Instituição</p>
                         <input
                             class="input"
                             type="text"
@@ -144,19 +144,11 @@ function error($key)
                             placeholder="Nome da faculdade ou escola">
                     </label>
                     <label class="input-label">
-                        Curso
+                        <p>Curso</p>
                         <input class="input" type="text" name="curso" placeholder="Ex: Ciência da Computação">
                     </label>
                     <button class="btn-submit" type="submit">Cadastrar</button>
                 </form>
-                <div class="fotoUpload">
-                    <div class="fotoEmpresa">
-                        <h1>Foto de Perfil</h1>
-                        <img src="" alt="">
-                    </div>
-                    <p>Use uma imagem de boa qualidade, que mostre sua logotipo, ou que reflita sua Razão Social</p>
-                    <input class="btn-upload" name="fotoEmpresa" type="file">
-                </div>
             </div>
         </div>
     </main>

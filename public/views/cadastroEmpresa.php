@@ -70,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <header class="cabecalho">
         <div class="contentCabecalho">
-            <div class="logo"><img class="img" src="../assets/img/imagotipo.png" alt="Projae logo"></div>
+            <div class="logo"><a href="../index.php"><img class="img" src="../assets/img/imagotipo.png" alt="Projae logo"></a></div>
             <ul class="list">
                 <li><a class="item-list" href="../index.php">Página Principal</a></li>
                 <li><a class="item-list" href="about.php">Sobre Nós</a></li>
@@ -92,7 +92,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <input type="hidden" name="tipo" value="empresa">
 
                     <label class="input-label" for="razaoSocial">
-                        Razão Social
+                        <p>Razão Social<span>*</span></p>
                         <input class="input" 
                         placeholder="Insira a Razão Social Registrada" 
                         id="razaoSocial" 
@@ -106,7 +106,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </label>
 
                     <label class="input-label" for="email">
-                        E-mail
+                        <p>E-mail<span>*</span></p>
                         <input class="input"
                             placeholder="Digite seu Email"
                             id="email"
@@ -119,7 +119,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </label>
 
                     <label class="input-label" for="senha">
-                        Senha
+                        <p>Senha<span>*</span></p>
                         <input class="input"
                             placeholder="Digite sua senha"
                             id="senha"
@@ -131,7 +131,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </label>
 
                     <label class="input-label" for="cnpj">
-                        CNPJ
+                        <p>CNPJ<span>*</span></p>
                         <input class="input"
                             placeholder="__.___.___/____-__"
                             id="cnpj"
@@ -146,7 +146,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </label>
 
                     <label class="input-label" for="telefone">
-                        Telefone
+                        <p>Telefone<span>*</span></p>
                         <input class="input"
                             placeholder="(__) _____-____"
                             id="telefone" name="telefone"
@@ -160,7 +160,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </label>
 
                     <label class="input-label" for="cidade">
-                        Cidade
+                        <p>Cidade<span>*</span></p>
                         <input class="input"
                             placeholder="Ex: São Paulo - SP"
                             id="cidade"
@@ -174,14 +174,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     <button class="btn-submit" type="submit">Cadastrar</button>
                 </form>
-                <div class="fotoUpload">
-                    <div class="fotoEmpresa">
-                        <h1>Foto de Perfil</h1>
-                        <img src="" alt="">
-                    </div>
-                    <p>Use uma imagem de boa qualidade, que mostre sua logotipo, ou que reflita sua Razão Social</p>
-                    <input class="btn-upload" name="fotoEmpresa" type="file">
-                </div>
             </div>
         </div>
     </main>
