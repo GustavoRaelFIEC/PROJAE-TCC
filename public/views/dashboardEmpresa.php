@@ -109,14 +109,18 @@
         <button onclick="fecharMenu()">Fechar</button>
     </div> 
 
-    <div> <!--conteudo principal da pagina -->
-        <main>
+    <main> <!--conteudo principal da pagina -->
+        <section class="vagas">
             <!-- onde irao ficar as vagas da empresa, caso não tenha vagas tera um botão ou link para criar vagas aqui -->
-        </main>
-        <aside>
-            <!-- filtros -->
+             <p>teste</p>
+        </section>
+        <aside class="filtros">
+             <ul>
+                <li>teste 1</li>
+                <li>teste 2</li>
+             </ul>
         </aside>
-    </div>
+    </main>
 
     <!-- ainda decidir onde colocar botão de criar vagas -->
     

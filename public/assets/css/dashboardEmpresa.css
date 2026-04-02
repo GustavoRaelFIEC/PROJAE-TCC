@@ -26,3 +26,18 @@
 
   min-width: 300px;
 }
+
+main {
+  display: flex;
+}
+
+.vagas {
+  border: 3px solid #4938be;
+  border-radius: 5%;
+  width: 60%;
+  order: 2;
+}
+
+.filtros {
+  width: 20%;
+}
