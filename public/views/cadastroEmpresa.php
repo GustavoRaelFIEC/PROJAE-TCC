@@ -58,9 +58,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <link rel="shortcut icon" href="assets/img/isotipo.png" type="image/x-icon">
 
-    <link rel="stylesheet" href="assets/css/cadastroEmpresa.css">
-    <link rel="stylesheet" href="assets/css/globalEimports.css">
-    <link rel="stylesheet" href="assets/css/navegation.css">
+    <link rel="stylesheet" href="../assets/css/globalEimports.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/navegation.css">
+    <link rel="stylesheet" href="../assets/css/cadastroEmpresa.css">
 
     <title>Cadastro Empresa - PROJAE</title>
 </head>
@@ -69,15 +70,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <header class="cabecalho">
         <div class="contentCabecalho">
-            <div class="logo"><img class="img" src="assets/img/imagotipo.png" alt="Projae logo"></div>
+            <div class="logo"><img class="img" src="../assets/img/imagotipo.png" alt="Projae logo"></div>
             <ul class="list">
                 <li><a class="item-list active" href="index.php">Página Principal</a></li>
-                <li><a class="item-list" href="about.php">Sobre</a></li>
+                <li><a class="item-list" href="about.php">Sobre Nós</a></li>
                 <li><a class="item-list" href="help.php">Ajuda</a></li>
             </ul>
             <div class="cta">
-                <a href="#" class="btnLogin">Entrar</a>
-                <a href="#" class="btnCadastro">Cadastrar</a>
+                <a href="login.php" class="btnLogin">Entrar</a>
+                <a href="escolherCadastro.php" class="btnCadastro">Cadastrar</a>
             </div>
         </div>
     </header>
@@ -86,7 +87,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="content">
             <h1 class="titulo">Registrar <span>Empresa</span></h1>
             <div class="cadastro">
-                <form method="POST" action="../src/controllers/CadastroController.php" class="fomulario">
+                <form method="POST" action="../../src/controllers/CadastroController.php" class="fomulario">
                     <legend class="subTitulo">Dados do Usuário</legend>
                     <input type="hidden" name="tipo" value="empresa">
 
@@ -184,8 +185,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </div>
     </main>
-    <script src="./assets/js/mascara.js"></script>
-    <script src="/assets/js/timeMessage.js"></script>
+    <script src="../assets/js/mascara.js"></script>
+    <script src="../assets/js/timeMessage.js"></script>
 </body>
 
 </html>

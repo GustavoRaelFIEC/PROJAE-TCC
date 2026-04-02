@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="shortcut icon" href="assets/img/isotipo.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../assets/img/isotipo.png" type="image/x-icon">
 
-    <link rel="stylesheet" href="../public/assets/css/globalEimports.css">
-    <link rel="stylesheet" href="../public/assets/css/navegation.css">
-    <link rel="stylesheet" href="../public/assets/css/cadastroEmpresa.css">
+    <link rel="stylesheet" href="../assets/css/globalEimports.css">
+    <link rel="stylesheet" href="../assets/css/navegation.css">
+    <link rel="stylesheet" href="../assets/css/cadastroEmpresa.css">
 
     <title>Postar vaga não será um página</title>
 </head>
@@ -18,7 +18,7 @@
         <main class="principal">
             <h1 class="titulo">Postar <span>Vaga</span></h1>
             <div class="cadastro">
-                <form method="POST" action="../src/controllers/VagaController.php/?action=postarVaga" class="fomulario">
+                <form method="POST" action="../../src/controllers/VagaController.php/?action=postarVaga" class="fomulario">
                     <legend class="subTitulo">Dados do Usuário</legend>
                     <label class="input-label" for="titulo">
                         titulo

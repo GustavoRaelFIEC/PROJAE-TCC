@@ -1,3 +1,9 @@
+.principal{
+  display: flex;
+  align-items: center;
+  background-image: url("");
+}
+
 .content {
   display: flex;
   justify-content: space-around;
@@ -9,33 +15,44 @@
 .sideLeft,
 .sideRight {
   flex: 1;
-  
 }
 
 .sideLeft {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  align-items: start;
   width: 100%;
   height: 100%;
 }
 
 .paragrafo {
-    font-size: 32px;
-    font-weight: 600;
-    color: #1f1274;
+  font-size: 32px;
+  font-weight: 600;
+  color: black;
 }
 
 .welcome {
-    font-size: 46px;
-    font-weight: 700;
-    color: black;
+  font-size: 46px;
+  font-weight: 700;
+  color: black;
+  margin-top: 50px;
+}
+
+.azul {
+  font-family: 'Inter', sans-serif;
+  font-weight: 900;
+  color: #4938be;
+}
+
+.vermelho {
+  font-family: 'Inter', sans-serif;
+  font-weight: 900;
+  color: #CF0021;
 }
 
 .paragrafo > a {
-    text-decoration: none;
-    color: #df2d2d  ;
+  text-decoration: none;
+  color: #CF0021;
 }
 
 .sideRight {
@@ -47,6 +64,5 @@
 }
 
 .sideRight img {
-    width: 100%;
+  width: 100%;
 }
-

@@ -65,10 +65,33 @@ function handlePostarVaga($pdo)
         }
 
         $_SESSION['cadastro_errors'] = ["⚠️ Erro no sistema. Tente novamente mais tarde."];
-        header("Location: ../../public/testePostarVaga.php"); // <-- MANDAR PARA O FORMULÁRIO DE VAGA NOVAMENTE
+        header("Location: ../../../public/views/testePostarVaga.php"); // <-- MANDAR PARA O FORMULÁRIO DE VAGA NOVAMENTE
         exit();
     }
 }
 
 
-//function handleBuscarVaga -> AQUI
+function handleBuscarVaga($pdo)
+{
+
+    $errors = [];
+
+    try {
+
+    $userModel = new Usuario($pdo);
+
+    $vagas = $userModel->buscarVaga();
+
+    } catch (PDOException $e) {
+        error_log("Erro ao trazer vagas: " . $e->getMessage());
+        $errors[] = "Erro no sistema. Volte mais tarde.";
+    }
+    
+    
+    if (!empty($errors)) {
+      header("Location: "); //<-- VOLTAR PAAR A TELA DE VAGAS
+        exit();
+    }
+
+    return $vagas;
+}
