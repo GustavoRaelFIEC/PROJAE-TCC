@@ -82,8 +82,9 @@
                     type="number"
                     name="salario"
                     placeholder="Insira o salario da vaga aqui"
-                    value=""
                     step="0.01"
+                    value=""
+                    min="0"
                     required>
             </label>
             <label class="input-label">
@@ -96,6 +97,11 @@
                     required
                     maxlength="100">
             </label>
+            <input 
+            type="text"
+            name="status"
+            value="aberta"
+            hidden>
 <!-- tags -->
             <button class="btn-submit" type="submit">Publicar</button>
         </form>
