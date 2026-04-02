@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../assets/css/main.css">
     <link rel="stylesheet" href="../assets/css/navegation.css">
     <link rel="stylesheet" href="../assets/css/dashboardEmpresa.css">
+    <link rel="stylesheet" href="../assets/css/cadastroEmpresa.css">
 
     <title>Dashboard Empresa</title>
 </head>
@@ -41,7 +42,7 @@
 
     <div id="postar-vaga">
         <form action="" method="post">
-            <label class="input-label">
+            <label class="input-label" for="nome">
                 Cargo
                 <input class="input"
                     type="text"
@@ -52,10 +53,10 @@
                     maxlength="50"
                     minlength="2">
             </label>
-             <label class="input-label">
+             <label class="input-label" for="tipo">
                 Área
                 <select class="input"
-                    name="nome"
+                    name="tipo"
                     placeholder="Selecione a area que a vaga pertence"
                     required
                     maxlength="50"
@@ -70,10 +71,30 @@
                 <input class="input"
                     type="text"
                     name="descricao"
-                    placeholder="Digite seu nome completo"
+                    placeholder="Descreva sua vaga detalhadamente aqui"
                     value=""
                     required
                     maxlength="5000">
+            </label>
+            <label class="input-label">
+                Salario
+                <input class="input"
+                    type="number"
+                    name="salario"
+                    placeholder="Insira o salario da vaga aqui"
+                    value=""
+                    step="0.01"
+                    required>
+            </label>
+            <label class="input-label">
+                Cidade 
+                <input class="input"
+                    type="text"
+                    name="cidade"
+                    placeholder="Coloque a cidade onde sua vaga é localizada"
+                    value=""
+                    required
+                    maxlength="100">
             </label>
 <!-- tags -->
             <button class="btn-submit" type="submit">Publicar</button>
