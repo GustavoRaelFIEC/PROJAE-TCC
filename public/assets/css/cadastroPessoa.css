@@ -1,17 +1,12 @@
 .principal {
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 70%;
-  margin-top: 40px;
 }
 
-.principal > div {
+.content {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  width: 35%;
 }
 
 .titulo {
