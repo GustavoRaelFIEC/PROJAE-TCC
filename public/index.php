@@ -37,7 +37,7 @@
                 <p class="paragrafo">Se <a href="views/escolherCadastro.php">Cadastre</a> ou <a href="views/login.php">Entre</a> caso já tenha uma conta.</p>
             </div>
             <div class="sideRight">
-                <img src="assets/img/background2-index.png" alt="">
+                <img draggable="false" src="assets/img/background2-index.png" alt="">
             </div>
         </div>
     </main>
