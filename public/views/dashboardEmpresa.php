@@ -16,7 +16,7 @@
 
 <body>
     <header class="cabecalho">
-        <div class="logo"><img class="img" src="../assets/img/imagotipo.png" alt=""></div>
+        <div class="logo"><a href="../index.php"><img class="img" src="../assets/img/imagotipo.png" alt="Projae logo"></a></div>
         <ul class="list">
             <li><a class="item-list active" href="../index.php">Página Principal</a></li>
             <li><a class="item-list" href="about.php">Sobre</a></li>

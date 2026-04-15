@@ -12,114 +12,75 @@
 .titulo {
   align-self: flex-start;
   color: #4938be;
-  font-size: 46px; 
+  font-size: 46px;
   font-weight: 800;
 }
 
-.titulo span{
-    color:#e53935;
+.titulo span {
+  color: #e53935;
 }
 
-.cadastro{
-    background:white;
-    border-radius:12px;
-    padding:30px;
-    width:750px;
-    display:flex;
-    align-items: center;
-    justify-content:space-between;
-    gap:40px;
-    box-shadow:0 2px 10px rgba(0,0,0,0.08);
+.cadastro {
+  background: white;
+  border-radius: 12px;
+  padding: 30px;
+  width: 750px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
 }
 
-.fomulario{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:20px;
-    width:60%;
+.fomulario {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  width: 60%;
 }
 
-.subTitulo{
-    grid-column:span 2;
-    font-size:16px;
-    margin-bottom:10px;
-    color:#444;
+.subTitulo {
+  grid-column: span 2;
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #444;
 }
 
-.input-label{
-    display:flex;
-    flex-direction:column;
-    font-size:14px;
-    color:#444;
+.input-label {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  color: #444;
 }
 
-.input{
-    margin-top:5px;
-    padding:10px;
-    border-radius:6px;
-    border:1px solid #ccc;
-    outline:none;
+.input-label > p > span {
+  color: #e53935;
 }
 
-.input:focus{
-    border:1px solid #2f5cff;
+.input {
+  margin-top: 5px;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  outline: none;
 }
 
-.btn-submit{
-    grid-column:span 2;
-    padding:12px;
-    border:none;
-    border-radius:6px;
-    background:#2f5cff;
-    color:white;
-    font-size:15px;
-    cursor:pointer;
-    transition:0.2s;
+.input:focus {
+  border: 1px solid #2f5cff;
 }
 
-.btn-submit:hover{
-    background:#1c45e0;
+.btn-submit {
+  grid-column: span 2;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  background: #2f5cff;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.2s;
 }
 
-.fotoUpload{
-    width:40%;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    text-align:center;
-    gap:10px;
-}
-
-.fotoEmpresa{
-    width:120px;
-    height:120px;
-    background:#e8ecff;
-    border-radius:10px;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-}
-
-.fotoEmpresa img{
-    width:80px;
-    height:80px;
-    border-radius:50%;
-    background:#ccc;
-}
-
-.fotoEmpresa h1{
-    font-size:14px;
-    margin-bottom:5px;
-}
-
-.fotoUpload p{
-    font-size:12px;
-    color:#555;
-}
-
-.btn-upload{
-    margin-top:5px;
-    font-size:13px;
-    cursor: pointer;
+.btn-submit:hover {
+  background: #1c45e0;
 }
