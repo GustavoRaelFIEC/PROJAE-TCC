@@ -131,7 +131,7 @@ function handleCadastro($pdo)
             'messages' => ["✅ Conta criada com sucesso!"],
         ];
 
-        header("Location: ../../../public/views/login.php");
+        header("Location: ../../public/views/login.php");
         exit;
     } catch (PDOException $e) {
         error_log("Erro no cadastro " . $e->getMessage());

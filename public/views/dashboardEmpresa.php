@@ -43,26 +43,26 @@
     <div id="postar-vaga">
         <form action="" method="post">
             <label class="input-label" for="nome">
-                Cargo
+                Titulo
                 <input class="input"
                     type="text"
+                    id="titulo"
                     name="nome"
-                    placeholder="Insira aqui o cargo da vaga"
+                    placeholder="Insira aqui o nome da vaga"
                     value=""
                     required
                     maxlength="50"
                     minlength="2">
             </label>
              <label class="input-label" for="tipo">
-                Área
+                Tipo
                 <select class="input"
                     name="tipo"
-                    placeholder="Selecione a area que a vaga pertence"
-                    required
-                    maxlength="50"
-                    minlength="2">
-                    <option value="adm">Administrativa</option>
-                    <option value="ti">Tecnico de informatica</option>
+                    id="tipo"
+                    default="Selecione o tipo da vaga"
+                    required>
+                    <option value="estagio">Estagio</option>
+                    <option value="aprendiz">Jovem Aprendiz</option>
                                 <!-- colacar as opçoes dps -->
                 </select>
             </label>
@@ -70,6 +70,7 @@
                 Descrição
                 <input class="input"
                     type="text"
+                    id="descricao"
                     name="descricao"
                     placeholder="Descreva sua vaga detalhadamente aqui"
                     value=""
@@ -80,6 +81,7 @@
                 Salario
                 <input class="input"
                     type="number"
+                    id="salario"
                     name="salario"
                     placeholder="Insira o salario da vaga aqui"
                     step="0.01"
@@ -91,6 +93,7 @@
                 Cidade 
                 <input class="input"
                     type="text"
+                    id="cidade"
                     name="cidade"
                     placeholder="Coloque a cidade onde sua vaga é localizada"
                     value=""
