@@ -41,17 +41,17 @@
     </div>
 
     <div id="postar-vaga">
-        <form action="" method="post">
+        <form method="POST" action="../../src/controllers/VagaController.php/?action=postarVaga">
             <label class="input-label" for="nome">
                 Titulo
                 <input class="input"
                     type="text"
                     id="titulo"
-                    name="nome"
+                    name="titulo"
                     placeholder="Insira aqui o nome da vaga"
                     value=""
                     required
-                    maxlength="50"
+                    maxlength="150"
                     minlength="2">
             </label>
              <label class="input-label" for="tipo">
