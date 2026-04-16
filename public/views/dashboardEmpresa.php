@@ -6,10 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="../assets/css/globalEimports.css">
-    <link rel="stylesheet" href="../assets/css/main.css">
     <link rel="stylesheet" href="../assets/css/navegation.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
     <link rel="stylesheet" href="../assets/css/dashboardEmpresa.css">
-    <link rel="stylesheet" href="../assets/css/cadastroEmpresa.css">
 
     <title>Dashboard Empresa</title>
 </head>
