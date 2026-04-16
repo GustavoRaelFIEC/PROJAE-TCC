@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link rel="shortcut icon" href="../assets/img/isotipo.png" type="image/x-icon">
+
     <link rel="stylesheet" href="../assets/css/globalEimports.css">
     <link rel="stylesheet" href="../assets/css/navegation.css">
     <link rel="stylesheet" href="../assets/css/main.css">
@@ -27,7 +29,7 @@
         </div>
     </header>
     <div>
-        <form action=""  role="search" >
+        <form action="" role="search">
             <input type="search" id="search-bar" placeholder="Pesquise suas vagas" required>
             <button type="submit" class="btn-submit">Procurar</button>
         </form>
@@ -53,7 +55,7 @@
                     maxlength="150"
                     minlength="2">
             </label>
-             <label class="input-label" for="tipo">
+            <label class="input-label" for="tipo">
                 Tipo
                 <select class="input"
                     name="tipo"
@@ -62,10 +64,10 @@
                     required>
                     <option value="estagio">Estagio</option>
                     <option value="aprendiz">Jovem Aprendiz</option>
-                                <!-- colacar as opçoes dps -->
+                    <!-- colacar as opçoes dps -->
                 </select>
             </label>
-             <label class="input-label">
+            <label class="input-label">
                 Descrição
                 <input class="input"
                     type="text"
@@ -89,7 +91,7 @@
                     required>
             </label>
             <label class="input-label">
-                Cidade 
+                Cidade
                 <input class="input"
                     type="text"
                     id="cidade"
@@ -99,49 +101,49 @@
                     required
                     maxlength="100">
             </label>
-            <input 
-            type="text"
-            name="status"
-            value="aberta"
-            hidden>
-<!-- tags -->
+            <input
+                type="text"
+                name="status"
+                value="aberta"
+                hidden>
+            <!-- tags -->
             <button class="btn-submit" type="submit">Publicar</button>
         </form>
 
         <button onclick="fecharMenu()">Fechar</button>
-    </div> 
+    </div>
 
     <main> <!--conteudo principal da pagina -->
         <section class="vagas">
             <!-- onde irao ficar as vagas da empresa, caso não tenha vagas tera um botão ou link para criar vagas aqui -->
-             <p>teste</p>
+            <p>teste</p>
         </section>
         <aside class="filtros">
-             <ul>
+            <ul>
                 <li>teste 1</li>
                 <li>teste 2</li>
-             </ul>
+            </ul>
         </aside>
     </main>
 
     <!-- ainda decidir onde colocar botão de criar vagas -->
-    
+
 
     <a href="testePostarVaga.php">teste para postar vaga</a>
 </body>
 
 <script>
     function abrirMenu() {
-  document.body.style.overflow = "hidden";
-  document.getElementById("overlay").style.display = "block";
-  document.getElementById("postar-vaga").style.display = "block";
-}
+        document.body.style.overflow = "hidden";
+        document.getElementById("overlay").style.display = "block";
+        document.getElementById("postar-vaga").style.display = "block";
+    }
 
-function fecharMenu() {
-  document.body.style.overflow = "auto";
-  document.getElementById("overlay").style.display = "none";
-  document.getElementById("postar-vaga").style.display = "none";
-}
+    function fecharMenu() {
+        document.body.style.overflow = "auto";
+        document.getElementById("overlay").style.display = "none";
+        document.getElementById("postar-vaga").style.display = "none";
+    }
 </script>
 
 </html>
