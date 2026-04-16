@@ -29,8 +29,8 @@
     </header>
     <div>
         <form action=""  role="search" >
-            <input type="search" id="search-bar" placeholder="Pesquise suas vagas" required>
-            <button type="submit" class="btn-submit">Procurar</button>
+            <input type="search" class="input-search" id="search-bar" placeholder="Pesquise suas vagas" required>
+            <button type="submit" class="btn-search">Procurar</button>
         </form>
     </div>
 
@@ -66,16 +66,16 @@
                                 <!-- colacar as opçoes dps -->
                 </select>
             </label>
-             <label class="input-label">
+             <label class="input-label" class="desc">
                 Descrição
-                <input class="input"
+                <input class="input-desc"
                     type="text"
                     id="descricao"
                     name="descricao"
                     placeholder="Descreva sua vaga detalhadamente aqui"
                     value=""
                     required
-                    maxlength="5000">
+                    maxlength="500">
             </label>
             <label class="input-label">
                 Salario
