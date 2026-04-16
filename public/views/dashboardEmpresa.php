@@ -27,29 +27,29 @@
         </div>
     </header>
     <div>
-        <form action=""  role="search" >
+        <form action="" role="search">
             <input type="search" class="input-search" id="search-bar" placeholder="Pesquise suas vagas" required>
             <button type="submit" class="btn-search">Procurar</button>
         </form>
     </div>
 
-    
+
 
     <main> <!--conteudo principal da pagina -->
         <section class="vagas">
             <!-- onde irao ficar as vagas da empresa, caso não tenha vagas tera um botão ou link para criar vagas aqui -->
-             <p>teste</p>
+            <p>teste</p>
         </section>
         <aside class="filtros">
-             <ul>
+            <ul>
                 <li>teste 1</li>
                 <li>teste 2</li>
-             </ul>
+            </ul>
         </aside>
     </main>
 
     <!-- ainda decidir onde colocar botão de criar vagas -->
-    
+
 
     <a href="testePostarVaga.php">teste para postar vaga</a>
 </body>

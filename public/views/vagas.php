@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="../assets/css/main.css">
     <link rel="stylesheet" href="../assets/css/vagas.css">
 </head>
+
 <body>
     <div id="overlay" onclick="fecharMenu()"></div>
 
@@ -29,7 +31,7 @@
                     maxlength="150"
                     minlength="2">
             </label>
-             <label class="input-label" for="tipo">
+            <label class="input-label" for="tipo">
                 Tipo
                 <select class="input"
                     name="tipo"
@@ -38,12 +40,12 @@
                     required>
                     <option value="estagio">Estagio</option>
                     <option value="aprendiz">Jovem Aprendiz</option>
-                                <!-- colacar as opçoes dps -->
+                    <!-- colacar as opçoes dps -->
                 </select>
             </label>
-             <label class="input-label" class="desc">
+            <label class="input-label" class="desc">
                 Descrição
-                <textarea 
+                <textarea
                     class="input-desc"
                     id="descricao"
                     name="descricao"
@@ -65,7 +67,7 @@
                     required>
             </label>
             <label class="input-label">
-                Cidade 
+                Cidade
                 <input class="input"
                     type="text"
                     id="cidade"
@@ -75,29 +77,32 @@
                     required
                     maxlength="100">
             </label>
-            <input 
-            type="text"
-            name="status"
-            value="aberta"
-            hidden>
-<!-- tags -->
+            <input
+                type="text"
+                name="status"
+                value="aberta"
+                hidden>
+            <!-- tags -->
             <button class="btn-submit-vaga" type="submit">Publicar</button>
         </form>
 
         <button onclick="fecharMenu()">Fechar</button>
 
         <script>
-        function abrirMenu() {
-    document.body.style.overflow = "hidden";
-    document.getElementById("overlay").style.display = "block";
-    document.getElementById("postar-vaga").style.display = "block";}
+            function abrirMenu() {
+                document.body.style.overflow = "hidden";
+                document.getElementById("overlay").style.display = "block";
+                document.getElementById("postar-vaga").style.display = "block";
+            }
 
-    function fecharMenu() {
-    document.body.style.overflow = "auto";
-    document.getElementById("overlay").style.display = "none";
-    document.getElementById("postar-vaga").style.display = "none";}
-    </script>
+            function fecharMenu() {
+                document.body.style.overflow = "auto";
+                document.getElementById("overlay").style.display = "none";
+                document.getElementById("postar-vaga").style.display = "none";
+            }
+        </script>
 
-    </div> 
+    </div>
 </body>
+
 </html>

@@ -36,7 +36,8 @@ class Usuario
     }
 
     // Cadastrar dados de pessoa no banco
-    public function createPessoa($userId, $dados){
+    public function createPessoa($userId, $dados)
+    {
         $stmt = $this->pdo->prepare("
         INSERT INTO pessoas (nome, cpf, telefone, instituicao, curso, id_usuario)
         VALUES (?, ?, ?, ?, ?, ?)
@@ -51,10 +52,11 @@ class Usuario
         ]);
     }
 
-    
+
 
     // Cadastrar dados de empresa no banco
-    public function createEmpresa($userId, $dados){
+    public function createEmpresa($userId, $dados)
+    {
         $stmt = $this->pdo->prepare("
         INSERT INTO empresas (nome, cnpj, telefone, cidade, id_usuario)
         VALUES (?, ?, ?, ?, ?)
@@ -68,9 +70,10 @@ class Usuario
         ]);
     }
 
-    
+
     // Cadastrar dados da vaga no banco
-    public function createVaga($userId, $dados){ //o id_empresa deve ser puxado da session
+    public function createVaga($userId, $dados)
+    { //o id_empresa deve ser puxado da session
         $stmt = $this->pdo->prepare("
         INSERT INTO vagas (titulo, descricao, tipo, salario, cidade, status, id_empresa)
         VALUES (?, ?, ?, ?, ?, ?, ?)
@@ -88,7 +91,8 @@ class Usuario
 
 
     //Buscar/Trazer todas as vagas registradas
-    public function buscarVaga(){
+    public function buscarVaga()
+    {
         $stmt = $this->pdo->prepare("
         SELECT vagas.*, empresas.nome
         FROM vagas
@@ -97,4 +101,4 @@ class Usuario
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-}                    
+}

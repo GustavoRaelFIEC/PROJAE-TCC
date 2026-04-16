@@ -37,7 +37,8 @@
     </header>
 
     <main class="principal">
-        
+
     </main>
 </body>
+
 </html>

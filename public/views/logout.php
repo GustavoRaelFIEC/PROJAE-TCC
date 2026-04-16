@@ -5,4 +5,3 @@ require_once 'src/config/config.php';
 Session::destroy();
 header('Location: login.php');
 exit();
-?>

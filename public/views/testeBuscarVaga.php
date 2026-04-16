@@ -8,6 +8,7 @@ $vagas = handleBuscarVaga($pdo);
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,22 +22,33 @@ $vagas = handleBuscarVaga($pdo);
 
     <title>Buscar vaga não será um página</title>
 </head>
+
 <body>
+    <h1>BUSCAR VAGAS -TESTE</h1>
+    <p>Página provisória para teste de listar e filtrar vagas</p>
+    <form method="GET" action="" id="filtroForm">
+        <select name="tipo" onchange="this.form.submit()">
+            <option value="">Selecione Tipo</option>
+            <option value="Aprendiz" <?= (($_GET['tipo'] ?? '') == 'Aprendiz') ? 'selected' : '' ?>>Aprendiz</option>
+            <option value="Estagio" <?= (($_GET['tipo'] ?? '') == 'Estagio') ? 'selected' : '' ?>>Estágio</option>
+        </select>
+    </form>
     <?php
-        foreach($vagas as $vaga):
+    foreach ($vagas as $vaga):
     ?>
-    <div style="border: 5px solid black;">
-        <p><?= $vaga['titulo'] ?></p>
-        <p><?= $vaga['descricao'] ?></p>
-        <p><?= $vaga['tipo'] ?></p>
-        <p><?= $vaga['salario'] ?></p>
-        <p><?= $vaga['cidade'] ?></p>
-        <p><?= $vaga['status'] ?></p>
-        <p><?= $vaga['data_publicacao'] ?></p>
-        <p><?= $vaga['nome'] ?></p>
-    </div>
+        <div style="border: 5px solid black;">
+            <p><?= $vaga['titulo'] ?></p>
+            <p><?= $vaga['descricao'] ?></p>
+            <p><?= $vaga['tipo'] ?></p>
+            <p><?= $vaga['salario'] ?></p>
+            <p><?= $vaga['cidade'] ?></p>
+            <p><?= $vaga['status'] ?></p>
+            <p><?= $vaga['data_publicacao'] ?></p>
+            <p><?= $vaga['nome'] ?></p>
+        </div>
     <?php
     endforeach;
     ?>
 </body>
+
 </html>
