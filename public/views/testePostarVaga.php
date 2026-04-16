@@ -8,7 +8,8 @@
 
     <link rel="stylesheet" href="../assets/css/globalEimports.css">
     <link rel="stylesheet" href="../assets/css/navegation.css">
-    <link rel="stylesheet" href="../assets/css/cadastroEmpresa.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/postarVaga.css">
 
     <title>Postar vaga não será um página</title>
 </head>

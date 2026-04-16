@@ -11,7 +11,15 @@ $vagas = handleBuscarVaga($pdo);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+    <link rel="shortcut icon" href="../assets/img/isotipo.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="../assets/css/globalEimports.css">
+    <link rel="stylesheet" href="../assets/css/navegation.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/buscarVaga.css">
+
+    <title>Buscar vaga não será um página</title>
 </head>
 <body>
     <?php
