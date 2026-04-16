@@ -90,9 +90,8 @@ class Usuario
     }
 
 
-    //Buscar/Trazer todas as vagas registradas
-    public function buscarVaga()
-    {
+    // Buscar/Trazer todas as vagas registradas
+    public function buscarVaga(){
         $stmt = $this->pdo->prepare("
         SELECT vagas.*, empresas.nome
         FROM vagas
@@ -101,4 +100,17 @@ class Usuario
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-}
+
+
+    // Realizar inscrição na vaga
+    public function inscricao($userId, $vagaId){
+        $stmt = $this->pdo->prepare("
+        INSERT INTO inscricao (id_pessoa, id_vaga)
+        VALUES (?, ?)
+        ");
+        $stmt->execute([
+            $userId,
+            $vagaId
+        ]);
+    }
+}                    

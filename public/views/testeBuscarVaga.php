@@ -36,16 +36,17 @@ $vagas = handleBuscarVaga($pdo);
     <?php
     foreach ($vagas as $vaga):
     ?>
-        <div style="border: 5px solid black;">
-            <p><?= $vaga['titulo'] ?></p>
-            <p><?= $vaga['descricao'] ?></p>
-            <p><?= $vaga['tipo'] ?></p>
-            <p><?= $vaga['salario'] ?></p>
-            <p><?= $vaga['cidade'] ?></p>
-            <p><?= $vaga['status'] ?></p>
-            <p><?= $vaga['data_publicacao'] ?></p>
-            <p><?= $vaga['nome'] ?></p>
-        </div>
+    <div style="border: 5px solid black;">
+        <p><?= $vaga['titulo'] ?></p>
+        <p><?= $vaga['descricao'] ?></p>
+        <p><?= $vaga['tipo'] ?></p>
+        <p><?= $vaga['salario'] ?></p>
+        <p><?= $vaga['cidade'] ?></p>
+        <p><?= $vaga['status'] ?></p>
+        <p><?= $vaga['data_publicacao'] ?></p>
+        <p><?= $vaga['nome'] ?></p>
+        <button>Inscrever-se</button>
+    </div>
     <?php
     endforeach;
     ?>
