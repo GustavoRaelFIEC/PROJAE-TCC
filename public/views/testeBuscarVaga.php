@@ -34,6 +34,7 @@ $vagas = handleBuscarVaga($pdo);
         <p><?= $vaga['status'] ?></p>
         <p><?= $vaga['data_publicacao'] ?></p>
         <p><?= $vaga['nome'] ?></p>
+        <button>Inscrever-se</button>
     </div>
     <?php
     endforeach;
