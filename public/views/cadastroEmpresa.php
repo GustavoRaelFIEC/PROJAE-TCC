@@ -25,30 +25,6 @@ function error($key)
 
 ?>
 
-<!-- /*
-// Uploads de Fotos
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_FILES["fotoEmpresa"]) && $_FILES["FotoEmpresa"]["error"] == 0) {
-        $pasta = "../public/assets/uploads/";
-        if (!is_dir($pasta)) {
-            mkdir($pasta, 0777, true);
-        }
-        $extensao = pathinfo($_FILES["fotoEmpresa"]["name"],PATHINFO_EXTENSION);
-        $nomeArquivo = uniqid() . "." . $extensao;
-        $caminho = $pasta . $nomeArquivo;
-
-        move_uploaded_file($_FILES['foto']['tmp_name'], $caminho);
-
-        $stmt = $pdo->prepare("UPDATE cliente SET foto = ? WHERE id = ?");
-        $stmt->execute([$caminho, $userID]);
-
-        $usuario['foto'] = $caminho;
-    }
-} */ -->
-
-
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -56,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="shortcut icon" href="assets/img/isotipo.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../assets/img/isotipo.png" type="image/x-icon">
 
     <link rel="stylesheet" href="../assets/css/globalEimports.css">
     <link rel="stylesheet" href="../assets/css/main.css">
@@ -88,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <h1 class="titulo">Registrar <span>Empresa</span></h1>
             <div class="cadastro">
                 <form method="POST" action="../../src/controllers/CadastroController.php" class="fomulario">
-                    <legend class="subTitulo">Dados do Usuário</legend>
+                    <legend class="subTitulo">Dados da Empresa</legend>
                     <input type="hidden" name="tipo" value="empresa">
 
                     <label class="input-label" for="razaoSocial">
