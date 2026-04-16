@@ -69,14 +69,14 @@ function error($key)
 
                     <label class="input-label" for="razaoSocial">
                         <p>Razão Social<span>*</span></p>
-                        <input class="input" 
-                        placeholder="Insira a Razão Social Registrada" 
-                        id="razaoSocial" 
-                        name="nome" 
-                        value="<?= old('nome') ?>"
-                        type="text" 
-                        required 
-                        maxlength="100">
+                        <input class="input"
+                            placeholder="Insira a Razão Social Registrada"
+                            id="razaoSocial"
+                            name="nome"
+                            value="<?= old('nome') ?>"
+                            type="text"
+                            required
+                            maxlength="100">
 
                         <?= error('nome') ?>
                     </label>

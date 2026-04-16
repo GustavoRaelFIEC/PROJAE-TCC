@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,6 +14,7 @@
 
     <title>Postar vaga não será um página</title>
 </head>
+
 <body class="corpo">
     <!-- Postar vaga não será um página -->
     <main class="principal2">
@@ -51,4 +53,5 @@
         </main>
     </main>
 </body>
+
 </html>

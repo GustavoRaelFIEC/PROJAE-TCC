@@ -5,17 +5,18 @@ require_once __DIR__ . '/../models/Usuarios.php';
 require_once __DIR__ . '/../utils/Security.php';
 require_once __DIR__ . '/../utils/Session.php';
 
-if($_SERVER['REQUEST_METHOD'] === 'POST'){
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $action = $_GET['action'] ?? '';
 
-    if($action === 'postarVaga'){
+    if ($action === 'postarVaga') {
         handlePostarVaga($pdo);
-    }else if($action === 'buscarVaga'){
+    } else if ($action === 'buscarVaga') {
         handleBuscarVaga($pdo);
     }
 }
 
-function getRequestData() {
+function getRequestData()
+{
     return $_POST;
 }
 
@@ -53,7 +54,6 @@ function handlePostarVaga($pdo)
         $_SESSION['sucesso'] = "✅ Vaga criada com sucesso!";
         header("Location: ../../../public/views/dashboardEmpresa.php");
         exit();
-
     } catch (PDOException $e) {
         echo $e->getMessage();
         exit();
@@ -78,18 +78,17 @@ function handleBuscarVaga($pdo)
 
     try {
 
-    $userModel = new Usuario($pdo);
+        $userModel = new Usuario($pdo);
 
-    $vagas = $userModel->buscarVaga();
-
+        $vagas = $userModel->buscarVaga();
     } catch (PDOException $e) {
         error_log("Erro ao trazer vagas: " . $e->getMessage());
         $errors[] = "Erro no sistema. Volte mais tarde.";
     }
-    
-    
+
+
     if (!empty($errors)) {
-      header("Location: "); //<-- VOLTAR PAAR A TELA DE VAGAS
+        header("Location: "); //<-- VOLTAR PAAR A TELA DE VAGAS
         exit();
     }
 

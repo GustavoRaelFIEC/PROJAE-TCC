@@ -25,10 +25,10 @@ function handleLogin($pdo)
     }
 
     //validate senha AQUI
-      if (!Security::validatePassword($senha)) {
+    if (!Security::validatePassword($senha)) {
         $errors[] = "Senha inválida!";
     }
-    
+
 
     if (empty($errors)) {
         try {
@@ -37,15 +37,15 @@ function handleLogin($pdo)
 
             $usuario = $userModel->findByEmail($email);
 
-            if ($usuario && Security::verifyPassword($senha, $usuario['senha'])) { 
+            if ($usuario && Security::verifyPassword($senha, $usuario['senha'])) {
                 //Login bem-sucedido
                 Session::setUsuario($usuario);
 
                 if ($usuario['tipo'] === 'pessoa') {
-                   header("Location: /PROJAE-TCC/public/views/dashboardPessoa.php");
+                    header("Location: /PROJAE-TCC/public/views/dashboardPessoa.php");
                     exit();
                 } else if ($usuario['tipo'] === 'empresa') {
-                   header("Location: /PROJAE-TCC/public/views/dashboardEmpresa.php");
+                    header("Location: /PROJAE-TCC/public/views/dashboardEmpresa.php");
                     exit();
                 }
 
@@ -58,7 +58,7 @@ function handleLogin($pdo)
             $errors[] = "Erro no sistema. Volte mais tarde.";
         }
     }
-    
+
     header("Location: ../../public/views/about.php");
     exit();
 }

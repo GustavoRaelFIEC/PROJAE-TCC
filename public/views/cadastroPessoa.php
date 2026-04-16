@@ -58,7 +58,7 @@ function error($key)
             </div>
         </div>
     </header>
-    
+
     <main class="principal">
         <div class="content">
             <h1 class="titulo">Registrar <span>Usuário</span></h1>
@@ -89,7 +89,7 @@ function error($key)
                             name="email"
                             type="email"
                             value="<?= old('email') ?>"
-                            required 
+                            required
                             maxlength="255">
 
                         <?= error('email') ?>
@@ -102,7 +102,7 @@ function error($key)
                             id="senha"
                             name="senha"
                             type="password"
-                            required 
+                            required
                             minlength="8">
 
                         <?= error('senha') ?>
