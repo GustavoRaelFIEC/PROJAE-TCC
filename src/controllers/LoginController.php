@@ -42,10 +42,10 @@ function handleLogin($pdo)
                 Session::setUsuario($usuario);
 
                 if ($usuario['tipo'] === 'pessoa') {
-                    header("Location: ../../../public/views/dashboardPessoa.php");
+                   header("Location: /PROJAE-TCC/public/views/dashboardPessoa.php");
                     exit();
                 } else if ($usuario['tipo'] === 'empresa') {
-                    header("Location: ../../../public/views/dashboardEmpresa.php");
+                   header("Location: /PROJAE-TCC/public/views/dashboardEmpresa.php");
                     exit();
                 }
 
