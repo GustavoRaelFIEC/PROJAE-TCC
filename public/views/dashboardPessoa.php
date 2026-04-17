@@ -16,7 +16,8 @@
 
     <title>Dashboard - PROJAE</title>
 </head>
-<body>
+
+<body class="corpo">
     <header class="cabecalho">
         <div class="contentCabecalho">
             <div class="logo"><img class="img" src="../assets/img/imagotipo.png" alt="Projae logo"></div>
@@ -29,22 +30,24 @@
 
     <main class="principal">
         <div class="content">
-            <div class="perfil">
-                <div class="fotoPerfil"><img src="" alt="Sua Foto de Perfil"></div>
+            <section class="perfil">
                 <div class="detalhesPerfil">
-                    <h1 class="nomePerfil">Nome</h1>
-                    <h2 class="instituicaoPerfil">Instituição</h2>
-                    <h2 class="regiaoPerfil">Região</h2>
+                    <div class="fotoPerfil"><img src="" alt="Sua Foto de Perfil"></div>
+                    <div>
+                        <h1 class="nomePerfil">Nome</h1>
+                        <h2 class="instituicaoPerfil">Instituição</h2>
+                        <h2 class="regiaoPerfil">Região</h2>
+                    </div>
                 </div>
                 <button class="btnEditar"><i class="fa-solid fa-pen-to-square"></i></button>
-            </div>
-            <div class="vagasInscritas">
+            </section>
+            <section class="vagasInscritas">
                 <h1 class="titulo">Vagas Inscritas</h1>
                 <div class="cards">
                     <div class="card">
                     </div>
                 </div>
-            </div>
+            </section>
         </div>
     </main>
 </body>
