@@ -49,7 +49,9 @@
                 </div>
             </section>
         </div>
+        <a href="testeBuscarVaga.php">testeBuscarVaga</a>
     </main>
+    
 </body>
 
 </html>

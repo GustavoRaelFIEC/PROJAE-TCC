@@ -15,7 +15,7 @@ class Session
     // Salvar usuário na Sessão
     public static function setUsuario($usuario)
     {
-        $_SESSION['user_id'] = $usuario['id_usuario'] ?? null;
+        $_SESSION['user_id'] = $usuario['id'] ?? null;
         $_SESSION['user_email'] = $usuario['email'] ?? null;
         $_SESSION['user_tipo'] = $usuario['tipo'] ?? null;
     }

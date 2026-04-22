@@ -37,6 +37,8 @@ $vagas = handleBuscarVaga($pdo);
     foreach ($vagas as $vaga):
     ?>
     <div style="border: 5px solid black;">
+        <form method="POST" action="../../src/controllers/InscricaoController.php">
+        <input type="hidden" name="id_vaga" value="<?= $vaga['id_vaga'] ?>">
         <p><?= $vaga['titulo'] ?></p>
         <p><?= $vaga['descricao'] ?></p>
         <p><?= $vaga['tipo'] ?></p>
@@ -45,7 +47,9 @@ $vagas = handleBuscarVaga($pdo);
         <p><?= $vaga['status'] ?></p>
         <p><?= $vaga['data_publicacao'] ?></p>
         <p><?= $vaga['nome'] ?></p>
-        <button>Inscrever-se</button>
+        <button type="submit">Inscrever-se</button>
+        </form>
+        
     </div>
     <?php
     endforeach;

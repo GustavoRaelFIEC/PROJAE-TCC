@@ -113,4 +113,15 @@ class Usuario
             $vagaId
         ]);
     }
+
+    // Encontrar por ID da Pessoa
+    public function findByIdPessoa($userId){
+        $stmt = $this->pdo->prepare("
+        SELECT id_pessoa 
+        FROM pessoas 
+        WHERE id_usuario = ?
+        ");
+        $stmt->execute([$userId]);
+        return $stmt->fetchColumn();
+    }
 }                    
