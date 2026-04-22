@@ -38,6 +38,11 @@
   margin-top: 20px;
 }
 
+.titulo {
+  text-align: center;
+  color: #4938be;
+}
+
 /* Labels */
 .input-label {
   display: flex;

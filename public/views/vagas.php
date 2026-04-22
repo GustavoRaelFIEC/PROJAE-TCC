@@ -1,3 +1,11 @@
+<?php
+
+// require_once __DIR__ . "/../../src/controllers/VagaController.php";
+
+// $vagas = handleBuscarVaga($pdo);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,6 +19,31 @@
 </head>
 
 <body>
+
+    <!-- <?php
+    // foreach ($vagas as $vaga):
+    ?>
+    <div style="border: 5px solid black;">
+        <form method="POST" action="../../src/controllers/InscricaoController.php">
+        <input type="hidden" name="id_vaga" value="<//?= $vaga['id_vaga'] ?>">
+        <p><//?= $vaga['titulo'] ?></p>
+        <p><//?= $vaga['descricao'] ?></p>
+        <p><//?= $vaga['tipo'] ?></p>
+        <p><//?= $vaga['salario'] ?></p>
+        <p><//?= $vaga['cidade'] ?></p>
+        <p><//?= $vaga['status'] ?></p>
+        <p><//?= $vaga['data_publicacao'] ?></p>
+        <p><//?= $vaga['nome'] ?></p>
+        <button type="submit">Inscrever-se</button>
+        </form>
+        
+    </div>
+    <?php
+    // endforeach;
+    ?> -->
+
+    <!-- tem que colocar a filtragem certa pra so aparecer as vagas da emmpresa -->
+
     <div id="overlay" onclick="fecharMenu()"></div>
 
     <div>
@@ -18,6 +51,7 @@
     </div>
 
     <div id="postar-vaga">
+        <h1 class="titulo">NOVA VAGA</h1>
         <form method="POST" action="../../src/controllers/VagaController.php/?action=postarVaga">
             <label class="input-label" for="nome">
                 Titulo
@@ -29,7 +63,8 @@
                     value=""
                     required
                     maxlength="150"
-                    minlength="2">
+                    minlength="2"
+                    autocomplete="off">
             </label>
             <label class="input-label" for="tipo">
                 Tipo
@@ -51,7 +86,8 @@
                     name="descricao"
                     placeholder="Descreva sua vaga detalhadamente aqui"
                     maxlength="500"
-                    required>
+                    required
+                    autocomplete="off">
                 </textarea>
             </label>
             <label class="input-label">
@@ -64,7 +100,8 @@
                     step="0.01"
                     value=""
                     min="0"
-                    required>
+                    required
+                    autocomplete="off">
             </label>
             <label class="input-label">
                 Cidade
@@ -75,7 +112,8 @@
                     placeholder="Coloque a cidade onde sua vaga é localizada"
                     value=""
                     required
-                    maxlength="100">
+                    maxlength="100"
+                    autocomplete="off">
             </label>
             <input
                 type="text"
