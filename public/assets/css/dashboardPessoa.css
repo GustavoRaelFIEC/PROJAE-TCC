@@ -1,0 +1,106 @@
+.principal {
+  display: flex;
+}
+
+.content {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 30px;
+}
+
+.btnSair {
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 7px;
+  background-color: white;
+  color: #4938be;
+  border: #4938be solid 1px;
+  box-shadow: rgba(74, 56, 190, 0.2) 0px 0px 10px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btnSair:hover {
+  background-color: #4938be;
+  box-shadow: rgba(74, 56, 190, 0.2) 0px 0px 10px;
+  color: #fff;
+  transition: 0.3s;
+}
+
+.perfil {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgb(245, 245, 245);
+  box-shadow: 1px 7px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 25px;
+  width: 100%;
+  height: 250px;
+}
+
+.detalhesPerfil {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.fotoPerfil {
+}
+
+.fotoPerfil > img {
+}
+
+.nomePerfil {
+}
+
+.instituicaoPerfil {
+}
+
+.regiaoPerfil {
+}
+
+.btnEditar {
+  align-self: flex-start;
+  padding: 10px;
+  border-radius: 50%;
+  background-color: white;
+  border: #4938be solid 1px;
+  box-shadow: rgba(74, 56, 190, 0.2) 0px 0px 10px;
+  color: #4938be;
+  cursor: pointer;
+}
+
+.btnEditar > i {
+  font-size: 20px;
+}
+
+.btnEditar:hover {
+  background-color: #4938be;
+  box-shadow: rgba(74, 56, 190, 0.2) 0px 0px 10px;
+  color: #fff;
+  transition: 0.2s;
+}
+
+.vagasInscritas {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgb(245, 245, 245);
+  background-color: rgba(245, 245, 245, 0.76);
+  box-shadow: 1px 7px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 10px 25px;
+  width: 100%;
+}
+
+.titulo {
+}
+
+.cards {
+}
+
+.card {
+}
