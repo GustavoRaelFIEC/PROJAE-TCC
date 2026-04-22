@@ -26,6 +26,10 @@ function handlePostarVaga($pdo)
 
     $dados = getRequestData();
 
+    $userEmpresa = new Usuario($pdo);
+
+    $id_empresa =  $userEmpresa->findByIdEmpresa($_SESSION['user_id']);
+
     try {
         $userModel = new Usuario($pdo);
 
@@ -45,7 +49,7 @@ function handlePostarVaga($pdo)
             throw new Exception("Título é obrigatório");
         }
 
-        $userModel->createVaga($_SESSION['user_id'], $dados);
+        $userModel->createVaga($id_empresa, $dados);
 
         // Se der tudo certo, confirma tudo
         $pdo->commit();

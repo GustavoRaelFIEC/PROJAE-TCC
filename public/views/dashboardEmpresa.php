@@ -54,6 +54,7 @@
 
 
     <a href="testePostarVaga.php">teste para postar vaga</a>
+    <a href="testeVisualizarInscricoes.php">teste para ver inscricoes</a>
 </body>
 
 
