@@ -33,7 +33,12 @@
                     </label>
                     <label class="input-label" for="tipo">
                         tipo
-                        <input class="input" id="tipo" name="tipo" type="text" required>
+                        <select name="" id="">
+                            <option value="">Selecione um tipo</option>
+                            <option value="estagio">Estagiário</option>
+                            <option value="aprendiz">Jovem Aprendiz</option>
+                        </select>
+                        <!-- <input class="input" id="tipo" name="tipo" type="text" required> -->
                     </label>
                     <label class="input-label" for="salario">
                         salario
@@ -45,7 +50,12 @@
                     </label>
                     <label class="input-label" for="status">
                         status
-                        <input class="input" id="status" name="status" type="text" required>
+                        <select name="" id="">
+                            <option value="">selecione status</option>
+                            <option value="aberta">Aberta</option>
+                            <option value="fechada">Fechada</option>
+                        </select>
+                        <!-- <input class="input" id="status" name="status" type="text" required> -->
                     </label>
                     <button class="btn-submit" type="submit">Cadastrar</button>
                 </form>
