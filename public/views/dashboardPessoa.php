@@ -67,6 +67,27 @@
                             maxlength="255">
                     </label>
 
+                    <label class="input-label" for="curso">
+                        <p>Curso:</p>
+                        <input class="input"
+                            placeholder="Digite o seu curso"
+                            id="curso"
+                            name="curso"
+                            type="text"
+                            maxlength="255">
+                    
+                    </label>
+
+                    <label class="input-label" for="telefone">
+                        <p>Telefone:</p>
+                        <input class="input"
+                            placeholder="Digite o nome da sua instituição"
+                            id="telefone"
+                            name="telefone"
+                            type="tel"
+                            maxlength="255">
+                    </label>
+                    
                     <label class="input-label" for="regiao">
                         <p>Região:</p>
                         <?php /*mudar o input para select e option*/ ?>
@@ -84,11 +105,13 @@
             </div>
             <section class="perfil">
                 <div class="detalhesPerfil">
-                    <div class="fotoPerfil"><img src="" alt="Sua Foto de Perfil"></div>
+                    <div class="fotoPerfil"><img src="../assets/img/testeIMG.png" alt="Sua Foto de Perfil"></div>
                     <div>
                         <h1 class="nomePerfil">Nome</h1>
-                        <h2 class="instituicaoPerfil">Instituição</h2>
-                        <h2 class="regiaoPerfil">Região</h2>
+                        <h2 class="instituicaoPerfil">FIEC</h2>
+                        <h2 class="cursoPerfil">TI - Tecnologia da Informação</h2>
+                        <h2 class="telefonePerfil">11 98734-1209</h2>
+                        <h2 class="regiaoPerfil">São Paulo - SP</h2>
                     </div>
                 </div>
                 <button onclick="abrirMenu()" class="btnEditar"><i class="fa-solid fa-pen-to-square"></i></button>
