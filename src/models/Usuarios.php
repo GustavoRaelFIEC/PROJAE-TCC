@@ -91,7 +91,8 @@ class Usuario
 
 
     // Buscar/Trazer todas as vagas registradas
-    public function buscarVaga(){
+    public function buscarVaga()
+    {
         $stmt = $this->pdo->prepare("
         SELECT vagas.*, empresas.nome
         FROM vagas
@@ -103,7 +104,8 @@ class Usuario
 
 
     // Realizar inscrição na vaga
-    public function inscricao($userId, $vagaId){
+    public function inscricao($userId, $vagaId)
+    {
         $stmt = $this->pdo->prepare("
         INSERT INTO inscricao (id_pessoa, id_vaga)
         VALUES (?, ?)
@@ -115,7 +117,8 @@ class Usuario
     }
 
     // Encontrar por ID da Pessoa
-    public function findByIdPessoa($userId){
+    public function findByIdPessoa($userId)
+    {
         $stmt = $this->pdo->prepare("
         SELECT id_pessoa 
         FROM pessoas 
@@ -126,7 +129,8 @@ class Usuario
     }
 
     // Encontrar por ID da Empresa
-    public function findByIdEmpresa($userId){
+    public function findByIdEmpresa($userId)
+    {
         $stmt = $this->pdo->prepare("
         SELECT id_empresa 
         FROM empresas 
@@ -137,7 +141,8 @@ class Usuario
     }
 
     // Buscar/Trazer todas as inscrições
-    public function visualizarInscricoes($userId){
+    public function visualizarInscricoes($userId)
+    {
         $stmt = $this->pdo->prepare("
         SELECT 
             inscricao.data_inscricao AS data_inscricao,

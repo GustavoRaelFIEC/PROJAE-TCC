@@ -82,27 +82,26 @@ CREATE TABLE inscricao (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `usuarios` VALUES
-(1,'davi001@gmail.com','Davi12340987','pessoa','2026-03-12 19:43:00'),
-(2,'dellsac@gmail.com','Dell574839','empresa','2026-03-12 19:43:00'),
-(3,'pedrovieira98@gmail.com','pedrinho6767','pessoa','2026-03-12 19:43:00');
+(1,'devPessoa@gmail.com','$2y$10$wH8Q8Q6YQJ2VQ0Qk5GxY8e8d2uY0lYQv6u5hQ2u6c3YQfQe6Q9Q0K','pessoa','2026-03-12 19:43:00'),
+(2,'devEmpresa@gmail.com','$2y$10$wH8Q8Q6YQJ2VQ0Qk5GxY8e8d2uY0lYQv6u5hQ2u6c3YQfQe6Q9Q0K','empresa','2026-03-12 19:43:00');
+
 
 INSERT INTO `pessoas` VALUES
-(1,'Davi','12345678910','19998745263','fiec','gastronomia',1),
-(2,'Rael','78945612320','21996547812','senai','mecanica',2),
-(3,'Luiza','20093350740','19993792956','senac','engenharia',3);
+(1,'devPessoa','12345678910','19998745263','fiec','informatica',1);
+
+
 
 INSERT INTO `empresas` VALUES 
-(1,'FIEC','54675103000180','1938018688','Indaiatuba-SP', 1),
-(2,'SENAI','3810810000100','2733345200','Vitória-ES', 2),
-(3,'Objetivo','66996232000230','1938258801','Indaiatuba', 3);
+(1,'devEmpresa','54675103000180','1938018688','Indaiatuba-SP', 1);
+
 
 INSERT INTO `vagas` VALUES 
 (1,'Estagiário de Informática','Auxiliar na manutenção de computadores e suporte básico aos usuários','estagio',1.00,'Indaiatuba','aberta','2026-03-12 20:06:57',1),
-(2,'Aprendiz Administrativo','Ajudar na organização de documentos e digitar informações no sistema','aprendiz',750.00,'Vitoria','aberta','2026-03-12 20:06:57',2),
-(3,'Estagiário de suporte TI','Apoiar na resolução de problemas simples de informática e configuração de impressoras','estagio',1.20,'Indaiatuba','aberta','2026-03-12 20:06:57',3);
+(2,'Aprendiz Administrativo','Ajudar na organização de documentos e digitar informações no sistema','aprendiz',750.00,'Vitoria','aberta','2026-03-12 20:06:57',2);
+
 
 INSERT INTO `inscricao` VALUES 
 (1,'2026-03-12 20:10:00',1,1),
-(2,'2026-03-12 20:15:00',2,2),
-(3,'2026-03-12 20:20:00',3,3);
+(2,'2026-03-12 20:15:00',2,2);
+
 
