@@ -25,15 +25,15 @@ $inscricoes = visualizarInscricoes($pdo);
 
 <body>
     <header class="cabecalho">
-        <div class="logo"><a href="../index.php"><img class="img" src="../assets/img/imagotipo.png" alt="Projae logo"></a></div>
-        <ul class="list">
-            <li><a class="item-list active" href="../index.php">Página Principal</a></li>
-            <li><a class="item-list" href="about.php">Sobre</a></li>
-            <li><a class="item-list" href="help.php">Ajuda</a></li>
-        </ul>
-        <div class="cta">
-            <!-- Foto de Perfil -->
-            <!-- Notificações -->
+        <div class="contentCabecalho">
+            <div class="logo"><img class="img" src="../assets/img/imagotipo.png" alt="Projae logo"></div>
+            <ul class="list">
+                <li><a class="item-list active" href="" onclick="location.reload()">Início</a></li>
+                <li><a class="item-list" href="testeBuscarVaga.php">Vagas</a></li>
+            </ul>
+            <div class="cta">
+                <a href="./logout.php" class="btnSair">Sair</a>
+            </div>
         </div>
     </header>
     <div>
