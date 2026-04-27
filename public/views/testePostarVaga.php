@@ -1,3 +1,9 @@
+<?php
+
+require_once __DIR__ . "/../../src/middlewares/auth.php";
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 

@@ -37,8 +37,12 @@ class Session
     }
 
     // Logout
-    public static function destroy()
+   public static function destroy()
     {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+
         $_SESSION = [];
         session_destroy();
     }

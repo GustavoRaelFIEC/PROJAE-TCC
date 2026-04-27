@@ -4,8 +4,8 @@ require_once __DIR__ . '/../config/config.php';
 require_once __DIR__ . '/../models/Usuarios.php';
 require_once __DIR__ . '/../utils/Security.php';
 require_once __DIR__ . '/../utils/Session.php';
-Session::start();
 
+Session::start();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     handleLogin($pdo);

@@ -2,8 +2,9 @@
 
 require_once __DIR__ . '/../config/config.php';
 require_once __DIR__ . '/../models/Usuarios.php';
+require_once __DIR__ . '/../utils/Session.php';
 
-session_start();
+Session::start();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     handleInscricao($pdo);
