@@ -32,7 +32,7 @@ $vagas = handleBuscarVaga($pdo);
             <div class="logo"><img class="img" src="../assets/img/imagotipo.png" alt="Projae logo"></div>
             <ul class="list">
                 <li><a class="item-list active" href="" onclick="location.reload()">Início</a></li>
-                <li><a class="item-list" href="testeBuscarVaga.php">Vagas</a></li>
+                <li><a class="item-list" href="vagas.php">Vagas</a></li>
             </ul>
             <div class="cta">
                 <a href="./logout.php" class="btnSair">Sair</a>

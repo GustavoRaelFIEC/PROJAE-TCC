@@ -1,108 +1,102 @@
+<?php
+
+require_once __DIR__ . "/../../src/controllers/InscricaoController.php";
+require_once __DIR__ . "/../../src/controllers/VagaController.php";
+
+
+$inscricoes = visualizarInscricoes($pdo);
+$vagas = handleBuscarVaga($pdo);
+
+?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+    <link rel="shortcut icon" href="../assets/img/isotipo.png" type="image/x-icon">
+
     <link rel="stylesheet" href="../assets/css/globalEimports.css">
+    <link rel="stylesheet" href="../assets/css/navegation.css">
     <link rel="stylesheet" href="../assets/css/main.css">
     <link rel="stylesheet" href="../assets/css/vagas.css">
+
+    <title>Dashboard Empresa</title>
 </head>
 
 <body>
-    <div id="overlay" onclick="fecharMenu()"></div>
+    <header class="cabecalho">
+        <div class="contentCabecalho">
+            <div class="logo"><img class="img" src="../assets/img/imagotipo.png" alt="Projae logo"></div>
+            <ul class="list">
+                <li><a class="item-list" href="" onclick="location.reload()">Início</a></li>
+                <li><a class="item-list active" href="testeBuscarVaga.php">Vagas</a></li>
+            </ul>
+            <div class="cta">
+                <a href="./logout.php" class="btnSair">Sair</a>
+            </div>
+        </div>
+    </header>
+    <div>
+        <form action="" role="search">
+            <input type="search" class="input-search" id="search-bar" placeholder="Pesquise suas vagas" required>
+            <button type="submit" class="btn-search">Procurar</button>
+        </form>
+    </div>
+
+
+
+    <main> <!--conteudo principal da pagina -->
+        <section class="vagas">
+            <!-- onde irao ficar as vagas da empresa, caso não tenha vagas tera um botão ou link para criar vagas aqui -->
+            <p>teste</p>
+        </section>
+        <aside class="filtros">
+            <ul>
+                <li>teste 1</li>
+                <li>teste 2</li>
+            </ul>
+        </aside>
+    </main>
+
+    <!-- ainda decidir onde colocar botão de criar vagas -->
+
+
+    <a href="testePostarVaga.php">teste para postar vaga</a>
 
     <div>
-        <button onclick="abrirMenu()" class="btn-vaga">Nova Vaga</button>
-    </div>
-
-    <div id="postar-vaga">
-        <form method="POST" action="../../src/controllers/VagaController.php/?action=postarVaga">
-            <label class="input-label" for="nome">
-                Titulo
-                <input class="input"
-                    type="text"
-                    id="titulo"
-                    name="titulo"
-                    placeholder="Insira aqui o nome da vaga"
-                    value=""
-                    required
-                    maxlength="150"
-                    minlength="2">
-            </label>
-            <label class="input-label" for="tipo">
-                Tipo
-                <select class="input"
-                    name="tipo"
-                    id="tipo"
-                    default="Selecione o tipo da vaga"
-                    required>
-                    <option value="estagio">Estagio</option>
-                    <option value="aprendiz">Jovem Aprendiz</option>
-                    <!-- colacar as opçoes dps -->
-                </select>
-            </label>
-            <label class="input-label" class="desc">
-                Descrição
-                <textarea
-                    class="input-desc"
-                    id="descricao"
-                    name="descricao"
-                    placeholder="Descreva sua vaga detalhadamente aqui"
-                    maxlength="500"
-                    required>
-                </textarea>
-            </label>
-            <label class="input-label">
-                Salario
-                <input class="input"
-                    type="number"
-                    id="salario"
-                    name="salario"
-                    placeholder="Insira o salario da vaga aqui"
-                    step="0.01"
-                    value=""
-                    min="0"
-                    required>
-            </label>
-            <label class="input-label">
-                Cidade
-                <input class="input"
-                    type="text"
-                    id="cidade"
-                    name="cidade"
-                    placeholder="Coloque a cidade onde sua vaga é localizada"
-                    value=""
-                    required
-                    maxlength="100">
-            </label>
-            <input
-                type="text"
-                name="status"
-                value="aberta"
-                hidden>
-            <!-- tags -->
-            <button class="btn-submit-vaga" type="submit">Publicar</button>
+        <form method="GET" action="" id="filtroForm">
+            <select name="tipo" onchange="this.form.submit()">
+                <option value="">Selecione Tipo</option>
+                <option value="Aprendiz" <?= (($_GET['tipo'] ?? '') == 'Aprendiz') ? 'selected' : '' ?>>Aprendiz</option>
+                <option value="Estagio" <?= (($_GET['tipo'] ?? '') == 'Estagio') ? 'selected' : '' ?>>Estágio</option>
+            </select>
         </form>
+        <?php
+        foreach ($vagas as $vaga):
+        ?>
+            <div style="border: 5px solid black;">
+                <form method="POST" action="../../src/controllers/InscricaoController.php">
+                    <input type="hidden" name="id_vaga" value="<?= $vaga['id_vaga'] ?>">
+                    <p><?= $vaga['titulo'] ?></p>
+                    <p><?= $vaga['descricao'] ?></p>
+                    <p><?= $vaga['tipo'] ?></p>
+                    <p><?= $vaga['salario'] ?></p>
+                    <p><?= $vaga['cidade'] ?></p>
+                    <p><?= $vaga['status'] ?></p>
+                    <p><?= $vaga['data_publicacao'] ?></p>
+                    <p><?= $vaga['nome'] ?></p>
+                    <button type="submit">Inscrever-se</button>
+                </form>
 
-        <button onclick="fecharMenu()">Fechar</button>
-
-        <script>
-            function abrirMenu() {
-                document.body.style.overflow = "hidden";
-                document.getElementById("overlay").style.display = "block";
-                document.getElementById("postar-vaga").style.display = "block";
-            }
-
-            function fecharMenu() {
-                document.body.style.overflow = "auto";
-                document.getElementById("overlay").style.display = "none";
-                document.getElementById("postar-vaga").style.display = "none";
-            }
-        </script>
-
+            </div>
+        <?php
+        endforeach;
+        ?>
     </div>
 </body>
+
 
 </html>
