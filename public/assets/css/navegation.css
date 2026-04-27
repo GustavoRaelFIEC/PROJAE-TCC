@@ -79,3 +79,23 @@ a.activeBtn:hover {
   color: #fff;
   transition: 0.3s;
 }
+
+.btnSair {
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 7px;
+  background-color: white;
+  color: #4938be;
+  border: #4938be solid 1px;
+  box-shadow: rgba(74, 56, 190, 0.2) 0px 0px 10px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btnSair:hover {
+  background-color: #4938be;
+  box-shadow: rgba(74, 56, 190, 0.2) 0px 0px 10px;
+  color: #fff;
+  transition: 0.3s;
+}
