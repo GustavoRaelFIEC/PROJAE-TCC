@@ -1,3 +1,11 @@
+<?php
+
+require_once __DIR__ . "/../../src/controllers/InscricaoController.php";
+
+$inscricoes = visualizarInscricoes($pdo);
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -54,7 +62,20 @@
 
 
     <a href="testePostarVaga.php">teste para postar vaga</a>
-    <a href="testeVisualizarInscricoes.php">teste para ver inscricoes</a>
+
+    <div>
+    <?php
+    foreach ($inscricoes as $inscricao):
+    ?>
+    <div style="border: 5px solid black;">
+        <p><?= $inscricao['titulo_vaga'] ?></p>
+        <p><?= $inscricao['nome_pessoa'] ?></p>
+        <p><?= $inscricao['data_inscricao'] ?></p>
+    </div>
+    <?php
+    endforeach;
+    ?>
+    </div>
 </body>
 
 
