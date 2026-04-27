@@ -27,7 +27,7 @@ $inscricoes = visualizarInscricoes($pdo);
             <div class="logo"><img class="img" src="../assets/img/imagotipo.png" alt="Projae logo"></div>
             <ul class="list">
                 <li><a class="item-list active" href="" onclick="location.reload()">Início</a></li>
-                <li><a class="item-list" href="testeBuscarVaga.php">Vagas</a></li>
+                <li><a class="item-list" href="vagas.php">Vagas</a></li>
             </ul>
             <div class="cta">
                 <a href="./logout.php" class="btnSair">Sair</a>
@@ -109,21 +109,32 @@ $inscricoes = visualizarInscricoes($pdo);
 
         <button onclick="fecharMenu()">Fechar</button>
 
-        <script>
-            function abrirMenu() {
-                document.body.style.overflow = "hidden";
-                document.getElementById("overlay").style.display = "block";
-                document.getElementById("postar-vaga").style.display = "block";
-            }
 
-            function fecharMenu() {
-                document.body.style.overflow = "auto";
-                document.getElementById("overlay").style.display = "none";
-                document.getElementById("postar-vaga").style.display = "none";
-            }
-        </script>
-
+        <?php
+    foreach ($inscricoes as $inscricao):
+    ?>
+    <div style="border: 5px solid black;">
+        <p><?= $inscricao['titulo_vaga'] ?></p>
+        <p><?= $inscricao['nome_pessoa'] ?></p>
+        <p><?= $inscricao['data_inscricao'] ?></p>
     </div>
+    <?php
+    endforeach;
+    ?>
+    </div>
+    <script>
+        function abrirMenu() {
+            document.body.style.overflow = "hidden";
+            document.getElementById("overlay").style.display = "block";
+            document.getElementById("postar-vaga").style.display = "block";
+        }
+
+        function fecharMenu() {
+            document.body.style.overflow = "auto";
+            document.getElementById("overlay").style.display = "none";
+            document.getElementById("postar-vaga").style.display = "none";
+        }
+    </script>
 </body>
 
 </html>
