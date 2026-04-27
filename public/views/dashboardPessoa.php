@@ -1,3 +1,11 @@
+<?php
+
+require_once __DIR__ . "/../../src/controllers/VagaController.php";
+
+$vagas = handleBuscarVaga($pdo);
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -23,7 +31,7 @@
         <div class="contentCabecalho">
             <div class="logo"><img class="img" src="../assets/img/imagotipo.png" alt="Projae logo"></div>
             <ul class="list">
-                <li><a class="item-list" href="" onclick="location.reload()">Início</a></li>
+                <li><a class="item-list active" href="" onclick="location.reload()">Início</a></li>
                 <li><a class="item-list" href="vagas.php">Vagas</a></li>
             </ul>
             <div class="cta">
@@ -75,7 +83,7 @@
                             name="curso"
                             type="text"
                             maxlength="255">
-                    
+
                     </label>
 
                     <label class="input-label" for="telefone">
@@ -87,7 +95,7 @@
                             type="tel"
                             maxlength="255">
                     </label>
-                    
+
                     <label class="input-label" for="regiao">
                         <p>Região:</p>
                         <?php /*mudar o input para select e option*/ ?>
@@ -120,6 +128,26 @@
                 <h1 class="titulo">Vagas Inscritas</h1>
                 <div class="cards">
                     <div class="card">
+                        <?php
+                        foreach ($vagas as $vaga):
+                        ?>
+                            <div style="border: 5px solid black;">
+                                <form method="POST" action="../../src/controllers/InscricaoController.php">
+                                    <input type="hidden" name="id_vaga" value="<?= $vaga['id_vaga'] ?>">
+                                    <p><?= $vaga['titulo'] ?></p>
+                                    <p><?= $vaga['descricao'] ?></p>
+                                    <p><?= $vaga['tipo'] ?></p>
+                                    <p><?= $vaga['salario'] ?></p>
+                                    <p><?= $vaga['cidade'] ?></p>
+                                    <p><?= $vaga['status'] ?></p>
+                                    <p><?= $vaga['data_publicacao'] ?></p>
+                                    <p><?= $vaga['nome'] ?></p>
+                                </form>
+
+                            </div>
+                        <?php
+                        endforeach;
+                        ?>
                     </div>
                 </div>
             </section>
