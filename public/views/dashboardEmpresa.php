@@ -5,7 +5,7 @@ require_once __DIR__ . "/../../src/controllers/InscricaoController.php";
 
 
 verificarTipo('empresa');
-$inscricoes = visualizarInscricoes($pdo);
+$inscricoes = visualizarInscricoesEmpresa($pdo);
 
 ?>
 

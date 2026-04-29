@@ -140,8 +140,8 @@ class Usuario
         return $stmt->fetchColumn();
     }
 
-    // Buscar/Trazer todas as inscrições
-    public function visualizarInscricoes($userId)
+    // Buscar/Trazer todas as inscrições pela Empresa
+    public function visualizarInscricoesEmpresa($userId)
     {
         $stmt = $this->pdo->prepare("
         SELECT 
@@ -154,6 +154,20 @@ class Usuario
         JOIN empresas ON vagas.id_empresa = empresas.id_empresa
         WHERE empresas.id_empresa = ?
         ");
+        $stmt->execute([$userId]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    // Buscar/Trazer todas as inscrições pela Empresa
+    public function visualizarInscricoesPessoa($userId)
+    {
+        $stmt = $this->pdo->prepare("
+        SELECT 
+            inscricao.data_inscricao,
+            vagas.*
+        FROM inscricao
+        JOIN vagas ON inscricao.id_vaga = vagas.id_vaga
+        WHERE inscricao.id_pessoa = ?");
         $stmt->execute([$userId]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }

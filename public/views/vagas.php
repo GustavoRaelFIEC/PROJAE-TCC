@@ -4,8 +4,7 @@ require_once __DIR__ . "/../../src/middlewares/auth.php";
 require_once __DIR__ . "/../../src/controllers/InscricaoController.php";
 require_once __DIR__ . "/../../src/controllers/VagaController.php";
 
-
-$inscricoes = visualizarInscricoes($pdo);
+verificarLogin();
 $vagas = handleBuscarVaga($pdo);
 
 ?>
