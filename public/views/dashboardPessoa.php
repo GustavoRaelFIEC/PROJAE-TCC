@@ -2,9 +2,11 @@
 
 require_once __DIR__ . "/../../src/middlewares/auth.php";
 require_once __DIR__ . "/../../src/controllers/InscricaoController.php";
+require_once __DIR__ . "/../../src/controllers/DadosController.php";
 
 verificarTipo('pessoa');
 $inscricoes = visualizarInscricoesPessoa($pdo);
+$dados = handleDadosPessoa($pdo);
 
 ?>
 
@@ -117,11 +119,11 @@ $inscricoes = visualizarInscricoesPessoa($pdo);
                 <div class="detalhesPerfil">
                     <div class="fotoPerfil"><img src="../assets/img/testeIMG.png" alt="Sua Foto de Perfil"></div>
                     <div>
-                        <h1 class="nomePerfil">Nome</h1>
-                        <h2 class="instituicaoPerfil">FIEC</h2>
-                        <h2 class="cursoPerfil">TI - Tecnologia da Informação</h2>
-                        <h2 class="telefonePerfil">11 98734-1209</h2>
-                        <h2 class="regiaoPerfil">São Paulo - SP</h2>
+                        <h1 class="nomePerfil"><?= $dados['nome'] ?></h1>
+                        <h2 class="instituicaoPerfil"><?= $dados['instituicao'] ?></h2>
+                        <h2 class="cursoPerfil"><?= $dados['curso'] ?></h2>
+                        <h2 class="telefonePerfil"><?= $dados['telefone'] ?></h2>
+                        <h2 class="regiaoPerfil"><?= $dados['cpf'] ?></h2>
                     </div>
                 </div>
                 <button onclick="abrirMenu()" class="btnEditar"><i class="fa-solid fa-pen-to-square"></i></button>
