@@ -40,6 +40,18 @@ $inscricoes = visualizarInscricoes($pdo);
         <button onclick="abrirMenu()" class="btn-vaga">Nova Vaga</button>
     </div>
 
+    <?php
+    foreach ($inscricoes as $inscricao):
+    ?>
+    <div style="border: 5px solid black;">
+        <p><?= $inscricao['titulo_vaga'] ?></p>
+        <p><?= $inscricao['nome_pessoa'] ?></p>
+        <p><?= $inscricao['data_inscricao'] ?></p>
+    </div>
+    <?php
+    endforeach;
+    ?>
+
     <div id="postar-vaga">
         <form method="POST" action="../../src/controllers/VagaController.php/?action=postarVaga">
             <label class="input-label" for="nome">
@@ -110,20 +122,8 @@ $inscricoes = visualizarInscricoes($pdo);
         </form>
 
         <button onclick="fecharMenu()">Fechar</button>
-
-
-        <?php
-    foreach ($inscricoes as $inscricao):
-    ?>
-    <div style="border: 5px solid black;">
-        <p><?= $inscricao['titulo_vaga'] ?></p>
-        <p><?= $inscricao['nome_pessoa'] ?></p>
-        <p><?= $inscricao['data_inscricao'] ?></p>
     </div>
-    <?php
-    endforeach;
-    ?>
-    </div>
+
     <script>
         function abrirMenu() {
             document.body.style.overflow = "hidden";
