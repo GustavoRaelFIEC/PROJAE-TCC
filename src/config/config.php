@@ -4,11 +4,11 @@
 $host = 'localhost';
 $db = 'projae';
 $user = 'root';
-$pass = '';
+$pass = '1234';
 $charset = 'utf8mb4';
 
 // Variável
-$dsn = "mysql:host=$host;port=3306;dbname=$db;charset=$charset";
+$dsn = "mysql:host=$host;port=3310;dbname=$db;charset=$charset";
 
 
 // Opções PDO
