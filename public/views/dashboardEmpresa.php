@@ -232,6 +232,7 @@ $inscricoes = visualizarInscricoesEmpresa($pdo);
 
         function fecharMenu() {
             editPerfil.classList.remove("ativo");
+            novaVaga.classList.remove("ativo");
             overlay.classList.remove("ativo");
             document.body.style.overflow = "auto";
         }
