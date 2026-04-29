@@ -63,7 +63,7 @@ function error($key)
         <div class="content">
             <h1 class="titulo">Registrar <span>Empresa</span></h1>
             <div class="cadastro">
-                <form method="POST" action="../../src/controllers/CadastroController.php" class="fomulario">
+                <form method="POST" action="../../src/controllers/CadastroController.php" class="formulario">
                     <legend class="subTitulo">Dados da Empresa</legend>
                     <input type="hidden" name="tipo" value="empresa">
 

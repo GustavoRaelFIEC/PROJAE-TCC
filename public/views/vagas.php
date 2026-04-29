@@ -1,24 +1,40 @@
 <?php
 
+<<<<<<< HEAD
 // require_once __DIR__ . "/../../src/controllers/VagaController.php";
 
 // $vagas = handleBuscarVaga($pdo);
+=======
+require_once __DIR__ . "/../../src/middlewares/auth.php";
+require_once __DIR__ . "/../../src/controllers/InscricaoController.php";
+require_once __DIR__ . "/../../src/controllers/VagaController.php";
+
+
+$inscricoes = visualizarInscricoes($pdo);
+$vagas = handleBuscarVaga($pdo);
+>>>>>>> 30319de1b0acc4d0cce043743b3e5457629f14e3
 
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+    <link rel="shortcut icon" href="../assets/img/isotipo.png" type="image/x-icon">
+
     <link rel="stylesheet" href="../assets/css/globalEimports.css">
+    <link rel="stylesheet" href="../assets/css/navegation.css">
     <link rel="stylesheet" href="../assets/css/main.css">
     <link rel="stylesheet" href="../assets/css/vagas.css">
+
+    <title>Dashboard Empresa</title>
 </head>
 
 <body>
+<<<<<<< HEAD
 
     <!-- <?php
     // foreach ($vagas as $vaga):
@@ -46,10 +62,28 @@
 
     <div id="overlay" onclick="fecharMenu()"></div>
 
+=======
+    <header class="cabecalho">
+        <div class="contentCabecalho">
+            <div class="logo"><img class="img" src="../assets/img/imagotipo.png" alt="Projae logo"></div>
+            <ul class="list">
+                <li><a class="item-list" href="dashboardPessoa.php" >Início</a></li>
+                <li><a class="item-list active" onclick="location.reload()">Vagas</a></li>
+            </ul>
+            <div class="cta">
+                <a href="./logout.php" class="btnSair">Sair</a>
+            </div>
+        </div>
+    </header>
+>>>>>>> 30319de1b0acc4d0cce043743b3e5457629f14e3
     <div>
-        <button onclick="abrirMenu()" class="btn-vaga">Nova Vaga</button>
+        <form action="" role="search">
+            <input type="search" class="input-search" id="search-bar" placeholder="Pesquise suas vagas" required>
+            <button type="submit" class="btn-search">Procurar</button>
+        </form>
     </div>
 
+<<<<<<< HEAD
     <div id="postar-vaga">
         <h1 class="titulo">NOVA VAGA</h1>
         <form method="POST" action="../../src/controllers/VagaController.php/?action=postarVaga">
@@ -122,25 +156,59 @@
                 hidden>
             <!-- tags -->
             <button class="btn-submit-vaga" type="submit">Publicar</button>
+=======
+
+
+    <main> <!--conteudo principal da pagina -->
+        <section class="vagas">
+            <!-- onde irao ficar as vagas da empresa, caso não tenha vagas tera um botão ou link para criar vagas aqui -->
+            <p>teste</p>
+        </section>
+        <aside class="filtros">
+            <ul>
+                <li>teste 1</li>
+                <li>teste 2</li>
+            </ul>
+        </aside>
+    </main>
+
+    <!-- ainda decidir onde colocar botão de criar vagas -->
+
+
+    <a href="testePostarVaga.php">teste para postar vaga</a>
+
+    <div>
+        <form method="GET" action="" id="filtroForm">
+            <select name="tipo" onchange="this.form.submit()">
+                <option value="">Selecione Tipo</option>
+                <option value="Aprendiz" <?= (($_GET['tipo'] ?? '') == 'Aprendiz') ? 'selected' : '' ?>>Aprendiz</option>
+                <option value="Estagio" <?= (($_GET['tipo'] ?? '') == 'Estagio') ? 'selected' : '' ?>>Estágio</option>
+            </select>
+>>>>>>> 30319de1b0acc4d0cce043743b3e5457629f14e3
+        </form>
+        <?php
+        foreach ($vagas as $vaga):
+        ?>
+            <div style="border: 5px solid black;">
+                <form method="POST" action="../../src/controllers/InscricaoController.php">
+                    <input type="hidden" name="id_vaga" value="<?= $vaga['id_vaga'] ?>">
+                    <p><?= $vaga['titulo'] ?></p>
+                    <p><?= $vaga['descricao'] ?></p>
+                    <p><?= $vaga['tipo'] ?></p>
+                    <p><?= $vaga['salario'] ?></p>
+                    <p><?= $vaga['cidade'] ?></p>
+                    <p><?= $vaga['status'] ?></p>
+                    <p><?= $vaga['data_publicacao'] ?></p>
+                    <p><?= $vaga['nome'] ?></p>
+                    <button type="submit">Inscrever-se</button>
         </form>
 
-        <button onclick="fecharMenu()">Fechar</button>
-
-        <script>
-            function abrirMenu() {
-                document.body.style.overflow = "hidden";
-                document.getElementById("overlay").style.display = "block";
-                document.getElementById("postar-vaga").style.display = "block";
-            }
-
-            function fecharMenu() {
-                document.body.style.overflow = "auto";
-                document.getElementById("overlay").style.display = "none";
-                document.getElementById("postar-vaga").style.display = "none";
-            }
-        </script>
-
+            </div>
+        <?php
+        endforeach;
+        ?>
     </div>
 </body>
+
 
 </html>

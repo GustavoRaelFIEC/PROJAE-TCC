@@ -1,7 +1,7 @@
 <?php
-require_once 'src/config/config.php';
+require_once __DIR__ . '/../../src/utils/Session.php';
 
 // Chamada de function que destroi a sessão e volta usuário para login
 Session::destroy();
-header('Location: login.php');
+header('Location: /PROJAE-TCC/public');
 exit();
