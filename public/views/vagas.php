@@ -1,17 +1,11 @@
 <?php
 
-<<<<<<< HEAD
-// require_once __DIR__ . "/../../src/controllers/VagaController.php";
-
-// $vagas = handleBuscarVaga($pdo);
-=======
 require_once __DIR__ . "/../../src/middlewares/auth.php";
 require_once __DIR__ . "/../../src/controllers/InscricaoController.php";
 require_once __DIR__ . "/../../src/controllers/VagaController.php";
 
 verificarLogin();
 $vagas = handleBuscarVaga($pdo);
->>>>>>> 30319de1b0acc4d0cce043743b3e5457629f14e3
 
 ?>
 
