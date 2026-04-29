@@ -100,17 +100,6 @@ $dados = handleDadosPessoa($pdo);
                             maxlength="255">
                     </label>
 
-                    <label class="input-label" for="regiao">
-                        <p>Região:</p>
-                        <?php /*mudar o input para select e option*/ ?>
-                        <input class="input"
-                            placeholder="Escolha sua Região"
-                            id="regiao"
-                            name="regiao"
-                            type="text"
-                            maxlength="255">
-                    </label>
-
                     <button class="btn-submit" type="submit">Cadastrar</button>
                     <button class="btn-cancelar" type="submit">Cancelar</button>
                 </form>
