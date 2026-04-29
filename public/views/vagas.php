@@ -4,8 +4,6 @@ require_once __DIR__ . "/../../src/middlewares/auth.php";
 require_once __DIR__ . "/../../src/controllers/InscricaoController.php";
 require_once __DIR__ . "/../../src/controllers/VagaController.php";
 
-
-$inscricoes = visualizarInscricoes($pdo);
 $vagas = handleBuscarVaga($pdo);
 
 ?>
@@ -32,7 +30,7 @@ $vagas = handleBuscarVaga($pdo);
         <div class="contentCabecalho">
             <div class="logo"><img class="img" src="../assets/img/imagotipo.png" alt="Projae logo"></div>
             <ul class="list">
-                <li><a class="item-list" href="dashboardPessoa.php" >Início</a></li>
+                <li><a class="item-list" href="dashboardPessoa.php">Início</a></li>
                 <li><a class="item-list active" onclick="location.reload()">Vagas</a></li>
             </ul>
             <div class="cta">
@@ -56,8 +54,8 @@ $vagas = handleBuscarVaga($pdo);
         </section>
         <aside class="filtros">
             <ul>
-                <li>teste 1</li>
-                <li>teste 2</li>
+                <li>Filtro 1</li>
+                <li>Filtro 2</li>
             </ul>
         </aside>
     </main>
