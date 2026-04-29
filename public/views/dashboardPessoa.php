@@ -1,10 +1,10 @@
 <?php
 
 require_once __DIR__ . "/../../src/middlewares/auth.php";
-require_once __DIR__ . "/../../src/controllers/VagaController.php";
+require_once __DIR__ . "/../../src/controllers/InscricaoController.php";
 
 verificarTipo('pessoa');
-$vagas = handleBuscarVaga($pdo);
+$inscricoes = visualizarInscricoesPessoa($pdo);
 
 ?>
 
@@ -131,24 +131,20 @@ $vagas = handleBuscarVaga($pdo);
                 <div class="cards">
                     <div class="card">
                         <?php
-                        foreach ($vagas as $vaga):
-                        ?>
+                            foreach ($inscricoes as $inscricao):
+                            ?>
                             <div style="border: 5px solid black;">
-                                <form method="POST" action="../../src/controllers/InscricaoController.php">
-                                    <input type="hidden" name="id_vaga" value="<?= $vaga['id_vaga'] ?>">
-                                    <p><?= $vaga['titulo'] ?></p>
-                                    <p><?= $vaga['descricao'] ?></p>
-                                    <p><?= $vaga['tipo'] ?></p>
-                                    <p><?= $vaga['salario'] ?></p>
-                                    <p><?= $vaga['cidade'] ?></p>
-                                    <p><?= $vaga['status'] ?></p>
-                                    <p><?= $vaga['data_publicacao'] ?></p>
-                                    <p><?= $vaga['nome'] ?></p>
-                                </form>
-
+                                <p><?= $inscricao['titulo'] ?></p>
+                                <p><?= $inscricao['descricao'] ?></p>
+                                <p><?= $inscricao['tipo'] ?></p>
+                                <p><?= $inscricao['salario'] ?></p>
+                                <p><?= $inscricao['cidade'] ?></p>
+                                <p><?= $inscricao['status'] ?></p>
+                                <p><?= $inscricao['data_publicacao'] ?></p>
+                                <p><?= $inscricao['data_inscricao'] ?></p>
                             </div>
-                        <?php
-                        endforeach;
+                            <?php
+                            endforeach;
                         ?>
                     </div>
                 </div>

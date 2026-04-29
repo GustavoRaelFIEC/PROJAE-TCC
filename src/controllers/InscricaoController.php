@@ -43,7 +43,7 @@ function handleInscricao($pdo)
     }
 }
 
-function visualizarInscricoes($pdo)
+function visualizarInscricoesEmpresa($pdo)
 {
 
     $errors = [];
@@ -56,9 +56,37 @@ function visualizarInscricoes($pdo)
 
         $userModel = new Usuario($pdo);
 
-        $inscricoes = $userModel->visualizarInscricoes($id_empresa);
+        $inscricoes = $userModel->visualizarInscricoesEmpresa($id_empresa);
     } catch (PDOException $e) {
-        error_log("Erro ao trazer vagas: " . $e->getMessage());
+        error_log("Erro ao trazer inscrições: " . $e->getMessage());
+        $errors[] = "Erro no sistema. Volte mais tarde.";
+    }
+
+
+    if (!empty($errors)) {
+        header("Location: "); //<-- VOLTAR PAAR A TELA DE VAGAS
+        exit();
+    }
+
+    return $inscricoes;
+}
+
+function visualizarInscricoesPessoa($pdo)
+{
+
+    $errors = [];
+
+    $userPessoa = new Usuario($pdo);
+
+    $id_pessoa =  $userPessoa->findByIdPessoa($_SESSION['user_id']);
+
+    try {
+
+        $userModel = new Usuario($pdo);
+
+        $inscricoes = $userModel->visualizarInscricoesPessoa($id_pessoa);
+    } catch (PDOException $e) {
+        error_log("Erro ao trazer inscrições: " . $e->getMessage());
         $errors[] = "Erro no sistema. Volte mais tarde.";
     }
 
