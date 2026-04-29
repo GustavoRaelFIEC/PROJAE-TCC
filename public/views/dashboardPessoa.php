@@ -3,6 +3,7 @@
 require_once __DIR__ . "/../../src/middlewares/auth.php";
 require_once __DIR__ . "/../../src/controllers/VagaController.php";
 
+verificarTipo('pessoa');
 $vagas = handleBuscarVaga($pdo);
 
 ?>

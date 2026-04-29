@@ -3,6 +3,8 @@
 require_once __DIR__ . "/../../src/middlewares/auth.php";
 require_once __DIR__ . "/../../src/controllers/InscricaoController.php";
 
+
+verificarTipo('empresa');
 $inscricoes = visualizarInscricoes($pdo);
 
 ?>
