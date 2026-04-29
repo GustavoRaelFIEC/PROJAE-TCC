@@ -138,7 +138,7 @@ $inscricoes = visualizarInscricoesEmpresa($pdo);
         endforeach;
         ?>
 
-        <div class="editPerfil" id="novaVaga">
+        <div id="novaVaga">
             <form class="formulario" method="POST" action="../../src/controllers/VagaController.php/?action=postarVaga">
                 <label class="input-label" for="nome">
                     Titulo
@@ -232,6 +232,7 @@ $inscricoes = visualizarInscricoesEmpresa($pdo);
 
         function fecharMenu() {
             editPerfil.classList.remove("ativo");
+            novaVaga.classList.remove("ativo");
             overlay.classList.remove("ativo");
             document.body.style.overflow = "auto";
         }
