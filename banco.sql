@@ -1,11 +1,13 @@
 
 -- CRIAR BANCO
-CREATE DATABASE projae;
+CREATE DATABASE IF NOT EXISTS projae
+CHARACTER SET utf8mb4
+COLLATE utf8mb4_unicode_ci;
 USE projae;
 
 
 -- TABELA USUARIOS (LOGIN)
-CREATE TABLE usuarios (
+CREATE TABLE IF NOT EXISTS usuarios (
     id INT AUTO_INCREMENT PRIMARY KEY,
     email VARCHAR(150) UNIQUE NOT NULL,
     senha VARCHAR(255) NOT NULL,
@@ -15,7 +17,7 @@ CREATE TABLE usuarios (
 
 
 -- TABELA PESSOAS
-CREATE TABLE pessoas (
+CREATE TABLE IF NOT EXISTS pessoas (
     id_pessoa INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(120) NOT NULL,
     cpf VARCHAR(14) UNIQUE,
@@ -31,7 +33,7 @@ CREATE TABLE pessoas (
 
 
 -- TABELA EMPRESAS
-CREATE TABLE empresas (
+CREATE TABLE IF NOT EXISTS empresas (
     id_empresa INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(150) NOT NULL,
     cnpj VARCHAR(14) UNIQUE,
@@ -46,7 +48,7 @@ CREATE TABLE empresas (
 
 
 -- TABELA VAGAS
-CREATE TABLE vagas (
+CREATE TABLE IF NOT EXISTS vagas (
     id_vaga INT AUTO_INCREMENT PRIMARY KEY,
     titulo VARCHAR(150) NOT NULL,
     descricao TEXT,
@@ -65,7 +67,7 @@ CREATE TABLE vagas (
 
 
 -- TABELA INSCRIÇÃO
-CREATE TABLE inscricao (
+CREATE TABLE IF NOT EXISTS inscricao (
     id_inscricao INT AUTO_INCREMENT PRIMARY KEY,
     data_inscricao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     
@@ -81,27 +83,19 @@ CREATE TABLE inscricao (
     UNIQUE (id_pessoa, id_vaga)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO `usuarios` VALUES
+INSERT IGNORE INTO `usuarios` VALUES
 (1,'devPessoa@gmail.com','$2y$10$wH8Q8Q6YQJ2VQ0Qk5GxY8e8d2uY0lYQv6u5hQ2u6c3YQfQe6Q9Q0K','pessoa','2026-03-12 19:43:00'),
 (2,'devEmpresa@gmail.com','$2y$10$wH8Q8Q6YQJ2VQ0Qk5GxY8e8d2uY0lYQv6u5hQ2u6c3YQfQe6Q9Q0K','empresa','2026-03-12 19:43:00');
 
-
-INSERT INTO `pessoas` VALUES
+INSERT IGNORE INTO `pessoas` VALUES
 (1,'devPessoa','12345678910','19998745263','fiec','informatica',1);
 
-
-
-INSERT INTO `empresas` VALUES 
+INSERT IGNORE INTO `empresas` VALUES 
 (1,'devEmpresa','54675103000180','1938018688','Indaiatuba-SP', 1);
 
+INSERT IGNORE INTO `inscricao` VALUES 
+(1,'2026-03-12 20:10:00',1,1);
 
-INSERT INTO `vagas` VALUES 
+INSERT IGNORE INTO `vagas` VALUES 
 (1,'Estagiário de Informática','Auxiliar na manutenção de computadores e suporte básico aos usuários','estagio',1.00,'Indaiatuba','aberta','2026-03-12 20:06:57',1),
-(2,'Aprendiz Administrativo','Ajudar na organização de documentos e digitar informações no sistema','aprendiz',750.00,'Vitoria','aberta','2026-03-12 20:06:57',2);
-
-
-INSERT INTO `inscricao` VALUES 
-(1,'2026-03-12 20:10:00',1,1),
-(2,'2026-03-12 20:15:00',2,2);
-
-
+(2,'Aprendiz Administrativo','Ajudar na organização de documentos e digitar informações no sistema','aprendiz',750.00,'Vitoria','aberta','2026-03-12 20:06:57',1);
