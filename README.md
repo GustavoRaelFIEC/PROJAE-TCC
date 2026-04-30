@@ -1,4 +1,4 @@
-# PROJAE-TCC
+# PROJAE-TCC - PLATAFORMA DE RECRUTAMENTO DE JOVENS APRENDIZES E ESTAGIARIOS
 O PROJAE é um sistema web desenvolvido para intermediar a relação entre estudantes e empresas na oferta e busca por oportunidades de estágio e jovem aprendiz. A plataforma centraliza a divulgação de vagas, permite que empresas publiquem oportunidades e que estudantes pesquisem e se candidatem de forma organizada.
 
 O objetivo principal é tornar o processo de recrutamento mais simples, acessível e eficiente para ambos os lados.
