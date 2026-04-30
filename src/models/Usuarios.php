@@ -140,8 +140,32 @@ class Usuario
         return $stmt->fetchColumn();
     }
 
-    // Buscar/Trazer todas as inscrições
-    public function visualizarInscricoes($userId)
+    // Dados por ID da Pessoa
+    public function dadosByIdPessoa($userId)
+    {
+        $stmt = $this->pdo->prepare("
+        SELECT * 
+        FROM pessoas 
+        WHERE id_usuario = ?
+        ");
+        $stmt->execute([$userId]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    // Dados por ID da Empresa
+    public function dadosByIdEmpresa($userId)
+    {
+        $stmt = $this->pdo->prepare("
+        SELECT * 
+        FROM empresas 
+        WHERE id_usuario = ?
+        ");
+        $stmt->execute([$userId]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    // Buscar/Trazer todas as inscrições pela Empresa
+    public function visualizarInscricoesEmpresa($userId)
     {
         $stmt = $this->pdo->prepare("
         SELECT 
@@ -154,6 +178,20 @@ class Usuario
         JOIN empresas ON vagas.id_empresa = empresas.id_empresa
         WHERE empresas.id_empresa = ?
         ");
+        $stmt->execute([$userId]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    // Buscar/Trazer todas as inscrições pela Pessoa
+    public function visualizarInscricoesPessoa($userId)
+    {
+        $stmt = $this->pdo->prepare("
+        SELECT 
+            inscricao.data_inscricao,
+            vagas.*
+        FROM inscricao
+        JOIN vagas ON inscricao.id_vaga = vagas.id_vaga
+        WHERE inscricao.id_pessoa = ?");
         $stmt->execute([$userId]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }

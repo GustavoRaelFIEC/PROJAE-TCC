@@ -1,9 +1,12 @@
 <?php
 
 require_once __DIR__ . "/../../src/middlewares/auth.php";
-require_once __DIR__ . "/../../src/controllers/VagaController.php";
+require_once __DIR__ . "/../../src/controllers/InscricaoController.php";
+require_once __DIR__ . "/../../src/controllers/DadosController.php";
 
-$vagas = handleBuscarVaga($pdo);
+verificarTipo('pessoa');
+$inscricoes = visualizarInscricoesPessoa($pdo);
+$dados = handleDadosPessoa($pdo);
 
 ?>
 
@@ -97,17 +100,6 @@ $vagas = handleBuscarVaga($pdo);
                             maxlength="255">
                     </label>
 
-                    <label class="input-label" for="regiao">
-                        <p>Região:</p>
-                        <?php /*mudar o input para select e option*/ ?>
-                        <input class="input"
-                            placeholder="Escolha sua Região"
-                            id="regiao"
-                            name="regiao"
-                            type="text"
-                            maxlength="255">
-                    </label>
-
                     <button class="btn-submit" type="submit">Cadastrar</button>
                     <button class="btn-cancelar" type="submit">Cancelar</button>
                 </form>
@@ -116,11 +108,11 @@ $vagas = handleBuscarVaga($pdo);
                 <div class="detalhesPerfil">
                     <div class="fotoPerfil"><img src="../assets/img/testeIMG.png" alt="Sua Foto de Perfil"></div>
                     <div>
-                        <h1 class="nomePerfil">Nome</h1>
-                        <h2 class="instituicaoPerfil">FIEC</h2>
-                        <h2 class="cursoPerfil">TI - Tecnologia da Informação</h2>
-                        <h2 class="telefonePerfil">11 98734-1209</h2>
-                        <h2 class="regiaoPerfil">São Paulo - SP</h2>
+                        <h1 class="nomePerfil"><?= $dados['nome'] ?></h1>
+                        <h2 class="instituicaoPerfil"><?= $dados['instituicao'] ?></h2>
+                        <h2 class="cursoPerfil"><?= $dados['curso'] ?></h2>
+                        <h2 class="telefonePerfil"><?= $dados['telefone'] ?></h2>
+                        <h2 class="regiaoPerfil"><?= $dados['cpf'] ?></h2>
                     </div>
                 </div>
                 <button onclick="abrirMenu()" class="btnEditar"><i class="fa-solid fa-pen-to-square"></i></button>
@@ -130,24 +122,20 @@ $vagas = handleBuscarVaga($pdo);
                 <div class="cards">
                     <div class="card">
                         <?php
-                        foreach ($vagas as $vaga):
-                        ?>
+                            foreach ($inscricoes as $inscricao):
+                            ?>
                             <div style="border: 5px solid black;">
-                                <form method="POST" action="../../src/controllers/InscricaoController.php">
-                                    <input type="hidden" name="id_vaga" value="<?= $vaga['id_vaga'] ?>">
-                                    <p><?= $vaga['titulo'] ?></p>
-                                    <p><?= $vaga['descricao'] ?></p>
-                                    <p><?= $vaga['tipo'] ?></p>
-                                    <p><?= $vaga['salario'] ?></p>
-                                    <p><?= $vaga['cidade'] ?></p>
-                                    <p><?= $vaga['status'] ?></p>
-                                    <p><?= $vaga['data_publicacao'] ?></p>
-                                    <p><?= $vaga['nome'] ?></p>
-                                </form>
-
+                                <p><?= $inscricao['titulo'] ?></p>
+                                <p><?= $inscricao['descricao'] ?></p>
+                                <p><?= $inscricao['tipo'] ?></p>
+                                <p><?= $inscricao['salario'] ?></p>
+                                <p><?= $inscricao['cidade'] ?></p>
+                                <p><?= $inscricao['status'] ?></p>
+                                <p><?= $inscricao['data_publicacao'] ?></p>
+                                <p><?= $inscricao['data_inscricao'] ?></p>
                             </div>
-                        <?php
-                        endforeach;
+                            <?php
+                            endforeach;
                         ?>
                     </div>
                 </div>
