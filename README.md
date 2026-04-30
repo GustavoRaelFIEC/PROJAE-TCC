@@ -1,4 +1,4 @@
-# PROJAE-TCC - PLATAFORMA DE RECRUTAMENTO DE JOVENS APRENDIZES E ESTAGIARIOS
+# PROJAE-TCC - PLATAFORMA DE RECRUTAMENTO DE JOVENS APRENDIZES E ESTAGIÁRIOS
 O PROJAE é um sistema web desenvolvido para intermediar a relação entre estudantes e empresas na oferta e busca por oportunidades de estágio e jovem aprendiz. A plataforma centraliza a divulgação de vagas, permite que empresas publiquem oportunidades e que estudantes pesquisem e se candidatem de forma organizada.
 
 O objetivo principal é tornar o processo de recrutamento mais simples, acessível e eficiente para ambos os lados.
@@ -20,7 +20,7 @@ O sistema segue uma organização baseada em separação de responsabilidades en
 
 Essa divisão permite entender claramente o fluxo de cada funcionalidade.
 
-# FLUXO BASICO DE FUNCIONAMENTO
+# FLUXO BÁSICO DE FUNCIONAMENTO
 Exemplo do fluxo de uma funcionalidade (filtro de vagas):
 
 1. A View envia dados do formulário.
@@ -50,5 +50,5 @@ Esse padrão se repete nas demais funcionalidades do sistema.
 
 http://localhost/PROJAE-TCC/login.php
 
-# OBJETIVO ACADEMICO
+# OBJETIVO ACADÊMICO
 Este projeto foi desenvolvido como Trabalho de Conclusão de Curso do Técnico em Informática para Internet da FIEC, com foco na aplicação prática de conceitos de desenvolvimento web, banco de dados e organização de sistemas.
