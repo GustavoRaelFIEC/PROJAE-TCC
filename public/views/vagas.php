@@ -28,30 +28,6 @@ $vagas = handleBuscarVaga($pdo);
 
 <body>
 
-    <!-- <?php
-    // foreach ($vagas as $vaga):
-    ?>
-    <div style="border: 5px solid black;">
-        <form method="POST" action="../../src/controllers/InscricaoController.php">
-        <input type="hidden" name="id_vaga" value="<//?= $vaga['id_vaga'] ?>">
-        <p><//?= $vaga['titulo'] ?></p>
-        <p><//?= $vaga['descricao'] ?></p>
-        <p><//?= $vaga['tipo'] ?></p>
-        <p><//?= $vaga['salario'] ?></p>
-        <p><//?= $vaga['cidade'] ?></p>
-        <p><//?= $vaga['status'] ?></p>
-        <p><//?= $vaga['data_publicacao'] ?></p>
-        <p><//?= $vaga['nome'] ?></p>
-        <button type="submit">Inscrever-se</button>
-        </form>
-        
-    </div>
-    <?php
-    // endforeach;
-    ?> -->
-
-    <!-- tem que colocar a filtragem certa pra so aparecer as vagas da emmpresa -->
-
     <div id="overlay" onclick="fecharMenu()"></div>
 
     <div>
@@ -63,7 +39,7 @@ $vagas = handleBuscarVaga($pdo);
 
     <div id="postar-vaga">
         <h1 class="titulo">NOVA VAGA</h1>
-        <form method="POST" action="../../src/controllers/VagaController.php/?action=postarVaga">
+        <form method="POST" action="../../src/controllers/VagaController.php?action=postarVaga">
             <label class="input-label" for="nome">
                 Titulo
                 <input class="input"
@@ -134,9 +110,10 @@ $vagas = handleBuscarVaga($pdo);
             <!-- tags -->
             <button class="btn-submit-vaga" type="submit">Publicar</button>
         </form>
-        <?php
-        foreach ($vagas as $vaga):
-        ?>
+    </div>
+
+    <div id="listagem-vagas">
+        <?php foreach ($vagas as $vaga): ?>
             <div style="border: 5px solid black;">
                 <form method="POST" action="../../src/controllers/InscricaoController.php">
                     <input type="hidden" name="id_vaga" value="<?= $vaga['id_vaga'] ?>">
@@ -149,12 +126,9 @@ $vagas = handleBuscarVaga($pdo);
                     <p><?= $vaga['data_publicacao'] ?></p>
                     <p><?= $vaga['nome'] ?></p>
                     <button type="submit">Inscrever-se</button>
-        </form>
-
+                </form>
             </div>
-        <?php
-        endforeach;
-        ?>
+        <?php endforeach; ?>
     </div>
 </body>
 

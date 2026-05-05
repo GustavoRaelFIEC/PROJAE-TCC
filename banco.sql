@@ -1,12 +1,9 @@
-
--- CRIAR BANCO
 CREATE DATABASE IF NOT EXISTS projae
 CHARACTER SET utf8mb4
 COLLATE utf8mb4_unicode_ci;
 USE projae;
 
-
--- TABELA USUARIOS (LOGIN)
+-- USUARIOS
 CREATE TABLE IF NOT EXISTS usuarios (
     id INT AUTO_INCREMENT PRIMARY KEY,
     email VARCHAR(150) UNIQUE NOT NULL,
@@ -15,8 +12,7 @@ CREATE TABLE IF NOT EXISTS usuarios (
     data_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-
--- TABELA PESSOAS
+-- PESSOAS
 CREATE TABLE IF NOT EXISTS pessoas (
     id_pessoa INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(120) NOT NULL,
@@ -24,30 +20,32 @@ CREATE TABLE IF NOT EXISTS pessoas (
     telefone VARCHAR(20),
     instituicao VARCHAR(150),
     curso VARCHAR(100),
-    
     id_usuario INT NOT NULL,
-    
+
     CONSTRAINT fk_pessoa_usuario
-    FOREIGN KEY (id_usuario) REFERENCES usuarios(id)
+    FOREIGN KEY (id_usuario)
+    REFERENCES usuarios(id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-
--- TABELA EMPRESAS
+-- EMPRESAS
 CREATE TABLE IF NOT EXISTS empresas (
     id_empresa INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(150) NOT NULL,
     cnpj VARCHAR(14) UNIQUE,
     telefone VARCHAR(20),
     cidade VARCHAR(100),
-    
     id_usuario INT NOT NULL,
-    
+
     CONSTRAINT fk_empresa_usuario
-    FOREIGN KEY (id_usuario) REFERENCES usuarios(id)
+    FOREIGN KEY (id_usuario)
+    REFERENCES usuarios(id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-
--- TABELA VAGAS
+-- VAGAS
 CREATE TABLE IF NOT EXISTS vagas (
     id_vaga INT AUTO_INCREMENT PRIMARY KEY,
     titulo VARCHAR(150) NOT NULL,
@@ -57,29 +55,34 @@ CREATE TABLE IF NOT EXISTS vagas (
     cidade VARCHAR(100),
     status ENUM('aberta','fechada') DEFAULT 'aberta',
     data_publicacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    
-    
     id_empresa INT NOT NULL,
-    
+
     CONSTRAINT fk_vaga_empresa
-    FOREIGN KEY (id_empresa) REFERENCES empresas(id_empresa)
+    FOREIGN KEY (id_empresa)
+    REFERENCES empresas(id_empresa)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-
--- TABELA INSCRIÇÃO
+-- INSCRICAO
 CREATE TABLE IF NOT EXISTS inscricao (
     id_inscricao INT AUTO_INCREMENT PRIMARY KEY,
     data_inscricao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    
     id_pessoa INT NOT NULL,
     id_vaga INT NOT NULL,
-    
+
     CONSTRAINT fk_inscricao_pessoa
-    FOREIGN KEY (id_pessoa) REFERENCES pessoas(id_pessoa),
-    
+    FOREIGN KEY (id_pessoa)
+    REFERENCES pessoas(id_pessoa)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+
     CONSTRAINT fk_inscricao_vaga
-    FOREIGN KEY (id_vaga) REFERENCES vagas(id_vaga),
-    
+    FOREIGN KEY (id_vaga)
+    REFERENCES vagas(id_vaga)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+
     UNIQUE (id_pessoa, id_vaga)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
