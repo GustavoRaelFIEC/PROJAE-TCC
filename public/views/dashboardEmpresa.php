@@ -1,11 +1,11 @@
 <?php
 
-// require_once __DIR__ . "/../../src/middlewares/auth.php";
-// require_once __DIR__ . "/../../src/controllers/InscricaoController.php";
+ require_once __DIR__ . "/../../src/middlewares/auth.php";
+ require_once __DIR__ . "/../../src/controllers/InscricaoController.php";
 
 
-// verificarTipo('empresa');
-// $inscricoes = visualizarInscricoesEmpresa($pdo);
+ verificarTipo('empresa');
+ $inscricoes = visualizarInscricoesEmpresa($pdo);
 
 ?>
 
