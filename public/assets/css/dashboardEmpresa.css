@@ -1,37 +1,56 @@
+/* ================= OVERLAY ================= */
 #overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-
+  inset: 0;
   background: rgba(0, 0, 0, 0.5);
-
-  display: none;
-  z-index: 998;
+  z-index: 2;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.1s linear;
 }
 
-#postar-vaga {
+#overlay.ativo {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ================= MODAIS (PADRÃO PARA OS DOIS) ================= */
+#editPerfil,
+#novaVaga {
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scale(0.95);
 
-  height: 100%;
   width: 70%;
+  max-width: 900px;
+  min-width: 300px;
+  max-height: 90%;
 
   background: white;
   padding: 20px;
   border-radius: 10px;
 
-  display: none;
+  opacity: 0;
+  visibility: hidden;
+
+  overflow-y: auto;
   z-index: 999;
 
-  min-width: 300px;
+  transition: all 0.2s ease;
 }
 
-/* Container do formulário */
-#postar-vaga form {
+/* Estado ativo (abre modal) */
+#editPerfil.ativo,
+#novaVaga.ativo {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* ================= FORMULÁRIO ================= */
+#novaVaga form,
+#editPerfil form {
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -47,7 +66,7 @@
   font-size: 14px;
 }
 
-/* Inputs gerais */
+/* Inputs */
 .input,
 .input-desc,
 select.input {
@@ -58,9 +77,10 @@ select.input {
   outline: none;
   font-size: 14px;
   transition: 0.2s ease;
+  width: 100%;
 }
 
-/* Focus bonito */
+/* Focus */
 .input:focus,
 .input-desc:focus,
 select.input:focus {
@@ -68,19 +88,13 @@ select.input:focus {
   box-shadow: 0 0 6px rgba(73, 56, 190, 0.3);
 }
 
-/* Textarea (descrição) */
+/* Textarea */
 .input-desc {
   height: 150px;
   resize: none;
 }
 
-/* Ajuste largura */
-.input,
-select.input {
-  width: 100%;
-}
-
-/* Botão principal */
+/* ================= BOTÕES ================= */
 .btn-submit-vaga {
   margin-top: 10px;
   padding: 12px;
@@ -94,15 +108,15 @@ select.input {
   transition: 0.3s;
 }
 
-/* Hover botão */
-.btn-submit:hover {
+.btn-submit-vaga:hover {
   background: #372ca0;
   box-shadow: 0 4px 12px rgba(73, 56, 190, 0.4);
   transform: translateY(-1px);
 }
 
-/* Botão fechar */
-#postar-vaga button {
+/* Botões internos do modal */
+#novaVaga button,
+#editPerfil button {
   margin-top: 10px;
   padding: 8px 12px;
   border-radius: 6px;
@@ -112,19 +126,88 @@ select.input {
   transition: 0.2s;
 }
 
-#postar-vaga button:hover {
+#novaVaga button:hover,
+#editPerfil button:hover {
   background: #aaa;
 }
 
-/* Scroll caso fique grande */
-#postar-vaga {
-  overflow-y: auto;
-  max-height: 90%;
+/* ================= LAYOUT ================= */
+.principal {
+  display: flex;
 }
 
-/* Responsividade */
+.content {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 30px;
+}
+
+/* ================= PERFIL CARD ================= */
+.perfil {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background-color: rgb(245, 245, 245);
+  box-shadow: 1px 7px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+
+  padding: 25px;
+  width: 100%;
+  height: 250px;
+}
+
+.detalhesPerfil {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.fotoPerfil {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: rgb(225, 225, 225);
+  border-radius: 50%;
+
+  width: 210px;
+  height: 210px;
+}
+
+.fotoPerfil > img {
+  border-radius: 50%;
+  width: 95%;
+  height: 95%;
+}
+
+.telefonePerfil,
+.regiaoPerfil {
+  font-weight: 500;
+}
+
+/* Botão editar */
+.btnEditar {
+  align-self: flex-start;
+  padding: 10px;
+  border-radius: 50%;
+  background-color: white;
+  border: #4938be solid 1px;
+  box-shadow: rgba(74, 56, 190, 0.2) 0px 0px 10px;
+  color: #4938be;
+  cursor: pointer;
+}
+
+.btnEditar:hover {
+  background-color: #4938be;
+  color: #fff;
+  transition: 0.2s;
+}
+
+/* ================= RESPONSIVO ================= */
 @media (max-width: 768px) {
-  #postar-vaga {
+  #novaVaga,
+  #editPerfil {
     width: 90%;
     padding: 15px;
   }

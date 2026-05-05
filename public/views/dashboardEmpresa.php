@@ -1,11 +1,11 @@
 <?php
 
-require_once __DIR__ . "/../../src/middlewares/auth.php";
-require_once __DIR__ . "/../../src/controllers/InscricaoController.php";
+// require_once __DIR__ . "/../../src/middlewares/auth.php";
+// require_once __DIR__ . "/../../src/controllers/InscricaoController.php";
 
 
-verificarTipo('empresa');
-$inscricoes = visualizarInscricoesEmpresa($pdo);
+// verificarTipo('empresa');
+// $inscricoes = visualizarInscricoesEmpresa($pdo);
 
 ?>
 
@@ -19,8 +19,7 @@ $inscricoes = visualizarInscricoesEmpresa($pdo);
     <link rel="stylesheet" href="../assets/css/globalEimports.css">
     <link rel="stylesheet" href="../assets/css/navegation.css">
     <link rel="stylesheet" href="../assets/css/main.css">
-    <!-- <link rel="stylesheet" href="../assets/css/dashboardEmpresa.css"> -->
-    <link rel="stylesheet" href="../assets/css/dashboardPessoa.css">
+    <link rel="stylesheet" href="../assets/css/dashboardEmpresa.css">
 </head>
 
 <body>
@@ -106,7 +105,7 @@ $inscricoes = visualizarInscricoesEmpresa($pdo);
                     </label>
 
                     <button class="btn-submit" type="submit">Cadastrar</button>
-                    <button class="btn-cancelar" type="submit">Cancelar</button>
+                    <button class="btn-cancelar" onclick="fecharMenu()">Cancelar</button>
                 </form>
             </div>
                 <section class="perfil">
@@ -219,23 +218,25 @@ $inscricoes = visualizarInscricoesEmpresa($pdo);
         const overlay = document.getElementById("overlay");
 
         function abrirMenuPerfil() {
-            editPerfil.classList.add("ativo");
-            overlay.classList.add("ativo");
-            document.body.style.overflow = "hidden";
-        }
+    novaVaga.classList.remove("ativo");
+    editPerfil.classList.add("ativo");
+    overlay.classList.add("ativo");
+    document.body.style.overflow = "hidden";
+}
 
-        function abrirMenuVaga() {
-            novaVaga.classList.add("ativo");
-            overlay.classList.add("ativo");
-            document.body.style.overflow = "hidden";
-        }
+function abrirMenuVaga() {
+    editPerfil.classList.remove("ativo");
+    novaVaga.classList.add("ativo");
+    overlay.classList.add("ativo");
+    document.body.style.overflow = "hidden";
+}
 
-        function fecharMenu() {
-            editPerfil.classList.remove("ativo");
-            novaVaga.classList.remove("ativo");
-            overlay.classList.remove("ativo");
-            document.body.style.overflow = "auto";
-        }
+function fecharMenu() {
+    editPerfil.classList.remove("ativo");
+    novaVaga.classList.remove("ativo");
+    overlay.classList.remove("ativo");
+    document.body.style.overflow = "auto";
+}
     </script>
 </body>
 
