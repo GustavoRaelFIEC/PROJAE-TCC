@@ -139,7 +139,7 @@ $inscricoes = visualizarInscricoesEmpresa($pdo);
         ?>
 
         <div id="novaVaga">
-            <form class="formulario" method="POST" action="../../src/controllers/VagaController.php/?action=postarVaga">
+            <form class="formulario" method="POST" action="../../src/controllers/VagaController.php?action=postarVaga">
                 <label class="input-label" for="nome">
                     Titulo
                     <input class="input"
@@ -164,16 +164,15 @@ $inscricoes = visualizarInscricoesEmpresa($pdo);
                         <!-- colacar as opçoes dps -->
                     </select>
                 </label>
-                <label class="input-label" class="desc">
+                <label class="input-label" for="descricao">
                     Descrição
-                    <textarea
-                        class="input-desc"
+                    <input class="input"
                         id="descricao"
                         name="descricao"
                         placeholder="Descreva sua vaga detalhadamente aqui"
                         maxlength="500"
                         required>
-                    </textarea>
+                    </input>
                 </label>
                 <label class="input-label">
                     Salario
@@ -203,7 +202,6 @@ $inscricoes = visualizarInscricoesEmpresa($pdo);
                     name="status"
                     value="aberta"
                     hidden>
-                <!-- tags -->
                 <button class="btn-submit-vaga" type="submit">Publicar</button>
             </form>
 
