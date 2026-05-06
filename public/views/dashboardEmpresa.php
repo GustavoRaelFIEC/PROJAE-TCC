@@ -196,6 +196,10 @@
                         required
                         maxlength="100">
                 </label>
+                <label class="input-label">
+                    Cor
+                    <input type="color" id="colorPicker">
+                </label>
                 <input
                     type="text"
                     name="status"
@@ -214,6 +218,7 @@
         const editPerfil = document.getElementById("editPerfil");
         const novaVaga = document.getElementById("novaVaga")
         const overlay = document.getElementById("overlay");
+        const picker = document.getElementById("colorPicker");
 
         function abrirMenuPerfil() {
     novaVaga.classList.remove("ativo");
@@ -235,6 +240,10 @@ function fecharMenu() {
     overlay.classList.remove("ativo");
     document.body.style.overflow = "auto";
 }
+
+picker.addEventListener("input", () => {
+    localStorage.setItem("corEscolhida", picker.value);
+  });
     </script>
 </body>
 
