@@ -42,8 +42,22 @@ $vagas = handleBuscarVaga($pdo);
     <main class="principal">
         <div class="content">
             <aside>
-                
+
             </aside>
+            <div class="filtros">
+                <p style="font-weight: bold;">Filtros da vaga<p>
+
+                <form class="filtroTipo" method="GET" action="../../src/controllers/VagaController.php">
+                    <input type="hidden" name="action" value="filtrarPorTipo">
+
+                    <select name="tipo" onchange="this.form.submit()">
+                        <option value="">Selecione o tipo da vaga</option>
+                        <option value="aprendiz">Jovem Aprendiz</option>
+                        <option value="estagio">Estagiário</option>
+                    </select>
+                </form>
+            </div>
+
             <div id="listagem-vagas">
                 <?php foreach ($vagas as $vaga): ?>
                     <div class="card">
