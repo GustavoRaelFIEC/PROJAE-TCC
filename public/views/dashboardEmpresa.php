@@ -127,17 +127,21 @@
             <button onclick="abrirMenuVaga()" class="btn-vaga">Nova Vaga</button>
         </div>
 
-        <?php
-        foreach ($inscricoes as $inscricao):
-        ?>
-        <div style="border: 5px solid black;">
-            <p><?= $inscricao['titulo_vaga'] ?></p>
-            <p><?= $inscricao['nome_pessoa'] ?></p>
-            <p><?= $inscricao['data_inscricao'] ?></p>
+        <button onclick="toggleConteudo()" id="toggleConteudo" class="btn-toggle">Alternar Conteúdo</button>
+
+        <div id="conteudoInscricoes">
+            <?php foreach ($inscricoes as $inscricao): ?>
+                <div style="border: 5px solid black;">
+                    <p><?= $inscricao['titulo_vaga'] ?></p>
+                    <p><?= $inscricao['nome_pessoa'] ?></p>
+                    <p><?= $inscricao['data_inscricao'] ?></p>
+                </div>
+            <?php endforeach; ?>
         </div>
-        <?php
-        endforeach;
-        ?>
+
+        <div id="conteudoTeste" style="display: none;">
+            <p>Conteúdo de teste</p>
+        </div>
 
         <div id="novaVaga">
             <form class="formulario" method="POST" action="../../src/controllers/VagaController.php?action=postarVaga">
@@ -198,6 +202,10 @@
                         required
                         maxlength="100">
                 </label>
+                <label class="input-label">
+                    Cor
+                    <input type="color" id="colorPicker">
+                </label>
                 <input
                     type="text"
                     name="status"
@@ -213,9 +221,12 @@
 
 
     <script>
+        let conteudo = 1;
         const editPerfil = document.getElementById("editPerfil");
         const novaVaga = document.getElementById("novaVaga")
         const overlay = document.getElementById("overlay");
+        const picker = document.getElementById("colorPicker");
+        const btnToggle = document.getElementById("toggleConteudo")
 
         function abrirMenuPerfil() {
     novaVaga.classList.remove("ativo");
@@ -236,6 +247,31 @@ function fecharMenu() {
     novaVaga.classList.remove("ativo");
     overlay.classList.remove("ativo");
     document.body.style.overflow = "auto";
+}
+
+picker.addEventListener("input", () => {
+    localStorage.setItem("corEscolhida", picker.value);
+  });
+
+function toggleConteudo() {
+    const inscricoes = document.getElementById("conteudoInscricoes");
+    const teste = document.getElementById("conteudoTeste");
+
+    if (conteudo === 1) {
+        inscricoes.style.display = "none";
+        teste.style.display = "block";
+        btnToggle.textContent = "Ver inscrições"
+    } else {
+        inscricoes.style.display = "block";
+        teste.style.display = "none";
+        btnToggle.textContent = "Ver teste"
+    }
+
+    if (conteudo == 1){
+        conteudo = 2
+    }else{
+        conteudo = 1
+    }
 }
     </script>
 </body>
