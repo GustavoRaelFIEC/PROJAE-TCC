@@ -16,6 +16,8 @@ $vagas = handleBuscarVaga($pdo);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
     <link rel="shortcut icon" href="../assets/img/isotipo.png" type="image/x-icon">
 
     <link rel="stylesheet" href="../assets/css/globalEimports.css">
@@ -23,7 +25,7 @@ $vagas = handleBuscarVaga($pdo);
     <link rel="stylesheet" href="../assets/css/main.css">
     <link rel="stylesheet" href="../assets/css/vagas.css">
 
-    <title>Dashboard Empresa</title>
+    <title>Vagas</title>
 </head>
 
 <body>
@@ -40,12 +42,12 @@ $vagas = handleBuscarVaga($pdo);
         </div>
     </header>
     <main class="principal">
+        <search class="search">
+            <input class="inputSearch" type="text"><i class="fa-solid fa-search"></i>
+        </search>
         <div class="content">
-            <aside>
-
-            </aside>
-            <div class="filtros">
-                <p style="font-weight: bold;">Filtros da vaga<p>
+            <aside class="filtros">
+                <h1 style="font-weight: bold;">Filtros da vaga</h1>
 
                 <form class="filtroTipo" method="GET" action="../../src/controllers/VagaController.php">
                     <input type="hidden" name="action" value="filtrarPorTipo">
@@ -56,9 +58,8 @@ $vagas = handleBuscarVaga($pdo);
                         <option value="estagio">Estagiário</option>
                     </select>
                 </form>
-            </div>
-
-            <div id="listagem-vagas">
+            </aside>
+            <div id="listagemVagas">
                 <?php foreach ($vagas as $vaga): ?>
                     <div class="card">
                         <form method="POST" action="../../src/controllers/InscricaoController.php">
@@ -75,7 +76,9 @@ $vagas = handleBuscarVaga($pdo);
                     </div>
                 <?php endforeach; ?>
             </div>
-        </div>
+            <div class="vazio">
+
+            </div>
     </main>
 </body>
 

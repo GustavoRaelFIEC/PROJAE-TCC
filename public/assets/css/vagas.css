@@ -1,3 +1,63 @@
-.content{
-  margin: 0;
+.search {
+  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-bottom: 25px;
+  gap: 5px;
+}
+
+.inputSearch {
+  width: 15%;
+  padding: 5px;
+  font-size: 18px;
+  border-radius: 10px;
+  border: 1px solid black;
+}
+
+.search > i {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  max-width: 90%;
+  gap: 10px;
+}
+
+.filtros {
+  box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+
+  position: sticky;
+  top: 20px;
+  height: 480px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+#listagemVagas {
+  display: grid;
+  grid-template-columns: repeat(3, 400px);
+  grid-auto-rows: 300px;
+  gap: 10px;
+
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+.card {
+  width: 100%;
+  height: 100%;
+
+  box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 20px;
 }
