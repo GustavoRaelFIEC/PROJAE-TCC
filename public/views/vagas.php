@@ -129,7 +129,7 @@ $vagas = handleBuscarVaga($pdo);
                 </form>
             </div>
         <?php endforeach; ?>
-    </div>
+        </div>
 </body>
 
 
