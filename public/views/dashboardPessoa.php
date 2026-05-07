@@ -100,13 +100,13 @@ $dados = handleDadosPessoa($pdo);
                             maxlength="255">
                     </label>
 
-                    <button class="btn-submit" type="submit">Cadastrar</button>
+                    <button class="btn-submit" type="submit">Salvar</button>
                     <button class="btn-cancelar" type="submit">Cancelar</button>
                 </form>
             </div>
             <section class="perfil">
                 <div class="detalhesPerfil">
-                    <div class="fotoPerfil"><img src="../assets/img/testeIMG.png" alt="Sua Foto de Perfil"></div>
+                    <div class="fotoPerfil"><img src="../assets/img/fotoPerfilPadrao.jpg" alt="Sua Foto de Perfil"></div>
                     <div>
                         <h1 class="nomePerfil"><?= $dados['nome'] ?></h1>
                         <h2 class="instituicaoPerfil"><?= $dados['instituicao'] ?></h2>
@@ -119,25 +119,19 @@ $dados = handleDadosPessoa($pdo);
             </section>
             <section class="vagasInscritas">
                 <h1 class="titulo">Vagas Inscritas</h1>
-                <div class="cards">
-                    <div class="card">
-                        <?php
-                            foreach ($inscricoes as $inscricao):
-                            ?>
-                            <div style="border: 5px solid black;">
-                                <p><?= $inscricao['titulo'] ?></p>
-                                <p><?= $inscricao['descricao'] ?></p>
-                                <p><?= $inscricao['tipo'] ?></p>
-                                <p><?= $inscricao['salario'] ?></p>
-                                <p><?= $inscricao['cidade'] ?></p>
-                                <p><?= $inscricao['status'] ?></p>
-                                <p><?= $inscricao['data_publicacao'] ?></p>
-                                <p><?= $inscricao['data_inscricao'] ?></p>
-                            </div>
-                            <?php
-                            endforeach;
-                        ?>
-                    </div>
+                <div id="listagemVagas">
+                    <?php foreach ($inscricoes as $inscricao): ?>
+                        <div class="card">
+                            <p class="paragrafoCard dataPublicacao"><?= $inscricao['data_publicacao'] ?></p>
+                            <h1 class="cardTitulo"><?= $inscricao['titulo'] ?></h1>
+                            <p class="paragrafoCard descricao"><?= $inscricao['descricao'] ?></p>
+                            <p class="paragrafoCard tipo"><?= $inscricao['tipo'] ?></p>
+                            <p class="paragrafoCard salario"><?= $inscricao['salario'] ?></p>
+                            <p class="paragrafoCard cidade"><?= $inscricao['cidade'] ?></p>
+                            <p class="paragrafoCard status"><?= $inscricao['status'] ?></p>
+                            <p class="paragrafoCard dataInscricao"><?= $inscricao['data_inscricao'] ?></p>
+                        </div>
+                    <?php endforeach; ?>
                 </div>
             </section>
         </div>
