@@ -1,11 +1,11 @@
 <?php
 
- require_once __DIR__ . "/../../src/middlewares/auth.php";
- require_once __DIR__ . "/../../src/controllers/InscricaoController.php";
+require_once __DIR__ . "/../../src/middlewares/auth.php";
+require_once __DIR__ . "/../../src/controllers/InscricaoController.php";
 
 
- verificarTipo('empresa');
- $inscricoes = visualizarInscricoesEmpresa($pdo);
+verificarTipo('empresa');
+$inscricoes = visualizarInscricoesEmpresa($pdo);
 
 ?>
 
@@ -106,13 +106,23 @@
                             maxlength="255">
                     </label>
 
-                    <button class="btn-submit" type="submit">Cadastrar</button>
+                    <label class="input-label" for="cor">
+                        <p>Cor:</p>
+                        <p style="color: gray;">Escolha uma cor para representar sua empresa</p>
+                    </label>
+                    <input
+                    style="margin-top: -15px;"
+                        id="cor"
+                        name="cor"
+                        type="color">
+
+                    <button class="btn-submit" type="submit">Salvar</button>
                     <button class="btn-cancelar" onclick="fecharMenu()">Cancelar</button>
                 </form>
             </div>
-                <section class="perfil">
+            <section class="perfil">
                 <div class="detalhesPerfil">
-                    <div class="fotoPerfil"><img src="../assets/img/testeIMG.png" alt="Sua Foto de Perfil"></div>
+                    <div class="fotoPerfil"><img src="../assets/img/fotoPerfilPadrao.jpg" alt="Sua Foto de Perfil"></div>
                     <div>
                         <h1 class="nomePerfil">Nome</h1>
                         <h2 class="instituicaoPerfil">FIEC</h2>
@@ -123,100 +133,100 @@
                 </div>
                 <button onclick="abrirMenuPerfil()" class="btnEditar"><i class="fa-solid fa-pen-to-square"></i></button>
             </section>
-        <div>
-            <button onclick="abrirMenuVaga()" class="btn-vaga">Nova Vaga</button>
-        </div>
+            <div>
+                <button onclick="abrirMenuVaga()" class="btn-vaga">Nova Vaga</button>
+            </div>
 
-        <button onclick="toggleConteudo()" id="toggleConteudo" class="btn-toggle">Alternar Conteúdo</button>
+            <button onclick="toggleConteudo()" id="toggleConteudo" class="btn-toggle">Alternar Conteúdo</button>
 
-        <div id="conteudoInscricoes">
-            <?php foreach ($inscricoes as $inscricao): ?>
-                <div style="border: 5px solid black;">
-                    <p><?= $inscricao['titulo_vaga'] ?></p>
-                    <p><?= $inscricao['nome_pessoa'] ?></p>
-                    <p><?= $inscricao['data_inscricao'] ?></p>
-                </div>
-            <?php endforeach; ?>
-        </div>
+            <div id="conteudoInscricoes">
+                <?php foreach ($inscricoes as $inscricao): ?>
+                    <div style="border: 5px solid black;">
+                        <p><?= $inscricao['titulo_vaga'] ?></p>
+                        <p><?= $inscricao['nome_pessoa'] ?></p>
+                        <p><?= $inscricao['data_inscricao'] ?></p>
+                    </div>
+                <?php endforeach; ?>
+            </div>
 
-        <div id="conteudoTeste" style="display: none;">
-            <p>Conteúdo de teste</p>
-        </div>
+            <div id="conteudoTeste" style="display: none;">
+                <p>Conteúdo de teste</p>
+            </div>
 
-        <div id="novaVaga">
-            <form class="formulario" method="POST" action="../../src/controllers/VagaController.php?action=postarVaga">
-                <label class="input-label" for="nome">
-                    Titulo
-                    <input class="input"
+            <div id="novaVaga">
+                <form class="formulario" method="POST" action="../../src/controllers/VagaController.php?action=postarVaga">
+                    <label class="input-label" for="nome">
+                        Titulo
+                        <input class="input"
+                            type="text"
+                            id="titulo"
+                            name="titulo"
+                            placeholder="Insira aqui o nome da vaga"
+                            value=""
+                            required
+                            maxlength="150"
+                            minlength="2">
+                    </label>
+                    <label class="input-label" for="tipo">
+                        Tipo
+                        <select class="input"
+                            name="tipo"
+                            id="tipo"
+                            default="Selecione o tipo da vaga"
+                            required>
+                            <option value="estagio">Estagio</option>
+                            <option value="aprendiz">Jovem Aprendiz</option>
+                            <!-- colacar as opçoes dps -->
+                        </select>
+                    </label>
+                    <label class="input-label" for="descricao">
+                        Descrição
+                        <input class="input"
+                            id="descricao"
+                            name="descricao"
+                            placeholder="Descreva sua vaga detalhadamente aqui"
+                            maxlength="500"
+                            required>
+                        </input>
+                    </label>
+                    <label class="input-label">
+                        Salario
+                        <input class="input"
+                            type="number"
+                            id="salario"
+                            name="salario"
+                            placeholder="Insira o salario da vaga aqui"
+                            step="0.01"
+                            value=""
+                            min="0"
+                            required>
+                    </label>
+                    <label class="input-label">
+                        Cidade
+                        <input class="input"
+                            type="text"
+                            id="cidade"
+                            name="cidade"
+                            placeholder="Coloque a cidade onde sua vaga é localizada"
+                            value=""
+                            required
+                            maxlength="100">
+                    </label>
+                    <label class="input-label">
+                        Cor
+                        <input type="color" id="colorPicker">
+                    </label>
+                    <input
                         type="text"
-                        id="titulo"
-                        name="titulo"
-                        placeholder="Insira aqui o nome da vaga"
-                        value=""
-                        required
-                        maxlength="150"
-                        minlength="2">
-                </label>
-                <label class="input-label" for="tipo">
-                    Tipo
-                    <select class="input"
-                        name="tipo"
-                        id="tipo"
-                        default="Selecione o tipo da vaga"
-                        required>
-                        <option value="estagio">Estagio</option>
-                        <option value="aprendiz">Jovem Aprendiz</option>
-                        <!-- colacar as opçoes dps -->
-                    </select>
-                </label>
-                <label class="input-label" for="descricao">
-                    Descrição
-                    <input class="input"
-                        id="descricao"
-                        name="descricao"
-                        placeholder="Descreva sua vaga detalhadamente aqui"
-                        maxlength="500"
-                        required>
-                    </input>
-                </label>
-                <label class="input-label">
-                    Salario
-                    <input class="input"
-                        type="number"
-                        id="salario"
-                        name="salario"
-                        placeholder="Insira o salario da vaga aqui"
-                        step="0.01"
-                        value=""
-                        min="0"
-                        required>
-                </label>
-                <label class="input-label">
-                    Cidade
-                    <input class="input"
-                        type="text"
-                        id="cidade"
-                        name="cidade"
-                        placeholder="Coloque a cidade onde sua vaga é localizada"
-                        value=""
-                        required
-                        maxlength="100">
-                </label>
-                <label class="input-label">
-                    Cor
-                    <input type="color" id="colorPicker">
-                </label>
-                <input
-                    type="text"
-                    name="status"
-                    value="aberta"
-                    hidden>
-                <button class="btn-submit-vaga" type="submit">Publicar</button>
-            </form>
+                        name="status"
+                        value="aberta"
+                        hidden>
+                    <button class="btn-submit-vaga" type="submit">Publicar</button>
+                </form>
 
-            <button onclick="fecharMenu()">Fechar</button>
+                <button onclick="fecharMenu()">Fechar</button>
+            </div>
         </div>
-    </div>
     </main>
 
 
@@ -229,50 +239,50 @@
         const btnToggle = document.getElementById("toggleConteudo")
 
         function abrirMenuPerfil() {
-    novaVaga.classList.remove("ativo");
-    editPerfil.classList.add("ativo");
-    overlay.classList.add("ativo");
-    document.body.style.overflow = "hidden";
-}
+            novaVaga.classList.remove("ativo");
+            editPerfil.classList.add("ativo");
+            overlay.classList.add("ativo");
+            document.body.style.overflow = "hidden";
+        }
 
-function abrirMenuVaga() {
-    editPerfil.classList.remove("ativo");
-    novaVaga.classList.add("ativo");
-    overlay.classList.add("ativo");
-    document.body.style.overflow = "hidden";
-}
+        function abrirMenuVaga() {
+            editPerfil.classList.remove("ativo");
+            novaVaga.classList.add("ativo");
+            overlay.classList.add("ativo");
+            document.body.style.overflow = "hidden";
+        }
 
-function fecharMenu() {
-    editPerfil.classList.remove("ativo");
-    novaVaga.classList.remove("ativo");
-    overlay.classList.remove("ativo");
-    document.body.style.overflow = "auto";
-}
+        function fecharMenu() {
+            editPerfil.classList.remove("ativo");
+            novaVaga.classList.remove("ativo");
+            overlay.classList.remove("ativo");
+            document.body.style.overflow = "auto";
+        }
 
-picker.addEventListener("input", () => {
-    localStorage.setItem("corEscolhida", picker.value);
-  });
+        picker.addEventListener("input", () => {
+            localStorage.setItem("corEscolhida", picker.value);
+        });
 
-function toggleConteudo() {
-    const inscricoes = document.getElementById("conteudoInscricoes");
-    const teste = document.getElementById("conteudoTeste");
+        function toggleConteudo() {
+            const inscricoes = document.getElementById("conteudoInscricoes");
+            const teste = document.getElementById("conteudoTeste");
 
-    if (conteudo === 1) {
-        inscricoes.style.display = "none";
-        teste.style.display = "block";
-        btnToggle.textContent = "Ver inscrições"
-    } else {
-        inscricoes.style.display = "block";
-        teste.style.display = "none";
-        btnToggle.textContent = "Ver teste"
-    }
+            if (conteudo === 1) {
+                inscricoes.style.display = "none";
+                teste.style.display = "block";
+                btnToggle.textContent = "Ver inscrições"
+            } else {
+                inscricoes.style.display = "block";
+                teste.style.display = "none";
+                btnToggle.textContent = "Ver teste"
+            }
 
-    if (conteudo == 1){
-        conteudo = 2
-    }else{
-        conteudo = 1
-    }
-}
+            if (conteudo == 1) {
+                conteudo = 2
+            } else {
+                conteudo = 1
+            }
+        }
     </script>
 </body>
 

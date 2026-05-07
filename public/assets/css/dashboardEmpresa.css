@@ -66,6 +66,10 @@
   font-size: 14px;
 }
 
+.formulario .input-label:last-of-type, .formulario .input-label:last-of-type > p {
+  width: fit-content;
+}
+
 /* Inputs */
 .input,
 .input-desc,
