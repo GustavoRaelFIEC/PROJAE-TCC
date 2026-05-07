@@ -17,7 +17,7 @@ $vagas = handleBuscarVaga($pdo);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    
+
     <link rel="shortcut icon" href="../assets/img/isotipo.png" type="image/x-icon">
 
     <link rel="stylesheet" href="../assets/css/globalEimports.css">
@@ -34,7 +34,7 @@ $vagas = handleBuscarVaga($pdo);
             <div class="logo"><img class="img" src="../assets/img/imagotipo.png" alt="Projae logo"></div>
             <ul class="list">
                 <li><a class="item-list active" href="" onclick="location.reload()">Início</a></li>
-                <li><a class="item-list" href="vagas.php">Vagas</a></li>
+                <li><a class="item-list" href="vagas.php">Buscar Vagas</a></li>
             </ul>
             <div class="cta">
                 <a href="./logout.php" class="btnSair">Sair</a>
@@ -64,20 +64,22 @@ $vagas = handleBuscarVaga($pdo);
                     <div class="card">
                         <form method="POST" action="../../src/controllers/InscricaoController.php">
                             <input type="hidden" name="id_vaga" value="<?= $vaga['id_vaga'] ?>">
-                            <p><?= $vaga['data_publicacao'] ?></p>
+                            <p class="dataPublicacao"><?= $vaga['data_publicacao'] ?></p>
+                            <p class="nome"><?= $vaga['nome'] ?></p>
                             <h1 class="cardTitulo"><?= $vaga['titulo'] ?></h1>
-                            <p><?= $vaga['descricao'] ?></p>
-                            <p><?= $vaga['tipo'] ?></p>
-                            <p><?= $vaga['salario'] ?></p>
-                            <p><?= $vaga['cidade'] ?></p>
-                            <p><?= $vaga['nome'] ?></p>
-                            <button type="submit">Inscrever-se</button>
+                            <p class="descricao"><?= $vaga['descricao'] ?></p>
+                            <div class="tags">
+                                <span class="tipo"><?= $vaga['tipo'] ?></span>
+                                <span class="salario"><?= $vaga['salario'] ?></span>
+                                <span class="cidade"><?= $vaga['cidade'] ?></span>
+                            </div>
+                            <div class="cta">
+                                <button class="btn detalhes" type="button" onclick="abrirDetalhes()">Detalhes</button> <!-- Fazer a função para abrir e fechar os detalhes de cada Card -->
+                                <button id="inscreverSe" class="btn inscreverSe" type="submit">Inscrever-se</button>
+                            </div>
                         </form>
                     </div>
                 <?php endforeach; ?>
-            </div>
-            <div class="vazio">
-
             </div>
     </main>
 </body>

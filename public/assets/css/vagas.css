@@ -23,8 +23,9 @@
 
 .content {
   display: grid;
-  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-columns: 1fr 5fr;
   max-width: 90%;
+
   gap: 10px;
 }
 
@@ -48,16 +49,108 @@
   grid-template-columns: repeat(3, 400px);
   grid-auto-rows: 300px;
   gap: 10px;
+  background-color: #f5f5f5;
+  padding: 10px;
+  height: fit-content;
 
-  background-color: #fff;
   border-radius: 10px;
 }
 
 .card {
   width: 100%;
-  height: 100%;
+  height: fit-content;
 
+  background-color: #9bd376; /* Cor para Destacar (Depois Tirar) */
   box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   padding: 20px;
+}
+
+.card form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Data */
+.dataPublicacao {
+  width: fit-content;
+  background: white;
+  color: #444;
+  font-size: 13px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-weight: 500;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  cursor: default;
+}
+
+.nome{
+  cursor: default;
+}
+
+/* Título */
+.cardTitulo {
+  font-size: 32px;
+  line-height: 1.1;
+  font-weight: 800;
+  color: #111;
+  max-width: 220px;
+  cursor: default;
+}
+
+/* Descrição pequena */
+.descricao {
+  font-size: 14px;
+  color: #333;
+  margin-top: -4px;
+  cursor: default;
+}
+
+/* Tags */
+.tipo,
+.salario,
+.cidade {
+  display: inline-block;
+  width: fit-content;
+
+  padding: 10px 18px;
+  border-radius: 20px;
+
+  background: #dff9de;
+  border: 1px solid #8ccf8a;
+
+  color: #1f1f1f;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: default;
+}
+
+/* Botão */
+.btn {
+  margin-top: 18px;
+  align-self: center;
+
+  background-color: black;
+  color: white;
+
+  border: none;
+  border-radius: 25px;
+
+  padding: 12px 30px;
+
+  font-size: 15px;
+  font-weight: bold;
+
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+}
+
+.detalhes {
+  background-color: #fff;
+  color: black;
 }
