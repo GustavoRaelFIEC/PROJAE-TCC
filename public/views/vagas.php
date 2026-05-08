@@ -28,7 +28,7 @@ $vagas = handleBuscarVaga($pdo);
     <title>Vagas</title>
 </head>
 
-<body>
+<body class="corpo">
     <header class="cabecalho">
         <div class="contentCabecalho">
             <div class="logo"><img class="img" src="../assets/img/imagotipo.png" alt="Projae logo"></div>
