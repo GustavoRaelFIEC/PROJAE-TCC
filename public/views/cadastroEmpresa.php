@@ -1,26 +1,17 @@
 <?php
-session_start();
+require_once __DIR__ . '/../../src/utils/Session.php';
 
-$flash = $_SESSION['flash'] ?? null;
-$errors = $flash['messages'] ?? [];
-$old = $flash['old'] ?? [];
+Session::start();
 
+$errors = $_SESSION['errors'] ?? [];
+$old = $_SESSION['old'] ?? [];
 
-unset($_SESSION['flash']);
+unset($_SESSION['errors'], $_SESSION['old']);
 
 function old($key)
 {
     global $old;
     return htmlspecialchars($old[$key] ?? '');
-}
-
-function error($key)
-{
-    global $errors;
-    if (isset($errors[$key])) {
-        return '<span class="erro-input">' . htmlspecialchars($errors[$key]) . '</span>';
-    }
-    return '';
 }
 
 ?>
@@ -77,8 +68,6 @@ function error($key)
                             type="text"
                             required
                             maxlength="100">
-
-                        <?= error('nome') ?>
                     </label>
 
                     <label class="input-label" for="email">
@@ -91,7 +80,12 @@ function error($key)
                             value="<?= old('email') ?>"
                             required>
 
-                        <?= error('email') ?>
+                        <?php if (isset($errors['email'])): ?>
+                            <span class="erro"><?= $errors['email'] ?></span>
+                        <?php endif; ?>
+                        <?php if (isset($errors['usuario'])): ?>
+                            <span class="erro"><?= $errors['usuario'] ?></span>
+                        <?php endif; ?>
                     </label>
 
                     <label class="input-label" for="senha">
@@ -103,7 +97,9 @@ function error($key)
                             type="password"
                             required minlength="8">
 
-                        <?= error('senha') ?>
+                        <?php if (isset($errors['senha'])): ?>
+                            <span class="erro"><?= $errors['senha'] ?></span>
+                        <?php endif; ?>
                     </label>
 
                     <label class="input-label" for="cnpj">
@@ -118,7 +114,9 @@ function error($key)
                             value="<?= old('cnpj') ?>"
                             required>
 
-                        <?= error('cnpj') ?>
+                        <?php if (isset($errors['cnpj'])): ?>
+                            <span class="erro"><?= $errors['cnpj'] ?></span>
+                        <?php endif; ?>
                     </label>
 
                     <label class="input-label" for="telefone">
@@ -132,7 +130,9 @@ function error($key)
                             value="<?= old('telefone') ?>"
                             required>
 
-                        <?= error('telefone') ?>
+                        <?php if (isset($errors['telefone'])): ?>
+                            <span class="erro"><?= $errors['telefone'] ?></span>
+                        <?php endif; ?>
                     </label>
 
                     <label class="input-label" for="cidade">
@@ -144,8 +144,6 @@ function error($key)
                             type="text"
                             value="<?= old('cidade') ?>"
                             required>
-
-                        <?= error('cidade') ?>
                     </label>
 
                     <button class="btn-submit" type="submit">Cadastrar</button>

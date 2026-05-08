@@ -35,9 +35,9 @@ function handleLogin($pdo)
     if (empty($errors)) {
         try {
 
-            $pessoaModel = new Pessoa($pdo);
+            $userModel = new Usuario($pdo);
 
-            $usuario = $pessoaModel->findByEmail($email);
+            $usuario = $userModel->findByEmail($email);
 
             if ($usuario && Security::verifyPassword($senha, $usuario['senha'])) {
                 //Login bem-sucedido

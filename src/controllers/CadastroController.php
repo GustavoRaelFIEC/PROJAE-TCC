@@ -4,6 +4,7 @@ require_once __DIR__ . '/../config/config.php';
 require_once __DIR__ . '/../models/Pessoa.php';
 require_once __DIR__ . '/../models/Empresa.php';
 require_once __DIR__ . '/../models/Vaga.php';
+require_once __DIR__ . '/../models/Usuario.php';
 require_once __DIR__ . '/../utils/Security.php';
 require_once __DIR__ . '/../utils/Session.php';
 
@@ -64,37 +65,37 @@ function handleCadastro($pdo)
             }
         }
 
-
-
         if (empty($errors)) {
-            /*
-            $_SESSION['flash'] = [
-                'type' => 'error',
-                'messages' => $errors,
-                'old' => $dados
-            ];
-            */
             try {
                 $userModel = new Usuario($pdo);
+                $pessoaModel = new Pessoa($pdo);
+                $empresaModel = new Empresa($pdo);
 
                 // Verifica se email já existe
-                $usuario = $userModel->findByEmail($email);
-
-                if ($usuario) {
-                    /*
-                    $_SESSION['flash'] = [
-                        'type' => 'error',
-                        'messages' => ['email' => "⚠️ Email já cadastrado!"],
-                        'old' => $dados
-                    ];
-                    */
+                if ($userModel->findByEmail($email)) {
                     $errors['usuario'] = 'Email já cadastrado!';
+                }
 
-                    $_SESSION['errors'] = $errors;
-                    $_SESSION['old'] = $_POST;
+                if ($tipo === 'pessoa') {
 
-                    header("Location: $redirectCadastro");
-                    exit;
+                    if ($pessoaModel->findByCPF($cpf)) {
+                        $errors['cpf'] = 'CPF já cadastrado!';
+                    }
+
+                    if ($pessoaModel->findByTelefone($telefone)) {
+                        $errors['telefone'] = 'Telefone já cadastrado!';
+                    }
+                }
+
+                if ($tipo === 'empresa') {
+
+                    if ($empresaModel->findByCNPJ($cnpj)) {
+                        $errors['cnpj'] = 'CNPJ já cadastrado!';
+                    }
+
+                    if ($empresaModel->findByTelefone($telefone)) {
+                        $errors['telefone'] = 'Telefone já cadastrado!';
+                    }
                 }
 
                 // Hash da senha
@@ -115,7 +116,7 @@ function handleCadastro($pdo)
                         'instituicao' => Security::sanitizeInput($dados['instituicao'] ?? ''),
                         'curso' => Security::sanitizeInput($dados['curso'] ?? '')
                     ];
-                    $userModel->createPessoa($userId, $dadosPessoa);
+                    $pessoaModel->createPessoa($userId, $dadosPessoa);
                 } elseif ($tipo === 'empresa') {
                     $dadosEmpresa = [
                         'nome' => Security::sanitizeInput($dados['nome'] ?? ''),
@@ -123,18 +124,11 @@ function handleCadastro($pdo)
                         'telefone' => Security::sanitizeInput($dados['telefone'] ?? ''),
                         'cidade' => Security::sanitizeInput($dados['cidade'] ?? '')
                     ];
-                    $userModel->createEmpresa($userId, $dadosEmpresa);
+                    $empresaModel->createEmpresa($userId, $dadosEmpresa);
                 }
 
                 // Se der tudo certo, confirma tudo
                 $pdo->commit();
-
-                /* Sucesso
-                $_SESSION['flash'] = [
-                    'type' => 'success',
-                    'messages' => ["✅ Conta criada com sucesso!"],
-                ];
-                */
 
                 header("Location: ../../public/views/login.php");
                 exit;
@@ -146,13 +140,6 @@ function handleCadastro($pdo)
                     $pdo->rollBack();
                 }
 
-                /*
-                $_SESSION['flash'] = [
-                    'type' => 'error',
-                    'messages' => ['sistema' => "⚠️ Erro no sistema. Tente novamente mais tarde."],
-                    'old' => $dados
-                ];
-                */
                 error_log("Erro no login: " . $e->getMessage());
                 $errors['sistema'] = "Erro no sistema. Volte mais tarde.";
 

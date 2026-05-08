@@ -14,26 +14,6 @@ function old($key)
     return htmlspecialchars($old[$key] ?? '');
 }
 
-/*
-$flash = $_SESSION['flash'] ?? null;
-$errors = $flash['messages'] ?? [];
-$old = $flash['old'] ?? [];
-
-
-unset($_SESSION['flash']);
-
-
-
-function error($key)
-{
-    global $errors;
-    if (isset($errors[$key])) {
-        return '<p class="erro-input">' . htmlspecialchars($errors[$key]) . '</p>';
-    }
-    return '';
-}
-*/
-
 ?>
 
 <!DOCTYPE html>
