@@ -80,13 +80,16 @@ class Pessoa
     public function visualizarInscricoesPessoa($userId)
     {
         $stmt = $this->pdo->prepare("
-        SELECT 
-            inscricao.data_inscricao,
-            vagas.*
-        FROM inscricao
-        JOIN vagas ON inscricao.id_vaga = vagas.id_vaga
-        WHERE inscricao.id_pessoa = ?");
+    SELECT 
+        inscricao.data_inscricao,
+        DATE(inscricao.data_inscricao) AS data_inscricao_formatada,
+        vagas.*,
+        DATE(vagas.data_publicacao) AS data_publicacao_formatada
+    FROM inscricao
+    JOIN vagas ON inscricao.id_vaga = vagas.id_vaga
+    WHERE inscricao.id_pessoa = ?");
+
         $stmt->execute([$userId]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-}                    
+}

@@ -30,15 +30,19 @@ class Vaga
 
     // Buscar/Trazer todas as vagas registradas
     public function buscarVaga()
-    {
-        $stmt = $this->pdo->prepare("
-        SELECT vagas.*, empresas.nome
-        FROM vagas
-        INNER JOIN empresas ON vagas.id_empresa = empresas.id_empresa;
-        ");
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
+{
+    $stmt = $this->pdo->prepare("
+    SELECT 
+        vagas.*,
+        empresas.nome,
+        DATE(vagas.data_publicacao) AS data_publicacao_formatada
+    FROM vagas
+    INNER JOIN empresas ON vagas.id_empresa = empresas.id_empresa;
+    ");
+    
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 
     // Realizar inscrição na vaga
     public function inscricao($userId, $vagaId)
