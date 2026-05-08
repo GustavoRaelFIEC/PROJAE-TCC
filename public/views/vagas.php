@@ -5,7 +5,11 @@ require_once __DIR__ . "/../../src/controllers/InscricaoController.php";
 require_once __DIR__ . "/../../src/controllers/VagaController.php";
 
 verificarLogin();
-$vagas = handleBuscarVaga($pdo);
+
+$tipo = $_GET['tipo'] ?? '';
+
+$vagaModel = new Vaga($pdo);
+$vagas = $vagaModel->handleFiltrarPorTipo($tipo);
 
 
 $meses = [
@@ -61,17 +65,17 @@ $meses = [
         </search>
         <div class="content">
             <aside class="filtros">
+
                 <h1 style="font-weight: bold;">Filtros da vaga</h1>
 
-                <form class="filtroTipo" method="GET" action="../../src/controllers/VagaController.php">
-                    <input type="hidden" name="action" value="filtrarPorTipo">
-
+                <form class="filtroTipo" method="GET" action="vagas.php">
                     <select name="tipo" onchange="this.form.submit()">
-                        <option value="">Selecione o tipo da vaga</option>
-                        <option value="aprendiz">Jovem Aprendiz</option>
-                        <option value="estagio">Estagiário</option>
+                        <option value="">Todas</option>
+                        <option value="aprendiz" <?= ($tipo === 'aprendiz')? 'selected' : ''; ?>>Jovem Aprendiz</option>
+                        <option value="estagio" <?= ($tipo === 'estagio')? 'selected' : ''; ?>>Estagiário</option>
                     </select>
                 </form>
+
             </aside>
         </div>
 
@@ -81,7 +85,9 @@ $meses = [
                 <?php if (
                     empty(trim($vaga['titulo'])) ||
                     empty(trim($vaga['descricao']))
-                ) continue; ?>
+                ) continue;
+                ?>
+
                 <div class="card">
                     <form method="POST" action="../../src/controllers/InscricaoController.php">
                         <input type="hidden" name="id_vaga" value="<?= $vaga['id_vaga'] ?>">
@@ -95,6 +101,10 @@ $meses = [
                         </div>
                         <div class="cta">
                             <button class="btn detalhes" type="button" onclick="abrirDetalhes()">Detalhes</button> <!-- Fazer a função para abrir e fechar os detalhes de cada Card -->
+                            <form method="POST" action="../../src/controllers/InscricaoController.php" style="display:inline;">
+                            <input type="hidden" name="id_vaga" value="<?= $vaga['id_vaga'] ?>">
+                            <button class="btn inscreverSe" type="submit">Inscrever-se</button>
+                        </form>
                             <button id="inscreverSe" class="btn inscreverSe" type="submit">Inscrever-se</button>
                         </div>
                     </form>

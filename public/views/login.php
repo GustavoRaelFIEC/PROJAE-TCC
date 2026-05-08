@@ -1,6 +1,7 @@
 <?php
+require_once __DIR__ . '/../../src/utils/Session.php';
 
-session_start();
+Session::start();
 
 $errors = $_SESSION['errors'] ?? [];
 

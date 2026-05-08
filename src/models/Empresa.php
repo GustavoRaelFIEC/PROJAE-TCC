@@ -67,4 +67,22 @@ class Empresa
         $stmt->execute([$userId]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function findByCNPJ($cnpj)
+    {
+        $sql = "SELECT * FROM empresas WHERE cnpj = ?";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([$cnpj]);
+
+        return $stmt->fetch();
+    }
+
+    public function findByTelefone($telefone)
+    {
+        $sql = "SELECT * FROM empresas WHERE telefone = ?";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([$telefone]);
+
+        return $stmt->fetch();
+    }
 }

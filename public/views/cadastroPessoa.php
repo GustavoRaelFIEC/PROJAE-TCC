@@ -1,26 +1,17 @@
 <?php
-session_start();
+require_once __DIR__ . '/../../src/utils/Session.php';
 
-$flash = $_SESSION['flash'] ?? null;
-$errors = $flash['messages'] ?? [];
-$old = $flash['old'] ?? [];
+Session::start();
 
+$errors = $_SESSION['errors'] ?? [];
+$old = $_SESSION['old'] ?? [];
 
-unset($_SESSION['flash']);
+unset($_SESSION['errors'], $_SESSION['old']);
 
 function old($key)
 {
     global $old;
     return htmlspecialchars($old[$key] ?? '');
-}
-
-function error($key)
-{
-    global $errors;
-    if (isset($errors[$key])) {
-        return '<p class="erro-input">' . htmlspecialchars($errors[$key]) . '</p>';
-    }
-    return '';
 }
 
 ?>
@@ -78,7 +69,6 @@ function error($key)
                             maxlength="100"
                             minlength="2">
 
-                        <?= error('nome') ?>
                     </label>
 
                     <label class="input-label" for="email">
@@ -92,7 +82,12 @@ function error($key)
                             required
                             maxlength="255">
 
-                        <?= error('email') ?>
+                        <?php if (isset($errors['email'])): ?>
+                            <span class="erro"><?= $errors['email'] ?></span>
+                        <?php endif; ?>
+                        <?php if (isset($errors['usuario'])): ?>
+                            <span class="erro"><?= $errors['usuario'] ?></span>
+                        <?php endif; ?>
                     </label>
 
                     <label class="input-label" for="senha">
@@ -105,7 +100,9 @@ function error($key)
                             required
                             minlength="8">
 
-                        <?= error('senha') ?>
+                        <?php if (isset($errors['senha'])): ?>
+                            <span class="erro"><?= $errors['senha'] ?></span>
+                        <?php endif; ?>
                     </label>
                     <label class="input-label">
                         <p>CPF<span>*</span></p>
@@ -119,7 +116,9 @@ function error($key)
                             maxlength="14"
                             minlength="14">
 
-                        <?= error('cpf') ?>
+                        <?php if (isset($errors['cpf'])): ?>
+                            <span class="erro"><?= $errors['cpf'] ?></span>
+                        <?php endif; ?>
                     </label>
                     <label class="input-label">
                         <p>Telefone<span>*</span></p>
@@ -133,7 +132,9 @@ function error($key)
                             maxlength="15"
                             minlength="15">
 
-                        <?= error('telefone') ?>
+                        <?php if (isset($errors['telefone'])): ?>
+                            <span class="erro"><?= $errors['telefone'] ?></span>
+                        <?php endif; ?>
                     </label>
                     <label class="input-label">
                         <p>Instituição</p>
@@ -141,11 +142,17 @@ function error($key)
                             class="input"
                             type="text"
                             name="instituicao"
-                            placeholder="Nome da faculdade ou escola">
+                            placeholder="Nome da faculdade ou escola"
+                            value="<?= old('instituicao') ?>">
                     </label>
                     <label class="input-label">
                         <p>Curso</p>
-                        <input class="input" type="text" name="curso" placeholder="Ex: Ciência da Computação">
+                        <input
+                            class="input"
+                            type="text"
+                            name="curso"
+                            placeholder="Ex: Ciência da Computação"
+                            value="<?= old('curso') ?>">
                     </label>
                     <button class="btn-submit" type="submit">Cadastrar</button>
                 </form>

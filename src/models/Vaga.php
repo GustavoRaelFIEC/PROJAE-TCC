@@ -63,17 +63,10 @@ class Vaga
             $stmt = $this->pdo->query("SELECT * FROM vagas WHERE status = 'aberta'");
         } else {
 
-            $stmt = $this->pdo->prepare("
-            SELECT * 
-            FROM vagas 
-            WHERE tipo = (?) 
-            AND status = 'aberta'
-            ");
-
+            $stmt = $this->pdo->prepare("SELECT * FROM vagas WHERE tipo = (?) AND status = 'aberta'");
             $stmt->execute([$tipo]);
         }
 
-
-        return $stmt->fetchAll();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }
