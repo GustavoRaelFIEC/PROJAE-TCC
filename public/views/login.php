@@ -1,3 +1,13 @@
+<?php
+
+session_start();
+
+$errors = $_SESSION['errors'] ?? [];
+
+unset($_SESSION['errors']);
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -47,7 +57,12 @@
                     </label>
                     <button class="btn-submit" type="submit">Entrar</button>
                 </form>
-                <!-- messageError: E-mail ou Senha incorretos -->
+                <?php if (isset($errors['login'])): ?>
+                    <span class="erro"><?= $errors['login'] ?></span>
+                <?php endif; ?>
+                <?php if (isset($errors['sistema'])): ?>
+                    <span class="erro"><?= $errors['sistema'] ?></span>
+                <?php endif; ?>
                 <!-- Redefinir Senha -->
                 <a href="escolherCadastro.php" class="link">Criar uma conta!</a>
             </div>

@@ -21,12 +21,12 @@ function handleLogin($pdo)
     $errors = [];
 
     if (!Security::validateEmail(($email))) {
-        $errors[] = "Email inválido!";
+        $errors['email'] = "Email inválido!";
     }
 
     //validate senha AQUI
-    if (!Security::validatePassword($senha)) {
-        $errors[] = "Senha inválida!";
+    if (empty($senha)) {
+        $errors['senha'] = "Senha inválida!";
     }
 
 
@@ -51,14 +51,16 @@ function handleLogin($pdo)
 
                 //LEMBRAR DE USAR "FIND BY ID" PARA TRAZER AS INFORMAÇÕES DE CADA UM EM SUAS RESPECTIVAS PÁGINAS (INFORMAÇÕES NO DASHBOARD, perfil por exemplo)
             } else {
-                $errors[] = "Email ou senha incorretos";
+                $errors['login'] = "Email ou senha incorretos";
             }
         } catch (PDOException $e) {
             error_log("Erro no login: " . $e->getMessage());
-            $errors[] = "Erro no sistema. Volte mais tarde.";
+            $errors['sistema'] = "Erro no sistema. Volte mais tarde.";
         }
     }
 
-    header("Location: ../../public/views/about.php");
+    $_SESSION['errors'] = $errors;
+
+    header("Location: ../../public/views/login.php");
     exit();
 }
