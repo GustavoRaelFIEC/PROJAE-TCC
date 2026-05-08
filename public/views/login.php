@@ -55,14 +55,14 @@ unset($_SESSION['errors']);
                         Senha
                         <input class="input" placeholder="Digite sua senha" id="senha" name="senha" type="password" required>
                     </label>
-                    <button class="btn-submit" type="submit">Entrar</button>
-                </form>
-                <?php if (isset($errors['login'])): ?>
+                    <?php if (isset($errors['login'])): ?>
                     <span class="erro"><?= $errors['login'] ?></span>
                 <?php endif; ?>
                 <?php if (isset($errors['sistema'])): ?>
                     <span class="erro"><?= $errors['sistema'] ?></span>
                 <?php endif; ?>
+                    <button class="btn-submit" type="submit">Entrar</button>
+                </form>
                 <!-- Redefinir Senha -->
                 <a href="escolherCadastro.php" class="link">Criar uma conta!</a>
             </div>

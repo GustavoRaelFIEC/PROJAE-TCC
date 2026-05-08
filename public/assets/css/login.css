@@ -78,6 +78,13 @@
   transition: 0.3s;
 }
 
+.erro{
+  color: red;
+  bottom: 90px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
 .link {
   color: #4938be;
   font-size: 16px;
