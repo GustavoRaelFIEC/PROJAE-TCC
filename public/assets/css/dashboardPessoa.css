@@ -277,8 +277,94 @@
   padding: 20px;
 }
 
+.card form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
 .dataPublicacao{
   display: flex;
   align-items: center;
   gap: 10px;
+  width: fit-content;
+  background: white;
+  color: #444;
+  font-size: 13px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-weight: 500;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  cursor: default;
+}
+
+.nome {
+  cursor: default;
+  text-transform: uppercase;
+}
+
+.cardTitulo {
+  font-size: 32px;
+  line-height: 1.1;
+  font-weight: 800;
+  color: #111;
+  cursor: default;
+  text-transform: uppercase;
+}
+
+.descricao {
+  font-size: 14px;
+  color: #333;
+  margin-top: -4px;
+  cursor: default;
+}
+
+.tipo,
+.salario,
+.cidade {
+  display: inline-block;
+  width: fit-content;
+
+  padding: 10px 18px;
+  border-radius: 20px;
+
+  background: rgb(211, 211, 211);
+  border: 1px solid #000000;
+
+  color: #1f1f1f;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: default;
+  margin-right: 5px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.btn {
+  margin-top: 18px;
+  align-self: center;
+
+  background-color: black;
+  color: white;
+
+  border: none;
+  border-radius: 25px;
+
+  padding: 12px 30px;
+
+  font-size: 15px;
+  font-weight: bold;
+
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+}
+
+.detalhes {
+  background-color: #fff;
+  border: 1px solid #000000;
+  color: black;
 }

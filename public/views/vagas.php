@@ -7,6 +7,21 @@ require_once __DIR__ . "/../../src/controllers/VagaController.php";
 verificarLogin();
 $vagas = handleBuscarVaga($pdo);
 
+
+$meses = [
+    1 => 'Janeiro',
+    'Fevereiro',
+    'Março',
+    'Abril',
+    'Maio',
+    'Junho',
+    'Julho',
+    'Agosto',
+    'Setembro',
+    'Outubro',
+    'Novembro',
+    'Dezembro'
+];
 ?>
 
 <!DOCTYPE html>
@@ -62,7 +77,8 @@ $vagas = handleBuscarVaga($pdo);
         </div>
 
         <div id="listagemVagas">
-            <?php foreach ($vagas as $vaga): ?>
+            <?php foreach ($vagas as $vaga):
+                $data = new DateTime($vaga['data_publicacao_formatada']); ?>
                 <?php if (
                     empty(trim($vaga['titulo'])) ||
                     empty(trim($vaga['descricao']))
@@ -70,13 +86,12 @@ $vagas = handleBuscarVaga($pdo);
                 <div class="card">
                     <form method="POST" action="../../src/controllers/InscricaoController.php">
                         <input type="hidden" name="id_vaga" value="<?= $vaga['id_vaga'] ?>">
-                        <p class="dataPublicacao"><?= $vaga['data_publicacao'] ?></p>
+                        <p class="paragrafoCard dataPublicacao"><i class="fa-regular fa-clock"></i>Data de Publicação: <?= $data->format('d') . ' ' . $meses[$data->format('n')] . ' ' . $data->format('Y') ?></p>
                         <p class="nome"><?= $vaga['nome'] ?></p>
                         <h1 class="cardTitulo"><?= $vaga['titulo'] ?></h1>
-                        <p class="descricao"><?= $vaga['descricao'] ?></p>
                         <div class="tags">
                             <span class="tipo"><?= $vaga['tipo'] ?></span>
-                            <span class="salario"><?= $vaga['salario'] ?></span>
+                            <span class="salario">R$ <?= $vaga['salario'] ?></span>
                             <span class="cidade"><?= $vaga['cidade'] ?></span>
                         </div>
                         <div class="cta">

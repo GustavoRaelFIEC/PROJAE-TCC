@@ -8,6 +8,21 @@ verificarTipo('pessoa');
 $inscricoes = visualizarInscricoesPessoa($pdo);
 $dados = handleDadosPessoa($pdo);
 
+$meses = [
+    1 => 'Janeiro',
+    'Fevereiro',
+    'Março',
+    'Abril',
+    'Maio',
+    'Junho',
+    'Julho',
+    'Agosto',
+    'Setembro',
+    'Outubro',
+    'Novembro',
+    'Dezembro'
+];
+
 ?>
 
 <!DOCTYPE html>
@@ -120,17 +135,24 @@ $dados = handleDadosPessoa($pdo);
             <section class="vagasInscritas">
                 <h1 class="titulo">Vagas Inscritas</h1>
                 <div id="listagemVagas">
-                    <?php foreach ($inscricoes as $inscricao): ?>
+                    <?php
+                    foreach ($inscricoes as $inscricao):
+                        $data = new DateTime($inscricao['data_publicacao_formatada']);
+                        $dataInscricao = new DateTime($inscricao['data_inscricao']);
+                    ?>
                         <div class="card">
-                            <p class="paragrafoCard dataPublicacao"><i class="fa-regular fa-clock"></i><?= $inscricao['data_publicacao'] ?></p>
+                            <p class="paragrafoCard dataPublicacao"><i class="fa-regular fa-clock"></i>Data de Publicação: <?= $data->format('d') . ' ' . $meses[$data->format('n')] . ' ' . $data->format('Y') ?></p>
                             <h1 class="cardTitulo"><?= $inscricao['titulo'] ?></h1>
-                            <p class="paragrafoCard descricao"><?= $inscricao['descricao'] ?></p>
-                            <p class="paragrafoCard tipo"><?= $inscricao['tipo'] ?></p>
-                            <p class="paragrafoCard salario"><?= $inscricao['salario'] ?></p>
-                            <p class="paragrafoCard cidade"><?= $inscricao['cidade'] ?></p>
-                            <p class="paragrafoCard status"><?= $inscricao['status'] ?></p>
-                            <p class="paragrafoCard dataInscricao"><?= $inscricao['data_inscricao'] ?></p>
-                            <button>Cancelar Inscrição</button>
+                            <div class="tags">
+                                <span class="tipo"><?= $inscricao['tipo'] ?></span>
+                                <span class="salario">R$ <?= $inscricao['salario'] ?></span>
+                                <span class="cidade"><?= $inscricao['cidade'] ?></span>
+                            </div>
+                            <p class="paragrafoCard dataInscricao"><i class="fa-regular fa-clock"></i>Data de Inscrição: <?= $dataInscricao->format('d') . ' ' . $meses[$dataInscricao->format('n')] . ' ' . $dataInscricao->format('Y') ?></p>
+                            <div class="cta">
+                                <button class="btn detalhes" type="button" onclick="abrirDetalhes()">Detalhes</button> <!-- Fazer a função para abrir e fechar os detalhes de cada Card -->
+                                <button id="desinscrever" class="btn desinscrever" type="submit">Cancelar Inscrição</button>
+                            </div>
                         </div>
                     <?php endforeach; ?>
                 </div>
@@ -153,6 +175,17 @@ $dados = handleDadosPessoa($pdo);
             overlay.classList.remove("ativo");
             document.body.style.overflow = "auto";
         }
+
+
+        document.querySelectorAll(
+            "#listagemVagas .card p, #listagemVagas .card h1, #listagemVagas .card span"
+        ).forEach(campo => {
+
+            if (campo.textContent.trim() === "") {
+                campo.style.display = "none";
+            }
+
+        });
     </script>
 </body>
 
