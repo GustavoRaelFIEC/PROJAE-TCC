@@ -61,6 +61,10 @@ $vagas = handleBuscarVaga($pdo);
             </aside>
             <div id="listagemVagas">
                 <?php foreach ($vagas as $vaga): ?>
+                    <?php if (
+                        empty(trim($vaga['titulo'])) ||
+                        empty(trim($vaga['descricao']))
+                    ) continue; ?>
                     <div class="card">
                         <form method="POST" action="../../src/controllers/InscricaoController.php">
                             <input type="hidden" name="id_vaga" value="<?= $vaga['id_vaga'] ?>">
@@ -82,6 +86,17 @@ $vagas = handleBuscarVaga($pdo);
                 <?php endforeach; ?>
             </div>
     </main>
+    <script>
+        document.querySelectorAll(
+            "#listagemVagas .card p, #listagemVagas .card h1, #listagemVagas .card span"
+        ).forEach(campo => {
+
+            if (campo.textContent.trim() === "") {
+                campo.style.display = "none";
+            }
+
+        });
+    </script>
 </body>
 
 </html>
