@@ -1,17 +1,27 @@
 <?php
 
 require_once __DIR__ . '/../config/config.php';
-require_once __DIR__ . '/../models/Usuarios.php';
+require_once __DIR__ . '/../models/Pessoa.php';
+require_once __DIR__ . '/../models/Empresa.php';
+require_once __DIR__ . '/../models/Vaga.php';
 require_once __DIR__ . '/../utils/Security.php';
 require_once __DIR__ . '/../utils/Session.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $action = $_GET['action'] ?? '';
+    $action = $_POST['action'] ?? '';
 
     if ($action === "postarVaga") {
         handlePostarVaga($pdo);
     }
+} else if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    $action = $_GET['action'] ?? '';
+
+    if ($action === "filtrarPorTipo") {
+        handleFiltrarPorTipo($pdo);
+    }
 }
+
+
 
 
 
@@ -26,12 +36,12 @@ function handlePostarVaga($pdo)
 
     $dados = getRequestData();
 
-    $userEmpresa = new Usuario($pdo);
+    $empresaModel = new Empresa($pdo);
 
-    $id_empresa =  $userEmpresa->findByIdEmpresa($_SESSION['user_id']);
+    $id_empresa =  $empresaModel->findByIdEmpresa($_SESSION['user_id']);
 
     try {
-        $userModel = new Usuario($pdo);
+        $vagaModel = new Vaga($pdo);
 
         // Transação segura (banco empresa e pessoa)
         $pdo->beginTransaction();
@@ -49,7 +59,7 @@ function handlePostarVaga($pdo)
             throw new Exception("Título é obrigatório");
         }
 
-        $userModel->createVaga($id_empresa, $dados);
+        $vagaModel->createVaga($id_empresa, $dados);
 
         // Se der tudo certo, confirma tudo
         $pdo->commit();
@@ -77,10 +87,25 @@ function handleBuscarVaga($pdo)
 {
     try {
 
-        $userModel = new Usuario($pdo);
-        return $userModel->buscarVaga();
+        $vagaModel = new Vaga($pdo);
+        return $vagaModel->buscarVaga();
     } catch (PDOException $e) {
         error_log("Erro ao trazer vagas: " . $e->getMessage());
         return [];
     }
+}
+
+function handleFiltrarPorTipo($pdo)
+{
+
+    $tipo = $_GET['tipo'] ?? '';
+
+    $vagaModel = new Vaga($pdo);
+
+    $vagas = $vagaModel->handleFiltrarPorTipo($tipo);
+
+    //
+    header('Content-Type: application/json');
+    echo json_encode($vagas);
+    exit;
 }
