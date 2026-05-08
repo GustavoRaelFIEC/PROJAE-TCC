@@ -104,8 +104,5 @@ function handleFiltrarPorTipo($pdo)
 
     $vagas = $vagaModel->handleFiltrarPorTipo($tipo);
 
-    //
-    header('Content-Type: application/json');
-    echo json_encode($vagas);
-    exit;
+    require '../PROJAE-TCC/public/views/vagas.php';
 }

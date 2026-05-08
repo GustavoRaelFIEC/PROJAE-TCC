@@ -5,7 +5,11 @@ require_once __DIR__ . "/../../src/controllers/InscricaoController.php";
 require_once __DIR__ . "/../../src/controllers/VagaController.php";
 
 verificarLogin();
-$vagas = handleBuscarVaga($pdo);
+
+$tipo = $_GET['tipo'] ?? '';
+
+$vagaModel = new Vaga($pdo);
+$vagas = $vagaModel->handleFiltrarPorTipo($tipo);
 
 ?>
 
@@ -47,43 +51,49 @@ $vagas = handleBuscarVaga($pdo);
         </search>
         <div class="content">
             <aside class="filtros">
+
                 <h1 style="font-weight: bold;">Filtros da vaga</h1>
 
-                <form class="filtroTipo" method="GET" action="../../src/controllers/VagaController.php">
-                    <input type="hidden" name="action" value="filtrarPorTipo">
-
+                <form class="filtroTipo" method="GET" action="vagas.php">
                     <select name="tipo" onchange="this.form.submit()">
-                        <option value="">Selecione o tipo da vaga</option>
-                        <option value="aprendiz">Jovem Aprendiz</option>
-                        <option value="estagio">Estagiário</option>
+                        <option value="">Todas</option>
+                        <option value="aprendiz" <?= ($tipo === 'aprendiz')? 'selected' : ''; ?>>Jovem Aprendiz</option>
+                        <option value="estagio" <?= ($tipo === 'estagio')? 'selected' : ''; ?>>Estagiário</option>
                     </select>
                 </form>
+
             </aside>
         </div>
 
         <div id="listagemVagas">
             <?php foreach ($vagas as $vaga): ?>
-                <?php if (
+                <?php
+                if (
                     empty(trim($vaga['titulo'])) ||
                     empty(trim($vaga['descricao']))
-                ) continue; ?>
+                ) continue;
+                ?>
+
                 <div class="card">
-                    <form method="POST" action="../../src/controllers/InscricaoController.php">
-                        <input type="hidden" name="id_vaga" value="<?= $vaga['id_vaga'] ?>">
-                        <p class="dataPublicacao"><?= $vaga['data_publicacao'] ?></p>
-                        <p class="nome"><?= $vaga['nome'] ?></p>
-                        <h1 class="cardTitulo"><?= $vaga['titulo'] ?></h1>
-                        <p class="descricao"><?= $vaga['descricao'] ?></p>
-                        <div class="tags">
-                            <span class="tipo"><?= $vaga['tipo'] ?></span>
-                            <span class="salario"><?= $vaga['salario'] ?></span>
-                            <span class="cidade"><?= $vaga['cidade'] ?></span>
-                        </div>
-                        <div class="cta">
-                            <button class="btn detalhes" type="button" onclick="abrirDetalhes()">Detalhes</button> <!-- Fazer a função para abrir e fechar os detalhes de cada Card -->
-                            <button id="inscreverSe" class="btn inscreverSe" type="submit">Inscrever-se</button>
-                        </div>
-                    </form>
+                    <p class="dataPublicacao"><?= $vaga['data_publicacao'] ?></p>
+                    <h1 class="cardTitulo"><?= $vaga['titulo'] ?></h1>
+                    <p class="descricao"><?= $vaga['descricao'] ?></p>
+
+                    <div class="tags">
+                        <span class="tipo"><?= $vaga['tipo'] ?></span>
+                        <span class="salario"><?= $vaga['salario'] ?></span>
+                        <span class="cidade"><?= $vaga['cidade'] ?></span>
+                    </div>
+
+                    <div class="cta">
+                        <button class="btn detalhes" type="button" onclick="abrirDetalhes()">Detalhes</button>
+
+                        <!-- Formulário SOMENTE para inscrição -->
+                        <form method="POST" action="../../src/controllers/InscricaoController.php" style="display:inline;">
+                            <input type="hidden" name="id_vaga" value="<?= $vaga['id_vaga'] ?>">
+                            <button class="btn inscreverSe" type="submit">Inscrever-se</button>
+                        </form>
+                    </div>
                 </div>
             <?php endforeach; ?>
         </div>
