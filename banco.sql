@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS vagas (
     id_vaga INT AUTO_INCREMENT PRIMARY KEY,
     titulo VARCHAR(150) NOT NULL,
     descricao TEXT,
-    tipo ENUM('estagio','aprendiz') NOT NULL,
+    tipo ENUM('Estágio','Aprendiz') NOT NULL,
     salario DECIMAL(10,2),
     cidade VARCHAR(100),
     status ENUM('aberta','fechada') DEFAULT 'aberta',
@@ -100,5 +100,5 @@ INSERT IGNORE INTO `inscricao` VALUES
 (1,'2026-03-12 20:10:00',1,1);
 
 INSERT IGNORE INTO `vagas` VALUES 
-(1,'Estagiário de Informática','Auxiliar na manutenção de computadores e suporte básico aos usuários','estagio',1.00,'Indaiatuba','aberta','2026-03-12 20:06:57',1),
-(2,'Aprendiz Administrativo','Ajudar na organização de documentos e digitar informações no sistema','aprendiz',750.00,'Vitoria','aberta','2026-03-12 20:06:57',1);
+(1,'Estagiário de Informática','Auxiliar na manutenção de computadores e suporte básico aos usuários','Estágio',1.00,'Indaiatuba','aberta','2026-03-12 20:06:57',1),
+(2,'Aprendiz Administrativo','Ajudar na organização de documentos e digitar informações no sistema','Aprendiz',750.00,'Vitoria','aberta','2026-03-12 20:06:57',1);
