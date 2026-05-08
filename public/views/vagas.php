@@ -42,7 +42,6 @@ $meses = [
 
     <title>Vagas</title>
 </head>
-
 <body class="corpo">
     <header class="cabecalho">
         <div class="contentCabecalho">
