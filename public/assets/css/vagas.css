@@ -1,3 +1,8 @@
+.corpo {
+  overflow-y: visible;
+  overflow-x: hidden;
+}
+
 .search {
   display: block;
   display: flex;
@@ -80,7 +85,7 @@
   cursor: default;
 }
 
-.nome{
+.nome {
   cursor: default;
   text-transform: uppercase;
 }
@@ -90,7 +95,6 @@
   line-height: 1.1;
   font-weight: 800;
   color: #111;
-  max-width: 220px;
   cursor: default;
   text-transform: uppercase;
 }
@@ -119,6 +123,7 @@
   font-weight: 500;
   cursor: default;
   margin-right: 5px;
+  margin-bottom: 10px;
   text-transform: uppercase;
 }
 
@@ -147,6 +152,6 @@
 
 .detalhes {
   background-color: #fff;
-  border:1px solid #000000;
+  border: 1px solid #000000;
   color: black;
 }
