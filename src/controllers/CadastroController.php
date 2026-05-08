@@ -31,123 +31,142 @@ function handleCadastro($pdo)
     // Redirect baseado no tipo
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $redirectCadastro = ($tipo === 'empresa')
-            ? '../../../public/views/cadastroEmpresa.php'
-            : '../../../public/views/cadastroPessoa.php';
+            ? '../../public/views/cadastroEmpresa.php'
+            : '../../public/views/cadastroPessoa.php';
 
 
         $errors = [];
 
         // Validações 
         if (!Security::validateEmail($email)) {
-            $errors['email'] = "❌ Email inválido!";
+            $errors['email'] = "Email inválido!";
         }
 
         if (!Security::validateTelefone($telefone)) {
-            $errors['telefone'] = "❌ Telefone inválido!";
+            $errors['telefone'] = "Telefone inválido!";
         }
 
         if (!Security::validatePassword($senha)) {
-            $errors['senha'] = "❌ A senha deve ter pelo menos 8 caracteres";
+            $errors['senha'] = "A senha deve ter pelo menos 8 caracteres";
         }
 
         if ($tipo === 'empresa') {
             if (!Security::validateCNPJ($cnpj)) {
-                $errors['cnpj'] = "❌ CNPJ inválido!";
+                $errors['cnpj'] = "CNPJ inválido!";
             }
         }
 
         if ($tipo === 'pessoa') {
             if (!Security::validateCPF($cpf)) {
-                $errors['cpf'] = "❌ CPF inválido!";
+                $errors['cpf'] = "CPF inválido!";
             }
         }
 
 
 
-        if (!empty($errors)) {
+        if (empty($errors)) {
+            /*
             $_SESSION['flash'] = [
                 'type' => 'error',
                 'messages' => $errors,
                 'old' => $dados
             ];
+            */
+            try {
+                $userModel = new Usuario($pdo);
 
-            header("Location: $redirectCadastro");
-            exit;
+                // Verifica se email já existe
+                $usuario = $userModel->findByEmail($email);
+
+                if ($usuario) {
+                    /*
+                    $_SESSION['flash'] = [
+                        'type' => 'error',
+                        'messages' => ['email' => "⚠️ Email já cadastrado!"],
+                        'old' => $dados
+                    ];
+                    */
+                    $errors['usuario'] = 'Email já cadastrado!';
+
+                    $_SESSION['errors'] = $errors;
+                    $_SESSION['old'] = $_POST;
+
+                    header("Location: $redirectCadastro");
+                    exit;
+                }
+
+                // Hash da senha
+                $senhaHash = Security::hashPassword($senha);
+
+                // Transação segura (banco empresa e pessoa)
+                $pdo->beginTransaction();
+
+                // Criar Usuário
+                $userId = $userModel->createUser($email, $senhaHash, $tipo);
+
+                // Criar dados específicos (Pessoa e Empresa)
+                if ($tipo === 'pessoa') {
+                    $dadosPessoa = [
+                        'nome' => Security::sanitizeInput($dados['nome'] ?? ''),
+                        'cpf' => Security::sanitizeInput($dados['cpf'] ?? ''),
+                        'telefone' => Security::sanitizeInput($dados['telefone'] ?? ''),
+                        'instituicao' => Security::sanitizeInput($dados['instituicao'] ?? ''),
+                        'curso' => Security::sanitizeInput($dados['curso'] ?? '')
+                    ];
+                    $userModel->createPessoa($userId, $dadosPessoa);
+                } elseif ($tipo === 'empresa') {
+                    $dadosEmpresa = [
+                        'nome' => Security::sanitizeInput($dados['nome'] ?? ''),
+                        'cnpj' => Security::sanitizeInput($dados['cnpj'] ?? ''),
+                        'telefone' => Security::sanitizeInput($dados['telefone'] ?? ''),
+                        'cidade' => Security::sanitizeInput($dados['cidade'] ?? '')
+                    ];
+                    $userModel->createEmpresa($userId, $dadosEmpresa);
+                }
+
+                // Se der tudo certo, confirma tudo
+                $pdo->commit();
+
+                /* Sucesso
+                $_SESSION['flash'] = [
+                    'type' => 'success',
+                    'messages' => ["✅ Conta criada com sucesso!"],
+                ];
+                */
+
+                header("Location: ../../public/views/login.php");
+                exit;
+            } catch (PDOException $e) {
+                error_log("Erro no cadastro " . $e->getMessage());
+
+                // Se estiver em transaction, o rollBack volta se der alguma coisa errada
+                if ($pdo->inTransaction()) {
+                    $pdo->rollBack();
+                }
+
+                /*
+                $_SESSION['flash'] = [
+                    'type' => 'error',
+                    'messages' => ['sistema' => "⚠️ Erro no sistema. Tente novamente mais tarde."],
+                    'old' => $dados
+                ];
+                */
+                error_log("Erro no login: " . $e->getMessage());
+                $errors['sistema'] = "Erro no sistema. Volte mais tarde.";
+
+                $_SESSION['errors'] = $errors;
+                $_SESSION['old'] = $_POST;
+
+                header("Location: $redirectCadastro");
+                exit;
+            }
         }
     }
 
-    try {
-        $userModel = new Usuario($pdo);
+    $_SESSION['errors'] = $errors;
+    $_SESSION['old'] = $_POST;
 
-        // Verifica se email já existe
-        $usuario = $userModel->findByEmail($email);
 
-        if ($usuario) {
-            $_SESSION['flash'] = [
-                'type' => 'error',
-                'messages' => ["⚠️ Email já cadastrado!"],
-                'old' => $dados
-            ];
-
-            header("Location: $redirectCadastro");
-            exit;
-        }
-
-        // Hash da senha
-        $senhaHash = Security::hashPassword($senha);
-
-        // Transação segura (banco empresa e pessoa)
-        $pdo->beginTransaction();
-
-        // Criar Usuário
-        $userId = $userModel->createUser($email, $senhaHash, $tipo);
-
-        // Criar dados específicos (Pessoa e Empresa)
-        if ($tipo === 'pessoa') {
-            $dadosPessoa = [
-                'nome' => Security::sanitizeInput($dados['nome'] ?? ''),
-                'cpf' => Security::sanitizeInput($dados['cpf'] ?? ''),
-                'telefone' => Security::sanitizeInput($dados['telefone'] ?? ''),
-                'instituicao' => Security::sanitizeInput($dados['instituicao'] ?? ''),
-                'curso' => Security::sanitizeInput($dados['curso'] ?? '')
-            ];
-            $userModel->createPessoa($userId, $dadosPessoa);
-        } elseif ($tipo === 'empresa') {
-            $dadosEmpresa = [
-                'nome' => Security::sanitizeInput($dados['nome'] ?? ''),
-                'cnpj' => Security::sanitizeInput($dados['cnpj'] ?? ''),
-                'telefone' => Security::sanitizeInput($dados['telefone'] ?? ''),
-                'cidade' => Security::sanitizeInput($dados['cidade'] ?? '')
-            ];
-            $userModel->createEmpresa($userId, $dadosEmpresa);
-        }
-
-        // Se der tudo certo, confirma tudo
-        $pdo->commit();
-
-        // Sucesso
-        $_SESSION['flash'] = [
-            'type' => 'success',
-            'messages' => ["✅ Conta criada com sucesso!"],
-        ];
-
-        header("Location: ../../public/views/login.php");
-        exit;
-    } catch (PDOException $e) {
-        error_log("Erro no cadastro " . $e->getMessage());
-
-        // Se estiver em transaction, o rollBack volta se der alguma coisa errada
-        if ($pdo->inTransaction()) {
-            $pdo->rollBack();
-        }
-
-        $_SESSION['flash'] = [
-            'type' => 'error',
-            'messages' => ["⚠️ Erro no sistema. Tente novamente mais tarde."],
-            'old' => $dados
-        ];
-
-        header("Location: $redirectCadastro");
-        exit;
-    }
+    header("Location: $redirectCadastro");
+    exit;
 }
