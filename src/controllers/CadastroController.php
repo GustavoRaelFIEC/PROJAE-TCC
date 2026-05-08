@@ -1,7 +1,9 @@
 <?php
 
 require_once __DIR__ . '/../config/config.php';
-require_once __DIR__ . '/../models/Usuarios.php';
+require_once __DIR__ . '/../models/Pessoa.php';
+require_once __DIR__ . '/../models/Empresa.php';
+require_once __DIR__ . '/../models/Vaga.php';
 require_once __DIR__ . '/../utils/Security.php';
 require_once __DIR__ . '/../utils/Session.php';
 
@@ -77,10 +79,11 @@ function handleCadastro($pdo)
     }
 
     try {
-        $userModel = new Usuario($pdo);
+        $pessoaModel = new Pessoa($pdo);
+        $empresaModel = new Empresa($pdo);
 
         // Verifica se email já existe
-        $usuario = $userModel->findByEmail($email);
+        $usuario = $pessoaModel->findByEmail($email);
 
         if ($usuario) {
             $_SESSION['flash'] = [
@@ -100,7 +103,7 @@ function handleCadastro($pdo)
         $pdo->beginTransaction();
 
         // Criar Usuário
-        $userId = $userModel->createUser($email, $senhaHash, $tipo);
+        $userId = $pessoaModel->createUser($email, $senhaHash, $tipo);
 
         // Criar dados específicos (Pessoa e Empresa)
         if ($tipo === 'pessoa') {
@@ -111,7 +114,7 @@ function handleCadastro($pdo)
                 'instituicao' => Security::sanitizeInput($dados['instituicao'] ?? ''),
                 'curso' => Security::sanitizeInput($dados['curso'] ?? '')
             ];
-            $userModel->createPessoa($userId, $dadosPessoa);
+            $pessoaModel->createPessoa($userId, $dadosPessoa);
         } elseif ($tipo === 'empresa') {
             $dadosEmpresa = [
                 'nome' => Security::sanitizeInput($dados['nome'] ?? ''),
@@ -119,7 +122,7 @@ function handleCadastro($pdo)
                 'telefone' => Security::sanitizeInput($dados['telefone'] ?? ''),
                 'cidade' => Security::sanitizeInput($dados['cidade'] ?? '')
             ];
-            $userModel->createEmpresa($userId, $dadosEmpresa);
+            $empresaModel->createEmpresa($userId, $dadosEmpresa);
         }
 
         // Se der tudo certo, confirma tudo

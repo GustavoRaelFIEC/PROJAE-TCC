@@ -1,7 +1,9 @@
 <?php
 
 require_once __DIR__ . '/../config/config.php';
-require_once __DIR__ . '/../models/Usuarios.php';
+require_once __DIR__ . '/../models/Pessoa.php';
+require_once __DIR__ . '/../models/Empresa.php';
+require_once __DIR__ . '/../models/Vaga.php';
 require_once __DIR__ . '/../utils/Session.php';
 
 Session::start();
@@ -14,24 +16,23 @@ function handleInscricao($pdo)
 {
     $errors = [];
 
-    $userPessoa = new Usuario($pdo);
+    $pessoaModel = new Pessoa($pdo);
 
-    $id_pessoa =  $userPessoa->findByIdPessoa($_SESSION['user_id']);
+    $id_pessoa =  $pessoaModel->findByIdPessoa($_SESSION['user_id']);
     $id_vaga = (int) $_POST['id_vaga'];
 
     //Foi o Chat que deu esse código, então, mais tarde, revisar esta parte (esse IF)
     if (!$id_vaga || !$id_pessoa) {
         die("Dados inválidos.");
     }
-    
+
     try {
 
-        $userModel = new Usuario($pdo);
-        $userModel->inscricao($id_pessoa, $id_vaga);
+        $vagaModel = new Vaga($pdo);
+        $vagaModel->inscricao($id_pessoa, $id_vaga);
 
         header("Location: /PROJAE-TCC/public/views/dashboardPessoa.php");
         exit();
-
     } catch (PDOException $e) {
         error_log("Erro ao realizar inscrição: " . $e->getMessage());
         $errors[] = "Erro no sistema. Volte mais tarde.";
@@ -48,15 +49,15 @@ function visualizarInscricoesEmpresa($pdo)
 
     $errors = [];
 
-    $userEmpresa = new Usuario($pdo);
+    $empresaModel = new Empresa($pdo);
 
-    $id_empresa =  $userEmpresa->findByIdEmpresa($_SESSION['user_id']);
+    $id_empresa =  $empresaModel->findByIdEmpresa($_SESSION['user_id']);
 
     try {
 
-        $userModel = new Usuario($pdo);
+        $empresaModel = new Empresa($pdo);
 
-        $inscricoes = $userModel->visualizarInscricoesEmpresa($id_empresa);
+        $inscricoes = $empresaModel->visualizarInscricoesEmpresa($id_empresa);
     } catch (PDOException $e) {
         error_log("Erro ao trazer inscrições: " . $e->getMessage());
         $errors[] = "Erro no sistema. Volte mais tarde.";
@@ -76,15 +77,15 @@ function visualizarInscricoesPessoa($pdo)
 
     $errors = [];
 
-    $userPessoa = new Usuario($pdo);
+    $pessoaModel = new Pessoa($pdo);
 
-    $id_pessoa =  $userPessoa->findByIdPessoa($_SESSION['user_id']);
+    $id_pessoa =  $pessoaModel->findByIdPessoa($_SESSION['user_id']);
 
     try {
 
-        $userModel = new Usuario($pdo);
+        $pessoaModel = new Pessoa($pdo);
 
-        $inscricoes = $userModel->visualizarInscricoesPessoa($id_pessoa);
+        $inscricoes = $pessoaModel->visualizarInscricoesPessoa($id_pessoa);
     } catch (PDOException $e) {
         error_log("Erro ao trazer inscrições: " . $e->getMessage());
         $errors[] = "Erro no sistema. Volte mais tarde.";
