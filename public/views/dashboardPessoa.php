@@ -111,8 +111,8 @@ $dados = handleDadosPessoa($pdo);
                         <h1 class="nomePerfil"><?= $dados['nome'] ?></h1>
                         <h2 class="instituicaoPerfil"><?= $dados['instituicao'] ?></h2>
                         <h2 class="cursoPerfil"><?= $dados['curso'] ?></h2>
-                        <h2 class="telefonePerfil"><?= $dados['telefone'] ?></h2>
-                        <h2 class="regiaoPerfil"><?= $dados['cpf'] ?></h2>
+                        <h2 class="telefonePerfil"><i class="fa-solid fa-phone"></i><?= $dados['telefone'] ?></h2>
+                        <h2 class="cpf"><i class="fa-regular fa-id-badge"></i><?= $dados['cpf'] ?></h2>
                     </div>
                 </div>
                 <button onclick="abrirMenu()" class="btnEditar"><i class="fa-solid fa-pen-to-square"></i></button>
@@ -122,7 +122,7 @@ $dados = handleDadosPessoa($pdo);
                 <div id="listagemVagas">
                     <?php foreach ($inscricoes as $inscricao): ?>
                         <div class="card">
-                            <p class="paragrafoCard dataPublicacao"><?= $inscricao['data_publicacao'] ?></p>
+                            <p class="paragrafoCard dataPublicacao"><i class="fa-regular fa-clock"></i><?= $inscricao['data_publicacao'] ?></p>
                             <h1 class="cardTitulo"><?= $inscricao['titulo'] ?></h1>
                             <p class="paragrafoCard descricao"><?= $inscricao['descricao'] ?></p>
                             <p class="paragrafoCard tipo"><?= $inscricao['tipo'] ?></p>
@@ -130,6 +130,7 @@ $dados = handleDadosPessoa($pdo);
                             <p class="paragrafoCard cidade"><?= $inscricao['cidade'] ?></p>
                             <p class="paragrafoCard status"><?= $inscricao['status'] ?></p>
                             <p class="paragrafoCard dataInscricao"><?= $inscricao['data_inscricao'] ?></p>
+                            <button>Cancelar Inscrição</button>
                         </div>
                     <?php endforeach; ?>
                 </div>

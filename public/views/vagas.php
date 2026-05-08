@@ -59,29 +59,46 @@ $vagas = handleBuscarVaga($pdo);
                     </select>
                 </form>
             </aside>
-            <div id="listagemVagas">
-                <?php foreach ($vagas as $vaga): ?>
-                    <div class="card">
-                        <form method="POST" action="../../src/controllers/InscricaoController.php">
-                            <input type="hidden" name="id_vaga" value="<?= $vaga['id_vaga'] ?>">
-                            <p class="dataPublicacao"><?= $vaga['data_publicacao'] ?></p>
-                            <p class="nome"><?= $vaga['nome'] ?></p>
-                            <h1 class="cardTitulo"><?= $vaga['titulo'] ?></h1>
-                            <p class="descricao"><?= $vaga['descricao'] ?></p>
-                            <div class="tags">
-                                <span class="tipo"><?= $vaga['tipo'] ?></span>
-                                <span class="salario"><?= $vaga['salario'] ?></span>
-                                <span class="cidade"><?= $vaga['cidade'] ?></span>
-                            </div>
-                            <div class="cta">
-                                <button class="btn detalhes" type="button" onclick="abrirDetalhes()">Detalhes</button> <!-- Fazer a função para abrir e fechar os detalhes de cada Card -->
-                                <button id="inscreverSe" class="btn inscreverSe" type="submit">Inscrever-se</button>
-                            </div>
-                        </form>
-                    </div>
-                <?php endforeach; ?>
-            </div>
+        </div>
+
+        <div id="listagemVagas">
+            <?php foreach ($vagas as $vaga): ?>
+                <?php if (
+                    empty(trim($vaga['titulo'])) ||
+                    empty(trim($vaga['descricao']))
+                ) continue; ?>
+                <div class="card">
+                    <form method="POST" action="../../src/controllers/InscricaoController.php">
+                        <input type="hidden" name="id_vaga" value="<?= $vaga['id_vaga'] ?>">
+                        <p class="dataPublicacao"><?= $vaga['data_publicacao'] ?></p>
+                        <p class="nome"><?= $vaga['nome'] ?></p>
+                        <h1 class="cardTitulo"><?= $vaga['titulo'] ?></h1>
+                        <p class="descricao"><?= $vaga['descricao'] ?></p>
+                        <div class="tags">
+                            <span class="tipo"><?= $vaga['tipo'] ?></span>
+                            <span class="salario"><?= $vaga['salario'] ?></span>
+                            <span class="cidade"><?= $vaga['cidade'] ?></span>
+                        </div>
+                        <div class="cta">
+                            <button class="btn detalhes" type="button" onclick="abrirDetalhes()">Detalhes</button> <!-- Fazer a função para abrir e fechar os detalhes de cada Card -->
+                            <button id="inscreverSe" class="btn inscreverSe" type="submit">Inscrever-se</button>
+                        </div>
+                    </form>
+                </div>
+            <?php endforeach; ?>
+        </div>
     </main>
+    <script>
+        document.querySelectorAll(
+            "#listagemVagas .card p, #listagemVagas .card h1, #listagemVagas .card span"
+        ).forEach(campo => {
+
+            if (campo.textContent.trim() === "") {
+                campo.style.display = "none";
+            }
+
+        });
+    </script>
 </body>
 
 </html>

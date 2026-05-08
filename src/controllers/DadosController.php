@@ -1,7 +1,9 @@
 <?php
 
 require_once __DIR__ . '/../config/config.php';
-require_once __DIR__ . '/../models/Usuarios.php';
+require_once __DIR__ . '/../models/Pessoa.php';
+require_once __DIR__ . '/../models/Empresa.php';
+require_once __DIR__ . '/../models/Vaga.php';
 require_once __DIR__ . '/../utils/Security.php';
 require_once __DIR__ . '/../utils/Session.php';
 
@@ -20,9 +22,9 @@ function handleDadosPessoa($pdo)
 
     try {
 
-        $userModel = new Usuario($pdo);
+        $pessoaModel = new Pessoa($pdo);
 
-        $dados = $userModel->dadosByIdPessoa($_SESSION['user_id']);
+        $dados = $pessoaModel->dadosByIdPessoa($_SESSION['user_id']);
     } catch (PDOException $e) {
         error_log("Erro ao trazer os dados: " . $e->getMessage());
         $errors[] = "Erro no sistema. Volte mais tarde.";
@@ -44,9 +46,9 @@ function handleDadosEmpresa($pdo)
 
     try {
 
-        $userModel = new Usuario($pdo);
+        $empresaModel = new Empresa($pdo);
 
-        $dados = $userModel->dadosByIdEmpresa($_SESSION['user_id']);
+        $dados = $empresaModel->dadosByIdEmpresa($_SESSION['user_id']);
     } catch (PDOException $e) {
         error_log("Erro ao trazer os dados: " . $e->getMessage());
         $errors[] = "Erro no sistema. Volte mais tarde.";

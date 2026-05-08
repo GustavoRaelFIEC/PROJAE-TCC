@@ -1,7 +1,9 @@
 <?php
 
 require_once __DIR__ . '/../config/config.php';
-require_once __DIR__ . '/../models/Usuarios.php';
+require_once __DIR__ . '/../models/Pessoa.php';
+require_once __DIR__ . '/../models/Empresa.php';
+require_once __DIR__ . '/../models/Vaga.php';
 require_once __DIR__ . '/../utils/Security.php';
 require_once __DIR__ . '/../utils/Session.php';
 
@@ -21,21 +23,21 @@ function handleLogin($pdo)
     $errors = [];
 
     if (!Security::validateEmail(($email))) {
-        $errors['email'] = "Email inválido!";
+        $errors['email'] = "Email Inválido!";
     }
 
     //validate senha AQUI
     if (empty($senha)) {
-        $errors['senha'] = "Senha inválida!";
+        $errors['senha'] = "Senha Inválida!";
     }
 
 
     if (empty($errors)) {
         try {
 
-            $userModel = new Usuario($pdo);
+            $pessoaModel = new Pessoa($pdo);
 
-            $usuario = $userModel->findByEmail($email);
+            $usuario = $pessoaModel->findByEmail($email);
 
             if ($usuario && Security::verifyPassword($senha, $usuario['senha'])) {
                 //Login bem-sucedido
@@ -51,7 +53,7 @@ function handleLogin($pdo)
 
                 //LEMBRAR DE USAR "FIND BY ID" PARA TRAZER AS INFORMAÇÕES DE CADA UM EM SUAS RESPECTIVAS PÁGINAS (INFORMAÇÕES NO DASHBOARD, perfil por exemplo)
             } else {
-                $errors['login'] = "Email ou senha incorretos";
+                $errors['login'] = "Email ou Senha Incorretos!";
             }
         } catch (PDOException $e) {
             error_log("Erro no login: " . $e->getMessage());
