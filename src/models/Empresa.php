@@ -85,4 +85,13 @@ class Empresa
 
         return $stmt->fetch();
     }
+
+    public function visualizarVagasEmpresa($id_empresa)
+    {
+        $stmt = $this->pdo->prepare("
+        SELECT * FROM vagas WHERE id_empresa = ?
+        ");
+        $stmt->execute([$id_empresa]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
