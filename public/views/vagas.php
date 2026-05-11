@@ -1,31 +1,31 @@
 <?php
 
 require_once __DIR__ . "/../../src/middlewares/auth.php";
-require_once __DIR__ . "/../../src/controllers/InscricaoController.php";
 require_once __DIR__ . "/../../src/controllers/VagaController.php";
 
 verificarLogin();
 
-$tipo = $_GET['tipo'] ?? '';
-
-$vagaModel = new Vaga($pdo);
-$vagas = $vagaModel->handleFiltrarPorTipo($tipo);
-
+// Corrigido: o modelo Vaga é carregado pelo VagaController, não deve ser instanciado direto aqui.
+// handleFiltrarPorTipo() no VagaController retorna JSON e dá exit() — não pode ser usado para renderizar a página.
+// Solução: carrega TODAS as vagas via handleBuscarVaga() e o filtro por tipo é feito no frontend via JS,
+// igual ao filtro de busca por texto — sem recarregar a página.
+$vagas = handleBuscarVaga($pdo);
 
 $meses = [
-    1 => 'Janeiro',
-    'Fevereiro',
-    'Março',
-    'Abril',
-    'Maio',
-    'Junho',
-    'Julho',
-    'Agosto',
-    'Setembro',
-    'Outubro',
-    'Novembro',
-    'Dezembro'
+    1  => 'Janeiro',
+    2  => 'Fevereiro',
+    3  => 'Março',
+    4  => 'Abril',
+    5  => 'Maio',
+    6  => 'Junho',
+    7  => 'Julho',
+    8  => 'Agosto',
+    9  => 'Setembro',
+    10 => 'Outubro',
+    11 => 'Novembro',
+    12 => 'Dezembro'
 ];
+
 ?>
 
 <!DOCTYPE html>
@@ -44,8 +44,9 @@ $meses = [
     <link rel="stylesheet" href="../assets/css/main.css">
     <link rel="stylesheet" href="../assets/css/vagas.css">
 
-    <title>Vagas</title>
+    <title>Vagas - PROJAE</title>
 </head>
+
 <body class="corpo">
     <header class="cabecalho">
         <div class="contentCabecalho">
@@ -59,69 +60,120 @@ $meses = [
             </div>
         </div>
     </header>
+
     <main class="principal">
         <search class="search">
-            <input class="inputSearch" type="text"><i class="fa-solid fa-search"></i>
+            <!-- Corrigido: input agora tem id para o JS capturar -->
+            <input class="inputSearch" id="inputBusca" type="text" placeholder="Buscar vaga...">
+            <i class="fa-solid fa-search"></i>
         </search>
+
         <div class="content">
             <aside class="filtros">
-
                 <h1 style="font-weight: bold;">Filtros da vaga</h1>
 
-                <form class="filtroTipo" method="GET" action="vagas.php">
-                    <select name="tipo" onchange="this.form.submit()">
-                        <option value="">Todas</option>
-                        <option value="aprendiz" <?= ($tipo === 'aprendiz')? 'selected' : ''; ?>>Jovem Aprendiz</option>
-                        <option value="estagio" <?= ($tipo === 'estagio')? 'selected' : ''; ?>>Estagiário</option>
-                    </select>
-                </form>
-
+                <!-- Corrigido: era um <form> com GET que recarregava a página e chamava
+                     handleFiltrarPorTipo() que retorna JSON e dá exit() — quebraria a página.
+                     Agora é um <select> simples capturado pelo JS abaixo. -->
+                <select id="filtroTipo" class="input">
+                    <option value="">Todas</option>
+                    <option value="aprendiz">Jovem Aprendiz</option>
+                    <option value="estagio">Estagiário</option>
+                </select>
             </aside>
         </div>
 
         <div id="listagemVagas">
-            <?php foreach ($vagas as $vaga):
-                $data = new DateTime($vaga['data_publicacao_formatada']); ?>
+            <?php foreach ($vagas as $vaga): ?>
                 <?php if (
-                    empty(trim($vaga['titulo'])) ||
-                    empty(trim($vaga['descricao']))
-                ) continue;
-                ?>
+                    empty(trim($vaga['titulo']    ?? '')) ||
+                    empty(trim($vaga['descricao'] ?? ''))
+                ) continue; ?>
 
-                <div class="card">
+                <!-- data-titulo e data-tipo permitem ao JS filtrar sem recarregar -->
+                <div class="card"
+                    data-titulo="<?= htmlspecialchars(strtolower($vaga['titulo'] ?? '')) ?>"
+                    data-tipo="<?= htmlspecialchars($vaga['tipo'] ?? '') ?>">
+
+                    <!-- Corrigido: havia dois <form> e dois botões "Inscrever-se" aninhados.
+                         Apenas um form com um botão submit é necessário. -->
                     <form method="POST" action="../../src/controllers/InscricaoController.php">
-                        <input type="hidden" name="id_vaga" value="<?= $vaga['id_vaga'] ?>">
-                        <p class="paragrafoCard dataPublicacao"><i class="fa-regular fa-clock"></i>Data de Publicação: <?= $data->format('d') . ' ' . $meses[$data->format('n')] . ' ' . $data->format('Y') ?></p>
-                        <p class="nome"><?= $vaga['nome'] ?></p>
-                        <h1 class="cardTitulo"><?= $vaga['titulo'] ?></h1>
+                        <input type="hidden" name="id_vaga" value="<?= (int) $vaga['id_vaga'] ?>">
+
+                        <?php
+                            // Formata a data de publicação usando o array $meses
+                            $dataRaw = $vaga['data_publicacao'] ?? '';
+                            if ($dataRaw) {
+                                $ts  = strtotime($dataRaw);
+                                $dia = date('d', $ts);
+                                $mes = $meses[(int) date('m', $ts)] ?? '';
+                                $ano = date('Y', $ts);
+                                $dataFormatada = "$dia de $mes de $ano";
+                            } else {
+                                $dataFormatada = '';
+                            }
+                        ?>
+
+                        <p class="dataPublicacao"><?= htmlspecialchars($dataFormatada) ?></p>
+                        <!-- Corrigido: era $vaga['nome'] — o alias correto do JOIN em buscarVaga() é 'nome_empresa' -->
+                        <p class="nome"><?= htmlspecialchars($vaga['nome_empresa'] ?? '') ?></p>
+                        <h1 class="cardTitulo"><?= htmlspecialchars($vaga['titulo']      ?? '') ?></h1>
+                        <p class="descricao"><?= htmlspecialchars($vaga['descricao']   ?? '') ?></p>
                         <div class="tags">
-                            <span class="tipo"><?= $vaga['tipo'] ?></span>
-                            <span class="salario">R$ <?= $vaga['salario'] ?></span>
-                            <span class="cidade"><?= $vaga['cidade'] ?></span>
+                            <span class="tipo"><?= htmlspecialchars($vaga['tipo']    ?? '') ?></span>
+                            <span class="salario">R$ <?= htmlspecialchars($vaga['salario'] ?? '') ?></span>
+                            <span class="cidade"><?= htmlspecialchars($vaga['cidade']  ?? '') ?></span>
                         </div>
                         <div class="cta">
-                            <button class="btn detalhes" type="button" onclick="abrirDetalhes()">Detalhes</button> <!-- Fazer a função para abrir e fechar os detalhes de cada Card -->
-                            <form method="POST" action="../../src/controllers/InscricaoController.php" style="display:inline;">
-                            <input type="hidden" name="id_vaga" value="<?= $vaga['id_vaga'] ?>">
+                            <!-- Corrigido: abrirDetalhes() não estava implementada — removido o onclick por ora -->
+                            <button class="btn detalhes" type="button">Detalhes</button>
                             <button class="btn inscreverSe" type="submit">Inscrever-se</button>
-                        </form>
-                            <button id="inscreverSe" class="btn inscreverSe" type="submit">Inscrever-se</button>
                         </div>
                     </form>
                 </div>
             <?php endforeach; ?>
         </div>
     </main>
+
     <script>
+        const inputBusca = document.getElementById("inputBusca");
+        const filtroTipo = document.getElementById("filtroTipo");
+        const cards      = document.querySelectorAll("#listagemVagas .card");
+
+        // Oculta campos vazios nos cards
         document.querySelectorAll(
             "#listagemVagas .card p, #listagemVagas .card h1, #listagemVagas .card span"
         ).forEach(campo => {
-
             if (campo.textContent.trim() === "") {
                 campo.style.display = "none";
             }
-
         });
+
+        // Filtra cards por texto digitado e tipo selecionado
+        function filtrarCards() {
+            const termoBusca      = inputBusca.value.toLowerCase().trim();
+            const tipoSelecionado = filtroTipo.value;
+
+            cards.forEach(card => {
+                const tituloCard = card.dataset.titulo || "";
+                const tipoCard   = card.dataset.tipo   || "";
+
+                const combinaBusca = termoBusca === "" || tituloCard.includes(termoBusca);
+                const combinaTipo  = tipoSelecionado === "" || tipoCard === tipoSelecionado;
+
+                card.style.display = (combinaBusca && combinaTipo) ? "" : "none";
+            });
+        }
+
+        // Debounce: aguarda 300ms após parar de digitar para filtrar
+        let debounce;
+        inputBusca.addEventListener("input", () => {
+            clearTimeout(debounce);
+            debounce = setTimeout(filtrarCards, 300);
+        });
+
+        // Filtro por tipo aplica imediatamente
+        filtroTipo.addEventListener("change", filtrarCards);
     </script>
 </body>
 

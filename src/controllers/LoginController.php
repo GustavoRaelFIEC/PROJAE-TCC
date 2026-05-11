@@ -4,6 +4,7 @@ require_once __DIR__ . '/../config/config.php';
 require_once __DIR__ . '/../models/Pessoa.php';
 require_once __DIR__ . '/../models/Empresa.php';
 require_once __DIR__ . '/../models/Vaga.php';
+require_once __DIR__ . '/../models/Usuario.php';
 require_once __DIR__ . '/../utils/Security.php';
 require_once __DIR__ . '/../utils/Session.php';
 
