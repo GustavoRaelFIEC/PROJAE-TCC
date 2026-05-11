@@ -111,7 +111,7 @@ $inscricoes = visualizarInscricoesEmpresa($pdo);
                         <p style="color: gray;">Escolha uma cor para representar sua empresa</p>
                     </label>
                     <input
-                    style="margin-top: -15px;"
+                        style="margin-top: -15px;"
                         id="cor"
                         name="cor"
                         type="color">
@@ -155,6 +155,7 @@ $inscricoes = visualizarInscricoesEmpresa($pdo);
 
             <div id="novaVaga">
                 <form class="formulario" method="POST" action="../../src/controllers/VagaController.php?action=postarVaga">
+                    <input type="hidden" name="action" value="postarVaga">
                     <label class="input-label" for="nome">
                         Titulo
                         <input class="input"
