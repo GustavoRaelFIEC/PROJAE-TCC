@@ -151,7 +151,7 @@ $meses = [
                             <p class="paragrafoCard dataInscricao"><i class="fa-regular fa-clock"></i> Data de Inscrição: <?= $dataInscricao->format('d') . ' ' . $meses[$dataInscricao->format('n')] . ' ' . $dataInscricao->format('Y') ?></p>
                             <div class="cta">
                                 <button class="btn detalhes" type="button" onclick="abrirDetalhesVaga()">Detalhes</button> <form action=""></form>
-                                <button id="desinscrever" class="btn desinscrever" type="submit">Cancelar Inscrição</button>
+                                <button id="desinscrever" class="btn cancelarInscricao" type="submit">Cancelar Inscrição</button>
                             </div>
                         </div>
                     <?php endforeach; ?>
@@ -161,7 +161,7 @@ $meses = [
                             $data = new DateTime($inscricao['data_publicacao_formatada']);
                             $dataInscricao = new DateTime($inscricao['data_inscricao']);
                         ?>
-                            <div class="card">
+                            <div class="cardDetalhes">
                                 <p class="paragrafoCard dataPublicacao"><i class="fa-regular fa-clock"></i>Data de Publicação: <?= $data->format('d') . ' ' . $meses[$data->format('n')] . ' ' . $data->format('Y') ?></p>
                                 <h1 class="cardTitulo"><?= $inscricao['titulo'] ?></h1>
                                 <div class="tags">
@@ -172,7 +172,7 @@ $meses = [
                                 <p class="paragrafoCard dataInscricao"><i class="fa-regular fa-clock"></i> Data de Inscrição: <?= $dataInscricao->format('d') . ' ' . $meses[$dataInscricao->format('n')] . ' ' . $dataInscricao->format('Y') ?></p>
                                 <div class="cta">
                                     <button class="btn detalhes" type="button" onclick="fecharPopUps()">Sair</button>
-                                    <button id="desinscrever" class="btn desinscrever" type="submit">Desinscrever-se</button>
+                                    <button id="desinscrever" class="btn cancelarInscricao" type="submit">Cancelar Inscrição</button>
                                 </div>
                             </div>
                         <?php endforeach; ?>

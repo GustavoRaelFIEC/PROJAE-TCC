@@ -156,6 +156,7 @@ function old($key)
                     </label>
                     <button class="btn-submit" type="submit">Cadastrar</button>
                 </form>
+                <a href="./login.php" class="link">Já tem uma conta? Faça Login</a>
             </div>
         </div>
     </main>
