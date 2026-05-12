@@ -9,13 +9,6 @@ require_once __DIR__ . '/../utils/Session.php';
 
 Session::start();
 
-
-function getRequestData()
-{
-    return $_POST;
-}
-
-
 function handleDadosPessoa($pdo)
 {
     $errors = [];
