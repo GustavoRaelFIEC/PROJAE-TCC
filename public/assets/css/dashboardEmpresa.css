@@ -99,41 +99,76 @@ select.input:focus {
 }
 
 /* ================= BOTÕES ================= */
-.btn-submit-vaga {
-  margin-top: 10px;
-  padding: 12px;
-  border-radius: 8px;
-  border: none;
-  background: #4938be;
+.btn {
+  margin-top: 18px;
+  align-self: center;
+
+  background-color: black;
   color: white;
-  font-size: 16px;
+
+  border: none;
+  border-radius: 25px;
+
+  padding: 12px 30px;
+
+  font-size: 15px;
   font-weight: bold;
+
   cursor: pointer;
   transition: 0.3s;
 }
 
-.btn-submit-vaga:hover {
-  background: #372ca0;
-  box-shadow: 0 4px 12px rgba(73, 56, 190, 0.4);
-  transform: translateY(-1px);
+.btn:hover {
+  transform: scale(1.05);
 }
+
+.btn-submit{
+  padding: 10px;
+  border-radius: 7px;
+  background-color: white;
+  color: #4938be;
+  border: #4938be solid 1px;
+  box-shadow: rgba(74, 56, 190, 0.5) 0px 0px 10px;
+  font-size: 18px;
+  font-weight: 700;
+  width: 60%;
+  margin: auto;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.btn-submit:hover {
+  background-color: #4938be;
+  box-shadow: rgba(74, 56, 190, 0.5) 0px 0px 10px;
+  color: #fff;
+  transition: 0.3s;
+}
+
+.btn-cancelar {
+  padding: 10px;
+  border-radius: 7px;
+  background-color: white;
+  color: #d81512;
+  border: #d81512 solid 1px;
+  box-shadow: rgba(216, 21, 18, 0.5) 0px 0px 10px;
+  font-size: 18px;
+  font-weight: 700;
+  width: 50%;
+  margin: auto;
+  cursor: pointer;
+}
+
+.btn-cancelar:hover {
+  background-color: #d81512;
+  box-shadow: rgba(216, 21, 18, 0.5) 0px 0px 10px;
+  color: #fff;
+  transition: 0.3s;
+}
+
+
 
 /* Botões internos do modal */
-#novaVaga button,
-#editPerfil button {
-  margin-top: 10px;
-  padding: 8px 12px;
-  border-radius: 6px;
-  border: none;
-  background: #ccc;
-  cursor: pointer;
-  transition: 0.2s;
-}
 
-#novaVaga button:hover,
-#editPerfil button:hover {
-  background: #aaa;
-}
 
 /* ================= LAYOUT ================= */
 .principal {
@@ -219,4 +254,8 @@ select.input:focus {
   .input-desc {
     height: 120px;
   }
+}
+
+.hidden{
+  display: none;
 }

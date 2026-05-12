@@ -2,10 +2,13 @@
 
 require_once __DIR__ . "/../../src/middlewares/auth.php";
 require_once __DIR__ . "/../../src/controllers/InscricaoController.php";
+require_once __DIR__ . "/../../src/controllers/DadosController.php";
 
 
 verificarTipo('empresa');
 $inscricoes = visualizarInscricoesEmpresa($pdo);
+$dados = handleDadosEmpresa($pdo)
+
 
 ?>
 
@@ -124,11 +127,9 @@ $inscricoes = visualizarInscricoesEmpresa($pdo);
                 <div class="detalhesPerfil">
                     <div class="fotoPerfil"><img src="../assets/img/fotoPerfilPadrao.jpg" alt="Sua Foto de Perfil"></div>
                     <div>
-                        <h1 class="nomePerfil">Nome</h1>
-                        <h2 class="instituicaoPerfil">FIEC</h2>
-                        <h2 class="cursoPerfil">TI - Tecnologia da Informação</h2>
-                        <h2 class="telefonePerfil">11 98734-1209</h2>
-                        <h2 class="regiaoPerfil">São Paulo - SP</h2>
+                        <h1 class="nomePerfil"><?= $dados['nome'] ?></h1>
+                        <h2 class="telefonePerfil"><?= $dados['telefone'] ?></h2>
+                        <h2 class="regiaoPerfil"><?= $dados['cidade'] ?></h2>
                     </div>
                 </div>
                 <button onclick="abrirMenuPerfil()" class="btnEditar"><i class="fa-solid fa-pen-to-square"></i></button>
@@ -137,9 +138,12 @@ $inscricoes = visualizarInscricoesEmpresa($pdo);
                 <button onclick="abrirMenuVaga()" class="btn-vaga">Nova Vaga</button>
             </div>
 
-            <button onclick="toggleConteudo()" id="toggleConteudo" class="btn-toggle">Alternar Conteúdo</button>
+            <div>
+                <p id="page-candidatos" onclick="toggleCandidatos()">Seus candidatos</p>
+                <p id="page-vagas" onclick="toggleVagas()">Suas vagas</p>
+            </div>
 
-            <div id="conteudoInscricoes">
+            <div id="conteudoCandidatos">
                 <?php foreach ($inscricoes as $inscricao): ?>
                     <div style="border: 5px solid black;">
                         <p><?= $inscricao['titulo_vaga'] ?></p>
@@ -148,8 +152,8 @@ $inscricoes = visualizarInscricoesEmpresa($pdo);
                     </div>
                 <?php endforeach; ?>
             </div>
-
-            <div id="conteudoTeste" style="display: none;">
+            
+            <div id="conteudoVagas" class="hidden">
                 <p>Conteúdo de teste</p>
             </div>
 
@@ -222,10 +226,11 @@ $inscricoes = visualizarInscricoesEmpresa($pdo);
                         name="status"
                         value="aberta"
                         hidden>
-                    <button class="btn-submit-vaga" type="submit">Publicar</button>
+                    <button class="btn-submit" type="submit">Publicar</button>
+                    <button class="btn-cancelar" onclick="fecharMenu()">Fechar</button>
                 </form>
 
-                <button onclick="fecharMenu()">Fechar</button>
+                
             </div>
         </div>
     </main>
@@ -237,7 +242,8 @@ $inscricoes = visualizarInscricoesEmpresa($pdo);
         const novaVaga = document.getElementById("novaVaga")
         const overlay = document.getElementById("overlay");
         const picker = document.getElementById("colorPicker");
-        const btnToggle = document.getElementById("toggleConteudo")
+        const candidatos = document.getElementById("conteudoCandidatos");
+        const vagas = document.getElementById("conteudoVagas");
 
         function abrirMenuPerfil() {
             novaVaga.classList.remove("ativo");
@@ -264,26 +270,16 @@ $inscricoes = visualizarInscricoesEmpresa($pdo);
             localStorage.setItem("corEscolhida", picker.value);
         });
 
-        function toggleConteudo() {
-            const inscricoes = document.getElementById("conteudoInscricoes");
-            const teste = document.getElementById("conteudoTeste");
 
-            if (conteudo === 1) {
-                inscricoes.style.display = "none";
-                teste.style.display = "block";
-                btnToggle.textContent = "Ver inscrições"
-            } else {
-                inscricoes.style.display = "block";
-                teste.style.display = "none";
-                btnToggle.textContent = "Ver teste"
-            }
+    function toggleCandidatos() {
+        vagas.classList.add('hidden')
+        candidatos.classList.remove('hidden')
+    }
 
-            if (conteudo == 1) {
-                conteudo = 2
-            } else {
-                conteudo = 1
-            }
-        }
+    function toggleVagas() {
+        candidatos.classList.add('hidden')
+        vagas.classList.remove('hidden')
+    }
     </script>
 </body>
 
