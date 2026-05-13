@@ -1,9 +1,13 @@
 <?php
 
 require_once __DIR__ . '/../config/config.php';
+
 require_once __DIR__ . '/../models/Pessoa.php';
 require_once __DIR__ . '/../models/Empresa.php';
 require_once __DIR__ . '/../models/Vaga.php';
+require_once __DIR__ . '/../models/Usuario.php';
+require_once __DIR__ . '/../models/Inscricao.php';
+
 require_once __DIR__ . '/../utils/Session.php';
 
 Session::start();
@@ -18,18 +22,18 @@ function handleInscricao($pdo)
 
     $pessoaModel = new Pessoa($pdo);
 
-    $id_pessoa =  $pessoaModel->findByIdPessoa($_SESSION['user_id']);
+    $id_pessoa =  $pessoaModel->buscarPessoaPorUsuario($_SESSION['user_id']);
     $id_vaga = (int) $_POST['id_vaga'];
 
-    //Foi o Chat que deu esse código, então, mais tarde, revisar esta parte (esse IF)
+
     if (!$id_vaga || !$id_pessoa) {
         die("Dados inválidos.");
     }
 
     try {
 
-        $vagaModel = new Vaga($pdo);
-        $vagaModel->inscricao($id_pessoa, $id_vaga);
+        $vagaModel = new Inscricao($pdo);
+        $vagaModel->criarInscricao($id_pessoa, $id_vaga);
 
         header("Location: /PROJAE-TCC/public/views/dashboardPessoa.php");
         exit();
@@ -51,7 +55,7 @@ function visualizarInscricoesEmpresa($pdo)
 
     $empresaModel = new Empresa($pdo);
 
-    $id_empresa =  $empresaModel->findByIdEmpresa($_SESSION['user_id']);
+    $id_empresa =  $empresaModel->buscarIdEmpresaPorUsuario($_SESSION['user_id']);
 
     try {
 
@@ -79,7 +83,7 @@ function visualizarInscricoesPessoa($pdo)
 
     $pessoaModel = new Pessoa($pdo);
 
-    $id_pessoa =  $pessoaModel->findByIdPessoa($_SESSION['user_id']);
+    $id_pessoa =  $pessoaModel->buscarPessoaPorUsuario($_SESSION['user_id']);
 
     try {
 

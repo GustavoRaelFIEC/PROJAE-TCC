@@ -1,9 +1,13 @@
 <?php
 
 require_once __DIR__ . '/../config/config.php';
+
 require_once __DIR__ . '/../models/Pessoa.php';
 require_once __DIR__ . '/../models/Empresa.php';
 require_once __DIR__ . '/../models/Vaga.php';
+require_once __DIR__ . '/../models/Usuario.php';
+require_once __DIR__ . '/../models/Inscricao.php';
+
 require_once __DIR__ . '/../utils/Security.php';
 require_once __DIR__ . '/../utils/Session.php';
 
@@ -21,6 +25,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
+
+
+
+
 function getRequestData()
 {
     return $_POST;
@@ -34,7 +42,7 @@ function handlePostarVaga($pdo)
 
     $empresaModel = new Empresa($pdo);
 
-    $id_empresa =  $empresaModel->findByIdEmpresa($_SESSION['user_id']);
+    $id_empresa =  $empresaModel->buscarIdEmpresaPorUsuario($_SESSION['user_id']);
 
     try {
         $vagaModel = new Vaga($pdo);
@@ -55,7 +63,7 @@ function handlePostarVaga($pdo)
             throw new Exception("Título é obrigatório");
         }
 
-        $vagaModel->createVaga($id_empresa, $dados);
+        $vagaModel->criarVaga($id_empresa, $dados);
 
         // Se der tudo certo, confirma tudo
         $pdo->commit();
@@ -84,7 +92,7 @@ function handleBuscarVaga($pdo)
     try {
 
         $vagaModel = new Vaga($pdo);
-        return $vagaModel->buscarVaga();
+        return $vagaModel->buscarVagasAbertas();
     } catch (PDOException $e) {
         error_log("Erro ao trazer vagas: " . $e->getMessage());
         return [];
@@ -93,35 +101,12 @@ function handleBuscarVaga($pdo)
 
 function handleFiltrarPorTipo($pdo)
 {
-
     $tipo = $_GET['tipo'] ?? '';
 
     $vagaModel = new Vaga($pdo);
 
-    $vagas = $vagaModel->handleFiltrarPorTipo($tipo);
+    $vagas = $vagaModel->filtrarPorTipo($tipo);
 
     require '../PROJAE-TCC/public/views/vagas.php';
 }
 
-function handleBuscarVagaEspecifica($pdo, $vagaId)
-{
-    $errors = [];
-
-    try {
-
-        $vagaModel = new Vaga($pdo);
-
-        $vaga = $vagaModel->handleDadosVagaEspecifica($vagaId);
-    } catch (PDOException $e) {
-        error_log("Erro ao trazer informações: " . $e->getMessage());
-        $errors[] = "Erro no sistema. Volte mais tarde.";
-    }
-
-
-    if (!empty($errors)) {
-        header("Location: ");
-        exit();
-    }
-
-    return $vaga;
-}
