@@ -12,18 +12,18 @@ verificarLogin();
 $vagas = handleBuscarVaga($pdo);
 
 $meses = [
-    1  => 'Janeiro',
-    2  => 'Fevereiro',
-    3  => 'Março',
-    4  => 'Abril',
-    5  => 'Maio',
-    6  => 'Junho',
-    7  => 'Julho',
-    8  => 'Agosto',
-    9  => 'Setembro',
-    10 => 'Outubro',
-    11 => 'Novembro',
-    12 => 'Dezembro'
+    1 => 'Janeiro',
+    'Fevereiro',
+    'Março',
+    'Abril',
+    'Maio',
+    'Junho',
+    'Julho',
+    'Agosto',
+    'Setembro',
+    'Outubro',
+    'Novembro',
+    'Dezembro'
 ];
 
 ?>
@@ -48,6 +48,7 @@ $meses = [
 </head>
 
 <body class="corpo">
+    <div id="overlay" onclick="fecharPopUps()"></div>
     <header class="cabecalho">
         <div class="contentCabecalho">
             <div class="logo"><img class="img" src="../assets/img/imagotipo.png" alt="Projae logo"></div>
@@ -126,10 +127,30 @@ $meses = [
                             </div>
                             <div class="cta">
                                 <!-- Corrigido: abrirDetalhes() não estava implementada — removido o onclick por ora -->
-                                <button class="btn detalhes" type="button">Detalhes</button>
+                                <button class="btn detalhes" type="button" onclick="abrirDetalhesVaga()">Detalhes</button>
                                 <button class="btn inscreverSe" type="submit">Inscrever-se</button>
                             </div>
                         </form>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+            <div id="detalhesVaga">
+                <?php
+                foreach ($vagas as $vaga):
+                    $data = new DateTime($vaga['data_publicacao_formatada']);
+                ?>
+                    <div class="cardDetalhes">
+                        <p class="paragrafoCard dataPublicacao"><i class="fa-regular fa-clock"></i>Data de Publicação: <?= $data->format('d') . ' ' . $meses[$data->format('n')] . ' ' . $data->format('Y') ?></p>
+                        <h1 class="cardTitulo"><?= $vaga['titulo'] ?></h1>
+                        <div class="tags">
+                            <span class="tipo"><?= $vaga['tipo'] ?></span>
+                            <span class="salario">R$ <?= $vaga['salario'] ?></span>
+                            <span class="cidade"><?= $vaga['cidade'] ?></span>
+                        </div>
+                        <div class="cta">
+                            <button class="btn detalhes" type="button" onclick="fecharPopUps()">Sair</button>
+                            <button id="desinscrever" class="btn cancelarInscricao" type="submit">Cancelar Inscrição</button>
+                        </div>
                     </div>
                 <?php endforeach; ?>
             </div>
@@ -140,6 +161,9 @@ $meses = [
         const inputBusca = document.getElementById("inputBusca");
         const filtroTipo = document.getElementById("filtroTipo");
         const cards = document.querySelectorAll("#listagemVagas .card");
+        const editPerfil = document.getElementById("editPerfil");
+        const detalhesVaga = document.getElementById("detalhesVaga");
+        const overlay = document.getElementById("overlay");
 
         // Oculta campos vazios nos cards
         document.querySelectorAll(
@@ -177,6 +201,32 @@ $meses = [
 
         // Filtro por tipo aplica imediatamente
         filtroTipo.addEventListener("change", filtrarCards);
+
+        // MODAIS
+
+        function abrirDetalhesVaga() {
+            detalhesVaga.classList.add("ativo");
+            overlay.classList.add("ativo");
+            document.body.style.overflow = "hidden";
+        }
+
+        function fecharPopUps() {
+            if (detalhesVaga.classList.contains("ativo")) {
+                detalhesVaga.classList.remove("ativo");
+            }
+            overlay.classList.remove("ativo");
+            document.body.style.overflow = "auto";
+        }
+
+        document.querySelectorAll(
+            "#listagemVagas .card p, #listagemVagas .card h1, #listagemVagas .card span"
+        ).forEach(campo => {
+
+            if (campo.textContent.trim() === "") {
+                campo.style.display = "none";
+            }
+
+        });
     </script>
 </body>
 
