@@ -88,9 +88,11 @@ $meses = [
                         empty(trim($vaga['descricao'] ?? ''))
                     ) continue; ?>
 
-                    <!-- data-titulo e data-tipo permitem ao JS filtrar sem recarregar -->
+                    <!-- Variáveis que permitem ao JS filtrar sem recarregar -->
                     <div class="card"
                         data-titulo="<?= htmlspecialchars(strtolower($vaga['titulo'] ?? '')) ?>"
+                        data-descricao="<?= htmlspecialchars(strtolower($vaga['descricao'] ?? '')) ?>"
+                        data-cidade="<?= htmlspecialchars(strtolower($vaga['cidade'] ?? '')) ?>"
                         data-tipo="<?= htmlspecialchars($vaga['tipo'] ?? '') ?>">
 
                         <!-- Corrigido: havia dois <form> e dois botões "Inscrever-se" aninhados.
@@ -155,9 +157,11 @@ $meses = [
 
             cards.forEach(card => {
                 const tituloCard = card.dataset.titulo || "";
+                const descricaoCard = card.dataset.descricao || "";
+                const cidadeCard = card.dataset.cidade || "";
                 const tipoCard = card.dataset.tipo || "";
 
-                const combinaBusca = termoBusca === "" || tituloCard.includes(termoBusca);
+                const combinaBusca = termoBusca === "" || tituloCard.includes(termoBusca) || descricaoCard.includes(termoBusca) || cidadeCard.includes(termoBusca);
                 const combinaTipo = tipoSelecionado === "" || tipoCard === tipoSelecionado;
 
                 card.style.display = (combinaBusca && combinaTipo) ? "" : "none";
