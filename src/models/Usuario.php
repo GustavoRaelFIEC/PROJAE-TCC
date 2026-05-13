@@ -10,14 +10,12 @@ class Usuario
     }
 
     // Buscar usuário por email
-    public function findByEmail($email)
+    public function buscarUsuarioPorEmail($email)
     {
         $stmt = $this->pdo->prepare("
-            SELECT u.*, p.*, e.*
-            FROM usuarios u
-            LEFT JOIN pessoas p ON p.id_usuario = u.id
-            LEFT JOIN empresas e ON e.id_usuario = u.id
-            WHERE u.email = ?
+            SELECT * 
+            FROM usuarios 
+            WHERE email = ?
         ");
 
         $stmt->execute([$email]);
@@ -25,12 +23,13 @@ class Usuario
     }
 
     // Cria um novo usuário
-    public function createUser($email, $senhaHash, $tipo)
+    public function criarUsuario($email, $senhaHash, $tipo)
     {
         $stmt = $this->pdo->prepare("
             INSERT INTO usuarios (email, senha, tipo)
             VALUES (?, ?, ?)
         ");
+
         $stmt->execute([$email, $senhaHash, $tipo]);
         return $this->pdo->lastInsertId(); // Retorna o ID do novo usuário
     }

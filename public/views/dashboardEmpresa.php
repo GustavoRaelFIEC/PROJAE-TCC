@@ -4,6 +4,7 @@ require_once __DIR__ . "/../../src/middlewares/auth.php";
 require_once __DIR__ . "/../../src/controllers/InscricaoController.php";
 require_once __DIR__ . "/../../src/controllers/DadosController.php";
 
+$vagas = handleVagasDaEmpresa($pdo);
 
 verificarTipo('empresa');
 $inscricoes = visualizarInscricoesEmpresa($pdo);
@@ -141,6 +142,28 @@ $dados = handleDadosEmpresa($pdo)
             </div>
             
             <div id="conteudoCandidatos" class="area-scroll">
+            <div class="listarVagas">
+                <?php if (empty($vagas)): ?>
+                    <p>Nenhuma vaga cadastrada.</p>
+                <?php else: ?>
+                    <?php foreach ($vagas as $vaga): ?>
+                        <div class="vaga-card">
+                            <h3><?= htmlspecialchars($vaga['titulo']) ?></h3>
+                            <p><?= htmlspecialchars($vaga['descricao']) ?></p>
+                            <p><?= htmlspecialchars($vaga['tipo']) ?></p>
+                            <p><?= htmlspecialchars($vaga['cidade']) ?></p>
+                            <p><?= htmlspecialchars($vaga['status']) ?></p>
+                        </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+            </div>
+
+            <div>
+                <p id="page-candidatos" onclick="toggleCandidatos()">Seus candidatos</p>
+                <p id="page-vagas" onclick="toggleVagas()">Suas vagas</p>
+            </div>
+
+            <div id="conteudoCandidatos">
                 <?php foreach ($inscricoes as $inscricao): ?>
                     <div style="border: 5px solid black;">
                         <p><?= $inscricao['titulo_vaga'] ?></p>
@@ -149,7 +172,7 @@ $dados = handleDadosEmpresa($pdo)
                     </div>
                 <?php endforeach; ?>
             </div>
-            
+
             <div id="conteudoVagas" class="hidden">
                 <p>Conteúdo de teste</p>
             </div>
@@ -180,7 +203,7 @@ $dados = handleDadosEmpresa($pdo)
                             id="tipo"
                             default="Selecione o tipo da vaga"
                             required>
-                            <option value="estagio">Estagio</option>
+                            <option value="Estágio">Estágio</option>
                             <option value="aprendiz">Jovem Aprendiz</option>
                             <!-- colacar as opçoes dps -->
                         </select>
@@ -231,7 +254,7 @@ $dados = handleDadosEmpresa($pdo)
                     <button class="btn-cancelar" onclick="fecharMenu()">Fechar</button>
                 </form>
 
-                
+
             </div>
         </div>
     </main>
@@ -272,15 +295,15 @@ $dados = handleDadosEmpresa($pdo)
         });
 
 
-    function toggleCandidatos() {
-        vagas.classList.add('hidden')
-        candidatos.classList.remove('hidden')
-    }
+        function toggleCandidatos() {
+            vagas.classList.add('hidden')
+            candidatos.classList.remove('hidden')
+        }
 
-    function toggleVagas() {
-        candidatos.classList.add('hidden')
-        vagas.classList.remove('hidden')
-    }
+        function toggleVagas() {
+            candidatos.classList.add('hidden')
+            vagas.classList.remove('hidden')
+        }
     </script>
 </body>
 

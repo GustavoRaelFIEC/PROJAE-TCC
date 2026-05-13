@@ -1,10 +1,13 @@
 <?php
 
 require_once __DIR__ . '/../config/config.php';
+
 require_once __DIR__ . '/../models/Pessoa.php';
 require_once __DIR__ . '/../models/Empresa.php';
 require_once __DIR__ . '/../models/Vaga.php';
 require_once __DIR__ . '/../models/Usuario.php';
+require_once __DIR__ . '/../models/Inscricao.php';
+
 require_once __DIR__ . '/../utils/Security.php';
 require_once __DIR__ . '/../utils/Session.php';
 
@@ -67,33 +70,33 @@ function handleCadastro($pdo)
 
         if (empty($errors)) {
             try {
-                $userModel = new Usuario($pdo);
+                $usuarioModel = new Usuario($pdo);
                 $pessoaModel = new Pessoa($pdo);
                 $empresaModel = new Empresa($pdo);
 
                 // Verifica se email já existe
-                if ($userModel->findByEmail($email)) {
+                if ($usuarioModel->buscarUsuarioPorEmail($email)) {
                     $errors['usuario'] = 'Email já cadastrado!';
                 }
 
                 if ($tipo === 'pessoa') {
 
-                    if ($pessoaModel->findByCPF($cpf)) {
+                    if ($pessoaModel->buscarPorCPF($cpf)) {
                         $errors['cpf'] = 'CPF já cadastrado!';
                     }
 
-                    if ($pessoaModel->findByTelefone($telefone)) {
+                    if ($pessoaModel->buscarPorTelefone($telefone)) {
                         $errors['telefone'] = 'Telefone já cadastrado!';
                     }
                 }
 
                 if ($tipo === 'empresa') {
 
-                    if ($empresaModel->findByCNPJ($cnpj)) {
+                    if ($empresaModel->buscarEmpresaPorCNPJ($cnpj)) {
                         $errors['cnpj'] = 'CNPJ já cadastrado!';
                     }
 
-                    if ($empresaModel->findByTelefone($telefone)) {
+                    if ($empresaModel->buscarEmpresaPorTelefone($telefone)) {
                         $errors['telefone'] = 'Telefone já cadastrado!';
                     }
                 }
@@ -105,7 +108,7 @@ function handleCadastro($pdo)
                 $pdo->beginTransaction();
 
                 // Criar Usuário
-                $userId = $userModel->createUser($email, $senhaHash, $tipo);
+                $userId = $usuarioModel->criarUsuario($email, $senhaHash, $tipo);
 
                 // Criar dados específicos (Pessoa e Empresa)
                 if ($tipo === 'pessoa') {
@@ -116,7 +119,7 @@ function handleCadastro($pdo)
                         'instituicao' => Security::sanitizeInput($dados['instituicao'] ?? ''),
                         'curso' => Security::sanitizeInput($dados['curso'] ?? '')
                     ];
-                    $pessoaModel->createPessoa($userId, $dadosPessoa);
+                    $pessoaModel->criarPessoa($userId, $dadosPessoa);
                 } elseif ($tipo === 'empresa') {
                     $dadosEmpresa = [
                         'nome' => Security::sanitizeInput($dados['nome'] ?? ''),

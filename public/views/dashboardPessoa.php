@@ -50,7 +50,7 @@ $meses = [
         <div class="contentCabecalho">
             <div class="logo"><img class="img" src="../assets/img/imagotipo.png" alt="Projae logo"></div>
             <ul class="list">
-                <li><a class="item-list active" href="" onclick="location.reload()">Perfil</a></li>
+                <li><a class="item-list active" href="" onclick="location.reload()">Início</a></li>
                 <li><a class="item-list" href="vagas.php">Vagas</a></li>
             </ul>
             <div class="cta">
@@ -108,7 +108,7 @@ $meses = [
                     <label class="input-label" for="telefone">
                         <p>Telefone:</p>
                         <input class="input"
-                            placeholder="Digite seu telefone"
+                            placeholder="Digite o nome da sua instituição"
                             id="telefone"
                             name="telefone"
                             type="tel"
@@ -116,7 +116,7 @@ $meses = [
                     </label>
 
                     <button class="btn-submit" type="submit">Salvar</button>
-                    <button class="btn-cancelar" type="button" onclick="fecharPopUps()">Cancelar</button>
+                    <button class="btn-cancelar" type="submit">Cancelar</button>
                 </form>
             </div>
             <section class="perfil">
@@ -148,35 +148,35 @@ $meses = [
                                 <span class="salario">R$ <?= $inscricao['salario'] ?></span>
                                 <span class="cidade"><?= $inscricao['cidade'] ?></span>
                             </div>
+                            <p class="paragrafoCard dataInscricao"><i class="fa-regular fa-clock"></i>Data de Inscrição: <?= $dataInscricao->format('d') . ' ' . $meses[$dataInscricao->format('n')] . ' ' . $dataInscricao->format('Y') ?></p>
+                            <div class="cta">
+                                <button class="btn detalhes" type="button" onclick="abrirDetalhesVaga()">Detalhes</button> <!-- Fazer a função para abrir e fechar os detalhes de cada Card -->
+                                <button id="desinscrever" class="btn desinscrever" type="submit">Cancelar Inscrição</button>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+                <div id="detalhesVaga">
+                    <?php
+                    foreach ($inscricoes as $inscricao):
+                        $data = new DateTime($inscricao['data_publicacao_formatada']);
+                        $dataInscricao = new DateTime($inscricao['data_inscricao']);
+                    ?>
+                        <div class="cardDetalhes">
+                            <p class="paragrafoCard dataPublicacao"><i class="fa-regular fa-clock"></i>Data de Publicação: <?= $data->format('d') . ' ' . $meses[$data->format('n')] . ' ' . $data->format('Y') ?></p>
+                            <h1 class="cardTitulo"><?= $inscricao['titulo'] ?></h1>
+                            <div class="tags">
+                                <span class="tipo"><?= $inscricao['tipo'] ?></span>
+                                <span class="salario">R$ <?= $inscricao['salario'] ?></span>
+                                <span class="cidade"><?= $inscricao['cidade'] ?></span>
+                            </div>
                             <p class="paragrafoCard dataInscricao"><i class="fa-regular fa-clock"></i> Data de Inscrição: <?= $dataInscricao->format('d') . ' ' . $meses[$dataInscricao->format('n')] . ' ' . $dataInscricao->format('Y') ?></p>
                             <div class="cta">
-                                <button class="btn detalhes" type="button" onclick="abrirDetalhesVaga()">Detalhes</button> <form action=""></form>
+                                <button class="btn detalhes" type="button" onclick="fecharPopUps()">Sair</button>
                                 <button id="desinscrever" class="btn cancelarInscricao" type="submit">Cancelar Inscrição</button>
                             </div>
                         </div>
                     <?php endforeach; ?>
-                    <div id="detalhesVaga">
-                        <?php
-                        foreach ($inscricoes as $inscricao):
-                            $data = new DateTime($inscricao['data_publicacao_formatada']);
-                            $dataInscricao = new DateTime($inscricao['data_inscricao']);
-                        ?>
-                            <div class="cardDetalhes">
-                                <p class="paragrafoCard dataPublicacao"><i class="fa-regular fa-clock"></i>Data de Publicação: <?= $data->format('d') . ' ' . $meses[$data->format('n')] . ' ' . $data->format('Y') ?></p>
-                                <h1 class="cardTitulo"><?= $inscricao['titulo'] ?></h1>
-                                <div class="tags">
-                                    <span class="tipo"><?= $inscricao['tipo'] ?></span>
-                                    <span class="salario">R$ <?= $inscricao['salario'] ?></span>
-                                    <span class="cidade"><?= $inscricao['cidade'] ?></span>
-                                </div>
-                                <p class="paragrafoCard dataInscricao"><i class="fa-regular fa-clock"></i> Data de Inscrição: <?= $dataInscricao->format('d') . ' ' . $meses[$dataInscricao->format('n')] . ' ' . $dataInscricao->format('Y') ?></p>
-                                <div class="cta">
-                                    <button class="btn detalhes" type="button" onclick="fecharPopUps()">Sair</button>
-                                    <button id="desinscrever" class="btn cancelarInscricao" type="submit">Cancelar Inscrição</button>
-                                </div>
-                            </div>
-                        <?php endforeach; ?>
-                    </div>
                 </div>
             </section>
         </div>
@@ -199,12 +199,12 @@ $meses = [
             document.body.style.overflow = "hidden";
         }
 
-        function fecharPopUps(){
-            if(editPerfil.classList == "ativo"){
+        function fecharPopUps() {
+            if (editPerfil.classList == "ativo") {
                 editPerfil.classList.remove("ativo");
             }
 
-            if(detalhesVaga.classList == "ativo"){
+            if (detalhesVaga.classList == "ativo") {
                 detalhesVaga.classList.remove("ativo");
             }
             overlay.classList.remove("ativo");

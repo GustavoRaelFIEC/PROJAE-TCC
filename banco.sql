@@ -87,14 +87,14 @@ CREATE TABLE IF NOT EXISTS inscricao (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT IGNORE INTO `usuarios` VALUES
-(1,'devPessoa@gmail.com','$2y$10$wH8Q8Q6YQJ2VQ0Qk5GxY8e8d2uY0lYQv6u5hQ2u6c3YQfQe6Q9Q0K','pessoa','2026-03-12 19:43:00'),
-(2,'devEmpresa@gmail.com','$2y$10$wH8Q8Q6YQJ2VQ0Qk5GxY8e8d2uY0lYQv6u5hQ2u6c3YQfQe6Q9Q0K','empresa','2026-03-12 19:43:00');
+(1,'pessoa@gmail.com','$2y$10$wH8Q8Q6YQJ2VQ0Qk5GxY8e8d2uY0lYQv6u5hQ2u6c3YQfQe6Q9Q0K','pessoa','2026-03-12 19:43:00'),
+(2,'empresa@gmail.com','$2y$10$wH8Q8Q6YQJ2VQ0Qk5GxY8e8d2uY0lYQv6u5hQ2u6c3YQfQe6Q9Q0K','empresa','2026-03-12 19:43:00');
 
 INSERT IGNORE INTO `pessoas` VALUES
-(1,'devPessoa','12345678910','19998745263','fiec','informatica',1);
+(1,'pessoa','12345678910','19998745263','fiec','informatica',1);
 
 INSERT IGNORE INTO `empresas` VALUES 
-(1,'devEmpresa','54675103000180','1938018688','Indaiatuba-SP', 1);
+(1,'empresa','54675103000180','1938018688','Indaiatuba-SP', 1);
 
 INSERT IGNORE INTO `inscricao` VALUES 
 (1,'2026-03-12 20:10:00',1,1);
