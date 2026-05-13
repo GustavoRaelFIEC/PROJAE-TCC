@@ -10,13 +10,13 @@ class Vaga
         $this->pdo = $pdo;
     }
 
-    // Cadastrar dados da vaga no banco
-    public function createVaga($userId, $dados)
+    public function criarVaga($idEmpresa, $dados)
     {
         $stmt = $this->pdo->prepare("
         INSERT INTO vagas (titulo, descricao, tipo, salario, cidade, status, id_empresa)
         VALUES (?, ?, ?, ?, ?, ?, ?)
         ");
+
         $stmt->execute([
             $dados['titulo'],
             $dados['descricao'],
@@ -24,58 +24,54 @@ class Vaga
             $dados['salario'],
             $dados['cidade'],
             $dados['status'],
-            $userId
+            $idEmpresa
         ]);
     }
 
-    // Buscar/Trazer todas as vagas registradas
-    public function buscarVaga()
+
+    public function buscarVagasAbertas()
     {
         $stmt = $this->pdo->prepare("
-    SELECT 
-        vagas.*,
-        empresas.nome,
-        DATE(vagas.data_publicacao) AS data_publicacao_formatada
-    FROM vagas
-    INNER JOIN empresas ON vagas.id_empresa = empresas.id_empresa;
-    ");
+        SELECT 
+            vagas.*,
+            empresas.nome,
+            DATE(vagas.data_publicacao) AS data_publicacao_formatada
+        FROM vagas
+        INNER JOIN empresas ON vagas.id_empresa = empresas.id_empresa
+        WHERE vagas.status = 'aberta'
+        ");
 
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    // Realizar inscrição na vaga
-    public function inscricao($userId, $vagaId)
+
+    public function filtrarPorTipo($tipo)
     {
         $stmt = $this->pdo->prepare("
-        INSERT INTO inscricao (id_pessoa, id_vaga)
-        VALUES (?, ?)
+        SELECT 
+            vagas.*,
+            empresas.nome,
+            DATE(vagas.data_publicacao) AS data_publicacao_formatada
+        FROM vagas
+        INNER JOIN empresas ON vagas.id_empresa = empresas.id_empresa
+        WHERE vagas.tipo = ? AND vagas.status = 'aberta'
         ");
-        $stmt->execute([
-            $userId,
-            $vagaId
-        ]);
-    }
 
-    public function handleFiltrarPorTipo($tipo)
-    {
-        if ($tipo === '') {
-            $stmt = $this->pdo->query("SELECT * FROM vagas WHERE status = 'aberta'");
-        } else {
-
-            $stmt = $this->pdo->prepare("SELECT * FROM vagas WHERE tipo = (?) AND status = 'aberta'");
-            $stmt->execute([$tipo]);
-        }
-
+        $stmt->execute([$tipo]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function handleDadosVagaEspecifica($vagaId)
+    public function buscarVagasPorEmpresa($id_empresa)
     {
         $stmt = $this->pdo->prepare("
-        SELECT * FROM vagas WHERE id_vaga = ?
+        SELECT * 
+        FROM vagas 
+        WHERE id_empresa = ?
+        ORDER BY data_publicacao DESC
         ");
-        $stmt->execute([$vagaId]);
+
+        $stmt->execute([$id_empresa]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }
