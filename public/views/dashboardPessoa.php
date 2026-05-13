@@ -156,6 +156,7 @@ $meses = [
                         </div>
                     <?php endforeach; ?>
                 </div>
+                
                 <div id="detalhesVaga">
                     <?php
                     foreach ($inscricoes as $inscricao):
