@@ -49,6 +49,42 @@
   align-items: start;
 }
 
+#filtroTipo {
+  margin-top: 12px;
+  padding: 6px;
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid #4938be;
+  color: #4938be;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+#filtroTipo:focus {
+  border: 2px solid #4938be;
+}
+
+#filtroTipo:open {
+  border-radius: 10px 10px 0 0;
+}
+
+#filtroTipo option:checked {
+  background-color: #4938be;
+  color: white;
+}
+
+.opcaoTipo {
+  border: 1px solid #4938be;
+}
+
+.opcaoTipo[value = "Estágio"]{
+  border-radius: 0 0 10px 10px;
+}
+
+.opcaoTipo.selected{
+  background-color: #4938be;
+}
+
 #listagemVagas {
   display: grid;
   grid-template-columns: repeat(3, 400px);
@@ -73,7 +109,8 @@
   gap: 12px;
 }
 
-.dataPublicacao, .dataInscricao{
+.dataPublicacao,
+.dataInscricao {
   display: flex;
   align-items: center;
   gap: 10px;

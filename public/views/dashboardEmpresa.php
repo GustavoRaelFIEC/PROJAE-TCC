@@ -179,7 +179,7 @@ $dados = handleDadosEmpresa($pdo)
                             id="tipo"
                             default="Selecione o tipo da vaga"
                             required>
-                            <option value="estagio">Estagio</option>
+                            <option value="Estágio">Estágio</option>
                             <option value="aprendiz">Jovem Aprendiz</option>
                             <!-- colacar as opçoes dps -->
                         </select>

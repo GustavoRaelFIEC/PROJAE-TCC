@@ -76,9 +76,9 @@ $meses = [
                      handleFiltrarPorTipo() que retorna JSON e dá exit() — quebraria a página.
                      Agora é um <select> simples capturado pelo JS abaixo. -->
                 <select id="filtroTipo" class="input">
-                    <option value="">Todas</option>
-                    <option value="aprendiz">Jovem Aprendiz</option>
-                    <option value="estagio">Estagiário</option>
+                    <option class="opcaoTipo" value="">Todas</option>
+                    <option class="opcaoTipo" value="Aprendiz">Jovem Aprendiz</option>
+                    <option class="opcaoTipo" value="Estágio">Estagiário</option>
                 </select>
             </aside>
             <div id="listagemVagas">
