@@ -135,9 +135,13 @@ $dados = handleDadosEmpresa($pdo)
                 </div>
                 <button onclick="abrirMenuPerfil()" class="btnEditar"><i class="fa-solid fa-pen-to-square"></i></button>
             </section>
-            <div>
-                <button onclick="abrirMenuVaga()" class="btn-vaga">Nova Vaga</button>
+           
+            <div class="pageSelector">
+                <button class="page" onclick="toggleCandidatos()">Seus candidatos</button>
+                <button class="page" onclick="toggleVagas()">Suas vagas</button>
             </div>
+            
+            <div id="conteudoCandidatos" class="area-scroll">
             <div class="listarVagas">
                 <?php if (empty($vagas)): ?>
                     <p>Nenhuma vaga cadastrada.</p>
@@ -171,6 +175,10 @@ $dados = handleDadosEmpresa($pdo)
 
             <div id="conteudoVagas" class="hidden">
                 <p>Conteúdo de teste</p>
+            </div>
+            
+            <div>
+                 <button onclick="abrirMenuVaga()" class="btn-vaga">Nova Vaga</button>
             </div>
 
             <div id="novaVaga">
