@@ -140,11 +140,24 @@ $dados = handleDadosEmpresa($pdo)
                 <button class="page" onclick="toggleCandidatos()">Seus candidatos</button>
                 <button class="page" onclick="toggleVagas()">Suas vagas</button>
             </div>
-            
+
             <div id="conteudoCandidatos" class="area-scroll">
-            <div class="listarVagas">
+                <?php foreach ($inscricoes as $inscricao): ?>
+                    <div style="border: 5px solid black;">
+                        <p><?= $inscricao['titulo_vaga'] ?></p>
+                        <p><?= $inscricao['nome_pessoa'] ?></p>
+                        <p><?= $inscricao['data_inscricao'] ?></p>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+
+            <div id="conteudoVagas" class="hidden">
+                <div class="listarVagas">
                 <?php if (empty($vagas)): ?>
                     <p>Nenhuma vaga cadastrada.</p>
+                    <div>
+                        <button onclick="abrirMenuVaga()" class="btn-vaga">Nova Vaga</button>
+                    </div>
                 <?php else: ?>
                     <?php foreach ($vagas as $vaga): ?>
                         <div class="vaga-card">
@@ -158,23 +171,6 @@ $dados = handleDadosEmpresa($pdo)
                 <?php endif; ?>
             </div>
 
-            <div>
-                <p id="page-candidatos" onclick="toggleCandidatos()">Seus candidatos</p>
-                <p id="page-vagas" onclick="toggleVagas()">Suas vagas</p>
-            </div>
-
-            <div id="conteudoCandidatos">
-                <?php foreach ($inscricoes as $inscricao): ?>
-                    <div style="border: 5px solid black;">
-                        <p><?= $inscricao['titulo_vaga'] ?></p>
-                        <p><?= $inscricao['nome_pessoa'] ?></p>
-                        <p><?= $inscricao['data_inscricao'] ?></p>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-
-            <div id="conteudoVagas" class="hidden">
-                <p>Conteúdo de teste</p>
             </div>
             
             <div>
