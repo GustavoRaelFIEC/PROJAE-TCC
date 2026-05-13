@@ -45,12 +45,12 @@ $meses = [
 </head>
 
 <body class="corpo">
-    <div id="overlay" onclick="fecharPopUps()"></div>
+    <div id="overlay" onclick="fecharMenu()"></div>
     <header class="cabecalho">
         <div class="contentCabecalho">
             <div class="logo"><img class="img" src="../assets/img/imagotipo.png" alt="Projae logo"></div>
             <ul class="list">
-                <li><a class="item-list active" href="" onclick="location.reload()">Perfil</a></li>
+                <li><a class="item-list active" href="" onclick="location.reload()">Início</a></li>
                 <li><a class="item-list" href="vagas.php">Vagas</a></li>
             </ul>
             <div class="cta">
@@ -108,7 +108,7 @@ $meses = [
                     <label class="input-label" for="telefone">
                         <p>Telefone:</p>
                         <input class="input"
-                            placeholder="Digite seu telefone"
+                            placeholder="Digite o nome da sua instituição"
                             id="telefone"
                             name="telefone"
                             type="tel"
@@ -116,7 +116,7 @@ $meses = [
                     </label>
 
                     <button class="btn-submit" type="submit">Salvar</button>
-                    <button class="btn-cancelar" type="button" onclick="fecharPopUps()">Cancelar</button>
+                    <button class="btn-cancelar" type="submit">Cancelar</button>
                 </form>
             </div>
             <section class="perfil">
@@ -130,7 +130,7 @@ $meses = [
                         <h2 class="cpf"><i class="fa-regular fa-id-badge"></i><?= $dados['cpf'] ?></h2>
                     </div>
                 </div>
-                <button onclick="abrirEditarPerfil()" class="btnEditar"><i class="fa-solid fa-pen-to-square"></i></button>
+                <button onclick="abrirMenu()" class="btnEditar"><i class="fa-solid fa-pen-to-square"></i></button>
             </section>
             <section class="vagasInscritas">
                 <h1 class="titulo">Vagas Inscritas</h1>
@@ -148,35 +148,13 @@ $meses = [
                                 <span class="salario">R$ <?= $inscricao['salario'] ?></span>
                                 <span class="cidade"><?= $inscricao['cidade'] ?></span>
                             </div>
-                            <p class="paragrafoCard dataInscricao"><i class="fa-regular fa-clock"></i> Data de Inscrição: <?= $dataInscricao->format('d') . ' ' . $meses[$dataInscricao->format('n')] . ' ' . $dataInscricao->format('Y') ?></p>
+                            <p class="paragrafoCard dataInscricao"><i class="fa-regular fa-clock"></i>Data de Inscrição: <?= $dataInscricao->format('d') . ' ' . $meses[$dataInscricao->format('n')] . ' ' . $dataInscricao->format('Y') ?></p>
                             <div class="cta">
-                                <button class="btn detalhes" type="button" onclick="abrirDetalhesVaga()">Detalhes</button> <form action=""></form>
-                                <button id="desinscrever" class="btn cancelarInscricao" type="submit">Cancelar Inscrição</button>
+                                <button class="btn detalhes" type="button" onclick="abrirDetalhes()">Detalhes</button> <!-- Fazer a função para abrir e fechar os detalhes de cada Card -->
+                                <button id="desinscrever" class="btn desinscrever" type="submit">Cancelar Inscrição</button>
                             </div>
                         </div>
                     <?php endforeach; ?>
-                    <div id="detalhesVaga">
-                        <?php
-                        foreach ($inscricoes as $inscricao):
-                            $data = new DateTime($inscricao['data_publicacao_formatada']);
-                            $dataInscricao = new DateTime($inscricao['data_inscricao']);
-                        ?>
-                            <div class="cardDetalhes">
-                                <p class="paragrafoCard dataPublicacao"><i class="fa-regular fa-clock"></i>Data de Publicação: <?= $data->format('d') . ' ' . $meses[$data->format('n')] . ' ' . $data->format('Y') ?></p>
-                                <h1 class="cardTitulo"><?= $inscricao['titulo'] ?></h1>
-                                <div class="tags">
-                                    <span class="tipo"><?= $inscricao['tipo'] ?></span>
-                                    <span class="salario">R$ <?= $inscricao['salario'] ?></span>
-                                    <span class="cidade"><?= $inscricao['cidade'] ?></span>
-                                </div>
-                                <p class="paragrafoCard dataInscricao"><i class="fa-regular fa-clock"></i> Data de Inscrição: <?= $dataInscricao->format('d') . ' ' . $meses[$dataInscricao->format('n')] . ' ' . $dataInscricao->format('Y') ?></p>
-                                <div class="cta">
-                                    <button class="btn detalhes" type="button" onclick="fecharPopUps()">Sair</button>
-                                    <button id="desinscrever" class="btn cancelarInscricao" type="submit">Cancelar Inscrição</button>
-                                </div>
-                            </div>
-                        <?php endforeach; ?>
-                    </div>
                 </div>
             </section>
         </div>
@@ -184,32 +162,20 @@ $meses = [
     <!-- Criar um arquivo javaScript -->
     <script>
         const editPerfil = document.getElementById("editPerfil");
-        const detalhesVaga = document.getElementById("detalhesVaga");
         const overlay = document.getElementById("overlay");
 
-        function abrirEditarPerfil() {
+        function abrirMenu() {
             editPerfil.classList.add("ativo");
             overlay.classList.add("ativo");
             document.body.style.overflow = "hidden";
         }
 
-        function abrirDetalhesVaga() {
-            detalhesVaga.classList.add("ativo");
-            overlay.classList.add("ativo");
-            document.body.style.overflow = "hidden";
-        }
-
-        function fecharPopUps(){
-            if(editPerfil.classList == "ativo"){
-                editPerfil.classList.remove("ativo");
-            }
-
-            if(detalhesVaga.classList == "ativo"){
-                detalhesVaga.classList.remove("ativo");
-            }
+        function fecharMenu() {
+            editPerfil.classList.remove("ativo");
             overlay.classList.remove("ativo");
             document.body.style.overflow = "auto";
         }
+
 
         document.querySelectorAll(
             "#listagemVagas .card p, #listagemVagas .card h1, #listagemVagas .card span"

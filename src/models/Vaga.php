@@ -12,7 +12,7 @@ class Vaga
 
     // Cadastrar dados da vaga no banco
     public function createVaga($userId, $dados)
-    { //o id_empresa deve ser puxado da session
+    {
         $stmt = $this->pdo->prepare("
         INSERT INTO vagas (titulo, descricao, tipo, salario, cidade, status, id_empresa)
         VALUES (?, ?, ?, ?, ?, ?, ?)
@@ -30,8 +30,8 @@ class Vaga
 
     // Buscar/Trazer todas as vagas registradas
     public function buscarVaga()
-{
-    $stmt = $this->pdo->prepare("
+    {
+        $stmt = $this->pdo->prepare("
     SELECT 
         vagas.*,
         empresas.nome,
@@ -39,10 +39,10 @@ class Vaga
     FROM vagas
     INNER JOIN empresas ON vagas.id_empresa = empresas.id_empresa;
     ");
-    
-    $stmt->execute();
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
+
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 
     // Realizar inscrição na vaga
     public function inscricao($userId, $vagaId)
@@ -67,6 +67,15 @@ class Vaga
             $stmt->execute([$tipo]);
         }
 
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function handleDadosVagaEspecifica($vagaId)
+    {
+        $stmt = $this->pdo->prepare("
+        SELECT * FROM vagas WHERE id_vaga = ?
+        ");
+        $stmt->execute([$vagaId]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }

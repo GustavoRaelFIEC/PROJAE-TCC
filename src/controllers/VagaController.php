@@ -21,10 +21,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-
-
-
-
 function getRequestData()
 {
     return $_POST;
@@ -105,4 +101,27 @@ function handleFiltrarPorTipo($pdo)
     $vagas = $vagaModel->handleFiltrarPorTipo($tipo);
 
     require '../PROJAE-TCC/public/views/vagas.php';
+}
+
+function handleBuscarVagaEspecifica($pdo, $vagaId)
+{
+    $errors = [];
+
+    try {
+
+        $vagaModel = new Vaga($pdo);
+
+        $vaga = $vagaModel->handleDadosVagaEspecifica($vagaId);
+    } catch (PDOException $e) {
+        error_log("Erro ao trazer informações: " . $e->getMessage());
+        $errors[] = "Erro no sistema. Volte mais tarde.";
+    }
+
+
+    if (!empty($errors)) {
+        header("Location: ");
+        exit();
+    }
+
+    return $vaga;
 }

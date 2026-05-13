@@ -81,26 +81,24 @@ $meses = [
                     <option value="estagio">Estagiário</option>
                 </select>
             </aside>
-        </div>
+            <div id="listagemVagas">
+                <?php foreach ($vagas as $vaga): ?>
+                    <?php if (
+                        empty(trim($vaga['titulo']    ?? '')) ||
+                        empty(trim($vaga['descricao'] ?? ''))
+                    ) continue; ?>
 
-        <div id="listagemVagas">
-            <?php foreach ($vagas as $vaga): ?>
-                <?php if (
-                    empty(trim($vaga['titulo']    ?? '')) ||
-                    empty(trim($vaga['descricao'] ?? ''))
-                ) continue; ?>
+                    <!-- data-titulo e data-tipo permitem ao JS filtrar sem recarregar -->
+                    <div class="card"
+                        data-titulo="<?= htmlspecialchars(strtolower($vaga['titulo'] ?? '')) ?>"
+                        data-tipo="<?= htmlspecialchars($vaga['tipo'] ?? '') ?>">
 
-                <!-- data-titulo e data-tipo permitem ao JS filtrar sem recarregar -->
-                <div class="card"
-                    data-titulo="<?= htmlspecialchars(strtolower($vaga['titulo'] ?? '')) ?>"
-                    data-tipo="<?= htmlspecialchars($vaga['tipo'] ?? '') ?>">
-
-                    <!-- Corrigido: havia dois <form> e dois botões "Inscrever-se" aninhados.
+                        <!-- Corrigido: havia dois <form> e dois botões "Inscrever-se" aninhados.
                          Apenas um form com um botão submit é necessário. -->
-                    <form method="POST" action="../../src/controllers/InscricaoController.php">
-                        <input type="hidden" name="id_vaga" value="<?= (int) $vaga['id_vaga'] ?>">
+                        <form method="POST" action="../../src/controllers/InscricaoController.php">
+                            <input type="hidden" name="id_vaga" value="<?= (int) $vaga['id_vaga'] ?>">
 
-                        <?php
+                            <?php
                             // Formata a data de publicação usando o array $meses
                             $dataRaw = $vaga['data_publicacao'] ?? '';
                             if ($dataRaw) {
@@ -112,33 +110,34 @@ $meses = [
                             } else {
                                 $dataFormatada = '';
                             }
-                        ?>
+                            ?>
 
-                        <p class="dataPublicacao"><?= htmlspecialchars($dataFormatada) ?></p>
-                        <!-- Corrigido: era $vaga['nome'] — o alias correto do JOIN em buscarVaga() é 'nome_empresa' -->
-                        <p class="nome"><?= htmlspecialchars($vaga['nome_empresa'] ?? '') ?></p>
-                        <h1 class="cardTitulo"><?= htmlspecialchars($vaga['titulo']      ?? '') ?></h1>
-                        <p class="descricao"><?= htmlspecialchars($vaga['descricao']   ?? '') ?></p>
-                        <div class="tags">
-                            <span class="tipo"><?= htmlspecialchars($vaga['tipo']    ?? '') ?></span>
-                            <span class="salario">R$ <?= htmlspecialchars($vaga['salario'] ?? '') ?></span>
-                            <span class="cidade"><?= htmlspecialchars($vaga['cidade']  ?? '') ?></span>
-                        </div>
-                        <div class="cta">
-                            <!-- Corrigido: abrirDetalhes() não estava implementada — removido o onclick por ora -->
-                            <button class="btn detalhes" type="button">Detalhes</button>
-                            <button class="btn inscreverSe" type="submit">Inscrever-se</button>
-                        </div>
-                    </form>
-                </div>
-            <?php endforeach; ?>
+                            <p class="dataPublicacao"><?= htmlspecialchars($dataFormatada) ?></p>
+                            <!-- Corrigido: era $vaga['nome'] — o alias correto do JOIN em buscarVaga() é 'nome_empresa' -->
+                            <p class="nome"><?= htmlspecialchars($vaga['nome_empresa'] ?? '') ?></p>
+                            <h1 class="cardTitulo"><?= htmlspecialchars($vaga['titulo']      ?? '') ?></h1>
+                            <p class="descricao"><?= htmlspecialchars($vaga['descricao']   ?? '') ?></p>
+                            <div class="tags">
+                                <span class="tipo"><?= htmlspecialchars($vaga['tipo']    ?? '') ?></span>
+                                <span class="salario">R$ <?= htmlspecialchars($vaga['salario'] ?? '') ?></span>
+                                <span class="cidade"><?= htmlspecialchars($vaga['cidade']  ?? '') ?></span>
+                            </div>
+                            <div class="cta">
+                                <!-- Corrigido: abrirDetalhes() não estava implementada — removido o onclick por ora -->
+                                <button class="btn detalhes" type="button">Detalhes</button>
+                                <button class="btn inscreverSe" type="submit">Inscrever-se</button>
+                            </div>
+                        </form>
+                    </div>
+                <?php endforeach; ?>
+            </div>
         </div>
     </main>
 
     <script>
         const inputBusca = document.getElementById("inputBusca");
         const filtroTipo = document.getElementById("filtroTipo");
-        const cards      = document.querySelectorAll("#listagemVagas .card");
+        const cards = document.querySelectorAll("#listagemVagas .card");
 
         // Oculta campos vazios nos cards
         document.querySelectorAll(
@@ -151,15 +150,15 @@ $meses = [
 
         // Filtra cards por texto digitado e tipo selecionado
         function filtrarCards() {
-            const termoBusca      = inputBusca.value.toLowerCase().trim();
+            const termoBusca = inputBusca.value.toLowerCase().trim();
             const tipoSelecionado = filtroTipo.value;
 
             cards.forEach(card => {
                 const tituloCard = card.dataset.titulo || "";
-                const tipoCard   = card.dataset.tipo   || "";
+                const tipoCard = card.dataset.tipo || "";
 
                 const combinaBusca = termoBusca === "" || tituloCard.includes(termoBusca);
-                const combinaTipo  = tipoSelecionado === "" || tipoCard === tipoSelecionado;
+                const combinaTipo = tipoSelecionado === "" || tipoCard === tipoSelecionado;
 
                 card.style.display = (combinaBusca && combinaTipo) ? "" : "none";
             });
