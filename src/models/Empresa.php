@@ -11,47 +11,50 @@ class Empresa
     }
 
     // Cadastrar dados de empresa no banco
-    public function createEmpresa($userId, $dados)
+    public function createEmpresa($idUsuario, $dados)
     {
         $stmt = $this->pdo->prepare("
         INSERT INTO empresas (nome, cnpj, telefone, cidade, id_usuario)
         VALUES (?, ?, ?, ?, ?)
         ");
+
         $stmt->execute([
             $dados['nome'],
             $dados['cnpj'],
             $dados['telefone'],
             $dados['cidade'],
-            $userId
+            $idUsuario
         ]);
     }
 
-    // Encontrar por ID da Empresa
-    public function findByIdEmpresa($userId)
+    // Descobrir o id da empresa pelo id do usuário
+    public function buscarIdEmpresaPorUsuario($idUsuario)
     {
         $stmt = $this->pdo->prepare("
         SELECT id_empresa 
         FROM empresas 
         WHERE id_usuario = ?
         ");
-        $stmt->execute([$userId]);
+
+        $stmt->execute([$idUsuario]);
         return $stmt->fetchColumn();
     }
 
-    // Dados por ID da Empresa
-    public function dadosByIdEmpresa($userId)
+    // Buscar dados pelo id da empresa
+    public function buscarEmpresaPorUsuario($idUsuario)
     {
         $stmt = $this->pdo->prepare("
         SELECT * 
         FROM empresas 
         WHERE id_usuario = ?
         ");
-        $stmt->execute([$userId]);
+
+        $stmt->execute([$idUsuario]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    // Buscar/Trazer todas as inscrições pela Empresa
-    public function visualizarInscricoesEmpresa($userId)
+    // Buscar todas as inscrições da empresa
+    public function visualizarInscricoesEmpresa($idEmpresa)
     {
         $stmt = $this->pdo->prepare("
         SELECT 
@@ -64,34 +67,33 @@ class Empresa
         JOIN empresas ON vagas.id_empresa = empresas.id_empresa
         WHERE empresas.id_empresa = ?
         ");
-        $stmt->execute([$userId]);
+
+        $stmt->execute([$idEmpresa]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function findByCNPJ($cnpj)
-    {
-        $sql = "SELECT * FROM empresas WHERE cnpj = ?";
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->execute([$cnpj]);
-
-        return $stmt->fetch();
-    }
-
-    public function findByTelefone($telefone)
-    {
-        $sql = "SELECT * FROM empresas WHERE telefone = ?";
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->execute([$telefone]);
-
-        return $stmt->fetch();
-    }
-
-    public function visualizarVagasEmpresa($id_empresa)
+    public function buscarEmpresaPorCNPJ($cnpj)
     {
         $stmt = $this->pdo->prepare("
-        SELECT * FROM vagas WHERE id_empresa = ?
-        ");
-        $stmt->execute([$id_empresa]);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+         SELECT * 
+         FROM empresas 
+         WHERE cnpj = ? 
+         ");
+
+        $stmt->execute([$cnpj]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+    public function buscarEmpresaPorTelefone($telefone)
+    {
+        $stmt = $this->pdo->prepare("
+        SELECT * 
+        FROM empresas 
+        WHERE telefone = ? 
+        ");
+
+        $stmt->execute([$telefone]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
 }

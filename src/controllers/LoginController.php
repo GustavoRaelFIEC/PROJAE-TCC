@@ -1,10 +1,13 @@
 <?php
 
 require_once __DIR__ . '/../config/config.php';
+
 require_once __DIR__ . '/../models/Pessoa.php';
 require_once __DIR__ . '/../models/Empresa.php';
 require_once __DIR__ . '/../models/Vaga.php';
 require_once __DIR__ . '/../models/Usuario.php';
+require_once __DIR__ . '/../models/Inscricao.php';
+
 require_once __DIR__ . '/../utils/Security.php';
 require_once __DIR__ . '/../utils/Session.php';
 
@@ -38,7 +41,7 @@ function handleLogin($pdo)
 
             $userModel = new Usuario($pdo);
 
-            $usuario = $userModel->findByEmail($email);
+            $usuario = $userModel->buscarUsuarioPorEmail($email);
 
             if ($usuario && Security::verifyPassword($senha, $usuario['senha'])) {
                 //Login bem-sucedido

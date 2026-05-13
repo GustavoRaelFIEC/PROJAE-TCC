@@ -9,79 +9,89 @@ class Pessoa
         $this->pdo = $pdo;
     }
 
-    // Cadastrar dados de pessoa no banco
-    public function createPessoa($userId, $dados)
+    // Cadastrar dados de pessoa 
+    public function criarPessoa($idUsuario, $dados)
     {
         $stmt = $this->pdo->prepare("
         INSERT INTO pessoas (nome, cpf, telefone, instituicao, curso, id_usuario)
         VALUES (?, ?, ?, ?, ?, ?)
         ");
+
         $stmt->execute([
             $dados['nome'],
             $dados['cpf'],
             $dados['telefone'],
             $dados['instituicao'],
             $dados['curso'],
-            $userId
+            $idUsuario
         ]);
     }
 
     // Encontrar por ID da Pessoa
-    public function findByIdPessoa($userId)
+    public function buscarPessoaPorUsuario($idUsuario)
     {
         $stmt = $this->pdo->prepare("
         SELECT id_pessoa 
         FROM pessoas 
         WHERE id_usuario = ?
         ");
-        $stmt->execute([$userId]);
+
+        $stmt->execute([$idUsuario]);
         return $stmt->fetchColumn();
     }
 
     // Dados por ID da Pessoa
-    public function dadosByIdPessoa($userId)
+    public function buscarDadosPorUsuario($idUsuario)
     {
         $stmt = $this->pdo->prepare("
         SELECT * 
         FROM pessoas 
         WHERE id_usuario = ?
         ");
-        $stmt->execute([$userId]);
+
+        $stmt->execute([$idUsuario]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
     // Buscar/Trazer todas as inscrições pela Pessoa
-    public function visualizarInscricoesPessoa($userId)
+    public function visualizarInscricoesPessoa($idUsuario)
     {
         $stmt = $this->pdo->prepare("
-    SELECT 
-        inscricao.data_inscricao,
-        DATE(inscricao.data_inscricao) AS data_inscricao_formatada,
-        vagas.*,
-        DATE(vagas.data_publicacao) AS data_publicacao_formatada
-    FROM inscricao
-    JOIN vagas ON inscricao.id_vaga = vagas.id_vaga
-    WHERE inscricao.id_pessoa = ?");
+        SELECT 
+            inscricao.data_inscricao,
+            DATE(inscricao.data_inscricao) AS data_inscricao_formatada,
+            vagas.*,
+            DATE(vagas.data_publicacao) AS data_publicacao_formatada
+        FROM inscricao
+        JOIN vagas ON inscricao.id_vaga = vagas.id_vaga
+        WHERE inscricao.id_pessoa = ?
+        ");
 
-        $stmt->execute([$userId]);
+        $stmt->execute([$idUsuario]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function findByCPF($cpf)
+    public function buscarPorCPF($cpf)
     {
-        $sql = "SELECT * FROM pessoas WHERE cpf = ?";
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->execute([$cpf]);
+        $stmt = $this->pdo->prepare("
+        SELECT * 
+        FROM pessoas 
+        WHERE cpf = ?
+        ");
 
-        return $stmt->fetch();
+        $stmt->execute([$cpf]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function findByTelefone($telefone)
+    public function buscarPorTelefone($telefone)
     {
-        $sql = "SELECT * FROM pessoas WHERE telefone = ?";
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->execute([$telefone]);
+        $stmt = $this->pdo->prepare("
+        SELECT * 
+        FROM pessoas 
+        WHERE telefone = ?
+        ");
 
-        return $stmt->fetch();
+        $stmt->execute([$telefone]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 }
