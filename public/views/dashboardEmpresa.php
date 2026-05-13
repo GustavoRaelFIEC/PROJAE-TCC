@@ -134,16 +134,13 @@ $dados = handleDadosEmpresa($pdo)
                 </div>
                 <button onclick="abrirMenuPerfil()" class="btnEditar"><i class="fa-solid fa-pen-to-square"></i></button>
             </section>
-            <div>
-                <button onclick="abrirMenuVaga()" class="btn-vaga">Nova Vaga</button>
+           
+            <div class="pageSelector">
+                <button class="page" onclick="toggleCandidatos()">Seus candidatos</button>
+                <button class="page" onclick="toggleVagas()">Suas vagas</button>
             </div>
-
-            <div>
-                <p id="page-candidatos" onclick="toggleCandidatos()">Seus candidatos</p>
-                <p id="page-vagas" onclick="toggleVagas()">Suas vagas</p>
-            </div>
-
-            <div id="conteudoCandidatos">
+            
+            <div id="conteudoCandidatos" class="area-scroll">
                 <?php foreach ($inscricoes as $inscricao): ?>
                     <div style="border: 5px solid black;">
                         <p><?= $inscricao['titulo_vaga'] ?></p>
@@ -155,6 +152,10 @@ $dados = handleDadosEmpresa($pdo)
             
             <div id="conteudoVagas" class="hidden">
                 <p>Conteúdo de teste</p>
+            </div>
+            
+            <div>
+                 <button onclick="abrirMenuVaga()" class="btn-vaga">Nova Vaga</button>
             </div>
 
             <div id="novaVaga">
