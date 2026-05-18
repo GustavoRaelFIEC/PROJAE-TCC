@@ -38,11 +38,11 @@
                 <h1 class="titulo">Cadastrar</h1>
                 <h2 class="descricao">Escolha o tipo de conta que você deseja abrir</h2>
                 <div class="tipoConta">
-                    <p class="pessoa-sub">Pessoas usam a plataforma para buscar e se candidatar a vagas</p>
+                    <p class="pessoa-sub">PESSOAS usam a plataforma para buscar e se candidatar em vagas</p>
                     <a href="cadastroPessoa.php">
                         <button class="btn-pessoa" id="pessoa" name="tipoConta" value="pessoa">Pessoa</button>
                     </a>
-                    <p class="empresa-sub">Empresas usam a plataforma para cadastrar e gerenciar vagas</p>
+                    <p class="empresa-sub">EMPRESAS usam a plataforma para publicar e gerenciar vagas</p>
                     <a href="cadastroEmpresa.php">
                         <button class="btn-empresa" id="empresa" name="tipoConta" value="empresa">Empresa</button>
                     </a>
