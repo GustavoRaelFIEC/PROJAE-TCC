@@ -8,8 +8,22 @@ $vagas = handleVagasDaEmpresa($pdo);
 
 verificarTipo('empresa');
 $inscricoes = visualizarInscricoesEmpresa($pdo);
-$dados = handleDadosEmpresa($pdo)
+$dados = handleDadosEmpresa($pdo);
 
+$meses = [
+        1 => 'Janeiro',
+        'Fevereiro',
+        'Março',
+        'Abril',
+        'Maio',
+        'Junho',
+        'Julho',
+        'Agosto',
+        'Setembro',
+        'Outubro',
+        'Novembro',
+        'Dezembro'
+    ];
 
 ?>
 
@@ -143,13 +157,29 @@ $dados = handleDadosEmpresa($pdo)
 
                 <section class="conteudo">
 
-                <div id="conteudoCandidatos" class="area-scroll">
-                    <?php foreach ($inscricoes as $inscricao): ?>
-                        <div style="border: 5px solid black;">
-                            <p><?= $inscricao['titulo_vaga'] ?></p>
-                            <p><?= $inscricao['nome_pessoa'] ?></p>
-                            <p><?= $inscricao['data_inscricao'] ?></p>
+                <div id="conteudoCandidatos">
+                    <?php foreach ($inscricoes as $inscricao): 
+                        $data = new DateTime($inscricao['data_inscricao']);
+                    ?>
+                        <div class="card">
+
+                            <p class="paragrafoCard">
+                                <i class="fa-regular fa-clock"></i>
+                                <?= $data->format('d/m/Y') ?>
+                            </p>
+
+                            <h1 class="cardTitulo">
+                                <?= htmlspecialchars($inscricao['titulo_vaga']) ?>
+                            </h1>
+
+                            
+                            <p class="nome">
+                                <?= htmlspecialchars($inscricao['nome_pessoa']) ?>
+                            </p>
+                            
+
                         </div>
+
                     <?php endforeach; ?>
                 </div>
 
@@ -162,14 +192,46 @@ $dados = handleDadosEmpresa($pdo)
                         </div>
                     <?php else: ?>
                         <div id="listagemVagas">
-                            <?php foreach ($vagas as $vaga): ?>
+                            <?php foreach ($vagas as $vaga): 
+                                 $data = new DateTime($vaga['data_publicacao']); ?>
+
                                 <div class="card">
-                                    <h3><?= htmlspecialchars($vaga['titulo']) ?></h3>
-                                    <p><?= htmlspecialchars($vaga['descricao']) ?></p>
-                                    <p><?= htmlspecialchars($vaga['tipo']) ?></p>
-                                    <p><?= htmlspecialchars($vaga['cidade']) ?></p>
-                                    <p><?= htmlspecialchars($vaga['status']) ?></p>
+
+                                    <p class="paragrafoCard">
+                                        <i class="fa-solid fa-circle"></i>
+                                        Status:
+                                        <?= htmlspecialchars($vaga['status']) ?>
+                                    </p>
+                                    <p class="paragrafoCard">
+                                        <i class="fa-regular fa-clock"></i>
+                                        Data de Publicação:
+                                        <?= $data->format('d') . ' ' .
+                                            $meses[$data->format('n')] . ' ' .
+                                            $data->format('Y') ?>
+                                    </p>
+
+                                    <h1 class="cardTitulo">
+                                        <?= htmlspecialchars($vaga['titulo']) ?>
+                                    </h1>
+
+                                    <p class="paragrafoCard">
+                                        <?= htmlspecialchars($vaga['descricao']) ?>
+                                    </p>
+
+                                    <div class="tags">
+                                        <span class="tipo">
+                                            <?= htmlspecialchars($vaga['tipo']) ?>
+                                        </span>
+                                        <span class="salario">
+                                            R$ <?= $vaga['salario'] ?>
+                                        </span>
+                                        <span class="cidade">
+                                            <?= htmlspecialchars($vaga['cidade']) ?>
+                                        </span>
+                                    </div>
+
                                 </div>
+
                             <?php endforeach; ?>
                         </div>
                     <?php endif; ?>
