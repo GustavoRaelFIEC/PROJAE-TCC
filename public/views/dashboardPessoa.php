@@ -65,15 +65,6 @@ $meses = [
                 <form class="formulario">
                     <input type="hidden" name="tipo" value="pessoa">
 
-                    <!-- Fazer com que ele consiga editar a foto dele -->
-                    <!-- <label class="input-label">
-                        <p>Foto:</p>
-                        <input class="input"
-                            type="file"
-                            name="foto"
-                        >
-                    </label> -->
-
                     <label class="input-label" for="nome">
                         <p>Nome:</p>
                         <input class="input"
@@ -150,34 +141,28 @@ $meses = [
                             </div>
                             <p class="paragrafoCard dataInscricao"><i class="fa-regular fa-clock"></i>Data de Inscrição: <?= $dataInscricao->format('d') . ' ' . $meses[$dataInscricao->format('n')] . ' ' . $dataInscricao->format('Y') ?></p>
                             <div class="cta">
-                                <button class="btn detalhes" type="button" onclick="abrirDetalhesVaga()">Detalhes</button> <!-- Fazer a função para abrir e fechar os detalhes de cada Card -->
-                                <button id="desinscrever" class="btn desinscrever" type="submit">Cancelar Inscrição</button>
-                            </div>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
-                
-                <div id="detalhesVaga">
-                    <?php
-                    foreach ($inscricoes as $inscricao):
-                        $data = new DateTime($inscricao['data_publicacao_formatada']);
-                        $dataInscricao = new DateTime($inscricao['data_inscricao']);
-                    ?>
-                        <div class="cardDetalhes">
-                            <p class="paragrafoCard dataPublicacao"><i class="fa-regular fa-clock"></i>Data de Publicação: <?= $data->format('d') . ' ' . $meses[$data->format('n')] . ' ' . $data->format('Y') ?></p>
-                            <h1 class="cardTitulo"><?= $inscricao['titulo'] ?></h1>
-                            <div class="tags">
-                                <span class="tipo"><?= $inscricao['tipo'] ?></span>
-                                <span class="salario">R$ <?= $inscricao['salario'] ?></span>
-                                <span class="cidade"><?= $inscricao['cidade'] ?></span>
-                            </div>
-                            <p class="paragrafoCard dataInscricao"><i class="fa-regular fa-clock"></i> Data de Inscrição: <?= $dataInscricao->format('d') . ' ' . $meses[$dataInscricao->format('n')] . ' ' . $dataInscricao->format('Y') ?></p>
-                            <div class="cta">
-                                <button class="btn detalhes" type="button" onclick="fecharPopUps()">Sair</button>
+                                <button class="btn abrirDetalhes" type="button" data-id="<?= $inscricao['id_vaga'] ?>">Detalhes</button>
                                 <button id="desinscrever" class="btn cancelarInscricao" type="submit">Cancelar Inscrição</button>
                             </div>
                         </div>
                     <?php endforeach; ?>
+                </div>
+                <div id="detalhesVaga">
+                    <div class="cardDetalhes">
+                        <p class="paragrafoCard dataPublicacao" id="data_publicacao_formatada"></p>
+                        <h1 class="cardTitulo" id="titulo"></h1>
+                        <p id="descricao"></p>
+                        <div class="tags">
+                            <span class="tipo" id="tipo"></span>
+                            <span class="salario" id="salario">R$</span>
+                            <span class="cidade" id="cidade"></span>
+                        </div>
+                        <div class="cta">
+                            <button class="btn detalhes" type="button" onclick="fecharPopUps()">Sair</button>
+                            <button id="desinscrever" class="btn cancelarInscricao" type="submit">Cancelar Inscrição</button>
+                        </div>
+                    </div>
+
                 </div>
             </section>
         </div>
@@ -188,27 +173,95 @@ $meses = [
         const detalhesVaga = document.getElementById("detalhesVaga");
         const overlay = document.getElementById("overlay");
 
+        const meses = [
+            'Janeiro',
+            'Fevereiro',
+            'Março',
+            'Abril',
+            'Maio',
+            'Junho',
+            'Julho',
+            'Agosto',
+            'Setembro',
+            'Outubro',
+            'Novembro',
+            'Dezembro'
+        ];
+
         function abrirEditarPerfil() {
             editPerfil.classList.add("ativo");
             overlay.classList.add("ativo");
             document.body.style.overflow = "hidden";
         }
 
-        function abrirDetalhesVaga() {
-            detalhesVaga.classList.add("ativo");
-            overlay.classList.add("ativo");
-            document.body.style.overflow = "hidden";
-        }
+        document.querySelectorAll('.abrirDetalhes').forEach(botao => {
+
+            botao.addEventListener('click', async () => {
+
+                const id = botao.dataset.id;
+
+                // abre modal
+                detalhesVaga.classList.add("ativo");
+                overlay.classList.add("ativo");
+
+                document.body.style.overflow = "hidden";
+
+                // busca dados
+                const resposta = await fetch(`../../src/controllers/DadosController.php?id=${id}`);
+
+                const vaga = await resposta.json();
+
+                console.log(vaga);
+
+                Object.keys(vaga).forEach(chave => {
+
+                    const elemento = document.getElementById(chave);
+
+                    if (!elemento) return;
+
+                    // tratamento das datas
+                    if (chave === "data_publicacao_formatada") {
+
+                        const data = new Date(vaga[chave]);
+
+                        const dia = data.getDate();
+
+                        const mes = meses[data.getMonth()];
+
+                        const ano = data.getFullYear();
+
+                        elemento.innerHTML = `<i class="fa-regular fa-clock"></i> Data de Publicação: ${dia} ${mes} ${ano}`;
+
+                        return;
+                    }
+
+                    if (chave === "salario") {
+
+                        elemento.innerText = 'R$ ' + vaga[chave];
+
+                        return;
+                    }
+
+                    elemento.innerText = vaga[chave];
+
+                });
+
+            });
+
+        });
 
         function fecharPopUps() {
-            if (editPerfil.classList == "ativo") {
+
+            if (editPerfil.classList.contains("ativo")) {
                 editPerfil.classList.remove("ativo");
             }
 
-            if (detalhesVaga.classList == "ativo") {
+            if (detalhesVaga.classList.contains("ativo")) {
                 detalhesVaga.classList.remove("ativo");
             }
+
             overlay.classList.remove("ativo");
+
             document.body.style.overflow = "auto";
         }
 
