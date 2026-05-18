@@ -120,7 +120,7 @@ function old($key)
                     </label>
 
                     <label class="input-label" for="telefone">
-                        <p>Telefone<span>*</span></p>
+                        <p>Telefone Celular<span>*</span></p>
                         <input class="input"
                             placeholder="(__) _____-____"
                             id="telefone" name="telefone"

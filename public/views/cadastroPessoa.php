@@ -121,7 +121,7 @@ function old($key)
                         <?php endif; ?>
                     </label>
                     <label class="input-label">
-                        <p>Telefone<span>*</span></p>
+                        <p>Telefone Celular<span>*</span></p>
                         <input class="input"
                             type="text"
                             id="telefone"
