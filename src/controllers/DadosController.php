@@ -13,6 +13,14 @@ require_once __DIR__ . '/../utils/Session.php';
 
 Session::start();
 
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+
+    if (isset($_GET['id'])) {
+
+        handleDadosVaga($pdo);
+    }
+}
+
 
 function getRequestData()
 {
@@ -67,7 +75,7 @@ function handleDadosEmpresa($pdo)
     return $dados;
 }
 
-function handleVagasDaEmpresa($pdo) 
+function handleVagasDaEmpresa($pdo)
 {
     try {
         $empresaDados = handleDadosEmpresa($pdo);
@@ -75,11 +83,33 @@ function handleVagasDaEmpresa($pdo)
 
         $vagaModel = new Vaga($pdo);
         return $vagaModel->buscarVagasPorEmpresa($idEmpresa);
-
     } catch (PDOException $e) {
         error_log("Erro ao buscar vagas: " . $e->getMessage());
         return [];
-    } 
+    }
 }
 
+function handleDadosVaga($pdo)
+{
+    $errors = [];
 
+    $id = $_GET['id'];
+
+    try {
+
+        $vagaModel = new Vaga($pdo);
+
+        $dados = $vagaModel->buscarDadosVaga($id);
+    } catch (PDOException $e) {
+        error_log("Erro ao trazer os dados: " . $e->getMessage());
+        $errors[] = "Erro no sistema. Volte mais tarde.";
+    }
+
+
+    if (!empty($errors)) {
+        header("Location: "); //<-- VOLTAR PAAR A TELA DE VAGAS
+        exit();
+    }
+
+    echo json_encode($dados);
+}

@@ -74,4 +74,18 @@ class Vaga
         $stmt->execute([$id_empresa]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function buscarDadosVaga($idVaga)
+    {
+        $stmt = $this->pdo->prepare("
+         SELECT 
+            vagas.*,
+            DATE(vagas.data_publicacao) AS data_publicacao_formatada
+        FROM vagas
+        WHERE vagas.id_vaga = ?
+        ");
+
+        $stmt->execute([$idVaga]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 }
