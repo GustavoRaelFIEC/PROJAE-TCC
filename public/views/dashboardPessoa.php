@@ -142,13 +142,14 @@ $meses = [
                             <p class="paragrafoCard dataInscricao"><i class="fa-regular fa-clock"></i>Data de Inscrição: <?= $dataInscricao->format('d') . ' ' . $meses[$dataInscricao->format('n')] . ' ' . $dataInscricao->format('Y') ?></p>
                             <div class="cta">
                                 <button class="btn abrirDetalhes" type="button" data-id="<?= $inscricao['id_vaga'] ?>">Detalhes</button>
+                                <button id="desinscrever" class="btn cancelarInscricao" type="submit">Cancelar Inscrição</button>
                             </div>
                         </div>
                     <?php endforeach; ?>
                 </div>
                 <div id="detalhesVaga">
                     <div class="cardDetalhes">
-                        <p class="paragrafoCard dataPublicacao" id="data_publicacao_formatada"><i class="fa-regular fa-clock"></i></p>
+                        <p class="paragrafoCard dataPublicacao" id="data_publicacao_formatada"></p>
                         <h1 class="cardTitulo" id="titulo"></h1>
                         <p id="descricao"></p>
                         <div class="tags">
@@ -229,7 +230,7 @@ $meses = [
 
                         const ano = data.getFullYear();
 
-                        elemento.innerHTML += `Data de Publicação: ${dia} ${mes} ${ano}`;
+                        elemento.innerHTML = `<i class="fa-regular fa-clock"></i> Data de Publicação: ${dia} ${mes} ${ano}`;
 
                         return;
                     }
