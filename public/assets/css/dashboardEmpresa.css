@@ -221,12 +221,16 @@ select.input:focus {
   cursor: pointer;
 }
 
+.btnEditar > i {
+  font-size: 20px;
+}
+
 .btnEditar:hover {
   background-color: #4938be;
+  box-shadow: rgba(74, 56, 190, 0.2) 0px 0px 10px;
   color: #fff;
   transition: 0.2s;
 }
-
 
 @media (max-width: 768px) {
   #novaVaga,
