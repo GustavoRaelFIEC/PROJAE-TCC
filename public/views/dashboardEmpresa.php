@@ -135,44 +135,48 @@ $dados = handleDadosEmpresa($pdo)
                 </div>
                 <button onclick="abrirMenuPerfil()" class="btnEditar"><i class="fa-solid fa-pen-to-square"></i></button>
             </section>
-           
-            <div class="pageSelector">
-                <button class="page" onclick="toggleCandidatos()">Seus candidatos</button>
-                <button class="page" onclick="toggleVagas()">Suas vagas</button>
-            </div>
+            
+                <div class="pageSelector">
+                    <button class="page" onclick="toggleCandidatos()">Seus candidatos</button>
+                    <button class="page" onclick="toggleVagas()">Suas vagas</button>
+                </div>
 
-            <div id="conteudoCandidatos" class="area-scroll">
-                <?php foreach ($inscricoes as $inscricao): ?>
-                    <div style="border: 5px solid black;">
-                        <p><?= $inscricao['titulo_vaga'] ?></p>
-                        <p><?= $inscricao['nome_pessoa'] ?></p>
-                        <p><?= $inscricao['data_inscricao'] ?></p>
-                    </div>
-                <?php endforeach; ?>
-            </div>
+                <section class="conteudo">
 
-            <div id="conteudoVagas" class="hidden">
-                <div class="listarVagas">
-                <?php if (empty($vagas)): ?>
-                    <p>Nenhuma vaga cadastrada.</p>
-                    <div>
-                        <button onclick="abrirMenuVaga()" class="btn-vaga">Nova Vaga</button>
-                    </div>
-                <?php else: ?>
-                    <?php foreach ($vagas as $vaga): ?>
-                        <div class="vaga-card">
-                            <h3><?= htmlspecialchars($vaga['titulo']) ?></h3>
-                            <p><?= htmlspecialchars($vaga['descricao']) ?></p>
-                            <p><?= htmlspecialchars($vaga['tipo']) ?></p>
-                            <p><?= htmlspecialchars($vaga['cidade']) ?></p>
-                            <p><?= htmlspecialchars($vaga['status']) ?></p>
+                <div id="conteudoCandidatos" class="area-scroll">
+                    <?php foreach ($inscricoes as $inscricao): ?>
+                        <div style="border: 5px solid black;">
+                            <p><?= $inscricao['titulo_vaga'] ?></p>
+                            <p><?= $inscricao['nome_pessoa'] ?></p>
+                            <p><?= $inscricao['data_inscricao'] ?></p>
                         </div>
                     <?php endforeach; ?>
-                <?php endif; ?>
-            </div>
+                </div>
 
-            </div>
-            
+                <div id="conteudoVagas" class="hidden">
+                    <div class="listarVagas">
+                    <?php if (empty($vagas)): ?>
+                        <p>Nenhuma vaga cadastrada.</p>
+                        <div>
+                            <button onclick="abrirMenuVaga()" class="btn-vaga">Nova Vaga</button>
+                        </div>
+                    <?php else: ?>
+                        <div id="listagemVagas">
+                            <?php foreach ($vagas as $vaga): ?>
+                                <div class="card">
+                                    <h3><?= htmlspecialchars($vaga['titulo']) ?></h3>
+                                    <p><?= htmlspecialchars($vaga['descricao']) ?></p>
+                                    <p><?= htmlspecialchars($vaga['tipo']) ?></p>
+                                    <p><?= htmlspecialchars($vaga['cidade']) ?></p>
+                                    <p><?= htmlspecialchars($vaga['status']) ?></p>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php endif; ?>
+                </div>
+
+                </div>
+            </section>
             <div>
                  <button onclick="abrirMenuVaga()" class="btn-vaga">Nova Vaga</button>
             </div>
