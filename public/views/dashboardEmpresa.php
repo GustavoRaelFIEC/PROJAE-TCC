@@ -230,6 +230,11 @@ $meses = [
                                         </span>
                                     </div>
 
+                                    <div class="cta">
+                                        <button class="btn" type="button">Excluir</button>
+                                        <button class="btn fecharVaga" type="submit">fechar vaga</button>
+                                    </div>
+
                                 </div>
 
                             <?php endforeach; ?>

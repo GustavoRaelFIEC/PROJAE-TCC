@@ -357,6 +357,46 @@ cardTitulo {
   text-transform: uppercase;
 }
 
+.card .cta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn {
+  margin-top: 18px;
+  align-self: center;
+
+  background-color: black;
+  color: white;
+
+  border: none;
+  border-radius: 25px;
+
+  padding: 12px 30px;
+
+  font-size: 15px;
+  font-weight: bold;
+
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+}
+
+.abrirDetalhes {
+  background-color: #fff;
+  border: 1px solid #000000;
+  color: black;
+}
+
+.fecharVaga {
+  white-space: nowrap;
+}
+
 
 .area-scroll {
   height: 300px;
