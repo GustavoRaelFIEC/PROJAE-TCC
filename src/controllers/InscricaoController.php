@@ -43,7 +43,7 @@ function handleInscricao($pdo)
     }
 
     if (!empty($errors)) {
-        header("Location: /PROJAE-TCC/public/views/testeBuscarVaga.php");
+        header("Location: /PROJAE-TCC/public/views/vagas.php");
         exit();
     }
 }
