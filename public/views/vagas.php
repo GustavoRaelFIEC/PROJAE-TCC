@@ -2,8 +2,15 @@
 
 require_once __DIR__ . "/../../src/middlewares/auth.php";
 require_once __DIR__ . "/../../src/controllers/VagaController.php";
+require_once __DIR__ . '/../../src/utils/Session.php';
 
 verificarLogin();
+
+
+$errors = $_SESSION['errors'] ?? [];
+
+unset($_SESSION['errors']);
+
 
 // Corrigido: o modelo Vaga é carregado pelo VagaController, não deve ser instanciado direto aqui.
 // handleFiltrarPorTipo() no VagaController retorna JSON e dá exit() — não pode ser usado para renderizar a página.
@@ -53,8 +60,8 @@ $meses = [
         <div class="contentCabecalho">
             <div class="logo"><img class="img" src="../assets/img/imagotipo.png" alt="Projae logo"></div>
             <ul class="list">
-                <li><a class="item-list active" href="../../src/controllers/DadosController.php?action=inicio" onclick="">Início</a></li>
-                <li><a class="item-list" href="vagas.php">Vagas</a></li>
+                <li><a class="item-list" href="" onclick="location.reload()">Início</a></li>
+                <li><a class="item-list active" href="vagas.php">Vagas</a></li>
             </ul>
             <div class="cta">
                 <a href="./logout.php" class="btnSair">Sair</a>
@@ -133,6 +140,9 @@ $meses = [
                                     Detalhes
                                 </button>
                                 <button class="btn inscreverSe" type="submit">Inscrever-se</button>
+                                <?php if (isset($errors['inscricao'])): ?>
+                                    <span class="erro"><?= $errors['inscricao'] ?></span>
+                                <?php endif; ?>
                             </div>
                         </form>
                     </div>
