@@ -42,7 +42,7 @@ $meses = [
     <link rel="stylesheet" href="../assets/css/dashboardEmpresa.css">
 </head>
 
-<body>
+<body class="corpo">
     <div id="overlay" onclick="fecharMenu()"></div>
     <header class="cabecalho">
         <div class="contentCabecalho">
@@ -156,32 +156,37 @@ $meses = [
                 </div>
 
                 <section class="conteudo">
+                    <h1 id="titulo" class="titulo">Seus candidatos</h1>
 
                 <div id="conteudoCandidatos">
+                <div id="listagem">
+
                     <?php foreach ($inscricoes as $inscricao): 
                         $data = new DateTime($inscricao['data_inscricao']);
                     ?>
-                        <div class="card">
+                        <div class="card cardCandidato">
+
+                            
+                            <h1 class="cardTitulo">
+                                <?= htmlspecialchars($inscricao['nome_pessoa']) ?>
+                            </h1>
+
+                            <p class="paragrafoCard">
+                                Vaga: <?= htmlspecialchars($inscricao['titulo_vaga']) ?>
+                            </p>
 
                             <p class="paragrafoCard">
                                 <i class="fa-regular fa-clock"></i>
                                 <?= $data->format('d/m/Y') ?>
                             </p>
 
-                            <h1 class="cardTitulo">
-                                <?= htmlspecialchars($inscricao['titulo_vaga']) ?>
-                            </h1>
-
-                            
-                            <p class="nome">
-                                <?= htmlspecialchars($inscricao['nome_pessoa']) ?>
-                            </p>
-                            
 
                         </div>
 
                     <?php endforeach; ?>
+
                 </div>
+            </div>
 
                 <div id="conteudoVagas" class="hidden">
                     <div class="listarVagas">
@@ -191,18 +196,15 @@ $meses = [
                             <button onclick="abrirMenuVaga()" class="btn-vaga">Nova Vaga</button>
                         </div>
                     <?php else: ?>
-                        <div id="listagemVagas">
+                        <div id="listagem">
+                            
                             <?php foreach ($vagas as $vaga): 
                                  $data = new DateTime($vaga['data_publicacao']); ?>
 
                                 <div class="card">
 
-                                    <p class="paragrafoCard">
-                                        <i class="fa-solid fa-circle"></i>
-                                        Status:
-                                        <?= htmlspecialchars($vaga['status']) ?>
                                     </p>
-                                    <p class="paragrafoCard">
+                                    <p class="paragrafoCard dataPublicacao">
                                         <i class="fa-regular fa-clock"></i>
                                         Data de Publicação:
                                         <?= $data->format('d') . ' ' .
@@ -231,7 +233,7 @@ $meses = [
                                     </div>
 
                                     <div class="cta">
-                                        <button class="btn" type="button">Excluir</button>
+                                        <button class="btn excluirVaga" type="button">Excluir</button>
                                         <button class="btn fecharVaga" type="submit">fechar vaga</button>
                                     </div>
 
@@ -328,7 +330,7 @@ $meses = [
 
 
     <script>
-        let conteudo = 1;
+        const titulo = document.getElementById('titulo')
         const editPerfil = document.getElementById("editPerfil");
         const novaVaga = document.getElementById("novaVaga")
         const overlay = document.getElementById("overlay");
@@ -365,11 +367,13 @@ $meses = [
         function toggleCandidatos() {
             vagas.classList.add('hidden')
             candidatos.classList.remove('hidden')
+            titulo.textContent = 'Seus Candidatos'
         }
 
         function toggleVagas() {
             candidatos.classList.add('hidden')
             vagas.classList.remove('hidden')
+            titulo.textContent = "Suas Vagas"
         }
     </script>
 </body>
