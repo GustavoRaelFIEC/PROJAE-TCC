@@ -261,9 +261,9 @@ select.input:focus {
     justify-content: center;
     align-items: flex-start;
 
-    background: none;
     border: none;
     outline: none;
+    background: none;
 
     padding: 0;
     margin: 0;

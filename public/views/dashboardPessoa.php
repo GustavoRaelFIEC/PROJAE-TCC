@@ -66,7 +66,7 @@ $meses = [
                     <input type="hidden" name="tipo" value="pessoa">
 
                     <label class="input-label" for="nome">
-                        <p>Nome:</p>
+                        <p>Placeholder:</p>
                         <input class="input"
                             placeholder="Digite seu Nome"
                             id="nome"
@@ -76,7 +76,7 @@ $meses = [
                     </label>
 
                     <label class="input-label" for="instituicao">
-                        <p>Instituição:</p>
+                        <p>placeholder:</p>
                         <input class="input"
                             placeholder="Digite o nome da sua instituição"
                             id="instituicao"
@@ -86,7 +86,7 @@ $meses = [
                     </label>
 
                     <label class="input-label" for="curso">
-                        <p>Curso:</p>
+                        <p>placeholder:</p>
                         <input class="input"
                             placeholder="Digite o seu curso"
                             id="curso"
