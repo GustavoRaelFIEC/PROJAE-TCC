@@ -137,6 +137,9 @@ $meses = [
                         </form>
                     </div>
                 <?php endforeach; ?>
+                <?php if (isset($errors['email'])): ?>
+                    <span class="erro"><?= $errors['email'] ?></span>
+                <?php endif; ?>
             </div>
             <div id="detalhesVaga">
                 <div class="cardDetalhes">
