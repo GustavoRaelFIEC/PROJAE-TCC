@@ -2,8 +2,15 @@
 
 require_once __DIR__ . "/../../src/middlewares/auth.php";
 require_once __DIR__ . "/../../src/controllers/VagaController.php";
+require_once __DIR__ . '/../../src/utils/Session.php';
 
 verificarLogin();
+
+
+$errors = $_SESSION['errors'] ?? [];
+
+unset($_SESSION['errors']);
+
 
 // Corrigido: o modelo Vaga é carregado pelo VagaController, não deve ser instanciado direto aqui.
 // handleFiltrarPorTipo() no VagaController retorna JSON e dá exit() — não pode ser usado para renderizar a página.
@@ -133,13 +140,13 @@ $meses = [
                                     Detalhes
                                 </button>
                                 <button class="btn inscreverSe" type="submit">Inscrever-se</button>
+                                <?php if (isset($errors['inscricao'])): ?>
+                                    <span class="erro"><?= $errors['inscricao'] ?></span>
+                                <?php endif; ?>
                             </div>
                         </form>
                     </div>
                 <?php endforeach; ?>
-                <?php if (isset($errors['email'])): ?>
-                    <span class="erro"><?= $errors['email'] ?></span>
-                <?php endif; ?>
             </div>
             <div id="detalhesVaga">
                 <div class="cardDetalhes">

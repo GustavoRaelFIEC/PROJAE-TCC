@@ -40,7 +40,10 @@ function handleInscricao($pdo)
     } catch (PDOException $e) {
         error_log("Erro ao realizar inscrição: " . $e->getMessage());
         $errors['inscricao'] = "Inscrição realizada!";
+        $_SESSION['errors'] = $errors;
     }
+
+    $_SESSION['errors'] = $errors;
 
     if (!empty($errors)) {
         header("Location: /PROJAE-TCC/public/views/vagas.php");
