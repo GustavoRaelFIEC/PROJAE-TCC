@@ -133,7 +133,8 @@ $meses = [
                     ?>
                         <div class="card">
                             <p class="paragrafoCard dataPublicacao"><i class="fa-regular fa-clock"></i>Data de Publicação: <?= $data->format('d') . ' ' . $meses[$data->format('n')] . ' ' . $data->format('Y') ?></p>
-                            <h1 class="cardTitulo"><?= $inscricao['titulo'] ?></h1>
+                            <h1 class="nomeEmpresa"><?= $inscricao['nomeEmpresa'] ?></h1>
+                            <h2 class="cardTitulo"><?= $inscricao['titulo'] ?></h2>
                             <div class="tags">
                                 <span class="tipo"><?= $inscricao['tipo'] ?></span>
                                 <span class="salario">R$ <?= $inscricao['salario'] ?></span>
@@ -141,7 +142,7 @@ $meses = [
                             </div>
                             <p class="paragrafoCard dataInscricao"><i class="fa-regular fa-clock"></i>Data de Inscrição: <?= $dataInscricao->format('d') . ' ' . $meses[$dataInscricao->format('n')] . ' ' . $dataInscricao->format('Y') ?></p>
                             <div class="cta">
-                                <button class="btn abrirDetalhes" type="button" data-id="<?= $inscricao['id_vaga'] ?>">Detalhes</button>
+                                <button class="btn btnAbrirDetalhes" type="button" data-id="<?= $inscricao['id_vaga'] ?>">Detalhes</button>
                                 <button id="desinscrever" class="btn cancelarInscricao" type="submit">Cancelar Inscrição</button>
                             </div>
                         </div>
@@ -150,6 +151,7 @@ $meses = [
                 <div id="detalhesVaga">
                     <div class="cardDetalhes">
                         <p class="paragrafoCard dataPublicacao" id="data_publicacao_formatada"></p>
+                        <h1 class="nomeEmpresa" id="nomeEmpresa"></h1>
                         <h1 class="cardTitulo" id="titulo"></h1>
                         <p id="descricao"></p>
                         <div class="tags">
@@ -157,12 +159,12 @@ $meses = [
                             <span class="salario" id="salario">R$</span>
                             <span class="cidade" id="cidade"></span>
                         </div>
+                        <p class="paragrafoCard dataPublicacao" id="data_inscricao_formatada"></p>
                         <div class="cta">
-                            <button class="btn detalhes" type="button" onclick="fecharPopUps()">Sair</button>
+                            <button class="btn btnSairDetalhes" type="button" onclick="fecharPopUps()">Sair</button>
                             <button id="desinscrever" class="btn cancelarInscricao" type="submit">Cancelar Inscrição</button>
                         </div>
                     </div>
-
                 </div>
             </section>
         </div>
@@ -194,7 +196,7 @@ $meses = [
             document.body.style.overflow = "hidden";
         }
 
-        document.querySelectorAll('.abrirDetalhes').forEach(botao => {
+        document.querySelectorAll('.btnAbrirDetalhes').forEach(botao => {
 
             botao.addEventListener('click', async () => {
 
@@ -235,6 +237,24 @@ $meses = [
                         return;
                     }
 
+                    if (chave === "data_inscricao_formatada") {
+
+                        const data = new Date(vaga[chave]);
+                        
+                        const dia = data.getDate();
+
+                        console.log(data);
+                        console.log(dia);
+                        
+                        const mes = meses[data.getMonth()];
+
+                        const ano = data.getFullYear();
+
+                        elemento.innerHTML = `<i class="fa-regular fa-clock"></i> Data de Inscrição: ${dia + 1} ${mes} ${ano}`;
+
+                        return;
+                    }
+                    
                     if (chave === "salario") {
 
                         elemento.innerText = 'R$ ' + vaga[chave];

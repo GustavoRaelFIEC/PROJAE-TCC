@@ -59,12 +59,16 @@ class Pessoa
         $stmt = $this->pdo->prepare("
         SELECT 
             inscricao.data_inscricao,
+            empresas.nome AS nomeEmpresa,
             DATE(inscricao.data_inscricao) AS data_inscricao_formatada,
             vagas.*,
             DATE(vagas.data_publicacao) AS data_publicacao_formatada
-        FROM inscricao
-        JOIN vagas ON inscricao.id_vaga = vagas.id_vaga
-        WHERE inscricao.id_pessoa = ?
+            FROM inscricao
+            JOIN vagas 
+                ON inscricao.id_vaga = vagas.id_vaga
+            JOIN empresas 
+                ON vagas.id_empresa = empresas.id_empresa
+            WHERE inscricao.id_pessoa = ?
         ");
 
         $stmt->execute([$idUsuario]);
