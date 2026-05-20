@@ -39,11 +39,11 @@ function handleInscricao($pdo)
         exit();
     } catch (PDOException $e) {
         error_log("Erro ao realizar inscrição: " . $e->getMessage());
-        $errors[] = "Erro no sistema. Volte mais tarde.";
+        $errors['inscricao'] = "Inscrição realizada!";
     }
 
     if (!empty($errors)) {
-        header("Location: /PROJAE-TCC/public/views/testeBuscarVaga.php");
+        header("Location: /PROJAE-TCC/public/views/vagas.php");
         exit();
     }
 }
