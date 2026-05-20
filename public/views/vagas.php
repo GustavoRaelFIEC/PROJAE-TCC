@@ -119,7 +119,6 @@ $meses = [
                             <!-- Corrigido: era $vaga['nome'] — o alias correto do JOIN em buscarVaga() é 'nome_empresa' -->
                             <p class="nome"><?= htmlspecialchars($vaga['nome_empresa'] ?? '') ?></p>
                             <h1 class="cardTitulo"><?= htmlspecialchars($vaga['titulo']      ?? '') ?></h1>
-                            <p class="descricao"><?= htmlspecialchars($vaga['descricao']   ?? '') ?></p>
                             <div class="tags">
                                 <span class="tipo"><?= htmlspecialchars($vaga['tipo']    ?? '') ?></span>
                                 <span class="salario">R$ <?= htmlspecialchars($vaga['salario'] ?? '') ?></span>
@@ -127,7 +126,12 @@ $meses = [
                             </div>
                             <div class="cta">
                                 <!-- Corrigido: abrirDetalhes() não estava implementada — removido o onclick por ora -->
-                                <button class="btn detalhes" type="button" onclick="abrirDetalhesVaga()">Detalhes</button>
+                                <button
+                                    class="btn detalhes abrirDetalhes"
+                                    type="button"
+                                    data-id="<?= (int) $vaga['id_vaga'] ?>">
+                                    Detalhes
+                                </button>
                                 <button class="btn inscreverSe" type="submit">Inscrever-se</button>
                             </div>
                         </form>
@@ -135,26 +139,21 @@ $meses = [
                 <?php endforeach; ?>
             </div>
             <div id="detalhesVaga">
-                <?php
-                foreach ($vagas as $vaga):
-                    $data = new DateTime($vaga['data_publicacao_formatada']);
-                ?>
-                    <div class="cardDetalhes">
-                        <p class="paragrafoCard dataPublicacao"><i class="fa-regular fa-clock"></i>Data de Publicação: <?= $data->format('d') . ' ' . $meses[$data->format('n')] . ' ' . $data->format('Y') ?></p>
-                        <h1 class="cardTitulo"><?= $vaga['titulo'] ?></h1>
-                        <div class="tags">
-                            <span class="tipo"><?= $vaga['tipo'] ?></span>
-                            <span class="salario">R$ <?= $vaga['salario'] ?></span>
-                            <span class="cidade"><?= $vaga['cidade'] ?></span>
-                        </div>
-                        <div class="cta">
-                            <button class="btn detalhes" type="button" onclick="fecharPopUps()">Sair</button>
-                            <button id="desinscrever" class="btn cancelarInscricao" type="submit">Cancelar Inscrição</button>
-                        </div>
+                <div class="cardDetalhes">
+                    <p class="paragrafoCard dataPublicacao" id="data_publicacao_formatada"></p>
+                    <h1 class="cardTitulo" id="titulo"></h1>
+                    <p id="descricao"></p>
+                    <div class="tags">
+                        <span class="tipo" id="tipo"></span>
+                        <span class="salario" id="salario">R$</span>
+                        <span class="cidade" id="cidade"></span>
                     </div>
-                <?php endforeach; ?>
+                    <div class="cta">
+                        <button class="btn detalhes" type="button" onclick="fecharPopUps()">Sair</button>
+                        <button id="desinscrever" class="btn cancelarInscricao" type="submit">Cancelar Inscrição</button>
+                    </div>
+                </div>
             </div>
-        </div>
     </main>
 
     <script>
@@ -164,6 +163,21 @@ $meses = [
         const editPerfil = document.getElementById("editPerfil");
         const detalhesVaga = document.getElementById("detalhesVaga");
         const overlay = document.getElementById("overlay");
+
+        const meses = [
+            'Janeiro',
+            'Fevereiro',
+            'Março',
+            'Abril',
+            'Maio',
+            'Junho',
+            'Julho',
+            'Agosto',
+            'Setembro',
+            'Outubro',
+            'Novembro',
+            'Dezembro'
+        ];
 
         // Oculta campos vazios nos cards
         document.querySelectorAll(
@@ -204,11 +218,61 @@ $meses = [
 
         // MODAIS
 
-        function abrirDetalhesVaga() {
-            detalhesVaga.classList.add("ativo");
-            overlay.classList.add("ativo");
-            document.body.style.overflow = "hidden";
-        }
+        document.querySelectorAll('.abrirDetalhes').forEach(botao => {
+
+            botao.addEventListener('click', async () => {
+
+                const id = botao.dataset.id;
+
+                // abre modal
+                detalhesVaga.classList.add("ativo");
+                overlay.classList.add("ativo");
+
+                document.body.style.overflow = "hidden";
+
+                // busca dados
+                const resposta = await fetch(`../../src/controllers/DadosController.php?id=${id}`);
+
+                const vaga = await resposta.json();
+
+                console.log(vaga);
+
+                Object.keys(vaga).forEach(chave => {
+
+                    const elemento = document.getElementById(chave);
+
+                    if (!elemento) return;
+
+                    // tratamento das datas
+                    if (chave === "data_publicacao_formatada") {
+
+                        const data = new Date(vaga[chave]);
+
+                        const dia = data.getDate();
+
+                        const mes = meses[data.getMonth()];
+
+                        const ano = data.getFullYear();
+
+                        elemento.innerHTML = `<i class="fa-regular fa-clock"></i> Data de Publicação: ${dia} ${mes} ${ano}`;
+
+                        return;
+                    }
+
+                    if (chave === "salario") {
+
+                        elemento.innerText = 'R$ ' + vaga[chave];
+
+                        return;
+                    }
+
+                    elemento.innerText = vaga[chave];
+
+                });
+
+            });
+
+        });
 
         function fecharPopUps() {
             if (detalhesVaga.classList.contains("ativo")) {
