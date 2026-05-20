@@ -21,6 +21,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     }
 }
 
+if (isset($_GET['action'])) {
+
+    if ($_GET['action'] === 'inicio') {
+        inicioDashboard();
+    }
+}
 
 function getRequestData()
 {
@@ -112,4 +118,15 @@ function handleDadosVaga($pdo)
     }
 
     echo json_encode($dados);
+}
+
+function inicioDashboard()
+{
+    if ($_SESSION['user_tipo'] === 'empresa') {
+        header("Location: ../../public/views/dashboardEmpresa.php");
+        exit();
+    } elseif ($_SESSION['user_tipo'] === 'pessoa') {
+        header("Location: ../../public/views/dashboardPessoa.php");
+        exit();
+    }
 }
