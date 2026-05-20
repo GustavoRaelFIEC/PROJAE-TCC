@@ -160,7 +160,7 @@
   gap: 20px;
 }
 
-.fotoPerfil {
+.fotoPerfil, .fotoPerfilEmpresa{
   display: flex;
   justify-content: center;
   align-items: center;
@@ -170,10 +170,16 @@
   height: 210px;
 }
 
-.fotoPerfil > img {
+.fotoPerfil > img, .fotoPerfilEmpresa > img {
   border-radius: 50%;
   width: 95%;
   height: 95%;
+}
+
+.fotoPerfilEmpresa{
+  position: absolute;
+  top: 70px;
+  right: 70px;
 }
 
 .nomePerfil,
@@ -236,12 +242,13 @@
   align-items: center;
   flex-direction: column;
   background-color: rgba(245, 245, 245, 0.76);
-  height: fit-content;
+  height: 496px;
   box-shadow: 1px 7px 10px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
   padding: 10px 25px;
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
+  overflow-x: auto;
 }
 
 .titulo {
@@ -420,16 +427,21 @@
   width: 100%;
 }
 
-#data_publicacao_formatada{
+#data_publicacao_formatada, #data_inscricao_formatada{
   font-size: 24px;
   color: black;
-  padding: 15px 50px 15px 50px;
 }
 
 #titulo{
   font-size: 46px;
+  max-width: 675px;
 }
 
 #descricao{
   font-size: 20px;
+  max-width: 675px;
+}
+
+#tipo, #salario, #cidade{
+  font-size: 18px;
 }

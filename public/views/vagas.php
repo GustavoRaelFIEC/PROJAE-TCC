@@ -60,7 +60,7 @@ $meses = [
         <div class="contentCabecalho">
             <div class="logo"><img class="img" src="../assets/img/imagotipo.png" alt="Projae logo"></div>
             <ul class="list">
-                <li><a class="item-list" href="" onclick="location.reload()">Início</a></li>
+                <li><a class="item-list" href="../../src/controllers/DadosController.php?action=inicio">Início</a></li>
                 <li><a class="item-list active" href="vagas.php">Vagas</a></li>
             </ul>
             <div class="cta">
@@ -140,13 +140,13 @@ $meses = [
                                     Detalhes
                                 </button>
                                 <button class="btn inscreverSe" type="submit">Inscrever-se</button>
-                                <?php if (isset($errors['inscricao'])): ?>
-                                    <span class="erro"><?= $errors['inscricao'] ?></span>
-                                <?php endif; ?>
                             </div>
                         </form>
                     </div>
                 <?php endforeach; ?>
+                <?php if (isset($errors['inscricao'])): ?>
+                    <span class="erro"><?= $errors['inscricao'] ?></span>
+                <?php endif; ?>
             </div>
             <div id="detalhesVaga">
                 <div class="cardDetalhes">
