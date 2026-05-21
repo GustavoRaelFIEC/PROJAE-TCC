@@ -145,7 +145,26 @@ $meses = [
                     </div>
                 <?php endforeach; ?>
                 <?php if (isset($errors['inscricao'])): ?>
-                    <span class="erro"><?= $errors['inscricao'] ?></span>
+                    <div id="feedback" style="
+                       
+                        position: fixed;
+                        top: 15%;
+                        left: 50%;
+                        transform: translate(-50%, -15%);
+                        z-index: 9999;
+
+                        width: fit-content;
+                        padding: 30px;
+
+                        background-color: white;
+
+                        border-radius: 20px;
+                        box-shadow: 0px 1px 15px;
+
+                        color: black;
+                        text-align: center;
+                        font-family: Arial, sans-serif;
+                        ">Inscrição realizada!</div>
                 <?php endif; ?>
             </div>
             <div id="detalhesVaga">
@@ -160,7 +179,6 @@ $meses = [
                     </div>
                     <div class="cta">
                         <button class="btn detalhes" type="button" onclick="fecharPopUps()">Sair</button>
-                        <button id="desinscrever" class="btn cancelarInscricao" type="submit">Cancelar Inscrição</button>
                     </div>
                 </div>
             </div>
@@ -173,7 +191,11 @@ $meses = [
         const editPerfil = document.getElementById("editPerfil");
         const detalhesVaga = document.getElementById("detalhesVaga");
         const overlay = document.getElementById("overlay");
+        const feedback = document.getElementById("feedback");
 
+        setTimeout(() => {
+            feedback.style.display = "none";
+        }, 1500);
         const meses = [
             'Janeiro',
             'Fevereiro',
