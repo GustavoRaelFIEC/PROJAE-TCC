@@ -134,6 +134,7 @@ $meses = [
                     <div class="fotoPerfil"><img src="../assets/img/fotoPerfilPadrao.jpg" alt="Sua Foto de Perfil"></div>
                     <div>
                         <h1 class="nomePerfil"><?= $dados['nome'] ?></h1>
+                        <h2 class="regiaoperfil"><?= $dados['cnpj'] ?></h2>
                         <h2 class="telefonePerfil"><?= $dados['telefone'] ?></h2>
                         <h2 class="regiaoPerfil"><?= $dados['cidade'] ?></h2>
                     </div>

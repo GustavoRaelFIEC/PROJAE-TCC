@@ -249,7 +249,7 @@ select.input:focus {
 
     border: none;
     outline: none;
-    background: none;
+    background-color: rgb(245, 245, 245);
 
     padding: 10px;
     margin: 0;
