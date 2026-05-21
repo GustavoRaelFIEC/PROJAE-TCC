@@ -11,19 +11,19 @@ $inscricoes = visualizarInscricoesEmpresa($pdo);
 $dados = handleDadosEmpresa($pdo);
 
 $meses = [
-        1 => 'Janeiro',
-        'Fevereiro',
-        'Março',
-        'Abril',
-        'Maio',
-        'Junho',
-        'Julho',
-        'Agosto',
-        'Setembro',
-        'Outubro',
-        'Novembro',
-        'Dezembro'
-    ];
+    1 => 'Janeiro',
+    'Fevereiro',
+    'Março',
+    'Abril',
+    'Maio',
+    'Junho',
+    'Julho',
+    'Agosto',
+    'Setembro',
+    'Outubro',
+    'Novembro',
+    'Dezembro'
+];
 
 ?>
 
@@ -33,9 +33,11 @@ $meses = [
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Dashboard - PROJAE</title>
+    <link rel="shortcut icon" href="../assets/img/isotipo.png" type="image/x-icon">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="shortcut icon" href="/public/assets/img/isotipo.png" type="image/x-icon">
+
     <link rel="stylesheet" href="../assets/css/globalEimports.css">
     <link rel="stylesheet" href="../assets/css/navegation.css">
     <link rel="stylesheet" href="../assets/css/main.css">
@@ -142,103 +144,103 @@ $meses = [
                 <button onclick="abrirMenuPerfil()" class="btnEditar"><i class="fa-solid fa-pen-to-square"></i></button>
             </section>
 
-                <div>
-                    <button onclick="abrirMenuVaga()" class="btn">Nova Vaga</button>
-                </div>
-            
-                <div class="pageSelector">
-                    <button id="pageCandidatos" class="page pageCandidatos pageCandidatosAtivo" onclick="toggleCandidatos()">Seus candidatos</button>
-                    <button id="pageVagas" class="page pageVagas" onclick="toggleVagas()">Suas vagas</button>
-                </div>
+            <div>
+                <button onclick="abrirMenuVaga()" class="btn">Nova Vaga</button>
+            </div>
 
-                <section class="conteudo">
-                    <h1 id="titulo" class="titulo">Seus candidatos</h1>
+            <div class="pageSelector">
+                <button id="pageCandidatos" class="page pageCandidatos pageCandidatosAtivo" onclick="toggleCandidatos()">Seus CANDIDATOS</button>
+                <button id="pageVagas" class="page pageVagas" onclick="toggleVagas()">Suas VAGAS</button>
+            </div>
+
+            <section class="conteudo">
+                <h1 id="titulo" class="titulo">Seus candidatos</h1>
 
                 <div id="conteudoCandidatos">
-                <div id="listagem">
+                    <div id="listagem">
 
-                    <?php foreach ($inscricoes as $inscricao): 
-                        $data = new DateTime($inscricao['data_inscricao']);
-                    ?>
-                        <div class="card cardCandidato">
-
-                            
-                            <h1 class="cardTitulo">
-                                <?= htmlspecialchars($inscricao['nome_pessoa']) ?>
-                            </h1>
-
-                            <p class="paragrafoCard">
-                                Vaga: <?= htmlspecialchars($inscricao['titulo_vaga']) ?>
-                            </p>
-
-                            <p class="paragrafoCard">
-                                <i class="fa-regular fa-clock"></i>
-                                <?= $data->format('d/m/Y') ?>
-                            </p>
+                        <?php foreach ($inscricoes as $inscricao):
+                            $data = new DateTime($inscricao['data_inscricao']);
+                        ?>
+                            <div class="card cardCandidato">
 
 
-                        </div>
+                                <h1 class="cardTitulo">
+                                    <?= htmlspecialchars($inscricao['nome_pessoa']) ?>
+                                </h1>
 
-                    <?php endforeach; ?>
+                                <p class="paragrafoCard">
+                                    Vaga: <?= htmlspecialchars($inscricao['titulo_vaga']) ?>
+                                </p>
 
+                                <p class="paragrafoCard">
+                                    <i class="fa-regular fa-clock"></i>
+                                    <?= $data->format('d/m/Y') ?>
+                                </p>
+
+
+                            </div>
+
+                        <?php endforeach; ?>
+
+                    </div>
                 </div>
-            </div>
 
                 <div id="conteudoVagas" class="hidden">
                     <div class="listarVagas">
-                    <?php if (empty($vagas)): ?>
-                        <p>Nenhuma vaga cadastrada.</p>
-                        <div>
-                            <button onclick="abrirMenuVaga()" class="btn">Nova Vaga</button>
-                        </div>
-                    <?php else: ?>
-                        <div id="listagem">
-                            
-                            <?php foreach ($vagas as $vaga): 
-                                 $data = new DateTime($vaga['data_publicacao']); ?>
+                        <?php if (empty($vagas)): ?>
+                            <p>Nenhuma vaga cadastrada.</p>
+                            <div>
+                                <button onclick="abrirMenuVaga()" class="btn">Nova Vaga</button>
+                            </div>
+                        <?php else: ?>
+                            <div id="listagem">
 
-                                <div class="card">
+                                <?php foreach ($vagas as $vaga):
+                                    $data = new DateTime($vaga['data_publicacao']); ?>
 
-                                    </p>
-                                    <p class="paragrafoCard dataPublicacao">
-                                        <i class="fa-regular fa-clock"></i>
-                                        Data de Publicação:
-                                        <?= $data->format('d') . ' ' .
-                                            $meses[$data->format('n')] . ' ' .
-                                            $data->format('Y') ?>
-                                    </p>
+                                    <div class="card">
 
-                                    <h1 class="cardTitulo">
-                                        <?= htmlspecialchars($vaga['titulo']) ?>
-                                    </h1>
+                                        </p>
+                                        <p class="paragrafoCard dataPublicacao">
+                                            <i class="fa-regular fa-clock"></i>
+                                            Data de Publicação:
+                                            <?= $data->format('d') . ' ' .
+                                                $meses[$data->format('n')] . ' ' .
+                                                $data->format('Y') ?>
+                                        </p>
 
-                                    <p class="paragrafoCard">
-                                        <?= htmlspecialchars($vaga['descricao']) ?>
-                                    </p>
+                                        <h1 class="cardTitulo">
+                                            <?= htmlspecialchars($vaga['titulo']) ?>
+                                        </h1>
 
-                                    <div class="tags">
-                                        <span class="tipo">
-                                            <?= htmlspecialchars($vaga['tipo']) ?>
-                                        </span>
-                                        <span class="salario">
-                                            R$ <?= $vaga['salario'] ?>
-                                        </span>
-                                        <span class="cidade">
-                                            <?= htmlspecialchars($vaga['cidade']) ?>
-                                        </span>
+                                        <p class="paragrafoCard">
+                                            <?= htmlspecialchars($vaga['descricao']) ?>
+                                        </p>
+
+                                        <div class="tags">
+                                            <span class="tipo">
+                                                <?= htmlspecialchars($vaga['tipo']) ?>
+                                            </span>
+                                            <span class="salario">
+                                                R$ <?= $vaga['salario'] ?>
+                                            </span>
+                                            <span class="cidade">
+                                                <?= htmlspecialchars($vaga['cidade']) ?>
+                                            </span>
+                                        </div>
+
+                                        <div class="cta">
+                                            <button class="btn excluirVaga" type="button">Excluir</button>
+                                            <button class="btn fecharVaga" type="submit">Fechar Vaga</button>
+                                        </div>
+
                                     </div>
 
-                                    <div class="cta">
-                                        <button class="btn excluirVaga" type="button">Excluir</button>
-                                        <button class="btn fecharVaga" type="submit">fechar vaga</button>
-                                    </div>
-
-                                </div>
-
-                            <?php endforeach; ?>
-                        </div>
-                    <?php endif; ?>
-                </div>
+                                <?php endforeach; ?>
+                            </div>
+                        <?php endif; ?>
+                    </div>
 
                 </div>
             </section>
@@ -249,7 +251,7 @@ $meses = [
                 <form class="formulario" method="POST" action="../../src/controllers/VagaController.php?action=postarVaga">
                     <input type="hidden" name="action" value="postarVaga">
                     <label class="input-label" for="nome">
-                        Titulo
+                        Título
                         <input class="input"
                             type="text"
                             id="titulo"
@@ -283,7 +285,7 @@ $meses = [
                         </input>
                     </label>
                     <label class="input-label">
-                        Salario
+                        Salário
                         <input class="input"
                             type="number"
                             id="salario"
