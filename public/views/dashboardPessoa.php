@@ -66,7 +66,7 @@ $meses = [
                     <input type="hidden" name="tipo" value="pessoa">
 
                     <label class="input-label" for="nome">
-                        <p>Placeholder:</p>
+                        <p>Nome:</p>
                         <input class="input"
                             placeholder="Digite seu Nome"
                             id="nome"
@@ -76,7 +76,7 @@ $meses = [
                     </label>
 
                     <label class="input-label" for="instituicao">
-                        <p>placeholder:</p>
+                        <p>instituição</p>
                         <input class="input"
                             placeholder="Digite o nome da sua instituição"
                             id="instituicao"
@@ -86,7 +86,7 @@ $meses = [
                     </label>
 
                     <label class="input-label" for="curso">
-                        <p>placeholder:</p>
+                        <p>curso</p>
                         <input class="input"
                             placeholder="Digite o seu curso"
                             id="curso"
@@ -164,7 +164,6 @@ $meses = [
                             <button class="btn btnSairDetalhes" type="button" onclick="fecharPopUps()">Sair</button>
                             <button id="desinscrever" class="btn cancelarInscricao" type="submit">Cancelar Inscrição</button>
                         </div>
-                        <div class="fotoPerfilEmpresa"><img src="../assets/img/fotoPerfilPadrao.jpg" alt="Sua Foto de Perfil"></div>
                     </div>
                 </div>
             </section>
@@ -241,12 +240,12 @@ $meses = [
                     if (chave === "data_inscricao_formatada") {
 
                         const data = new Date(vaga[chave]);
-
+                        
                         const dia = data.getDate();
 
                         console.log(data);
                         console.log(dia);
-
+                        
                         const mes = meses[data.getMonth()];
 
                         const ano = data.getFullYear();
@@ -255,7 +254,7 @@ $meses = [
 
                         return;
                     }
-
+                    
                     if (chave === "salario") {
 
                         elemento.innerText = 'R$ ' + vaga[chave];
