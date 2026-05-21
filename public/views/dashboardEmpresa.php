@@ -61,16 +61,7 @@ $meses = [
             <div id="editPerfil">
                 <h1 class="tituloForm">Editar Perfil</h1>
                 <form class="formulario">
-                    <input type="hidden" name="tipo" value="pessoa">
-
-                    <!-- Fazer com que ele consiga editar a foto dele -->
-                    <!-- <label class="input-label">
-                        <p>Foto:</p>
-                        <input class="input"
-                            type="file"
-                            name="foto"
-                        >
-                    </label> -->
+                    <input type="hidden" name="tipo" value="empresa">
 
                     <label class="input-label" for="nome">
                         <p>Nome:</p>
@@ -149,10 +140,14 @@ $meses = [
                 </div>
                 <button onclick="abrirMenuPerfil()" class="btnEditar"><i class="fa-solid fa-pen-to-square"></i></button>
             </section>
+
+                <div>
+                    <button onclick="abrirMenuVaga()" class="btn">Nova Vaga</button>
+                </div>
             
                 <div class="pageSelector">
-                    <button class="page" onclick="toggleCandidatos()">Seus candidatos</button>
-                    <button class="page" onclick="toggleVagas()">Suas vagas</button>
+                    <button id="pageCandidatos" class="page pageCandidatos pageCandidatosAtivo" onclick="toggleCandidatos()">Seus candidatos</button>
+                    <button id="pageVagas" class="page pageVagas" onclick="toggleVagas()">Suas vagas</button>
                 </div>
 
                 <section class="conteudo">
@@ -193,7 +188,7 @@ $meses = [
                     <?php if (empty($vagas)): ?>
                         <p>Nenhuma vaga cadastrada.</p>
                         <div>
-                            <button onclick="abrirMenuVaga()" class="btn-vaga">Nova Vaga</button>
+                            <button onclick="abrirMenuVaga()" class="btn">Nova Vaga</button>
                         </div>
                     <?php else: ?>
                         <div id="listagem">
@@ -246,11 +241,10 @@ $meses = [
 
                 </div>
             </section>
-            <div>
-                 <button onclick="abrirMenuVaga()" class="btn-vaga">Nova Vaga</button>
-            </div>
+
 
             <div id="novaVaga">
+                <h1 class="tituloForm">Nova Vaga</h1>
                 <form class="formulario" method="POST" action="../../src/controllers/VagaController.php?action=postarVaga">
                     <input type="hidden" name="action" value="postarVaga">
                     <label class="input-label" for="nome">
@@ -310,15 +304,15 @@ $meses = [
                             required
                             maxlength="100">
                     </label>
-                    <label class="input-label">
-                        Cor
-                        <input type="color" id="colorPicker">
+                    <label class="input-label" for="cor">
+                        <p>Cor:</p>
+                        <p style="color: gray;">Escolha uma cor para representar sua vaga</p>
                     </label>
                     <input
-                        type="text"
-                        name="status"
-                        value="aberta"
-                        hidden>
+                        style="margin-top: -15px;"
+                        id="cor"
+                        name="cor"
+                        type="color">
                     <button class="btn-submit" type="submit">Publicar</button>
                     <button class="btn-cancelar" onclick="fecharMenu()">Fechar</button>
                 </form>
@@ -337,6 +331,8 @@ $meses = [
         const picker = document.getElementById("colorPicker");
         const candidatos = document.getElementById("conteudoCandidatos");
         const vagas = document.getElementById("conteudoVagas");
+        const pageCandidatos = document.getElementById("pageCandidatos");
+        const pageVagas = document.getElementById("pageVagas")
 
         function abrirMenuPerfil() {
             novaVaga.classList.remove("ativo");
@@ -367,12 +363,16 @@ $meses = [
         function toggleCandidatos() {
             vagas.classList.add('hidden')
             candidatos.classList.remove('hidden')
+            pageVagas.classList.remove("pageVagasAtivo")
+            pageCandidatos.classList.add("pageCandidatosAtivo")
             titulo.textContent = 'Seus Candidatos'
         }
 
         function toggleVagas() {
             candidatos.classList.add('hidden')
             vagas.classList.remove('hidden')
+            pageCandidatos.classList.remove("pageCandidatosAtivo")
+            pageVagas.classList.add("pageVagasAtivo")
             titulo.textContent = "Suas Vagas"
         }
     </script>
