@@ -27,7 +27,8 @@ function handleInscricao($pdo)
 
 
     if (!$id_vaga || !$id_pessoa) {
-        die("Dados inválidos.");
+        header("Location: /PROJAE-TCC/public/views/vagas.php");
+        exit();
     }
 
     try {
