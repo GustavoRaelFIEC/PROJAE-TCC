@@ -21,26 +21,24 @@
 
 #editPerfil,
 #novaVaga {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) scale(0.95);
-
-  width: 70%;
-  max-width: 900px;
-  min-width: 300px;
-  max-height: 90%;
-
-  background: white;
-  padding: 20px;
+  max-width: 1100px;
+  width: 40%;
+  max-height: 95vh;
+  height: fit-content;
+  background-color: rgb(245, 245, 245);
   border-radius: 10px;
-
+  z-index: 3;
+  overflow-y: auto;
   opacity: 0;
   visibility: hidden;
-
-  overflow-y: auto;
-  z-index: 999;
-
   transition: all 0.2s ease;
 }
 
@@ -55,21 +53,27 @@
 #editPerfil form {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  width: 70%;
+  padding: 20px;
   gap: 15px;
-  margin-top: 20px;
 }
 
-/* Labels */
+.tituloForm {
+  font-size: 36px;
+  margin-bottom: 10px;
+  font-weight: 700;
+  color: #4938be;
+}
+
 .input-label {
   display: flex;
   flex-direction: column;
-  font-weight: 600;
-  color: #333;
-  font-size: 14px;
-}
-
-.formulario .input-label:last-of-type, .formulario .input-label:last-of-type > p {
-  width: fit-content;
+  color: #4938be;
+  font-size: 18px;
+  font-weight: 700;
+  width: 100%;
+  margin-bottom: 15px;
 }
 
 .input,
@@ -95,25 +99,6 @@ select.input:focus {
 .input-desc {
   height: 150px;
   resize: none;
-}
-
-.btn {
-  margin-top: 18px;
-  align-self: center;
-
-  background-color: black;
-  color: white;
-
-  border: none;
-  border-radius: 25px;
-
-  padding: 12px 30px;
-
-  font-size: 15px;
-  font-weight: bold;
-
-  cursor: pointer;
-  transition: 0.3s;
 }
 
 .btn:hover {
@@ -168,9 +153,10 @@ select.input:focus {
 }
 
 .content {
-  display: grid;
-  grid-template-rows: auto 1fr;
+  display: flex;
+  flex-wrap: wrap;
   gap: 30px;
+  max-width: 1300px;
 }
 
 .perfil {
@@ -265,12 +251,40 @@ select.input:focus {
     outline: none;
     background: none;
 
-    padding: 0;
+    padding: 10px;
     margin: 0;
 
     font: inherit;
     cursor: pointer;
+
+    font-size: 32px;
+    line-height: 1;
+    font-weight: 650;
+    color: #111;
 }
+
+.pageCandidatos:hover{
+  border-bottom: 3px solid #4938be;
+  border-radius: 0 0 2% 2%;
+  transition: 0.2s;
+}
+
+.pageVagas:hover{
+  border-bottom: 3px solid #cd0e1a;
+  border-radius: 0 0 2% 2%;
+  transition: 0.2s;
+}
+
+.pageCandidatosAtivo{
+  border-bottom: 3px solid #4938be;
+  border-radius: 0 0 2% 2%;
+}
+
+.pageVagasAtivo{
+  border-bottom: 3px solid #cd0e1a;
+  border-radius: 0 0 2% 2%;
+}
+
 
 .conteudo {
   display: flex;
@@ -345,7 +359,7 @@ select.input:focus {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
-cardTitulo {
+.cardTitulo {
   font-size: 32px;
   line-height: 1.1;
   font-weight: 800;
