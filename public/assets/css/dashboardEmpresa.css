@@ -105,7 +105,7 @@ select.input:focus {
   transform: scale(1.05);
 }
 
-.btn-submit{
+.btn-submit {
   padding: 10px;
   border-radius: 7px;
   background-color: white;
@@ -153,13 +153,12 @@ select.input:focus {
 }
 
 .content {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
   max-width: 1300px;
 }
 
 .perfil {
+  position: relative;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -171,6 +170,8 @@ select.input:focus {
   padding: 25px;
   width: 100%;
   height: 250px;
+
+  margin-bottom: 20px;
 }
 
 .detalhesPerfil {
@@ -203,6 +204,10 @@ select.input:focus {
 }
 
 .btnEditar {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+
   align-self: flex-start;
   padding: 10px;
   border-radius: 50%;
@@ -237,54 +242,73 @@ select.input:focus {
 }
 
 .pageSelector {
-    display: flex;
-    width: 100%;
+  display: flex;
+  width: 100%;
 }
 
 .page {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
 
-    border: none;
-    outline: none;
-    background-color: rgb(245, 245, 245);
+  border: none;
+  outline: none;
+  background-color: rgb(245, 245, 245);
 
-    padding: 10px;
-    margin: 0;
+  padding: 10px;
+  margin: 0;
 
-    font: inherit;
-    cursor: pointer;
+  font: inherit;
+  cursor: pointer;
 
-    font-size: 32px;
-    line-height: 1;
-    font-weight: 650;
-    color: #111;
+  font-size: 32px;
+  line-height: 1;
+  font-weight: 650;
+  color: #111;
 }
 
-.pageCandidatos:hover{
+#pageCandidatos,
+#pageVagas {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 55px;
+}
+
+#pageCandidatos {
+  border-top-left-radius: 15px;
+}
+
+#pageVagas {
+  border-top-right-radius: 15px;
+}
+
+.pageCandidatos:hover {
   border-bottom: 3px solid #4938be;
   border-radius: 0 0 2% 2%;
   transition: 0.2s;
+  background-color: lightgray;
 }
 
-.pageVagas:hover{
+.pageVagas:hover {
   border-bottom: 3px solid #cd0e1a;
   border-radius: 0 0 2% 2%;
   transition: 0.2s;
+  background-color: lightgray;
 }
 
-.pageCandidatosAtivo{
+.pageCandidatosAtivo {
   border-bottom: 3px solid #4938be;
   border-radius: 0 0 2% 2%;
+  background-color: lightgray;
 }
 
-.pageVagasAtivo{
+.pageVagasAtivo {
   border-bottom: 3px solid #cd0e1a;
   border-radius: 0 0 2% 2%;
+  background-color: lightgray;
 }
-
 
 .conteudo {
   display: flex;
@@ -309,8 +333,7 @@ select.input:focus {
   border-radius: 20px;
 }
 
-
-#listagem{
+#listagem {
   display: grid;
   grid-template-columns: repeat(3, 400px);
   gap: 10px;
@@ -341,11 +364,12 @@ select.input:focus {
 }
 
 .cardCandidato {
-    gap: 8px;
-    min-height: auto;
+  gap: 8px;
+  min-height: auto;
 }
 
-.dataPublicacao, .dataInscricao{
+.dataPublicacao,
+.dataInscricao {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -400,7 +424,7 @@ select.input:focus {
   gap: 10px;
 }
 
-.dataPublicacao{
+.dataPublicacao {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -412,6 +436,12 @@ select.input:focus {
   border-radius: 20px;
   font-weight: 500;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+#btn {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
 }
 
 .btn {
@@ -437,7 +467,6 @@ select.input:focus {
   transform: scale(1.05);
 }
 
-
 .excluirVaga {
   background-color: #fff;
   border: 1px solid #000000;
@@ -448,13 +477,12 @@ select.input:focus {
   white-space: nowrap;
 }
 
-
 .area-scroll {
   height: 300px;
   overflow-y: auto;
 }
 
-.hidden{
+.hidden {
   display: none;
 }
 
@@ -492,7 +520,8 @@ select.input:focus {
   gap: 6px;
 }
 
-#nomeCandidato, #nomeVaga {
+#nomeCandidato,
+#nomeVaga {
   line-height: 1.1;
   color: #111;
   text-transform: uppercase;

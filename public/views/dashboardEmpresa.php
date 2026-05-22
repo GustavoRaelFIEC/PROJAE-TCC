@@ -149,11 +149,10 @@ $meses = [
                     </div>
                 </div>
                 <button onclick="abrirMenuPerfil()" class="btnEditar"><i class="fa-solid fa-pen-to-square"></i></button>
+                <div>
+                    <button onclick="abrirMenuVaga()" id="btn" class="btn" style="background-color: #4938BE; font-size: 20px;">Nova Vaga</button>
+                </div>
             </section>
-
-            <div>
-                <button onclick="abrirMenuVaga()" class="btn" style="background-color: #4938BE; font-size: 20px;">Nova Vaga</button>
-            </div>
 
             <div class="pageSelector">
                 <button id="pageCandidatos" class="page pageCandidatos pageCandidatosAtivo" onclick="toggleCandidatos()">CANDIDATOS</button>
