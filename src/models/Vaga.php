@@ -84,12 +84,16 @@ class Vaga
             empresas.nome AS nomeEmpresa,
             DATE(inscricao.data_inscricao) AS data_inscricao_formatada,
             DATE(vagas.data_publicacao) AS data_publicacao_formatada
-            FROM vagas
-            JOIN inscricao 
-                ON inscricao.id_vaga = vagas.id_vaga
-            JOIN empresas 
-                ON vagas.id_empresa = empresas.id_empresa
-            WHERE vagas.id_vaga = ?"
+        FROM vagas
+
+        LEFT JOIN inscricao 
+            ON inscricao.id_vaga = vagas.id_vaga
+
+        JOIN empresas 
+            ON vagas.id_empresa = empresas.id_empresa
+
+        WHERE vagas.id_vaga = ?
+        "
         );
 
         $stmt->execute([$idVaga]);

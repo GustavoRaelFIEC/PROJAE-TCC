@@ -50,7 +50,7 @@ $meses = [
         <div class="contentCabecalho">
             <div class="logo"><img class="img" src="../assets/img/imagotipo.png" alt="Projae logo"></div>
             <ul class="list">
-                <li><a class="item-list active" href="" onclick="location.reload()">Início</a></li>
+                <li><a class="item-list active" href="" onclick="location.reload()">Perfil</a></li>
                 <li><a class="item-list" href="vagas.php">Vagas</a></li>
             </ul>
             <div class="cta">
@@ -152,7 +152,7 @@ $meses = [
             </section>
 
             <div>
-                <button onclick="abrirMenuVaga()" class="btn">Nova Vaga</button>
+                <button onclick="abrirMenuVaga()" class="btn" style="background-color: #4938BE; font-size: 20px;">Nova Vaga</button>
             </div>
 
             <div class="pageSelector">

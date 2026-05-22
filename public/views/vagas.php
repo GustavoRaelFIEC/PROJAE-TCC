@@ -60,7 +60,7 @@ $meses = [
         <div class="contentCabecalho">
             <div class="logo"><img class="img" src="../assets/img/imagotipo.png" alt="Projae logo"></div>
             <ul class="list">
-                <li><a class="item-list" href="../../src/controllers/DadosController.php?action=inicio">Início</a></li>
+                <li><a class="item-list" href="../../src/controllers/DadosController.php?action=inicio">Perfil</a></li>
                 <li><a class="item-list active" href="vagas.php">Vagas</a></li>
             </ul>
             <div class="cta">
@@ -156,15 +156,17 @@ $meses = [
                         width: fit-content;
                         padding: 30px;
 
-                        background-color: white;
+                        background-color: #4938BE;
 
                         border-radius: 20px;
-                        box-shadow: 0px 1px 15px;
+                        box-shadow: 0px 1px 15px rgb(0,0,0, 0.1);
 
-                        color: black;
+                        color: white;
                         text-align: center;
                         font-family: Arial, sans-serif;
-                        ">Inscrição realizada!</div>
+                        font-weight: bold;
+                        text-transform: uppercase;
+                        ">você já se inscreveu nessa vaga !</div>
                 <?php endif; ?>
             </div>
             <div id="detalhesVaga">
