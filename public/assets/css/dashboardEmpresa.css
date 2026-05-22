@@ -491,3 +491,10 @@ select.input:focus {
   flex-direction: column;
   gap: 6px;
 }
+
+#nomeCandidato, #nomeVaga {
+  line-height: 1.1;
+  color: #111;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}

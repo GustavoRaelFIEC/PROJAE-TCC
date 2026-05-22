@@ -172,15 +172,16 @@ $meses = [
                             <div class="card cardCandidato">
 
 
-                                <h1 class="cardTitulo">
+                                <h1 class="cardTitulo" id="nomeCandidato">
                                     <?= htmlspecialchars($inscricao['nome_pessoa']) ?>
                                 </h1>
 
-                                <p class="paragrafoCard">
-                                    Vaga: <?= htmlspecialchars($inscricao['titulo_vaga']) ?>
+                                <p class="paragrafoCard" id="nomeVaga">
+                                    Vaga: <strong><?= htmlspecialchars($inscricao['titulo_vaga']) ?></strong>
                                 </p>
 
-                                <p class="paragrafoCard">
+                                <p class="paragrafoCard dataPublicacao">
+                                    <!--A classe está dataPublicacao, mas é a data de inscrição, usei a mesma só pra agilizar-->
                                     <i class="fa-regular fa-clock"></i>
                                     <?= $data->format('d/m/Y') ?>
                                 </p>

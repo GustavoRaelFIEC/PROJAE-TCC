@@ -178,7 +178,7 @@ $meses = [
     </main>
     <!-- Criar um arquivo javaScript -->
 
-    <script src="../assets/js/mascaras.js"></script>
+    <script src="../assets/js/mascara.js"></script>
 
     <script>
         const telefonePessoa = document.querySelector("#telefonePessoa span");
