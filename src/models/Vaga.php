@@ -33,12 +33,12 @@ class Vaga
     {
         $stmt = $this->pdo->prepare("
         SELECT 
+            empresas.nome AS nomeEmpresa,
             vagas.*,
-            empresas.nome,
             DATE(vagas.data_publicacao) AS data_publicacao_formatada
-        FROM vagas
-        INNER JOIN empresas ON vagas.id_empresa = empresas.id_empresa
-        WHERE vagas.status = 'aberta'
+            FROM vagas
+            INNER JOIN empresas ON vagas.id_empresa = empresas.id_empresa
+            WHERE vagas.status = 'aberta'
         ");
 
         $stmt->execute();
@@ -77,7 +77,8 @@ class Vaga
 
     public function buscarDadosVaga($idVaga)
     {
-        $stmt = $this->pdo->prepare("
+        $stmt = $this->pdo->prepare(
+            "
         SELECT DISTINCT
             vagas.*,
             empresas.nome AS nomeEmpresa,

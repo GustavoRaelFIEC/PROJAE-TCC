@@ -66,9 +66,9 @@ $meses = [
                     <input type="hidden" name="tipo" value="pessoa">
 
                     <label class="input-label" for="nome">
-                        <p>Nome:</p>
+                        <p>Nome</p>
                         <input class="input"
-                            placeholder="Digite seu Nome"
+                            placeholder="Digite o seu nome"
                             id="nome"
                             name="nome"
                             type="text"
@@ -76,7 +76,7 @@ $meses = [
                     </label>
 
                     <label class="input-label" for="instituicao">
-                        <p>instituição</p>
+                        <p>Instituição</p>
                         <input class="input"
                             placeholder="Digite o nome da sua instituição"
                             id="instituicao"
@@ -86,9 +86,9 @@ $meses = [
                     </label>
 
                     <label class="input-label" for="curso">
-                        <p>curso</p>
+                        <p>Curso</p>
                         <input class="input"
-                            placeholder="Digite o seu curso"
+                            placeholder="Digite o nome do seu curso"
                             id="curso"
                             name="curso"
                             type="text"
@@ -97,9 +97,9 @@ $meses = [
                     </label>
 
                     <label class="input-label" for="telefone">
-                        <p>Telefone:</p>
+                        <p>Telefone Celular</p>
                         <input class="input"
-                            placeholder="Digite o nome da sua instituição"
+                            placeholder="Digite o seu telefone celular"
                             id="telefone"
                             name="telefone"
                             type="tel"
@@ -115,10 +115,17 @@ $meses = [
                     <div class="fotoPerfil"><img src="../assets/img/fotoPerfilPadrao.jpg" alt="Sua Foto de Perfil"></div>
                     <div>
                         <h1 class="nomePerfil"><?= $dados['nome'] ?></h1>
-                        <h2 class="instituicaoPerfil"><?= $dados['instituicao'] ?></h2>
                         <h2 class="cursoPerfil"><?= $dados['curso'] ?></h2>
-                        <h2 class="telefonePerfil"><i class="fa-solid fa-phone"></i><?= $dados['telefone'] ?></h2>
-                        <h2 class="cpf"><i class="fa-regular fa-id-badge"></i><?= $dados['cpf'] ?></h2>
+                        <h2 class="instituicaoPerfil"><?= $dados['instituicao'] ?></h2>
+                        <h2 id="telefonePessoa" class="telefonePerfil">
+                            <i class="fa-solid fa-phone"></i>
+                            <span><?= $dados['telefone'] ?></span>
+                        </h2>
+
+                        <h2 id="cpfPessoa" class="cpf">
+                            <i class="fa-regular fa-id-badge"></i>
+                            <span><?= $dados['cpf'] ?></span>
+                        </h2>
                     </div>
                 </div>
                 <button onclick="abrirEditarPerfil()" class="btnEditar"><i class="fa-solid fa-pen-to-square"></i></button>
@@ -170,6 +177,24 @@ $meses = [
         </div>
     </main>
     <!-- Criar um arquivo javaScript -->
+
+    <script src="../assets/js/mascaras.js"></script>
+
+    <script>
+        const telefonePessoa = document.querySelector("#telefonePessoa span");
+        const cpfPessoa = document.querySelector("#cpfPessoa span");
+
+        if (telefonePessoa) {
+            telefonePessoa.textContent =
+                mascaraTelefone(telefonePessoa.textContent.trim());
+        }
+
+        if (cpfPessoa) {
+            cpfPessoa.textContent =
+                mascaraCPF(cpfPessoa.textContent.trim());
+        }
+    </script>
+
     <script>
         const editPerfil = document.getElementById("editPerfil");
         const detalhesVaga = document.getElementById("detalhesVaga");
@@ -224,13 +249,9 @@ $meses = [
                     // tratamento das datas
                     if (chave === "data_publicacao_formatada") {
 
-                        const data = new Date(vaga[chave]);
+                        const [ano, mesNumero, dia] = vaga[chave].split("-");
 
-                        const dia = data.getDate();
-
-                        const mes = meses[data.getMonth()];
-
-                        const ano = data.getFullYear();
+                        const mes = meses[parseInt(mesNumero) - 1];
 
                         elemento.innerHTML = `<i class="fa-regular fa-clock"></i> Data de Publicação: ${dia} ${mes} ${ano}`;
 
@@ -239,22 +260,15 @@ $meses = [
 
                     if (chave === "data_inscricao_formatada") {
 
-                        const data = new Date(vaga[chave]);
-                        
-                        const dia = data.getDate();
+                        const [ano, mesNumero, dia] = vaga[chave].split("-");
 
-                        console.log(data);
-                        console.log(dia);
-                        
-                        const mes = meses[data.getMonth()];
+                        const mes = meses[parseInt(mesNumero) - 1];
 
-                        const ano = data.getFullYear();
-
-                        elemento.innerHTML = `<i class="fa-regular fa-clock"></i> Data de Inscrição: ${dia + 1} ${mes} ${ano}`;
+                        elemento.innerHTML = `<i class="fa-regular fa-clock"></i> Data de Inscrição: ${dia} ${mes} ${ano}`;
 
                         return;
                     }
-                    
+
                     if (chave === "salario") {
 
                         elemento.innerText = 'R$ ' + vaga[chave];

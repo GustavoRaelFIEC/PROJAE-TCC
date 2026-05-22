@@ -29,9 +29,9 @@ function handleCadastro($pdo)
     // Dados do formulário
     $email = filter_var($dados['email'] ?? '', FILTER_SANITIZE_EMAIL);
     $senha = $dados['senha'] ?? '';
-    $telefone = $dados['telefone'] ?? '';
-    $cpf = $dados['cpf'];
-    $cnpj = $dados['cnpj'];
+    $telefone = preg_replace('/\D/', '', $dados['telefone'] ?? '');
+    $cpf = preg_replace('/\D/', '', $dados['cpf'] ?? '');
+    $cnpj = preg_replace('/\D/', '', $dados['cnpj'] ?? '');
     $tipo = $dados['tipo'] ?? '';
 
     // Redirect baseado no tipo
@@ -114,8 +114,8 @@ function handleCadastro($pdo)
                 if ($tipo === 'pessoa') {
                     $dadosPessoa = [
                         'nome' => Security::sanitizeInput($dados['nome'] ?? ''),
-                        'cpf' => Security::sanitizeInput($dados['cpf'] ?? ''),
-                        'telefone' => Security::sanitizeInput($dados['telefone'] ?? ''),
+                        'cpf' => preg_replace('/\D/', '', $dados['cpf'] ?? ''),
+                        'telefone' => preg_replace('/\D/', '', $dados['telefone'] ?? ''),
                         'instituicao' => Security::sanitizeInput($dados['instituicao'] ?? ''),
                         'curso' => Security::sanitizeInput($dados['curso'] ?? '')
                     ];
@@ -123,8 +123,8 @@ function handleCadastro($pdo)
                 } elseif ($tipo === 'empresa') {
                     $dadosEmpresa = [
                         'nome' => Security::sanitizeInput($dados['nome'] ?? ''),
-                        'cnpj' => Security::sanitizeInput($dados['cnpj'] ?? ''),
-                        'telefone' => Security::sanitizeInput($dados['telefone'] ?? ''),
+                        'cnpj' => preg_replace('/\D/', '', $dados['cnpj'] ?? ''),
+                        'telefone' => preg_replace('/\D/', '', $dados['telefone'] ?? ''),
                         'cidade' => Security::sanitizeInput($dados['cidade'] ?? '')
                     ];
                     $empresaModel->createEmpresa($userId, $dadosEmpresa);

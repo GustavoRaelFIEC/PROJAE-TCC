@@ -78,7 +78,7 @@ $meses = [
 
         <div class="content">
             <aside class="filtros">
-                <h1 style="font-weight: bold;">Filtros da vaga</h1>
+                <h1 style="font-weight: bold;">Filtros</h1>
 
                 <!-- Corrigido: era um <form> com GET que recarregava a página e chamava
                      handleFiltrarPorTipo() que retorna JSON e dá exit() — quebraria a página.
@@ -122,7 +122,7 @@ $meses = [
                             }
                             ?>
 
-                            <p class="dataPublicacao"><?= htmlspecialchars($dataFormatada) ?></p>
+                            <p class="dataPublicacao"><i class="fa-regular fa-clock"></i><?= htmlspecialchars($dataFormatada) ?></p>
                             <!-- Corrigido: era $vaga['nome'] — o alias correto do JOIN em buscarVaga() é 'nome_empresa' -->
                             <p class="nome"><?= htmlspecialchars($vaga['nome_empresa'] ?? '') ?></p>
                             <h1 class="cardTitulo"><?= htmlspecialchars($vaga['titulo']      ?? '') ?></h1>
@@ -170,6 +170,7 @@ $meses = [
             <div id="detalhesVaga">
                 <div class="cardDetalhes">
                     <p class="paragrafoCard dataPublicacao" id="data_publicacao_formatada"></p>
+                    <h1 class="nomeEmpresa" id="nomeEmpresa"></h1>
                     <h1 class="cardTitulo" id="titulo"></h1>
                     <p id="descricao"></p>
                     <div class="tags">
@@ -278,13 +279,9 @@ $meses = [
                     // tratamento das datas
                     if (chave === "data_publicacao_formatada") {
 
-                        const data = new Date(vaga[chave]);
+                        const [ano, mesNumero, dia] = vaga[chave].split("-");
 
-                        const dia = data.getDate();
-
-                        const mes = meses[data.getMonth()];
-
-                        const ano = data.getFullYear();
+                        const mes = meses[parseInt(mesNumero) - 1];
 
                         elemento.innerHTML = `<i class="fa-regular fa-clock"></i> Data de Publicação: ${dia} ${mes} ${ano}`;
 

@@ -66,7 +66,7 @@ $meses = [
                     <input type="hidden" name="tipo" value="empresa">
 
                     <label class="input-label" for="nome">
-                        <p>Nome:</p>
+                        <p>Nome</p>
                         <input class="input"
                             placeholder="Digite seu Nome"
                             id="nome"
@@ -76,7 +76,7 @@ $meses = [
                     </label>
 
                     <label class="input-label" for="instituicao">
-                        <p>Instituição:</p>
+                        <p>Instituição</p>
                         <input class="input"
                             placeholder="Digite o nome da sua instituição"
                             id="instituicao"
@@ -86,7 +86,7 @@ $meses = [
                     </label>
 
                     <label class="input-label" for="curso">
-                        <p>Curso:</p>
+                        <p>Curso</p>
                         <input class="input"
                             placeholder="Digite o seu curso"
                             id="curso"
@@ -97,7 +97,7 @@ $meses = [
                     </label>
 
                     <label class="input-label" for="telefone">
-                        <p>Telefone:</p>
+                        <p>Telefone</p>
                         <input class="input"
                             placeholder="Digite o nome da sua instituição"
                             id="telefone"
@@ -107,7 +107,7 @@ $meses = [
                     </label>
 
                     <label class="input-label" for="regiao">
-                        <p>Região:</p>
+                        <p>Região</p>
                         <?php /*mudar o input para select e option*/ ?>
                         <input class="input"
                             placeholder="Escolha sua Região"
@@ -136,9 +136,16 @@ $meses = [
                     <div class="fotoPerfil"><img src="../assets/img/fotoPerfilPadrao.jpg" alt="Sua Foto de Perfil"></div>
                     <div>
                         <h1 class="nomePerfil"><?= $dados['nome'] ?></h1>
-                        <h2 class="regiaoperfil"><?= $dados['cnpj'] ?></h2>
-                        <h2 class="telefonePerfil"><?= $dados['telefone'] ?></h2>
                         <h2 class="regiaoPerfil"><?= $dados['cidade'] ?></h2>
+                        <h2 id="telefoneEmpresa" class="telefonePerfil">
+                            <i class="fa-solid fa-phone"></i>
+                            <span><?= $dados['telefone'] ?></span>
+                        </h2>
+
+                        <h2 id="cnpjEmpresa" class="regiaoperfil">
+                            <i class="fa-regular fa-id-badge"></i>
+                            <span><?= $dados['cnpj'] ?></span>
+                        </h2>
                     </div>
                 </div>
                 <button onclick="abrirMenuPerfil()" class="btnEditar"><i class="fa-solid fa-pen-to-square"></i></button>
@@ -149,8 +156,8 @@ $meses = [
             </div>
 
             <div class="pageSelector">
-                <button id="pageCandidatos" class="page pageCandidatos pageCandidatosAtivo" onclick="toggleCandidatos()">Seus CANDIDATOS</button>
-                <button id="pageVagas" class="page pageVagas" onclick="toggleVagas()">Suas VAGAS</button>
+                <button id="pageCandidatos" class="page pageCandidatos pageCandidatosAtivo" onclick="toggleCandidatos()">CANDIDATOS</button>
+                <button id="pageVagas" class="page pageVagas" onclick="toggleVagas()">VAGAS</button>
             </div>
 
             <section class="conteudo">
@@ -189,9 +196,16 @@ $meses = [
                 <div id="conteudoVagas" class="hidden">
                     <div class="listarVagas">
                         <?php if (empty($vagas)): ?>
-                            <p>Nenhuma vaga cadastrada.</p>
-                            <div>
-                                <button onclick="abrirMenuVaga()" class="btn">Nova Vaga</button>
+                            <div style="
+                                display: flex;
+                                flex-direction: column;
+                                align-items: center;
+                                justify-content: center;
+                                ">
+                                <p>Nenhuma Vaga cadastrada</p>
+                                <div>
+                                    <button onclick="abrirMenuVaga()" class="btn">Nova Vaga</button>
+                                </div>
                             </div>
                         <?php else: ?>
                             <div id="listagem">
@@ -316,6 +330,7 @@ $meses = [
                         id="cor"
                         name="cor"
                         type="color">
+                    <input type="hidden" name="status" value="aberta">
                     <button class="btn-submit" type="submit">Publicar</button>
                     <button class="btn-cancelar" onclick="fecharMenu()">Fechar</button>
                 </form>
@@ -325,6 +340,24 @@ $meses = [
         </div>
     </main>
 
+    <script src="../assets/js/mascara.js"></script>
+
+    <script>
+        const telefoneEmpresa = document.querySelector("#telefoneEmpresa span");
+        const cnpjEmpresa = document.querySelector("#cnpjEmpresa span");
+
+        if (telefoneEmpresa) {
+            telefoneEmpresa.textContent =
+                mascaraTelefone(telefoneEmpresa.textContent);
+        }
+
+        if (cnpjEmpresa) {
+            cnpjEmpresa.textContent =
+                mascaraCNPJ(cnpjEmpresa.textContent);
+        }
+
+        // resto do seu código...
+    </script>
 
     <script>
         const titulo = document.getElementById('titulo')

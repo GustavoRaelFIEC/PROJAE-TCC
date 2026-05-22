@@ -188,31 +188,45 @@
   text-transform: uppercase;
 }
 
+.nomePerfil,
+.instituicaoPerfil,
+.cursoPerfil {
+  text-transform: uppercase;
+}
+
 .nomePerfil {
+  font-size: 32px;
+  line-height: 1.1;
+  font-weight: 800;
+  color: #111;
 }
 
 .instituicaoPerfil {
+  font-size: 24px;
+  font-weight: 700;
+  color: #111;
 }
 
 .cursoPerfil {
+  font-size: 24px;
+  font-weight: 700;
+  color: #111;
 }
 
-.telefonePerfil {
-  display: flex;
-  align-items: center;
-  font-weight: 500;
-  gap: 10px;
-}
-
-.telefonePerfil {
-  font-size: 20px;
-}
-
+.telefonePerfil,
 .cpf {
   display: flex;
   align-items: center;
+  gap: 10px;
+
+  font-size: 20px;
   font-weight: 500;
-  gap: 15px;
+}
+
+.detalhesPerfil > div:last-child {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
 .btnEditar {

@@ -239,6 +239,46 @@
   transform: translate(-50%, -50%) scale(1);
 }
 
+#detalhesVaga > .cardDetalhes {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height: 100%;
+  width: 100%;
+}
+
+#data_publicacao_formatada, #data_inscricao_formatada{
+  font-size: 24px;
+  color: black;
+}
+
+#titulo{
+  font-size: 46px;
+  max-width: 675px;
+}
+
+#descricao{
+  font-size: 20px;
+  max-width: 675px;
+}
+
+#tipo, #salario, #cidade{
+  font-size: 18px;
+}
+
+.cardTitulo, .nomeEmpresa {
+  font-size: 32px;
+  line-height: 1.1;
+  font-weight: 800;
+  color: #111;
+  text-transform: uppercase;
+}
+
+.nomeEmpresa{
+  font-size: 24px;
+  font-weight: 700;
+}
+
 .erro{
   position: absolute;
 }

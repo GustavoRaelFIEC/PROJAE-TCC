@@ -24,19 +24,19 @@ class Security
     // Validar telefone
     public static function validateTelefone($telefone)
     {
-        return strlen($telefone) === 15;
+        return strlen($telefone) === 11;
     }
 
     // Validar CPF
     public static function validateCPF($cpf)
     {
-        return strlen($cpf) === 14;
+        return strlen($cpf) === 11;
     }
 
     // Validar CNPJ
     public static function validateCNPJ($cnpj)
     {
-        return strlen($cnpj) === 18;
+        return strlen($cnpj) === 14;
     }
 
     // Validar tipo
