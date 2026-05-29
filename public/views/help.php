@@ -19,7 +19,7 @@
     <title>Ajuda - PROJAE</title>
 </head>
 
-<body>
+<body class="corpo">
 
     <header class="cabecalho">
         <div class="contentCabecalho">
@@ -37,6 +37,23 @@
     </header>
 
     <main class="principal">
+
+        <h1 class="titulo">Perguntas frequentes</h1>
+
+        <div class="conteudo">
+            <div class="pergunta">
+                <h2 class="tituloPergunta-1">placeholder</h2>
+                <p class="corpoPergunta-1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque sunt cupiditate doloremque beatae voluptatibus unde veniam fugiat explicabo voluptates? Sunt facere temporibus officia praesentium earum repudiandae deleniti id, eaque quas.</p>
+            </div>
+            <div class="pergunta">
+                <h2 class="tituloPergunta-2">placeholder 2</h2>
+                <p class="corpoPergunta-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque sunt cupiditate doloremque beatae voluptatibus unde veniam fugiat explicabo voluptates? Sunt facere temporibus officia praesentium earum repudiandae deleniti id, eaque quas.</p>
+            </div>
+            <div class="pergunta" >
+                <h2 class="tituloPergunta-1">placeholder 3</h2>
+                <p class="corpoPergunta-1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque sunt cupiditate doloremque beatae voluptatibus unde veniam fugiat explicabo voluptates? Sunt facere temporibus officia praesentium earum repudiandae deleniti id, eaque quas.</p>
+            </div>
+        </div>
 
     </main>
 </body>
