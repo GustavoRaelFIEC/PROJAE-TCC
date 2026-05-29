@@ -58,6 +58,7 @@ class Pessoa
     {
         $stmt = $this->pdo->prepare("
         SELECT 
+            inscricao.id_inscricao,
             inscricao.data_inscricao,
             empresas.nome AS nomeEmpresa,
             DATE(inscricao.data_inscricao) AS data_inscricao_formatada,

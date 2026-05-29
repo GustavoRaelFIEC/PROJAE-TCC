@@ -17,10 +17,23 @@ class Inscricao
         INSERT INTO inscricao (id_pessoa, id_vaga)
         VALUES (?, ?)
         ");
-        
+
         $stmt->execute([
             $idPessoa,
             $idVaga
         ]);
+    }
+
+    // Cancelar inscrição na vaga
+    public function cancelarInscricao($idInscricao)
+    {
+        $stmt = $this->pdo->prepare("
+        DELETE FROM inscricao
+        WHERE id_inscricao = ?
+        ");
+
+        $stmt->execute([$idInscricao]);
+        echo $stmt->rowCount();
+        exit();
     }
 }

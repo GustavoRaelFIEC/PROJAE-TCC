@@ -139,6 +139,8 @@ $meses = [
                         $dataInscricao = new DateTime($inscricao['data_inscricao']);
                     ?>
                         <div class="card">
+                            <p>ID inscrição: <?= $inscricao['id_inscricao'] ?></p>
+                            <p>ID vaga: <?= $inscricao['id_vaga'] ?></p>
                             <p class="paragrafoCard dataPublicacao"><i class="fa-regular fa-clock"></i>Data de Publicação: <?= $data->format('d') . ' ' . $meses[$data->format('n')] . ' ' . $data->format('Y') ?></p>
                             <h1 class="nomeEmpresa"><?= $inscricao['nomeEmpresa'] ?></h1>
                             <h2 class="cardTitulo"><?= $inscricao['titulo'] ?></h2>
@@ -150,7 +152,7 @@ $meses = [
                             <p class="paragrafoCard dataInscricao"><i class="fa-regular fa-clock"></i>Data de Inscrição: <?= $dataInscricao->format('d') . ' ' . $meses[$dataInscricao->format('n')] . ' ' . $dataInscricao->format('Y') ?></p>
                             <div class="cta">
                                 <button class="btn btnAbrirDetalhes" type="button" data-id="<?= $inscricao['id_vaga'] ?>">Detalhes</button>
-                                <button id="desinscrever" class="btn cancelarInscricao" type="submit">Cancelar Inscrição</button>
+                                <button id="desinscrever" class="btn cancelarInscricao" type="button" data-id="<?= $inscricao['id_inscricao'] ?>">Cancelar Inscrição</button>
                             </div>
                         </div>
                     <?php endforeach; ?>
@@ -169,7 +171,7 @@ $meses = [
                         <p class="paragrafoCard dataPublicacao" id="data_inscricao_formatada"></p>
                         <div class="cta">
                             <button class="btn btnSairDetalhes" type="button" onclick="fecharPopUps()">Sair</button>
-                            <button id="desinscrever" class="btn cancelarInscricao" type="submit">Cancelar Inscrição</button>
+                            <button id="desinscrever" class="btn cancelarInscricao" type="button" data-id="<?= $inscricao['id_inscricao'] ?>">Cancelar Inscrição</button>
                         </div>
                     </div>
                 </div>
@@ -238,8 +240,6 @@ $meses = [
 
                 const vaga = await resposta.json();
 
-                console.log(vaga);
-
                 Object.keys(vaga).forEach(chave => {
 
                     const elemento = document.getElementById(chave);
@@ -279,6 +279,31 @@ $meses = [
                     elemento.innerText = vaga[chave];
 
                 });
+
+            });
+
+        });
+
+        document.querySelectorAll('.btn.cancelarInscricao').forEach(botao => {
+
+            botao.addEventListener('click', async () => {
+
+                console.log("clicado!")
+
+                const id = botao.dataset.id;
+                console.log("ID:", id);
+
+                const resposta = await fetch(`../../src/controllers/DadosController.php?id=${id}`);
+
+
+                console.log("status:", resposta.status);
+                const texto = await resposta.text();
+                console.log(texto);
+                if (texto === "1") {
+                    location.reload();
+                } else {
+                    alert("Nenhuma inscrição foi removida");
+                }
 
             });
 

@@ -12,6 +12,14 @@ require_once __DIR__ . '/../utils/Session.php';
 
 Session::start();
 
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+
+    if (isset($_GET['id'])) {
+
+        cancelarInscricao($pdo);
+    }
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     handleInscricao($pdo);
 }
@@ -106,4 +114,31 @@ function visualizarInscricoesPessoa($pdo)
     }
 
     return $inscricoes;
+}
+
+
+function cancelarInscricao($pdo)
+{
+    $errors = [];
+
+    $id = $_GET['id'];
+
+    try {
+
+        $inscricaoModel = new Inscricao($pdo);
+
+        $inscricaoModel->cancelarInscricao($id);
+
+        header("Location: /PROJAE-TCC/public/views/dashboardPessoa.php");
+        exit();
+    } catch (PDOException $e) {
+        error_log("Erro ao cancelar inscrição: " . $e->getMessage());
+        $errors[] = "Erro no sistema. Volte mais tarde.";
+    }
+
+
+    if (!empty($errors)) {
+        header("Location: /PROJAE-TCC/public/views/dashboardPessoa.php");
+        exit();
+    }
 }
