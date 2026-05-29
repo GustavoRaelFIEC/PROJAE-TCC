@@ -246,7 +246,9 @@ $meses = [
 
                                         <div class="cta">
                                             <button class="btn excluirVaga" type="button">Excluir</button>
-                                            <button class="btn fecharVaga" type="submit">Fechar Vaga</button>
+                                            <button class="btn fecharVaga" type="button" data-id="<?= $vaga['id_vaga'] ?>">
+                                                <?= $vaga['status'] === 'aberta' ? 'Fechar Vaga' : 'Abrir Vaga' ?>
+                                            </button>
                                         </div>
 
                                     </div>
@@ -364,11 +366,52 @@ $meses = [
         const editPerfil = document.getElementById("editPerfil");
         const novaVaga = document.getElementById("novaVaga")
         const overlay = document.getElementById("overlay");
-        const picker = document.getElementById("colorPicker");
+        const picker = document.getElementById("cor");
         const candidatos = document.getElementById("conteudoCandidatos");
         const vagas = document.getElementById("conteudoVagas");
         const pageCandidatos = document.getElementById("pageCandidatos");
         const pageVagas = document.getElementById("pageVagas")
+        const botoesFechar = document.querySelectorAll(".fecharVaga");
+
+
+        botoesFechar.forEach(botao => {
+
+            botao.addEventListener("click", async () => {
+
+                const idVaga = botao.dataset.id;
+
+                const response = await fetch(
+                    "../../src/controllers/VagaController.php?action=alternarStatusVaga", {
+                        method: "PUT",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            id_vaga: idVaga
+                        })
+                    }
+                );
+
+                const data = await response.json();
+
+                if (data.success) {
+
+                    if (botao.innerText.trim() === "Fechar Vaga") {
+
+                        botao.innerText = "Abrir Vaga";
+
+                    } else {
+
+                        botao.innerText = "Fechar Vaga";
+
+                    }
+
+                }
+
+            });
+
+        });
+
 
         function abrirMenuPerfil() {
             novaVaga.classList.remove("ativo");
@@ -391,9 +434,13 @@ $meses = [
             document.body.style.overflow = "auto";
         }
 
-        picker.addEventListener("input", () => {
-            localStorage.setItem("corEscolhida", picker.value);
-        });
+        if (picker) {
+
+            picker.addEventListener("input", () => {
+                localStorage.setItem("corEscolhida", picker.value);
+            });
+
+        }
 
 
         function toggleCandidatos() {

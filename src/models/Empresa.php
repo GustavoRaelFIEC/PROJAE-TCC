@@ -53,6 +53,22 @@ class Empresa
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    // Alterna status da vaga
+    public function alternarStatus($idVaga)
+    {
+        $stmt = $this->pdo->prepare("
+        UPDATE vagas 
+        SET status = 
+                CASE 
+                    WHEN status = 'aberta' THEN 'fechada'
+                    ELSE 'aberta'
+                END
+            WHERE id_vaga = ?
+        ");
+
+        return $stmt->execute([$idVaga]);
+    }
+
     // Buscar todas as inscrições da empresa
     public function visualizarInscricoesEmpresa($idEmpresa)
     {
@@ -95,5 +111,4 @@ class Empresa
         $stmt->execute([$telefone]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
-
 }

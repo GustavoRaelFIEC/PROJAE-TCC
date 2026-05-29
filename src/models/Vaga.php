@@ -99,4 +99,19 @@ class Vaga
         $stmt->execute([$idVaga]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+    public function alternarStatusVaga($idVaga)
+    {
+
+        $stmt = $this->pdo->prepare("
+    UPDATE vagas
+    SET status =
+    CASE WHEN status = 'aberta' THEN 'fechada'
+    ELSE 'aberta'
+    END
+    WHERE id_vaga = ?
+    ");
+
+        return $stmt->execute([$idVaga]);
+    }
 }

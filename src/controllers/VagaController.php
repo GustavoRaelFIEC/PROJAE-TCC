@@ -18,17 +18,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         handlePostarVaga($pdo);
     }
 } else if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+
     $action = $_GET['action'] ?? '';
 
     if ($action === "filtrarPorTipo") {
+
         handleFiltrarPorTipo($pdo);
     }
+} else if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
+
+    $action = $_GET['action'] ?? '';
+
+    if ($action === "alternarStatusVaga") {
+
+        handleAlternarStatusVaga($pdo);
+    }
 }
-
-
-
-
-
 function getRequestData()
 {
     return $_POST;
@@ -99,4 +104,20 @@ function handleFiltrarPorTipo($pdo)
     $vagas = $vagaModel->filtrarPorTipo($tipo);
 
     require '../PROJAE-TCC/public/views/vagas.php';
+}
+
+function handleAlternarStatusVaga($pdo)
+{
+
+    $dados = json_decode(file_get_contents("php://input"), true);
+
+    $idVaga = $dados['id_vaga'];
+
+    $vagaModel = new Vaga($pdo);
+
+    $resultado = $vagaModel->alternarStatusVaga($idVaga);
+
+    echo json_encode([
+        "success" => $resultado
+    ]);
 }
