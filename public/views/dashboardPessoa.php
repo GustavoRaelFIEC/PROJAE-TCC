@@ -158,7 +158,7 @@ $meses = [
                             <h1>DESEJA REALMENTE CANCELAR SUA INSCRIÇÃO NESTA VAGA?</h1>
                             <div class="cta">
                                 <button onclick="fecharPopUps()">NÃO</button>
-                                <button class="cancelarInscricao" data-id="<?= $inscricao['id_inscricao']?>">SIM</button>
+                                <button class="cancelarInscricao" data-id="<?= $inscricao['id_inscricao'] ?>">SIM</button>
                             </div>
                         </div>
                     <?php endforeach; ?>
@@ -337,7 +337,6 @@ $meses = [
             }
 
             overlay.classList.remove("ativo");
-
             document.body.style.overflow = "auto";
         }
 

@@ -139,7 +139,13 @@ $meses = [
                                     data-id="<?= (int) $vaga['id_vaga'] ?>">
                                     Detalhes
                                 </button>
-                                <button class="btn inscreverSe" type="submit">Inscrever-se</button>
+                                <?php
+                                if ($_SESSION['user_tipo'] !== 'empresa'):
+                                ?>
+                                    <button class="btn inscreverSe" type="submit">Inscrever-se</button>
+                                <?php
+                                endif;
+                                ?>
                             </div>
                         </form>
                     </div>

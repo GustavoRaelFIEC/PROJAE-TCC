@@ -526,3 +526,155 @@ select.input:focus {
   text-transform: uppercase;
   margin-bottom: 10px;
 }
+
+.btnAbrirDetalhes,
+.btnSairDetalhes {
+  background-color: #fff;
+  border: 1px solid #000000;
+  color: black;
+}
+
+.cancelarInscricao {
+  white-space: nowrap;
+}
+
+/*  Resolver ↓  */
+
+#detalhesVaga {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px;
+  gap: 50px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.95);
+  max-width: 1100px;
+  width: 70%;
+  height: 90vh;
+  background-color: rgb(245, 245, 245);
+  border-radius: 10px;
+  z-index: 3;
+  overflow-y: auto;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+}
+
+#detalhesVaga.ativo,
+#confirmacao.ativo,
+#editPerfil.ativo {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+#detalhesVaga > .cardDetalhes {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height: 100%;
+  width: 100%;
+}
+
+#detalhesVaga #data_publicacao_formatada,
+#detalhesVaga #data_inscricao_formatada {
+  font-size: 24px;
+  color: black;
+}
+
+#detalhesVaga #titulo {
+  font-size: 46px;
+  max-width: 675px;
+}
+
+#detalhesVaga #descricao {
+  font-size: 20px;
+  max-width: 675px;
+}
+
+#detalhesVaga #tipo,
+#detalhesVaga #salario,
+#detalhesVaga #cidade {
+  font-size: 18px;
+}
+
+.cardTitulo,
+.nomeEmpresa {
+  font-size: 32px;
+  line-height: 1.1;
+  font-weight: 800;
+  color: #111;
+  text-transform: uppercase;
+}
+
+.nomeEmpresa {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.erro {
+  position: absolute;
+}
+
+#confirmacao {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 50px;
+  gap: 50px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.95);
+  max-width: 1100px;
+  width: 35%;
+  height: 30vh;
+  background-color: rgb(245, 245, 245);
+  border-radius: 10px;
+  z-index: 3;
+  overflow-y: auto;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  overflow: hidden;
+}
+
+#confirmacao h1 {
+  text-align: center;
+  line-height: 55px;
+}
+
+#confirmacao .cta {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: auto;
+  width: 100%;
+  gap: 30px;
+}
+
+#confirmacao .cta button {
+  border-radius: 25px;
+  padding: 15px;
+  font-weight: bold;
+  width: 100px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#confirmacao .cta button:hover {
+  transform: scale(1.05);
+}
+
+#confirmacao .cta button:first-child {
+  background-color: #fff;
+  border: 1px solid #000000;
+}
+
+#confirmacao .cta button:last-child {
+  background-color: #000000;
+  color: white;
+}

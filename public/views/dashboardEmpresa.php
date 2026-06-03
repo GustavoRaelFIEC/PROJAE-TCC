@@ -45,7 +45,7 @@ $meses = [
 </head>
 
 <body class="corpo">
-    <div id="overlay" onclick="fecharMenu()"></div>
+    <div id="overlay" onclick="fecharPopUps()"></div>
     <header class="cabecalho">
         <div class="contentCabecalho">
             <div class="logo"><img class="img" src="../assets/img/imagotipo.png" alt="Projae logo"></div>
@@ -60,7 +60,7 @@ $meses = [
     </header>
     <main class="principal">
         <div class="content">
-            <div id="editPerfil">
+            <!-- <div id="editPerfil">
                 <h1 class="tituloForm">Editar Perfil</h1>
                 <form class="formulario">
                     <input type="hidden" name="tipo" value="empresa">
@@ -128,9 +128,9 @@ $meses = [
                         type="color">
 
                     <button class="btn-submit" type="submit">Salvar</button>
-                    <button class="btn-cancelar" onclick="fecharMenu()">Cancelar</button>
+                    <button class="btn-cancelar" onclick="fecharPopUps()">Cancelar</button>
                 </form>
-            </div>
+            </div> -->
             <section class="perfil">
                 <div class="detalhesPerfil">
                     <div class="fotoPerfil"><img src="../assets/img/fotoPerfilPadrao.jpg" alt="Sua Foto de Perfil"></div>
@@ -148,7 +148,7 @@ $meses = [
                         </h2>
                     </div>
                 </div>
-                <button onclick="abrirMenuPerfil()" class="btnEditar"><i class="fa-solid fa-pen-to-square"></i></button>
+                <!-- <button onclick="abrirMenuPerfil()" class="btnEditar"><i class="fa-solid fa-pen-to-square"></i></button> -->
                 <div>
                     <button onclick="abrirMenuVaga()" id="btn" class="btn" style="background-color: #4938BE; font-size: 20px;">Nova Vaga</button>
                 </div>
@@ -160,7 +160,7 @@ $meses = [
             </div>
 
             <section class="conteudo">
-                <h1 id="titulo" class="titulo">Seus candidatos</h1>
+                <h1 id="tituloSecao" class="titulo">Seus candidatos</h1>
 
                 <div id="conteudoCandidatos">
                     <div id="listagem">
@@ -202,7 +202,7 @@ $meses = [
                                 align-items: center;
                                 justify-content: center;
                                 ">
-                                <p>Nenhuma Vaga cadastrada</p>
+                                <p>Nenhuma Vaga cadastrada.</p>
                                 <div>
                                     <button onclick="abrirMenuVaga()" class="btn">Nova Vaga</button>
                                 </div>
@@ -245,9 +245,10 @@ $meses = [
                                         </div>
 
                                         <div class="cta">
-                                            <button class="btn excluirVaga" type="button">Excluir</button>
+                                            <button class="btn btnAbrirDetalhes" type="button" data-id="<?= $vaga['id_vaga'] ?>">Detalhes</button>
                                             <button class="btn fecharVaga" type="button" data-id="<?= $vaga['id_vaga'] ?>">
                                                 <?= $vaga['status'] === 'aberta' ? 'Fechar Vaga' : 'Abrir Vaga' ?>
+                                                <button class="btn excluirVaga" type="button">Excluir</button>
                                             </button>
                                         </div>
 
@@ -257,73 +258,86 @@ $meses = [
                             </div>
                         <?php endif; ?>
                     </div>
-
-                </div>
             </section>
 
+            <div id="detalhesVaga">
+                <div class="cardDetalhes">
+                    <p class="paragrafoCard dataPublicacao" id="data_publicacao_formatada"></p>
+                    <h1 class="nomeEmpresa" id="nomeEmpresa"></h1>
+                    <h1 class="cardTitulo" id="titulo"></h1>
+                    <p id="descricao"></p>
+                    <div class="tags">
+                        <span class="tipo" id="tipo"></span>
+                        <span class="salario" id="salario">R$</span>
+                        <span class="cidade" id="cidade"></span>
+                    </div>
+                    <div class="cta">
+                        <button class="btn detalhes" type="button" onclick="fecharPopUps()">Sair</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-            <div id="novaVaga">
-                <h1 class="tituloForm">Nova Vaga</h1>
-                <form class="formulario" method="POST" action="../../src/controllers/VagaController.php?action=postarVaga">
-                    <input type="hidden" name="action" value="postarVaga">
-                    <label class="input-label" for="nome">
-                        Título
-                        <input class="input"
-                            type="text"
-                            id="titulo"
-                            name="titulo"
-                            placeholder="Insira aqui o nome da vaga"
-                            value=""
-                            required
-                            maxlength="150"
-                            minlength="2">
-                    </label>
-                    <label class="input-label" for="tipo">
-                        Tipo
-                        <select class="input"
-                            name="tipo"
-                            id="tipo"
-                            default="Selecione o tipo da vaga"
-                            required>
-                            <option value="Estágio">Estágio</option>
-                            <option value="aprendiz">Jovem Aprendiz</option>
-                            <!-- colacar as opçoes dps -->
-                        </select>
-                    </label>
-                    <label class="input-label" for="descricao">
-                        Descrição
-                        <input class="input"
-                            id="descricao"
-                            name="descricao"
-                            placeholder="Descreva sua vaga detalhadamente aqui"
-                            maxlength="500"
-                            required>
-                        </input>
-                    </label>
-                    <label class="input-label">
-                        Salário
-                        <input class="input"
-                            type="number"
-                            id="salario"
-                            name="salario"
-                            placeholder="Insira o salario da vaga aqui"
-                            step="0.01"
-                            value=""
-                            min="0"
-                            required>
-                    </label>
-                    <label class="input-label">
-                        Cidade
-                        <input class="input"
-                            type="text"
-                            id="cidade"
-                            name="cidade"
-                            placeholder="Coloque a cidade onde sua vaga é localizada"
-                            value=""
-                            required
-                            maxlength="100">
-                    </label>
-                    <label class="input-label" for="cor">
+        <div id="novaVaga">
+            <h1 class="tituloForm">Nova Vaga</h1>
+            <form class="formulario" method="POST" action="../../src/controllers/VagaController.php?action=postarVaga">
+                <input type="hidden" name="action" value="postarVaga">
+                <label class="input-label" for="nome">
+                    Título
+                    <input class="input"
+                        type="text"
+                        name="titulo"
+                        placeholder="Insira aqui o nome da vaga"
+                        required
+                        maxlength="150"
+                        minlength="2">
+                </label>
+                <label class="input-label" for="tipo">
+                    Tipo
+                    <select class="input"
+                        name="tipo"
+                        id="tipo"
+                        default="Selecione o tipo da vaga"
+                        required>
+                        <option value="Estágio">Estágio</option>
+                        <option value="aprendiz">Jovem Aprendiz</option>
+                        <!-- colacar as opçoes dps -->
+                    </select>
+                </label>
+                <label class="input-label" for="descricao">
+                    Descrição
+                    <input class="input"
+                        id="descricao"
+                        name="descricao"
+                        placeholder="Descreva sua vaga detalhadamente aqui"
+                        maxlength="500"
+                        required>
+                    </input>
+                </label>
+                <label class="input-label">
+                    Salário
+                    <input class="input"
+                        type="number"
+                        id="salario"
+                        name="salario"
+                        placeholder="Insira o salario da vaga aqui"
+                        step="0.01"
+                        value=""
+                        min="0"
+                        required>
+                </label>
+                <label class="input-label">
+                    Cidade
+                    <input class="input"
+                        type="text"
+                        id="cidade"
+                        name="cidade"
+                        placeholder="Coloque a cidade onde sua vaga é localizada"
+                        value=""
+                        required
+                        maxlength="100">
+                </label>
+                <!-- <label class="input-label" for="cor">
                         <p>Cor:</p>
                         <p style="color: gray;">Escolha uma cor para representar sua vaga</p>
                     </label>
@@ -331,14 +345,11 @@ $meses = [
                         style="margin-top: -15px;"
                         id="cor"
                         name="cor"
-                        type="color">
-                    <input type="hidden" name="status" value="aberta">
-                    <button class="btn-submit" type="submit">Publicar</button>
-                    <button class="btn-cancelar" onclick="fecharMenu()">Fechar</button>
-                </form>
-
-
-            </div>
+                        type="color"> -->
+                <input type="hidden" name="status" value="aberta">
+                <button class="btn-submit" type="submit">Publicar</button>
+                <button class="btn-cancelar" onclick="fecharPopUps()">Fechar</button>
+            </form>
         </div>
     </main>
 
@@ -362,7 +373,7 @@ $meses = [
     </script>
 
     <script>
-        const titulo = document.getElementById('titulo')
+        const titulo = document.getElementById('tituloSecao')
         const editPerfil = document.getElementById("editPerfil");
         const novaVaga = document.getElementById("novaVaga")
         const overlay = document.getElementById("overlay");
@@ -372,7 +383,22 @@ $meses = [
         const pageCandidatos = document.getElementById("pageCandidatos");
         const pageVagas = document.getElementById("pageVagas")
         const botoesFechar = document.querySelectorAll(".fecharVaga");
+        const detalhesVaga = document.getElementById("detalhesVaga");
 
+        const meses = [
+            'Janeiro',
+            'Fevereiro',
+            'Março',
+            'Abril',
+            'Maio',
+            'Junho',
+            'Julho',
+            'Agosto',
+            'Setembro',
+            'Outubro',
+            'Novembro',
+            'Dezembro'
+        ];
 
         botoesFechar.forEach(botao => {
 
@@ -412,6 +438,78 @@ $meses = [
 
         });
 
+        document.querySelectorAll('.btnAbrirDetalhes').forEach(botao => {
+
+            botao.addEventListener('click', async () => {
+
+                const id = botao.dataset.id;
+
+                // abre modal
+                detalhesVaga.classList.add("ativo");
+                overlay.classList.add("ativo");
+
+                document.body.style.overflow = "hidden";
+
+                // busca dados
+                const resposta = await fetch(`../../src/controllers/DadosController.php?id=${id}`);
+
+                const vaga = await resposta.json();
+
+                Object.keys(vaga).forEach(chave => {
+
+                    const elemento = document.getElementById(chave);
+
+                    if (!elemento) return;
+
+                    // tratamento das datas
+                    if (chave === "data_publicacao_formatada") {
+
+                        const [ano, mesNumero, dia] = vaga[chave].split("-");
+
+                        const mes = meses[parseInt(mesNumero) - 1];
+
+                        elemento.innerHTML = `<i class="fa-regular fa-clock"></i> Data de Publicação: ${dia} ${mes} ${ano}`;
+
+                        return;
+                    }
+
+                    if (chave === "data_inscricao_formatada") {
+
+                        const [ano, mesNumero, dia] = vaga[chave].split("-");
+
+                        const mes = meses[parseInt(mesNumero) - 1];
+
+                        elemento.innerHTML = `<i class="fa-regular fa-clock"></i> Data de Inscrição: ${dia} ${mes} ${ano}`;
+
+                        return;
+                    }
+
+                    if (chave === "salario") {
+
+                        elemento.innerText = 'R$ ' + vaga[chave];
+
+                        return;
+                    }
+
+                    elemento.innerText = vaga[chave];
+
+                });
+
+            });
+
+        });
+
+        function fecharPopUps() {
+            if (detalhesVaga.classList.contains("ativo")) {
+                detalhesVaga.classList.remove("ativo");
+            }
+
+            if (novaVaga.classList.contains("ativo")) {
+                novaVaga.classList.remove("ativo");
+            }
+            overlay.classList.remove("ativo");
+            document.body.style.overflow = "auto";
+        }
 
         function abrirMenuPerfil() {
             novaVaga.classList.remove("ativo");
@@ -421,17 +519,10 @@ $meses = [
         }
 
         function abrirMenuVaga() {
-            editPerfil.classList.remove("ativo");
+            // editPerfil.classList.remove("ativo");
             novaVaga.classList.add("ativo");
             overlay.classList.add("ativo");
             document.body.style.overflow = "hidden";
-        }
-
-        function fecharMenu() {
-            editPerfil.classList.remove("ativo");
-            novaVaga.classList.remove("ativo");
-            overlay.classList.remove("ativo");
-            document.body.style.overflow = "auto";
         }
 
         if (picker) {
