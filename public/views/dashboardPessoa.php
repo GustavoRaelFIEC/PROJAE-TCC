@@ -139,8 +139,6 @@ $meses = [
                         $dataInscricao = new DateTime($inscricao['data_inscricao']);
                     ?>
                         <div class="card">
-                            <p>ID inscrição: <?= $inscricao['id_inscricao'] ?></p>
-                            <p>ID vaga: <?= $inscricao['id_vaga'] ?></p>
                             <p class="paragrafoCard dataPublicacao"><i class="fa-regular fa-clock"></i>Data de Publicação: <?= $data->format('d') . ' ' . $meses[$data->format('n')] . ' ' . $data->format('Y') ?></p>
                             <h1 class="nomeEmpresa"><?= $inscricao['nomeEmpresa'] ?></h1>
                             <h2 class="cardTitulo"><?= $inscricao['titulo'] ?></h2>
@@ -152,11 +150,20 @@ $meses = [
                             <p class="paragrafoCard dataInscricao"><i class="fa-regular fa-clock"></i>Data de Inscrição: <?= $dataInscricao->format('d') . ' ' . $meses[$dataInscricao->format('n')] . ' ' . $dataInscricao->format('Y') ?></p>
                             <div class="cta">
                                 <button class="btn btnAbrirDetalhes" type="button" data-id="<?= $inscricao['id_vaga'] ?>">Detalhes</button>
-                                <button id="desinscrever" class="btn cancelarInscricao" type="button" data-id="<?= $inscricao['id_inscricao'] ?>">Cancelar Inscrição</button>
+                                <button class="btn confirmacao" type="button cancelarInscricao" onclick="popUpConfirmacao()">Cancelar Inscrição</button>
+                            </div>
+                        </div>
+
+                        <div id="confirmacao">
+                            <h1>DESEJA REALMENTE CANCELAR SUA INSCRIÇÃO NESTA VAGA?</h1>
+                            <div class="cta">
+                                <button onclick="fecharPopUps()">NÃO</button>
+                                <button class="cancelarInscricao" data-id="<?= $inscricao['id_inscricao']?>">SIM</button>
                             </div>
                         </div>
                     <?php endforeach; ?>
                 </div>
+
                 <div id="detalhesVaga">
                     <div class="cardDetalhes">
                         <p class="paragrafoCard dataPublicacao" id="data_publicacao_formatada"></p>
@@ -171,10 +178,12 @@ $meses = [
                         <p class="paragrafoCard dataPublicacao" id="data_inscricao_formatada"></p>
                         <div class="cta">
                             <button class="btn btnSairDetalhes" type="button" onclick="fecharPopUps()">Sair</button>
-                            <button id="desinscrever" class="btn cancelarInscricao" type="button" data-id="<?= $inscricao['id_inscricao'] ?>">Cancelar Inscrição</button>
                         </div>
                     </div>
                 </div>
+
+
+
             </section>
         </div>
     </main>
@@ -195,11 +204,10 @@ $meses = [
             cpfPessoa.textContent =
                 mascaraCPF(cpfPessoa.textContent.trim());
         }
-    </script>
 
-    <script>
         const editPerfil = document.getElementById("editPerfil");
         const detalhesVaga = document.getElementById("detalhesVaga");
+        const confirmacao = document.getElementById("confirmacao");
         const overlay = document.getElementById("overlay");
 
         const meses = [
@@ -309,6 +317,11 @@ $meses = [
 
         });
 
+        function popUpConfirmacao() {
+            confirmacao.classList.add("ativo");
+            overlay.classList.add("ativo");
+        }
+
         function fecharPopUps() {
 
             if (editPerfil.classList.contains("ativo")) {
@@ -317,6 +330,10 @@ $meses = [
 
             if (detalhesVaga.classList.contains("ativo")) {
                 detalhesVaga.classList.remove("ativo");
+            }
+
+            if (confirmacao.classList.contains("ativo")) {
+                confirmacao.classList.remove("ativo");
             }
 
             overlay.classList.remove("ativo");

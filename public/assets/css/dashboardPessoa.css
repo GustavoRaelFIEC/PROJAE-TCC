@@ -52,12 +52,6 @@
   transition: all 0.2s ease;
 }
 
-#editPerfil.ativo {
-  opacity: 1;
-  visibility: visible;
-  transform: translate(-50%, -50%) scale(1);
-}
-
 .formulario {
   display: flex;
   flex-direction: column;
@@ -160,7 +154,8 @@
   gap: 20px;
 }
 
-.fotoPerfil, .fotoPerfilEmpresa{
+.fotoPerfil,
+.fotoPerfilEmpresa {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -170,13 +165,14 @@
   height: 210px;
 }
 
-.fotoPerfil > img, .fotoPerfilEmpresa > img {
+.fotoPerfil > img,
+.fotoPerfilEmpresa > img {
   border-radius: 50%;
   width: 95%;
   height: 95%;
 }
 
-.fotoPerfilEmpresa{
+.fotoPerfilEmpresa {
   position: absolute;
   top: 70px;
   right: 70px;
@@ -324,7 +320,8 @@
   text-transform: uppercase;
 }
 
-.cardTitulo, .nomeEmpresa {
+.cardTitulo,
+.nomeEmpresa {
   font-size: 32px;
   line-height: 1.1;
   font-weight: 800;
@@ -332,7 +329,7 @@
   text-transform: uppercase;
 }
 
-.nomeEmpresa{
+.nomeEmpresa {
   font-size: 24px;
   font-weight: 700;
 }
@@ -393,7 +390,8 @@
   gap: 10px;
 }
 
-.btnAbrirDetalhes, .btnSairDetalhes{
+.btnAbrirDetalhes,
+.btnSairDetalhes {
   background-color: #fff;
   border: 1px solid #000000;
   color: black;
@@ -427,7 +425,9 @@
   transition: all 0.2s ease;
 }
 
-#detalhesVaga.ativo {
+#detalhesVaga.ativo,
+#confirmacao.ativo,
+#editPerfil.ativo {
   opacity: 1;
   visibility: visible;
   transform: translate(-50%, -50%) scale(1);
@@ -441,21 +441,85 @@
   width: 100%;
 }
 
-#data_publicacao_formatada, #data_inscricao_formatada{
+#data_publicacao_formatada,
+#data_inscricao_formatada {
   font-size: 24px;
   color: black;
 }
 
-#titulo{
+#titulo {
   font-size: 46px;
   max-width: 675px;
 }
 
-#descricao{
+#descricao {
   font-size: 20px;
   max-width: 675px;
 }
 
-#tipo, #salario, #cidade{
+#tipo,
+#salario,
+#cidade {
   font-size: 18px;
+}
+
+#confirmacao {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 50px;
+  gap: 50px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.95);
+  max-width: 1100px;
+  width: 35%;
+  height: 30vh;
+  background-color: rgb(245, 245, 245);
+  border-radius: 10px;
+  z-index: 3;
+  overflow-y: auto;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  overflow: hidden;
+}
+
+#confirmacao h1 {
+  text-align: center;
+  line-height: 55px;
+}
+
+#confirmacao .cta {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: auto;
+  width: 100%;
+  gap: 30px;
+}
+
+#confirmacao .cta button {
+  border-radius: 25px;
+  padding: 15px;
+  font-weight: bold;
+  width: 100px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#confirmacao .cta button:hover {
+  transform: scale(1.05);
+}
+
+#confirmacao .cta button:first-child {
+  background-color: #fff;
+  border: 1px solid #000000;
+}
+
+#confirmacao .cta button:last-child {
+  background-color: #000000;
+  color: white;
 }
