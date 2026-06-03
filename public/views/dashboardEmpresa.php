@@ -228,10 +228,6 @@ $meses = [
                                             <?= htmlspecialchars($vaga['titulo']) ?>
                                         </h1>
 
-                                        <p class="paragrafoCard">
-                                            <?= htmlspecialchars($vaga['descricao']) ?>
-                                        </p>
-
                                         <div class="tags">
                                             <span class="tipo">
                                                 <?= htmlspecialchars($vaga['tipo']) ?>
@@ -306,13 +302,13 @@ $meses = [
                 </label>
                 <label class="input-label" for="descricao">
                     Descrição
-                    <input class="input"
+                    <textarea class="input"
                         id="descricao"
                         name="descricao"
-                        placeholder="Descreva sua vaga detalhadamente aqui"
                         maxlength="500"
-                        required>
-                    </input>
+                        style="resize: none; height: 100px;"
+                        placeholder="Descreva sua vaga detalhadamente aqui"
+                        required></textarea>
                 </label>
                 <label class="input-label">
                     Salário
@@ -320,7 +316,7 @@ $meses = [
                         type="number"
                         id="salario"
                         name="salario"
-                        placeholder="Insira o salario da vaga aqui"
+                        placeholder="Insira o salário da vaga aqui"
                         step="0.01"
                         value=""
                         min="0"
