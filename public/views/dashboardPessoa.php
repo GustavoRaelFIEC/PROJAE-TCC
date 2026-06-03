@@ -284,25 +284,25 @@ $meses = [
 
         });
 
-        document.querySelectorAll('.btn.cancelarInscricao').forEach(botao => {
+        document.querySelectorAll('.cancelarInscricao').forEach(botao => {
 
             botao.addEventListener('click', async () => {
 
                 console.log("clicado!")
 
                 const id = botao.dataset.id;
+
                 console.log("ID:", id);
 
-                const resposta = await fetch(`../../src/controllers/DadosController.php?id=${id}`);
+                const resposta = await fetch(`../../src/controllers/InscricaoController.php?id=${id}`);
 
-
-                console.log("status:", resposta.status);
                 const texto = await resposta.text();
-                console.log(texto);
-                if (texto === "1") {
+
+                console.log("Status:", resposta.status);
+                console.log("Resposta:", texto);
+
+                if (texto.trim() === "1") {
                     location.reload();
-                } else {
-                    alert("Nenhuma inscrição foi removida");
                 }
 
             });

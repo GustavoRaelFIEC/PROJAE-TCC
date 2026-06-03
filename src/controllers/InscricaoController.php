@@ -124,7 +124,6 @@ function cancelarInscricao($pdo)
     $id = $_GET['id'];
 
     try {
-
         $inscricaoModel = new Inscricao($pdo);
 
         $inscricaoModel->cancelarInscricao($id);
