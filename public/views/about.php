@@ -18,6 +18,7 @@
 
     <title>Sobre Nós - PROJAE</title>
 </head>
+
 <body class="corpo">
 
     <header class="cabecalho">
@@ -63,7 +64,6 @@
                 <ul>
                     <li>Estudantes criem perfis e se candidatem às vagas;</li>
                     <li>Empresas publiquem oportunidades de estágio;</li>
-                    <li>O sistema recomende vagas e candidatos com base em compatibilidade;</li>
                 </ul>
             </div>
 
