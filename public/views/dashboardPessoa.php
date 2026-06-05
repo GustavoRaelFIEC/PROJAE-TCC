@@ -60,56 +60,6 @@ $meses = [
     </header>
     <main class="principal">
         <div class="content">
-            <div id="editPerfil">
-                <h1 class="tituloForm">Editar Perfil</h1>
-                <form class="formulario">
-                    <input type="hidden" name="tipo" value="pessoa">
-
-                    <label class="input-label" for="nome">
-                        <p>Nome</p>
-                        <input class="input"
-                            placeholder="Digite o seu nome"
-                            id="nome"
-                            name="nome"
-                            type="text"
-                            maxlength="255">
-                    </label>
-
-                    <label class="input-label" for="instituicao">
-                        <p>Instituição</p>
-                        <input class="input"
-                            placeholder="Digite o nome da sua instituição"
-                            id="instituicao"
-                            name="instituicao"
-                            type="text"
-                            maxlength="255">
-                    </label>
-
-                    <label class="input-label" for="curso">
-                        <p>Curso</p>
-                        <input class="input"
-                            placeholder="Digite o nome do seu curso"
-                            id="curso"
-                            name="curso"
-                            type="text"
-                            maxlength="255">
-
-                    </label>
-
-                    <label class="input-label" for="telefone">
-                        <p>Telefone Celular</p>
-                        <input class="input"
-                            placeholder="Digite o seu telefone celular"
-                            id="telefone"
-                            name="telefone"
-                            type="tel"
-                            maxlength="255">
-                    </label>
-
-                    <button class="btn-submit" type="submit">Salvar</button>
-                    <button class="btn-cancelar" type="submit">Cancelar</button>
-                </form>
-            </div>
             <section class="perfil">
                 <div class="detalhesPerfil">
                     <div class="fotoPerfil"><img src="../assets/img/fotoPerfilPadrao.jpg" alt="Sua Foto de Perfil"></div>
@@ -128,7 +78,6 @@ $meses = [
                         </h2>
                     </div>
                 </div>
-                <button onclick="abrirEditarPerfil()" class="btnEditar"><i class="fa-solid fa-pen-to-square"></i></button>
             </section>
             <section class="vagasInscritas">
                 <h1 class="titulo">Vagas Inscritas</h1>
@@ -247,12 +196,6 @@ $meses = [
             'Novembro',
             'Dezembro'
         ];
-
-        function abrirEditarPerfil() {
-            editPerfil.classList.add("ativo");
-            overlay.classList.add("ativo");
-            document.body.style.overflow = "hidden";
-        }
 
         document.querySelectorAll('.btnAbrirDetalhes').forEach(botao => {
 
