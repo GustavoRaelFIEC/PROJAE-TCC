@@ -11,6 +11,14 @@ require_once __DIR__ . '/../models/Inscricao.php';
 require_once __DIR__ . '/../utils/Security.php';
 require_once __DIR__ . '/../utils/Session.php';
 
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+
+    if (isset($_GET['id'])) {
+
+        excluirVaga($pdo);
+    }
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $action = $_POST['action'] ?? '';
 
@@ -120,4 +128,21 @@ function handleAlternarStatusVaga($pdo)
     echo json_encode([
         "success" => $resultado
     ]);
+}
+
+function excluirVaga($pdo)
+{
+    $id = $_GET['id'];
+
+    try {
+        $vagaModel = new Vaga($pdo);
+        $resultado = $vagaModel->excluirVaga($id);
+
+        echo $resultado; // retorna 1 se deletou, 0 se não
+        exit();
+    } catch (PDOException $e) {
+        error_log("Erro ao excluir vaga: " . $e->getMessage());
+        echo 0;
+        exit();
+    }
 }

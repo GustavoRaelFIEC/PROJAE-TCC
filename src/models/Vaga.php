@@ -114,4 +114,32 @@ class Vaga
 
         return $stmt->execute([$idVaga]);
     }
+
+    public function excluirVaga($idVaga)
+    {
+        try {
+
+            $this->pdo->beginTransaction();
+
+            $stmt = $this->pdo->prepare("
+            DELETE FROM inscricao
+            WHERE id_vaga = ?
+        ");
+            $stmt->execute([$idVaga]);
+
+            $stmt = $this->pdo->prepare("
+            DELETE FROM vagas
+            WHERE id_vaga = ?
+        ");
+            $stmt->execute([$idVaga]);
+
+            $this->pdo->commit();
+
+            return $stmt->rowCount();
+        } catch (PDOException $e) {
+
+            $this->pdo->rollBack();
+            return 0;
+        }
+    }
 }

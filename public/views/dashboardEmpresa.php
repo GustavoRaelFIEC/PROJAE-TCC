@@ -4,9 +4,9 @@ require_once __DIR__ . "/../../src/middlewares/auth.php";
 require_once __DIR__ . "/../../src/controllers/InscricaoController.php";
 require_once __DIR__ . "/../../src/controllers/DadosController.php";
 
-$vagas = handleVagasDaEmpresa($pdo);
-
 verificarTipo('empresa');
+
+$vagas = handleVagasDaEmpresa($pdo);
 $inscricoes = visualizarInscricoesEmpresa($pdo);
 $dados = handleDadosEmpresa($pdo);
 
@@ -60,77 +60,6 @@ $meses = [
     </header>
     <main class="principal">
         <div class="content">
-            <!-- <div id="editPerfil">
-                <h1 class="tituloForm">Editar Perfil</h1>
-                <form class="formulario">
-                    <input type="hidden" name="tipo" value="empresa">
-
-                    <label class="input-label" for="nome">
-                        <p>Nome</p>
-                        <input class="input"
-                            placeholder="Digite seu Nome"
-                            id="nome"
-                            name="nome"
-                            type="text"
-                            maxlength="255">
-                    </label>
-
-                    <label class="input-label" for="instituicao">
-                        <p>Instituição</p>
-                        <input class="input"
-                            placeholder="Digite o nome da sua instituição"
-                            id="instituicao"
-                            name="instituicao"
-                            type="text"
-                            maxlength="255">
-                    </label>
-
-                    <label class="input-label" for="curso">
-                        <p>Curso</p>
-                        <input class="input"
-                            placeholder="Digite o seu curso"
-                            id="curso"
-                            name="curso"
-                            type="text"
-                            maxlength="255">
-
-                    </label>
-
-                    <label class="input-label" for="telefone">
-                        <p>Telefone</p>
-                        <input class="input"
-                            placeholder="Digite o nome da sua instituição"
-                            id="telefone"
-                            name="telefone"
-                            type="tel"
-                            maxlength="255">
-                    </label>
-
-                    <label class="input-label" for="regiao">
-                        <p>Região</p>
-                        <?php /*mudar o input para select e option*/ ?>
-                        <input class="input"
-                            placeholder="Escolha sua Região"
-                            id="regiao"
-                            name="regiao"
-                            type="text"
-                            maxlength="255">
-                    </label>
-
-                    <label class="input-label" for="cor">
-                        <p>Cor:</p>
-                        <p style="color: gray;">Escolha uma cor para representar sua empresa</p>
-                    </label>
-                    <input
-                        style="margin-top: -15px;"
-                        id="cor"
-                        name="cor"
-                        type="color">
-
-                    <button class="btn-submit" type="submit">Salvar</button>
-                    <button class="btn-cancelar" onclick="fecharPopUps()">Cancelar</button>
-                </form>
-            </div> -->
             <section class="perfil">
                 <div class="detalhesPerfil">
                     <div class="fotoPerfil"><img src="../assets/img/fotoPerfilPadrao.jpg" alt="Sua Foto de Perfil"></div>
@@ -148,7 +77,6 @@ $meses = [
                         </h2>
                     </div>
                 </div>
-                <!-- <button onclick="abrirMenuPerfil()" class="btnEditar"><i class="fa-solid fa-pen-to-square"></i></button> -->
                 <div>
                     <button onclick="abrirMenuVaga()" id="btn" class="btn" style="background-color: #4938BE; font-size: 20px;">Nova Vaga</button>
                 </div>
@@ -170,13 +98,24 @@ $meses = [
                         ?>
                             <div class="card cardCandidato">
 
+                                <p class="paragrafoCard" id="nomeVaga">
+                                    Vaga: <strong><?= htmlspecialchars($inscricao['titulo_vaga']) ?></strong>
+                                </p>
 
                                 <h1 class="cardTitulo" id="nomeCandidato">
                                     <?= htmlspecialchars($inscricao['nome_pessoa']) ?>
                                 </h1>
 
-                                <p class="paragrafoCard" id="nomeVaga">
-                                    Vaga: <strong><?= htmlspecialchars($inscricao['titulo_vaga']) ?></strong>
+                                <p class="paragrafoCard">
+                                    Curso: <strong><?= htmlspecialchars($inscricao['curso_pessoa']) ?></strong>
+                                </p>
+
+                                <p class="paragrafoCard telefoneCandidato">
+                                    Telefone: <strong><?= htmlspecialchars($inscricao['telefone_pessoa']) ?></strong>
+                                </p>
+
+                                <p class="paragrafoCard">
+                                    Email: <strong><?= htmlspecialchars($inscricao['email_pessoa']) ?></strong>
                                 </p>
 
                                 <p class="paragrafoCard dataPublicacao">
@@ -244,10 +183,16 @@ $meses = [
                                             <button class="btn btnAbrirDetalhes" type="button" data-id="<?= $vaga['id_vaga'] ?>">Detalhes</button>
                                             <button class="btn fecharVaga" type="button" data-id="<?= $vaga['id_vaga'] ?>">
                                                 <?= $vaga['status'] === 'aberta' ? 'Fechar Vaga' : 'Abrir Vaga' ?>
-                                                <button class="btn excluirVaga" type="button">Excluir</button>
                                             </button>
                                         </div>
+                                    </div>
 
+                                    <div class="confirmacao" style="box-shadow: 0 0 20px;">
+                                        <h1>DESEJA REALMENTE EXCLUIR ESTA VAGA?</h1>
+                                        <div class="cta">
+                                            <button onclick="fecharPopUps()">NÃO</button>
+                                            <button class="cancelarInscricao" data-id="<?= $vaga['id_vaga'] ?>">SIM</button>
+                                        </div>
                                     </div>
 
                                 <?php endforeach; ?>
@@ -269,6 +214,9 @@ $meses = [
                     </div>
                     <div class="cta">
                         <button class="btn detalhes" type="button" onclick="fecharPopUps()">Sair</button>
+                        <button class="btn btn-excluir-vaga" type="button" onclick="popUpConfirmacao()">
+                            Excluir Vaga
+                        </button>
                     </div>
                 </div>
             </div>
@@ -333,18 +281,9 @@ $meses = [
                         required
                         maxlength="100">
                 </label>
-                <!-- <label class="input-label" for="cor">
-                        <p>Cor:</p>
-                        <p style="color: gray;">Escolha uma cor para representar sua vaga</p>
-                    </label>
-                    <input
-                        style="margin-top: -15px;"
-                        id="cor"
-                        name="cor"
-                        type="color"> -->
                 <input type="hidden" name="status" value="aberta">
                 <button class="btn-submit" type="submit">Publicar</button>
-                <button class="btn-cancelar" onclick="fecharPopUps()">Fechar</button>
+                <button type="button" class="btn-cancelar" onclick="fecharPopUps()">Fechar</button>
             </form>
         </div>
     </main>
@@ -354,6 +293,7 @@ $meses = [
     <script>
         const telefoneEmpresa = document.querySelector("#telefoneEmpresa span");
         const cnpjEmpresa = document.querySelector("#cnpjEmpresa span");
+        const telefoneCandidato = document.querySelector("#telefoneCandidato span");
 
         if (telefoneEmpresa) {
             telefoneEmpresa.textContent =
@@ -364,6 +304,14 @@ $meses = [
             cnpjEmpresa.textContent =
                 mascaraCNPJ(cnpjEmpresa.textContent);
         }
+
+        document.querySelectorAll(".telefoneCandidato").forEach(elemento => {
+            const telefone = elemento.querySelector("strong");
+
+            if (telefone) {
+                telefone.textContent = mascaraTelefone(telefone.textContent);
+            }
+        });
 
         // resto do seu código...
     </script>
@@ -380,6 +328,7 @@ $meses = [
         const pageVagas = document.getElementById("pageVagas")
         const botoesFechar = document.querySelectorAll(".fecharVaga");
         const detalhesVaga = document.getElementById("detalhesVaga");
+        const confirmacao = document.getElementById("confirmacao");
 
         const meses = [
             'Janeiro',
@@ -434,11 +383,15 @@ $meses = [
 
         });
 
+        let idVagaAtual = null; // guarda o ID da vaga aberta no modal
+
         document.querySelectorAll('.btnAbrirDetalhes').forEach(botao => {
 
             botao.addEventListener('click', async () => {
 
                 const id = botao.dataset.id;
+
+                idVagaAtual = id;
 
                 // abre modal
                 detalhesVaga.classList.add("ativo");
@@ -495,14 +448,36 @@ $meses = [
 
         });
 
+        document.querySelectorAll('.cancelarInscricao').forEach(botao => {
+            botao.addEventListener('click', async () => {
+                const resposta = await fetch(
+                    `../../src/controllers/VagaController.php?id=${idVagaAtual}`
+                );
+                const texto = await resposta.text();
+
+                console.log("Status HTTP:", resposta.status);
+                console.log("Resposta:", texto);
+                console.log("ID enviado:", idVagaAtual);
+
+                if (texto.trim() === "1") {
+                    fecharPopUps();
+                    location.reload();
+                }
+            });
+        });
+
         function fecharPopUps() {
             if (detalhesVaga.classList.contains("ativo")) {
                 detalhesVaga.classList.remove("ativo");
             }
-
             if (novaVaga.classList.contains("ativo")) {
                 novaVaga.classList.remove("ativo");
             }
+
+            document.querySelectorAll(".confirmacao").forEach(elemento => {
+                elemento.classList.remove("ativo");
+            });
+
             overlay.classList.remove("ativo");
             document.body.style.overflow = "auto";
         }
@@ -544,6 +519,11 @@ $meses = [
             pageCandidatos.classList.remove("pageCandidatosAtivo")
             pageVagas.classList.add("pageVagasAtivo")
             titulo.textContent = "Suas Vagas"
+        }
+
+        function popUpConfirmacao() {
+            document.querySelector(".confirmacao").classList.add("ativo");
+            overlay.classList.add("ativo");
         }
     </script>
 </body>

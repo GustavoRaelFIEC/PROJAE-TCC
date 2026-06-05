@@ -76,12 +76,20 @@ class Empresa
         SELECT 
             inscricao.data_inscricao AS data_inscricao,
             pessoas.nome AS nome_pessoa,
+            pessoas.curso AS curso_pessoa,
+            pessoas.telefone AS telefone_pessoa,
+            usuarios.email AS email_pessoa,
             vagas.titulo AS titulo_vaga
         FROM inscricao
-        JOIN pessoas ON inscricao.id_pessoa = pessoas.id_pessoa
-        JOIN vagas ON inscricao.id_vaga = vagas.id_vaga
-        JOIN empresas ON vagas.id_empresa = empresas.id_empresa
-        WHERE empresas.id_empresa = ?
+        JOIN pessoas 
+            ON inscricao.id_pessoa = pessoas.id_pessoa
+        JOIN usuarios 
+            ON pessoas.id_usuario = usuarios.id
+        JOIN vagas 
+            ON inscricao.id_vaga = vagas.id_vaga
+        JOIN empresas 
+            ON vagas.id_empresa = empresas.id_empresa
+        WHERE empresas.id_empresa = ?;
         ");
 
         $stmt->execute([$idEmpresa]);

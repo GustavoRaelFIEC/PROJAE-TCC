@@ -39,6 +39,7 @@
   opacity: 0;
   visibility: hidden;
   transition: all 0.2s ease;
+  overflow-y: auto;
 }
 
 #editPerfil.ativo,
@@ -563,11 +564,18 @@ select.input:focus {
 }
 
 #detalhesVaga.ativo,
-#confirmacao.ativo,
 #editPerfil.ativo {
   opacity: 1;
   visibility: visible;
   transform: translate(-50%, -50%) scale(1);
+  z-index: 1000;
+}
+
+.confirmacao.ativo {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, -50%) scale(1);
+  z-index: 2000;
 }
 
 #detalhesVaga > .cardDetalhes {
@@ -618,7 +626,7 @@ select.input:focus {
   position: absolute;
 }
 
-#confirmacao {
+.confirmacao {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -642,12 +650,12 @@ select.input:focus {
   overflow: hidden;
 }
 
-#confirmacao h1 {
+.confirmacao h1 {
   text-align: center;
   line-height: 55px;
 }
 
-#confirmacao .cta {
+.confirmacao .cta {
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -656,7 +664,7 @@ select.input:focus {
   gap: 30px;
 }
 
-#confirmacao .cta button {
+.confirmacao .cta button {
   border-radius: 25px;
   padding: 15px;
   font-weight: bold;
@@ -665,16 +673,16 @@ select.input:focus {
   transition: 0.3s;
 }
 
-#confirmacao .cta button:hover {
+.confirmacao .cta button:hover {
   transform: scale(1.05);
 }
 
-#confirmacao .cta button:first-child {
+.confirmacao .cta button:first-child {
   background-color: #fff;
   border: 1px solid #000000;
 }
 
-#confirmacao .cta button:last-child {
+.confirmacao .cta button:last-child {
   background-color: #000000;
   color: white;
 }
