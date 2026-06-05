@@ -150,18 +150,20 @@ $meses = [
                             <p class="paragrafoCard dataInscricao"><i class="fa-regular fa-clock"></i>Data de Inscrição: <?= $dataInscricao->format('d') . ' ' . $meses[$dataInscricao->format('n')] . ' ' . $dataInscricao->format('Y') ?></p>
                             <div class="cta">
                                 <button class="btn btnAbrirDetalhes" type="button" data-id="<?= $inscricao['id_vaga'] ?>">Detalhes</button>
-                                <button class="btn confirmacao" type="button cancelarInscricao" onclick="popUpConfirmacao()">Cancelar Inscrição</button>
+                                <button class="btn btnCancelarInscricao" type="button" data-id="<?= $inscricao['id_inscricao'] ?>">Cancelar Inscrição</button>
                             </div>
                         </div>
 
-                        <div id="confirmacao">
-                            <h1>DESEJA REALMENTE CANCELAR SUA INSCRIÇÃO NESTA VAGA?</h1>
-                            <div class="cta">
-                                <button onclick="fecharPopUps()">NÃO</button>
-                                <button class="cancelarInscricao" data-id="<?= $inscricao['id_inscricao'] ?>">SIM</button>
-                            </div>
-                        </div>
+
                     <?php endforeach; ?>
+                </div>
+
+                <div id="confirmacao">
+                    <h1>DESEJA REALMENTE CANCELAR SUA INSCRIÇÃO NESTA VAGA?</h1>
+                    <div class="cta">
+                        <button onclick="fecharPopUps()">NÃO</button>
+                        <button id="btnConfirmarCancelamento">SIM</button>
+                    </div>
                 </div>
 
                 <div id="detalhesVaga">
@@ -209,6 +211,27 @@ $meses = [
         const detalhesVaga = document.getElementById("detalhesVaga");
         const confirmacao = document.getElementById("confirmacao");
         const overlay = document.getElementById("overlay");
+        const btnConfirmar = document.getElementById("btnConfirmarCancelamento");
+
+        document.querySelectorAll('.btnCancelarInscricao').forEach(botao => {
+            botao.addEventListener('click', () => {
+                // Guarda o id no botão de confirmação e abre o pop-up
+                btnConfirmar.dataset.id = botao.dataset.id;
+                confirmacao.classList.add("ativo");
+                overlay.classList.add("ativo");
+            });
+        });
+
+        btnConfirmar.addEventListener('click', async () => {
+            const id = btnConfirmar.dataset.id;
+
+            const resposta = await fetch(`../../src/controllers/InscricaoController.php?id=${id}`);
+            const texto = await resposta.text();
+
+            if (texto.trim() === "1") {
+                location.reload();
+            }
+        });
 
         const meses = [
             'Janeiro',
@@ -292,35 +315,6 @@ $meses = [
 
         });
 
-        document.querySelectorAll('.cancelarInscricao').forEach(botao => {
-
-            botao.addEventListener('click', async () => {
-
-                console.log("clicado!")
-
-                const id = botao.dataset.id;
-
-                console.log("ID:", id);
-
-                const resposta = await fetch(`../../src/controllers/InscricaoController.php?id=${id}`);
-
-                const texto = await resposta.text();
-
-                console.log("Status:", resposta.status);
-                console.log("Resposta:", texto);
-
-                if (texto.trim() === "1") {
-                    location.reload();
-                }
-
-            });
-
-        });
-
-        function popUpConfirmacao() {
-            confirmacao.classList.add("ativo");
-            overlay.classList.add("ativo");
-        }
 
         function fecharPopUps() {
 
