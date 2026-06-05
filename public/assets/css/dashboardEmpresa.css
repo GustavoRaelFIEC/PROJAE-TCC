@@ -473,8 +473,14 @@ select.input:focus {
   color: black;
 }
 
-.fecharVaga {
+.fecharVaga.aberta {
   white-space: nowrap;
+  background-color: #cd0e1a;
+}
+
+.fecharVaga.fechada {
+  white-space: nowrap;
+  background-color: #237a00;
 }
 
 .area-scroll {

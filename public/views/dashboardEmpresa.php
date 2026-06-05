@@ -181,7 +181,7 @@ $meses = [
 
                                         <div class="cta">
                                             <button class="btn btnAbrirDetalhes" type="button" data-id="<?= $vaga['id_vaga'] ?>">Detalhes</button>
-                                            <button class="btn fecharVaga" type="button" data-id="<?= $vaga['id_vaga'] ?>">
+                                            <button class="btn fecharVaga <?= $vaga['status'] ?>" type="button" data-id="<?= $vaga['id_vaga'] ?>">
                                                 <?= $vaga['status'] === 'aberta' ? 'Fechar Vaga' : 'Abrir Vaga' ?>
                                             </button>
                                         </div>
@@ -213,7 +213,7 @@ $meses = [
                         <span class="cidade" id="cidade"></span>
                     </div>
                     <div class="cta">
-                        <button class="btn detalhes" type="button" onclick="fecharPopUps()">Sair</button>
+                        <button class="btn btnSairDetalhes" type="button" onclick="fecharPopUps()">Sair</button>
                         <button class="btn btn-excluir-vaga" type="button" onclick="popUpConfirmacao()">
                             Excluir Vaga
                         </button>
@@ -366,18 +366,17 @@ $meses = [
                 const data = await response.json();
 
                 if (data.success) {
-
-                    if (botao.innerText.trim() === "Fechar Vaga") {
+                    if (botao.classList.contains("aberta")) {
+                        botao.classList.replace("aberta", "fechada");
 
                         botao.innerText = "Abrir Vaga";
-
                     } else {
+                        botao.classList.replace("fechada", "aberta");
 
                         botao.innerText = "Fechar Vaga";
-
                     }
-
                 }
+
 
             });
 
