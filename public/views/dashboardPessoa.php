@@ -261,10 +261,6 @@ $meses = [
 
         function fecharPopUps() {
 
-            if (editPerfil.classList.contains("ativo")) {
-                editPerfil.classList.remove("ativo");
-            }
-
             if (detalhesVaga.classList.contains("ativo")) {
                 detalhesVaga.classList.remove("ativo");
             }
