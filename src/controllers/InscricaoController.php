@@ -30,7 +30,7 @@ function handleInscricao($pdo)
 
     $pessoaModel = new Pessoa($pdo);
 
-    $id_pessoa =  $pessoaModel->buscarPessoaPorUsuario($_SESSION['user_id']);
+    $id_pessoa =  $pessoaModel->buscarIdPessoaPorUsuario($_SESSION['user_id']);
     $id_vaga = (int) $_POST['id_vaga'];
 
 
@@ -95,7 +95,7 @@ function visualizarInscricoesPessoa($pdo)
 
     $pessoaModel = new Pessoa($pdo);
 
-    $id_pessoa =  $pessoaModel->buscarPessoaPorUsuario($_SESSION['user_id']);
+    $id_pessoa =  $pessoaModel->buscarIdPessoaPorUsuario($_SESSION['user_id']);
 
     try {
 

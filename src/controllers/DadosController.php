@@ -42,7 +42,7 @@ function handleDadosPessoa($pdo)
 
         $pessoaModel = new Pessoa($pdo);
 
-        $dados = $pessoaModel->buscarDadosPorUsuario($_SESSION['user_id']);
+        $dados = $pessoaModel->buscarPessoaPorUsuario($_SESSION['user_id']);
     } catch (PDOException $e) {
         error_log("Erro ao trazer os dados: " . $e->getMessage());
         $errors[] = "Erro no sistema. Volte mais tarde.";

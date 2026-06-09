@@ -53,7 +53,7 @@ CREATE TABLE IF NOT EXISTS vagas (
     tipo ENUM('Estágio','Aprendiz') NOT NULL,
     salario DECIMAL(10,2),
     cidade VARCHAR(100),
-    status ENUM('aberta','fechada') DEFAULT 'aberta',
+    `status` ENUM('aberta','fechada') DEFAULT 'aberta',
     data_publicacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     id_empresa INT NOT NULL,
 

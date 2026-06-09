@@ -28,7 +28,7 @@ class Pessoa
     }
 
     // Encontrar por ID da Pessoa
-    public function buscarPessoaPorUsuario($idUsuario)
+    public function buscarIdPessoaPorUsuario($idUsuario)
     {
         $stmt = $this->pdo->prepare("
         SELECT id_pessoa 
@@ -41,7 +41,7 @@ class Pessoa
     }
 
     // Dados por ID da Pessoa
-    public function buscarDadosPorUsuario($idUsuario)
+    public function buscarPessoaPorUsuario($idUsuario)
     {
         $stmt = $this->pdo->prepare("
         SELECT * 
